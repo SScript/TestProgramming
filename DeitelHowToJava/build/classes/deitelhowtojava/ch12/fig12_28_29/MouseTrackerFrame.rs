@@ -1,2 +1,0 @@
-MouseTrackerFrame
-MouseTrackerFrame$MouseHandler

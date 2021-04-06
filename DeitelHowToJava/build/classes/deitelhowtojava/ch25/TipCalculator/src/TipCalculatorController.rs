@@ -1,2 +1,0 @@
-TipCalculatorController
-TipCalculatorController$1

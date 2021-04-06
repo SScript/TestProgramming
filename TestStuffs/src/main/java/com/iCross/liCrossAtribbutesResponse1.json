@@ -1,0 +1,29 @@
+{
+    "serviceNumber": "PONS0148649",
+    "fsmNodes": [
+        {
+            "crossId": "ND124722",
+            "address": "BĒRZU IELA 7, BALOŽI, ĶEKAVAS NOV.",
+            "addressAdditionalInfo": "PAGRABS",
+            "customAttributes": {
+                "attributes": {
+                    "LT_BLD_NEED_NOTIFY": "Vienmēr",
+                    "LT_BLD_HOMEOWNER": "99999999999",
+                    "LT_BLD_ACCESS_CONTACT_INFO": "28201313",
+                    "LT_ENUM_LANDLORD": "ANDREJOSTAS 17, RĪGA; JAUNRĪGAS ATTĪSTĪB. UZŅ., INFO@JAU.LV, ",
+                    "LT_BLD_HOMEOWNER_PHONE_NR": "28201313",
+                    "LT_BLD_HOMEOWNER_EMAIL_SUBJ": "99999999999",
+                    "LT_BLD_LANDLORD_EMAIL": "testa@testa.lv",
+                    "LT_BLD_LANDLORD_PHONE_NR": "99999999999",
+                    "LT_BLD_HOMEOWNER_UNISERVE_ID": "99999999999",
+                    "LT_BLD_ACCESS_SPEC_INSTALL_INFO": "atsl. pie iedzīvotāja 97 dz",
+                    "LT_BLD_HOMEOWNER_EMAIL": "99999999999",
+                    "LT_BLD_HOMEOWNER_UNISERVE_SMS_ID": "CLICK_NTF_5_S",
+                    "LT_BLD_LANDLORD_EMAIL_SUBJ": "99999999999",
+                    "LT_BLD_LANDLORD_UNISERVE_ID": "99999999999",
+                    "LT_BLD_LANDLORD_UNISERVE_SMS_ID": "99999999999"
+                }
+            }
+        }
+    ]
+}

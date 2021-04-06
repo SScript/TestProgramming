@@ -1,0 +1,31 @@
+<tem:TemporaryObjectList xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+                         xmlns:ns0="http://xmlns.oracle.com/GetTasksForLandLordNotificationNew/TemporaryObjectList"
+                         xmlns:tem="http://xmlns.oracle.com/GetTasksForLandLordNotificationNew/TemporaryObjectList">
+    <ns0:Object>
+        <ns0:CallID>CRMP-2-27352349466</ns0:CallID>
+        <ns0:LandlordNeedNotification>1</ns0:LandlordNeedNotification>
+        <ns0:ServiceID>PONS2008537</ns0:ServiceID>
+        <ns0:AppointmentStart>2020-12-18T08:53:00</ns0:AppointmentStart>
+        <ns0:AppointmentFinish>2020-12-18T23:03:00</ns0:AppointmentFinish>
+        <ns0:ExternalRefId>111117</ns0:ExternalRefId>
+        <ns0:Customer>ELVI LATVIJA, SIA,50103276411</ns0:Customer>
+        <ns0:DIPSAttributes>
+            <ns0:DIPSAttribute>
+                <ns0:HOMEOWNER/>
+                <ns0:HOMEOWNER_EMAIL/>
+                <ns0:HOMEOWNER_EMAIL_SUBJ/>
+                <ns0:HOMEOWNER_PHONE_NR/>
+                <ns0:HOMEOWNER_UNISERVE_ID/>
+                <ns0:HOMEOWNER_UNISERVE_SMS_ID/>
+                <ns0:LANDLORD/>
+                <ns0:LANDLORD_EMAIL/>
+                <ns0:LANDLORD_EMAIL_SUBJ/>
+                <ns0:LANDLORD_PHONE_NR/>
+                <ns0:LANDLORD_UNISERVE_SMS_ID/>
+                <ns0:LANDLORD_UNISERVE_ID/>
+                <ns0:NE_ADDRESS/>
+                <ns0:NE_ADDRESS_ADD_INFO/>
+            </ns0:DIPSAttribute>
+        </ns0:DIPSAttributes>
+    </ns0:Object>
+</tem:TemporaryObjectList>

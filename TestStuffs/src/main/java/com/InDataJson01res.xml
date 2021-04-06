@@ -1,0 +1,207 @@
+<listOfOrder>
+    <listOfOrderHeader>
+        <order>
+            <generatePdfOnline>true</generatePdfOnline>
+            <id>8011q0000006ctEAAQ</id>
+            <orderDate>2021-03-24T11:38:10.000Z</orderDate>
+            <orderNumber>00005113</orderNumber>
+            <channel>ELE Admin</channel>
+            <source>Price offer</source>
+            <account>NORMATĪVĀ TEKILAY</account>
+            <accountNumber>11426614</accountNumber>
+            <accountContactFirstName>TEKILAY</accountContactFirstName>
+            <accountContactLastName>NORMATĪVĀ</accountContactLastName>
+            <accountContactEmailAddress/>
+            <accountAddressId>119073441</accountAddressId>
+            <customerSegment>3</customerSegment>
+            <customerSubSegment>16</customerSubSegment>
+            <accountContactPin>061160-16635</accountContactPin>
+            <companyRegistrationNumber>9876543</companyRegistrationNumber>
+            <vatNumber/>
+            <birthDate>1954-10-01T00:00:01</birthDate>
+            <branch/>
+            <accountType/>
+            <residentType>Nerezidents</residentType>
+            <subStatus>Credit Check done</subStatus>
+            <hardCopyAgreement>false</hardCopyAgreement>
+            <foDeliveryAgreement>N</foDeliveryAgreement>
+            <orderCreator>Sunanda P Meena</orderCreator>
+            <kciOnlyFlg>N</kciOnlyFlg>
+            <bulkOrderFlg>N</bulkOrderFlg>
+            <priority/>
+            <amendOrderFlg>No</amendOrderFlg>
+            <amendPrevOrderNumber/>
+            <listOfOrderItem>
+                <orderItem>
+                    <id>8021q000003j9OzAAI</id>
+                    <actionCode>Add</actionCode>
+                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
+                    <parentOrderItemId>8021q000003j9G5AAI</parentOrderItemId>
+                    <salesOrderType/>
+                    <status>Pending</status>
+                    <rootAssetIntegrationId/>
+                    <assetIntegrationId>5cfbd091-9f8b-47c5-a370-bd7ccbe6194b</assetIntegrationId>
+                    <productId>ELE00007</productId>
+                    <partNumber>EP00007</partNumber>
+                    <serviceId/>
+                    <product>ELE Stabilais - 48 mēneši</product>
+                    <productType>Product</productType>
+                    <revisedLineItemId/>
+                    <prodPromInstanceId/>
+                    <scheduledShipDate/>
+                    <billingAccountNumber>11426614</billingAccountNumber>
+                    <linkedLineItemId/>
+                    <prodPromSourceId/>
+                    <promotionGroupName/>
+                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <subType/>
+                    <parentServiceId/>
+                    <subActionCode/>
+                    <lineDescription/>
+                    <shipMethod/>
+                    <ProductSubType>Plan</ProductSubType>
+                    <listOfOrderItemXA>
+                        <orderItemXA>
+                            <value>ELE</value>
+                            <atrribute>Product Family</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>0.05061</value>
+                            <atrribute>UsageUnitPrice</atrribute>
+                        </orderItemXA>
+                    </listOfOrderItemXA>
+                </orderItem>
+                <orderItem>
+                    <id>8021q000003j9GAAAY</id>
+                    <actionCode>Add</actionCode>
+                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
+                    <parentOrderItemId>8021q000003j9G5AAI</parentOrderItemId>
+                    <salesOrderType/>
+                    <status>Pending</status>
+                    <rootAssetIntegrationId/>
+                    <assetIntegrationId>e3c0b294-39bd-4c1c-1d92-bfe22170e9ed</assetIntegrationId>
+                    <productId>ELE00002</productId>
+                    <partNumber>EP00002</partNumber>
+                    <serviceId/>
+                    <product>Elektroenerģijas Pakalpojuma objekts</product>
+                    <productType>Product</productType>
+                    <revisedLineItemId/>
+                    <prodPromInstanceId/>
+                    <scheduledShipDate/>
+                    <billingAccountNumber>11426614</billingAccountNumber>
+                    <linkedLineItemId/>
+                    <prodPromSourceId/>
+                    <promotionGroupName/>
+                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <subType/>
+                    <parentServiceId/>
+                    <subActionCode/>
+                    <lineDescription/>
+                    <shipMethod/>
+                    <ProductSubType>Technical Object</ProductSubType>
+                    <listOfOrderItemXA>
+                        <orderItemXA>
+                            <value>300</value>
+                            <atrribute>Mēneša vidējais patēriņš</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>USER</value>
+                            <atrribute>Skaitītāja nolasīšanas veids</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>32</value>
+                            <atrribute>Ievadaizsardzības strāva</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>14622518</value>
+                            <atrribute>Skaitītāja Numurs</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>CONNECTED</value>
+                            <atrribute>Objekta Statuss</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>false</value>
+                            <atrribute>Move In</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>APARTMENT</value>
+                            <atrribute>Objekta nosaukums</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>S-2 Households 17A to 63A</value>
+                            <atrribute>ST Tarifs</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>16</value>
+                            <atrribute>Atļautā slodze (kW)</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>43Z-STP1111111K</value>
+                            <atrribute>Klienta EIC</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>ELE</value>
+                            <atrribute>Product Family</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>0</value>
+                            <atrribute>UsageUnitPrice</atrribute>
+                        </orderItemXA>
+                    </listOfOrderItemXA>
+                </orderItem>
+                <orderItem>
+                    <id>8021q000003j9G5AAI</id>
+                    <actionCode>Add</actionCode>
+                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
+                    <parentOrderItemId/>
+                    <salesOrderType/>
+                    <status>Pending</status>
+                    <rootAssetIntegrationId/>
+                    <assetIntegrationId>16e2d4f6-c86d-80f1-b0ae-1cb676eb1913</assetIntegrationId>
+                    <productId>ELE00001</productId>
+                    <partNumber>EP00001</partNumber>
+                    <serviceId>43Z-STO11111111K</serviceId>
+                    <product>Elektroenerģijas Risinājums privātpersonām (ELP)</product>
+                    <productType>Offer</productType>
+                    <revisedLineItemId/>
+                    <prodPromInstanceId/>
+                    <scheduledShipDate>2021-03-24T00:00:00.000Z</scheduledShipDate>
+                    <billingAccountNumber>3744699</billingAccountNumber>
+                    <linkedLineItemId/>
+                    <prodPromSourceId/>
+                    <promotionGroupName/>
+                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <subType/>
+                    <parentServiceId/>
+                    <subActionCode/>
+                    <lineDescription/>
+                    <shipMethod/>
+                    <ProductSubType>Root Object</ProductSubType>
+                    <listOfOrderItemXA>
+                        <orderItemXA>
+                            <value>Nē</value>
+                            <atrribute>Nesūtīt uz Sadales tīklu</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>43Z-STO11111111K</value>
+                            <atrribute>Pakalpojuma ID</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>N</value>
+                            <atrribute>Kopīgs līgums</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>ELE</value>
+                            <atrribute>Product Family</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>0</value>
+                            <atrribute>UsageUnitPrice</atrribute>
+                        </orderItemXA>
+                    </listOfOrderItemXA>
+                </orderItem>
+            </listOfOrderItem>
+        </order>
+    </listOfOrderHeader>
+</listOfOrder>

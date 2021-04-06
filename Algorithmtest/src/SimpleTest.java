@@ -8,7 +8,7 @@ public class SimpleTest {
 
   public static void main(String[] args) throws Exception {
     //System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date(13659026L)));
-    String aa = null;
+    String aa = "";
     System.out.println(aa.isEmpty());
 
   }

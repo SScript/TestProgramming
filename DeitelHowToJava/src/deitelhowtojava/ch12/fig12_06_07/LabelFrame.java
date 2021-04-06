@@ -26,8 +26,12 @@ public class LabelFrame extends JFrame
       label1.setToolTipText("This is label1");
       add(label1); // add label1 to JFrame
 
-      // JLabel constructor with string, Icon and alignment arguments
-      Icon bug = new ImageIcon(getClass().getResource("bug1.png"));
+	  Class cc = getClass();
+	  
+	  // JLabel constructor with string, Icon and alignment arguments
+	  // Te pareizi jāsaprot kā pateikt, kur atrodas png fails 
+      //Icon bug = new ImageIcon(getClass().getResource("bug1.png"));
+	  Icon bug = new ImageIcon("C:\\TestProgramming\\TestProgramming\\DeitelHowToJava\\src\\deitelhowtojava\\ch12\\fig12_06_07\\bug1.png");
       label2 = new JLabel("Label with text and icon", bug, 
          SwingConstants.LEFT);
       label2.setToolTipText("This is label2");

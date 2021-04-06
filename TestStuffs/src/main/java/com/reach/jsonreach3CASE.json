@@ -1,0 +1,19 @@
+{
+ "ApiKey": "********",
+ "Requester": "VLOCITY",
+ "CustomerNo": "12515555",
+ "NotificationCommType": "VLOCITY_NOTIF_2",
+ "SendingType": "C",
+ "FirstNotificationStartTime": "",
+ "Email": null,
+ "Phone": null,
+ "MobileToken": null,
+ "ActionCode": "VL_CASE_OPEN",
+ "Case": [
+    {
+    "CaseNumber":"aaa",
+    "CaseStatus":"",
+    "CaseType":"Open"
+    }
+ ]
+}

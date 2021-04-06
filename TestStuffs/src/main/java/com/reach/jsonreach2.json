@@ -1,0 +1,47 @@
+{
+   "Order": [
+      {
+         "OrderItems": [
+            {
+               "VLRecurringCharge": 0,
+               "ProductType": "ConsumerGoods",
+               "VLOneTimeCharge": 482.35,
+               "RootOrderItemId": "8023N000002IVxPQAW",
+               "OrderItemId": "8023N000002IVxPQAW",
+               "Name": "Televizors SAMSUNG LED TV UE-40EH5000WXBT"
+            },
+            {
+               "VLRecurringCharge": 0,
+               "ProductType": "Shipping",
+               "VLOneTimeCharge": 0,
+               "RootOrderItemId": "8023N000002IVxUQAW",
+               "OrderItemId": "8023N000002IVxUQAW",
+               "Name": "Saņemšana Tet veikalā"
+            }
+         ],
+         "EstimateDeliveryTime": "2020-10-27",
+         "VLOrderDeliveryType": "Store Front",
+         "VLOrderCustomerName": "KRISTĪNE MEŽVAGARE",
+         "VLOrderId": "8013N000001SRwnQAG",
+         "VLOrderTotal": 482.35,
+         "VLSaleChannel": "Store Front",
+         "CancelReason": "",
+         "VLOrderContactEmail": "mezvagars@inbox.lv",
+         "VLBillNumber": "80293433",
+         "VLWarehauserName": "Alfas veikala noliktava",
+         "VLOrderContactName": "KRISTĪNE MEŽVAGARE",
+         "VLOrderNumber": "00010309",
+            "VLAgreementNumber": "12345678",
+         "VLOrderContactPhone": "26130823",
+         "PaymentMode": "Full Payment"
+      }
+   ],
+   "Requester": "VLOCITY",
+   "ApiKey": "5aWA7LX8fPfMqarm",
+   "Email": "mezvagars@inbox.lv",
+   "NotificationCommType": "VLOCITY_NOTIF_1",
+   "Phone": "26130823",
+   "SendingType": "I",
+   "ActionCode": "Waiting for Customer",
+   "CustomerNo": "13494904"
+}

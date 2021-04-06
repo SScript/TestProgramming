@@ -1,2 +1,0 @@
-SliderFrame
-SliderFrame$1

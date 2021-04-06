@@ -1,0 +1,234 @@
+{
+    "ErrorContextSearchSpec": "",
+    "OMErrorCode": "",
+    "NumOutputObjects": "1",
+    "ErrorSymbol": "",
+    "OMErrorSymbol": "",
+    "ErrorCode": "0x0",
+    "ErrorContextIntComp": "",
+    "PrimaryRowId": "2-DYIIYBH",
+    "SiebelMessage": {
+        "IntObjectFormat": "Siebel Hierarchical",
+        "MessageId": "2-419OWO",
+        "IntObjectName": "Base LTK Asset DT",
+        "MessageType": "Integration Object",
+        "LTKAssetDT": {
+            "RootAssetId": "2-M3FKOF",
+            "StartDate": "02/03/2013",
+            "SerialNumber": "",
+            "IntegrationId": "2-M3EFO0",
+            "ProductName": "DSL Risinājums",
+            "Id": "2-M3FKOF",
+            "ResumeDate": "",
+            "Status": "Aktīvs",
+            "BillingAccount": "1883641",
+            "ProductType": "Product",
+            "PromIntegId": "2-M3EFNY",
+            "ParentHierarchyField": "",
+            "LTKAssetXADT": [
+                {
+                    "Name": "Name",
+                    "Value": "TV with Internet Start,Basic,Premium",
+                    "AssetId": "2-M3FKOF"
+                },
+                {
+                    "Name": "Separate Contracts",
+                    "Value": "N",
+                    "AssetId": "2-M3FKOF"
+                },
+                {
+                    "Name": "Speed",
+                    "Value": "Starta ADSL",
+                    "AssetId": "2-M3FKOF"
+                }
+            ],
+            "LTKAssetDT": [
+                {
+                    "RootAssetId": "2-M3FKOF",
+                    "StartDate": "",
+                    "SerialNumber": "DTVS0088635",
+                    "IntegrationId": "2-M3EX1R",
+                    "ProductName": "Helio interaktīvā TV privātklientiem",
+                    "Id": "2-M3FKOX",
+                    "ResumeDate": "",
+                    "Status": "Aktīvs",
+                    "BillingAccount": "1883641",
+                    "ProductType": "Product",
+                    "PromIntegId": "",
+                    "ParentHierarchyField": "2-M3FKOF",
+                    "LTKAssetXADT": {
+                        "Name": "Technology",
+                        "Value": "DSL",
+                        "AssetId": "2-M3FKOX"
+                    },
+                    "LTKAssetDT": [
+                        {
+                            "RootAssetId": "2-M3FKOF",
+                            "StartDate": "",
+                            "SerialNumber": "",
+                            "IntegrationId": "2-M3EX1U",
+                            "ProductName": "Oriģinālā paka",
+                            "Id": "2-M3FKRU",
+                            "ResumeDate": "",
+                            "Status": "Aktīvs",
+                            "BillingAccount": "1883641",
+                            "ProductType": "Product",
+                            "PromIntegId": "",
+                            "ParentHierarchyField": "2-M3FKOX"
+                        },
+                        {
+                            "RootAssetId": "2-M3FKOF",
+                            "StartDate": "05/14/2018",
+                            "SerialNumber": "",
+                            "IntegrationId": "2-C6XR2J5",
+                            "ProductName": "IPTV Dekoderis",
+                            "Id": "2-C8TXKGX",
+                            "ResumeDate": "",
+                            "Status": "Aktīvs",
+                            "BillingAccount": "1883641",
+                            "ProductType": "Product",
+                            "PromIntegId": "",
+                            "ParentHierarchyField": "2-M3FKOX",
+                            "LTKAssetXADT": [
+                                {
+                                    "Name": "Empty Value",
+                                    "Value": "",
+                                    "AssetId": "2-C8TXKGX"
+                                },
+                                {
+                                    "Name": "MAC Adrese",
+                                    "Value": "",
+                                    "AssetId": "2-C8TXKGX"
+                                },
+                                {
+                                    "Name": "Samaksas veids",
+                                    "Value": "Monthly (LTC owned)",
+                                    "AssetId": "2-C8TXKGX"
+                                },
+                                {
+                                    "Name": "Sērijas Numurs",
+                                    "Value": "",
+                                    "AssetId": "2-C8TXKGX"
+                                }
+                            ]
+                        },
+                        {
+                            "RootAssetId": "2-M3FKOF",
+                            "StartDate": "06/12/2020",
+                            "SerialNumber": "",
+                            "IntegrationId": "2-FDFD7LD",
+                            "ProductName": "Shortcut Family",
+                            "Id": "2-FDFD7LD",
+                            "ResumeDate": "",
+                            "Status": "Aktīvs",
+                            "BillingAccount": "1883641",
+                            "ProductType": "Product",
+                            "PromIntegId": "",
+                            "ParentHierarchyField": "2-M3FKOX"
+                        }
+                    ]
+                },
+                {
+                    "RootAssetId": "2-M3FKOF",
+                    "StartDate": "",
+                    "SerialNumber": "DSLS1118927",
+                    "IntegrationId": "2-M3EWZD",
+                    "ProductName": "DSL Internets privātklientiem",
+                    "Id": "2-M3FKS5",
+                    "ResumeDate": "",
+                    "Status": "Aktīvs",
+                    "BillingAccount": "1883641",
+                    "ProductType": "Product",
+                    "PromIntegId": "",
+                    "ParentHierarchyField": "2-M3FKOF",
+                    "LTKAssetXADT": [
+                        {
+                            "Name": "Speed",
+                            "Value": "5-10Mbps ADSL",
+                            "AssetId": "2-M3FKS5"
+                        },
+                        {
+                            "Name": "Technology",
+                            "Value": "DSL",
+                            "AssetId": "2-M3FKS5"
+                        }
+                    ],
+                    "LTKAssetDT": {
+                        "RootAssetId": "2-M3FKOF",
+                        "StartDate": "",
+                        "SerialNumber": "",
+                        "IntegrationId": "2-M3EX15",
+                        "ProductName": "Statiskā IP adrese",
+                        "Id": "2-M3FKSC",
+                        "ResumeDate": "",
+                        "Status": "Aktīvs",
+                        "BillingAccount": "1883641",
+                        "ProductType": "Product",
+                        "PromIntegId": "",
+                        "ParentHierarchyField": "2-M3FKS5",
+                        "LTKAssetXADT": {
+                            "Name": "IP Address",
+                            "Value": "",
+                            "AssetId": "2-M3FKSC"
+                        }
+                    }
+                },
+                {
+                    "RootAssetId": "2-M3FKOF",
+                    "StartDate": "",
+                    "SerialNumber": "",
+                    "IntegrationId": "2-WMMNRA",
+                    "ProductName": "Līgums",
+                    "Id": "2-WMMWSF",
+                    "ResumeDate": "",
+                    "Status": "Aktīvs",
+                    "BillingAccount": "1883641",
+                    "ProductType": "Product",
+                    "PromIntegId": "",
+                    "ParentHierarchyField": "2-M3FKOF",
+                    "LTKAssetXADT": {
+                        "Name": "Contract Length",
+                        "Value": "Unlimited",
+                        "AssetId": "2-WMMWSF"
+                    }
+                },
+                {
+                    "RootAssetId": "2-M3FKOF",
+                    "StartDate": "",
+                    "SerialNumber": "",
+                    "IntegrationId": "2-DYIIGCV",
+                    "ProductName": "Universālais Modems",
+                    "Id": "2-DYIIYBH",
+                    "ResumeDate": "",
+                    "Status": "Aktīvs",
+                    "BillingAccount": "1883641",
+                    "ProductType": "Product",
+                    "PromIntegId": "",
+                    "ParentHierarchyField": "2-M3FKOF",
+                    "LTKAssetXADT": [
+                        {
+                            "Name": "Device Purchase",
+                            "Value": "N",
+                            "AssetId": "2-DYIIYBH"
+                        },
+                        {
+                            "Name": "Payment Type",
+                            "Value": "Monthly (LTC owned)",
+                            "AssetId": "2-DYIIYBH"
+                        },
+                        {
+                            "Name": "Serial Number",
+                            "Value": "",
+                            "AssetId": "2-DYIIYBH"
+                        },
+                        {
+                            "Name": "WiFi Activated",
+                            "Value": "Y",
+                            "AssetId": "2-DYIIYBH"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "outputVariable": {
+        "part": {
+            "ServiceAvailabilityChkRes": {
+                "ns5:ResultCode": 1,
+                "ns5:ErrorText": "Ok",
+                "ns5:ListOfServiceDetails": {
+                    "ns5:ServiceDetails": {
+                        "ns5:LowestLevelAddrId": "",
+                        "ns5:ServiceId": "",
+                        "ns5:ListOfAddresses": {
+                            "ns5:Address": {
+                                "ns5:ListOfAvailabilityDetails": {
+                                    "ns5:AvailabilityDetails": [{
+                                            "ns5:ResultSpeed": 1000,
+                                            "ns5:AnswerEmployee": "Pieejams Internets, TV un tālruņa līnija. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem.",
+                                            "ns5:availabilityId": 98147406643,
+                                            "ns5:BreakageDate": "",
+                                            "ns5:TechnicalNumber": "",
+                                            "ns5:AnswerEmployeeDescription": "Pieejamais ātrums - 1 Gbit/s; TV skaits - līdz 4. Pieejamie pakalpojumi : STARTA, IZKLAIDES vai PRO internets. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem. Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:Technology": "GPON",
+                                            "ns5:ServiceGroup": "Internets - optika",
+                                            "ns5:ServiceId": "",
+                                            "ns5:AvailabilityDescription": "GPON objekts",
+                                            "ns5:Availability": "Ir",
+                                            "ns5:Actions": "Pakalpojumu ( STARTA, IZKLAIDES vai PRO internets optika ar/bez HELIO ITV) ierīkošana: -) jauniem klientiem notiek jaunajā GPON piedāvājuma struktūrā. -) esošiem internets ar/bez HELIO ITV, kas vēlas mainīt interneta ātrumu vai ierīkot HELIO ITV pakalpojumu pārveidošana/ierīkošan notiek vecajā struktūrā. Pakalpojumu ievades/piegādes instrukcijas skatīties STROPĀ Interneta produktu sadaļā Procedūras, instrukcijas. Svarīgi!!! Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:ServiceGroupCustType": "P",
+                                            "ns5:RelatedNumber": ""
+                                        }, {
+                                            "ns5:ResultSpeed": "",
+                                            "ns5:AnswerEmployee": "Pieejams Internets, TV un tālruņa līnija. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem.",
+                                            "ns5:availabilityId": 98147763969,
+                                            "ns5:BreakageDate": "",
+                                            "ns5:TechnicalNumber": "",
+                                            "ns5:AnswerEmployeeDescription": "Pieejamais ātrums - 1 Gbit/s; TV skaits - līdz 4. Pieejamie pakalpojumi : STARTA, IZKLAIDES vai PRO internets. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem. Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:Technology": "GPON",
+                                            "ns5:ServiceGroup": "METRO GPON",
+                                            "ns5:ServiceId": "",
+                                            "ns5:AvailabilityDescription": "GPON objekts",
+                                            "ns5:Availability": "Ir",
+                                            "ns5:Actions": "Pakalpojumu ( STARTA, IZKLAIDES vai PRO internets optika ar/bez HELIO ITV) ierīkošana: -) jauniem klientiem notiek jaunajā GPON piedāvājuma struktūrā. -) esošiem internets ar/bez HELIO ITV, kas vēlas mainīt interneta ātrumu vai ierīkot HELIO ITV pakalpojumu pārveidošana/ierīkošan notiek vecajā struktūrā. Pakalpojumu ievades/piegādes instrukcijas skatīties STROPĀ Interneta produktu sadaļā Procedūras, instrukcijas. Svarīgi!!! Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:ServiceGroupCustType": "B",
+                                            "ns5:RelatedNumber": ""
+                                        }, {
+                                            "ns5:ResultSpeed": "",
+                                            "ns5:AnswerEmployee": "Pieejams Internets, TV un tālruņa līnija. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem.",
+                                            "ns5:availabilityId": 98148121105,
+                                            "ns5:BreakageDate": "",
+                                            "ns5:TechnicalNumber": "",
+                                            "ns5:AnswerEmployeeDescription": "Pieejamais ātrums - 1 Gbit/s; TV skaits - līdz 4. Pieejamie pakalpojumi : STARTA, IZKLAIDES vai PRO internets. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem. Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:Technology": "GPON",
+                                            "ns5:ServiceGroup": "Televīzija - optika",
+                                            "ns5:ServiceId": "",
+                                            "ns5:AvailabilityDescription": "GPON objekts",
+                                            "ns5:Availability": "Ir",
+                                            "ns5:Actions": "Pakalpojumu ( STARTA, IZKLAIDES vai PRO internets optika ar/bez HELIO ITV) ierīkošana: -) jauniem klientiem notiek jaunajā GPON piedāvājuma struktūrā. -) esošiem internets ar/bez HELIO ITV, kas vēlas mainīt interneta ātrumu vai ierīkot HELIO ITV pakalpojumu pārveidošana/ierīkošan notiek vecajā struktūrā. Pakalpojumu ievades/piegādes instrukcijas skatīties STROPĀ Interneta produktu sadaļā Procedūras, instrukcijas. Svarīgi!!! Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:ServiceGroupCustType": "P",
+                                            "ns5:RelatedNumber": ""
+                                        }, {
+                                            "ns5:ResultSpeed": "",
+                                            "ns5:AnswerEmployee": "Jums pieejamas: \"Ekonomiskā\" un \"HD\" paka, visas tematiskās kanālu pakas, Pieaugušo paka kā arī brīvi uztveramie kanāli.",
+                                            "ns5:availabilityId": 98145856433,
+                                            "ns5:BreakageDate": "",
+                                            "ns5:TechnicalNumber": "",
+                                            "ns5:AnswerEmployeeDescription": "Pieejamas: \"Ekonomiskā\" un \"HD\" pakas, visas tematiskās pakas, \"Pieaugušo\" paka, kā arī brīvi uztveramie kanāli. Pieejamības informācija izrēķināta, izmantojot datora modelēšanu. Tas negarantē 100% pakalpojuma pieejamību katrā atsevišķā punktā. Radiosignāla uztveršana ir atkarīga no abonenta atrašanās vietas, pilsētas apbūves blīvuma un apvidus reljefa. Tuvākie torņi: Bezmaksas paka - TV Zaķusala, 16.84Km Ekonomiskā paka - TV Zaķusala, 16.84Km Bērnu paka - TV Zaķusala, 16.84Km HD paka - TV Zaķusala, 16.84Km Piedzīvojumu paka - TV Zaķusala, 16.84Km Filmu paka - TV Zaķusala, 16.84Km Pieaugušo paka - TV Zaķusala, 16.84Km Sporta paka - TV Zaķusala, 16.84Km",
+                                            "ns5:Technology": "",
+                                            "ns5:ServiceGroup": "Virszemes TV",
+                                            "ns5:ServiceId": "",
+                                            "ns5:AvailabilityDescription": "",
+                                            "ns5:Availability": "Ir",
+                                            "ns5:Actions": "",
+                                            "ns5:ServiceGroupCustType": "PB",
+                                            "ns5:RelatedNumber": ""
+                                        }, {
+                                            "ns5:ResultSpeed": "",
+                                            "ns5:AnswerEmployee": "Pieejams Internets, TV un tālruņa līnija. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem.",
+                                            "ns5:availabilityId": 98147049319,
+                                            "ns5:BreakageDate": "",
+                                            "ns5:TechnicalNumber": "",
+                                            "ns5:AnswerEmployeeDescription": "Pieejamais ātrums - 1 Gbit/s; TV skaits - līdz 4. Pieejamie pakalpojumi : STARTA, IZKLAIDES vai PRO internets. Jauniem interneta pieslēgumiem pašinstalācija iespējama tikai ja ir pazīme Pieejamības aprakstā. HELIO ITV Pašintalācija pieejama visiem esošiem GPON klientiem. Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:Technology": "GPON",
+                                            "ns5:ServiceGroup": "Balss - optika",
+                                            "ns5:ServiceId": "",
+                                            "ns5:AvailabilityDescription": "GPON objekts",
+                                            "ns5:Availability": "Ir",
+                                            "ns5:Actions": "Pakalpojumu ( STARTA, IZKLAIDES vai PRO internets optika ar/bez HELIO ITV) ierīkošana: -) jauniem klientiem notiek jaunajā GPON piedāvājuma struktūrā. -) esošiem internets ar/bez HELIO ITV, kas vēlas mainīt interneta ātrumu vai ierīkot HELIO ITV pakalpojumu pārveidošana/ierīkošan notiek vecajā struktūrā. Pakalpojumu ievades/piegādes instrukcijas skatīties STROPĀ Interneta produktu sadaļā Procedūras, instrukcijas. Svarīgi!!! Ja klients vēlas tikai telefona līnijas ierīkošanu bez interneta optiskā tīkla objektos ierīkot tikai uz VoIP tehnoloģijas (Balss pak. tehnoloģija: GPON tehnoloģija)",
+                                            "ns5:ServiceGroupCustType": "P",
+                                            "ns5:RelatedNumber": ""
+                                        }]
+                                },
+                                "ns5:FlatDetails": "",
+                                "ns5:AddressId": 10997890,
+                                "ns5:AddressText": "OZOLU IELA 8, DZILNUCIEMS, BABĪTES PAG., BABĪTES NOV., RĪGAS RAJ., LV-2107"
+                            }
+                        },
+                        "AddressKey": 104919618
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "TemporaryObjectList": {
+        "xmlns:plt": "http://schemas.xmlsoap.org/ws/2003/05/partner-link/",
+        "xmlns:tem": "http://xmlns.oracle.com/GetTasksForLandLordNotificationNew/TemporaryObjectList",
+        "xmlns:ns0": "http://xmlns.oracle.com/GetTasksForLandLordNotificationNew/TemporaryObjectList",
+        "Object": {
+            "DIPSAttributes": {
+                "DIPSAttribute": {
+                    "LANDLORD_EMAIL": "",
+                    "HOMEOWNER_EMAIL": "",
+                    "LANDLORD_PHONE_NR": "",
+                    "HOMEOWNER_UNISERVE_SMS_ID": "",
+                    "HOMEOWNER": "",
+                    "HOMEOWNER_UNISERVE_ID": "",
+                    "LANDLORD_UNISERVE_ID": "",
+                    "NE_ADDRESS": "",
+                    "LANDLORD": "",
+                    "LANDLORD_EMAIL_SUBJ": "",
+                    "NE_ADDRESS_ADD_INFO": "",
+                    "HOMEOWNER_PHONE_NR": "",
+                    "LANDLORD_UNISERVE_SMS_ID": "",
+                    "HOMEOWNER_EMAIL_SUBJ": ""
+                }
+            },
+            "AppointmentFinish": "2020-12-18T23:03:00",
+            "ExternalRefId": 111117,
+            "Customer": "ELVI LATVIJA, SIA,50103276411",
+            "LandlordNeedNotification": 1,
+            "CallID": "CRMP-2-27352349466",
+            "AppointmentStart": "2020-12-18T08:53:00",
+            "ServiceID": "PONS2008537"
+        }
+    }
+}

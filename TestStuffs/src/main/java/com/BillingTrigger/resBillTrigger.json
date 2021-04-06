@@ -1,0 +1,137 @@
+{
+  "caller": "SOATEST",
+  "orderno": "00023675",
+  "ordernotes": "",
+  "orderid": "8013N000001h4kaQAA",
+  "orderdetails": [
+    {
+      "value": "ConsumerGoods",
+      "key": "ORD_PRODUCTCATEGORY"
+    },
+    {
+      "ORD_PAYMENT_TYPE": "SP"
+    },
+    {
+      "value": "Y",
+      "key": "ORD_INSURANCE_FLAG"
+    },
+    {
+      "value": "Y",
+      "key": "ORD_WARRANTY_FLAG"
+    },
+    {
+      "value": "N",
+      "key": "ORD_CTA_FLAG"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_SUM"
+    },
+    {
+      "value": "11136489",
+      "key": "ORD_CUSTOMERNO"
+    },
+    {
+      "value": "3140016",
+      "key": "ORD_BILLINGACCOUNTNO"
+    },
+    {
+      "value": "",
+      "key": "ORD_DP_BILL_NO"
+    },
+    {
+      "value": "",
+      "key": "ORD_MONTH_DELAY"
+    },
+    {
+      "value": "18/03/2021",
+      "key": "ORD_BILLING_ACTIVATION_DATE"
+    },
+    {
+      "value": "Split payment",
+      "key": "ORD_ORDEREDSERVICE"
+    },
+    {
+      "value": "Change",
+      "key": "ORD_ORDEREDSERVICETYPE"
+    },
+    {
+      "value": "WI",
+      "key": "ORD_CE_CANCEL_FLAG"
+    },
+    {
+      "value": "264",
+      "key": "ORD_REASON_ID"
+    },
+    {
+      "value": "",
+      "key": "ORD_PAYMENT_DELAY_PERCENT"
+    },
+    {
+      "value": "",
+      "key": "ORD_PAYMENT_DELAY_MONTHS"
+    },
+    {
+      "value": "",
+      "key": "ORD_REPAY_MONTHS"
+    },
+    {
+      "value": "8023N000002ULd8QAG",
+      "key": "ORD_ORDERITEMID"
+    },
+    {
+      "value": "200",
+      "key": "ORD_FIRST_PAYMENT"
+    },
+    {
+      "value": "435,25",
+      "key": "ORD_INSTALLMENT_SUM"
+    },
+    {
+      "value": "12",
+      "key": "ORD_MONTHS"
+    },
+    {
+      "value": "12",
+      "key": "ORD_INSURANCE_MONTHS"
+    },
+    {
+      "value": "12",
+      "key": "ORD_WARRANTY_MONTHS"
+    },
+    {
+      "value": "0",
+      "key": "ORD_INSURANCE_SUM"
+    },
+    {
+      "value": "",
+      "key": "ORD_INSURANCE_MONTHS_DELAY"
+    },
+    {
+      "value": "",
+      "key": "ORD_WARRANTY_SUM"
+    },
+    {
+      "value": "",
+      "key": "ORD_WARRANTY_MONTHS_DELAY"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_MONTHS"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_MONTHS_DELAY"
+    },
+    {
+      "value": "",
+      "key": "ORD_COURIERPRODUCTID"
+    },
+    {
+      "value": "",
+      "key": "ORD_COURIERCHARGE"
+    }
+  ],
+  "serviceno": "DLMS1557980",
+  "orderdate": "18/03/2021 15:03:29"
+}

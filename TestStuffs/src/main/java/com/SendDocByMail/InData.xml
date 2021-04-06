@@ -1,0 +1,41 @@
+<SendDocByMailAPIReq xmlns="http://xmlns.oracle.com/DocumentSendByEmailFromVlocity/SendDocByMailAPIReqABCSImp/SendDocByMailAPI">
+    <Requester>VLOCITY</Requester>
+    <ApiKey>1q2w3e4r5t6y7u8i9o0p</ApiKey>
+    <!--Order>
+        <OrderItems>
+            <RootOrderItemId>8021q00000040VjAAI</RootOrderItemId>
+            <AccountingCode>000000000007746</AccountingCode>
+            <Name>Saņemšana Tet veikalā</Name>
+            <ProductType>Shipping</ProductType>
+            <OrderItemId>8021q00000040VjAAI</OrderItemId>
+        </OrderItems>
+        <OrderItems>
+            <RootOrderItemId>8021q00000040VUAAY</RootOrderItemId>
+            <AccountingCode>62022984</AccountingCode>
+            <Name>Acer Aspire 3 A315-42-R73E Black</Name>
+            <ProductType>ConsumerGoods</ProductType>
+            <OrderItemId>8021q00000040VUAAY</OrderItemId>
+        </OrderItems>
+        <OrderItems>
+            <RootOrderItemId>8021q00000040VUAAY</RootOrderItemId>
+            <AccountingCode>20010027</AccountingCode>
+            <Name>3MT Papildus garantija Sudrabs</Name>
+            <ProductType>Warranty</ProductType>
+            <OrderItemId>8021q00000040VeAAI</OrderItemId>
+        </OrderItems>
+        <OrderItems>
+            <RootOrderItemId>8021q00000040VUAAY</RootOrderItemId>
+            <AccountingCode>20010029</AccountingCode>
+            <Name>3MT Apdrošināšana Dzintars</Name>
+            <ProductType>Insurance</ProductType>
+            <OrderItemId>8021q00000040VZAAY</OrderItemId>
+        </OrderItems>
+        <AccountId>0013N00000TNxk3QAD</AccountId>
+        <AccountName>AGRESĪVS ĢITĀRISTS</AccountName>
+        <AccountNo>13600578</AccountNo>
+        <OrderDate>2021-01-11</OrderDate>
+        <OrderNumber>00003545</OrderNumber>
+        <OrderId>8011q0000006BErAAM</OrderId>
+        <WayBillNo/>
+    </Order-->
+</SendDocByMailAPIReq>

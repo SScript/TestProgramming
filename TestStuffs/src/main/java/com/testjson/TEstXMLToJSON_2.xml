@@ -1,0 +1,13 @@
+<updateServiceAttributesCrossRequestEBM xmlns="http://xmlns.oracle.com/EnterpriseObjects/Industry/Communications/EBO/updateServiceAttributesCross/V1" xmlns:ns2="urn:oasis:names:tc:xacml:2.0:context:schema:cd:04" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns1="http://xmlns.oracle.com/DigitalTransformation/updateServiceAttributesCrossEBS/updateServiceAttributesCrossEBS" xmlns:ns4="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:ns3="http://xmlns.oracle.com/EnterpriseObjects/Core/Custom/Common/V2" xmlns:ns6="http://xmlns.oracle.com/EnterpriseObjects/Core/Common/V2" xmlns:ns5="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/DigitalTransformation/updateServiceAttributesCrossAPIReqABCSImpl/updateServiceAttributesCrossAPIReqABCSImpl" xmlns:tns="http://xmlns.oracle.com/EnterpriseObjects/Industry/Communications/EBO/updateServiceAttributesCross/V1">
+    <tns:DataArea>
+        <tns:updateServiceAttributesCrossRequest>
+            <tns:Requester>SOATEST</tns:Requester>
+            <tns:projectName>AAA</tns:projectName>
+            <tns:serviceNumber>serviceNumber4</tns:serviceNumber>
+            <tns:parameters>
+                <tns:name>name1</tns:name>
+                <tns:value>value1</tns:value>
+            </tns:parameters>
+        </tns:updateServiceAttributesCrossRequest>
+    </tns:DataArea>
+</updateServiceAttributesCrossRequestEBM>

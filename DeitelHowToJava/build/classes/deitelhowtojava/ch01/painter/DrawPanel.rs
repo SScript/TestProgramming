@@ -1,2 +1,0 @@
-DrawPanel$MouseHandler
-DrawPanel

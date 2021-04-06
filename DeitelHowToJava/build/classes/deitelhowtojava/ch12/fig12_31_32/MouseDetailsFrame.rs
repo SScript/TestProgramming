@@ -1,2 +1,0 @@
-MouseDetailsFrame$MouseClickHandler
-MouseDetailsFrame

@@ -1,2 +1,0 @@
-CheckBoxFrame
-CheckBoxFrame$CheckBoxHandler

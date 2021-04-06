@@ -1,0 +1,20 @@
+{
+  "Order": [
+    {
+      "VLOrderTotal": 0,
+      "VLSaleChannel": "Store Front",
+      "CancelReason": "The client changed the mind (canceled order)",
+      "VLWarehauserName": "",
+      "VLOrderCustomerName": "REFORMU PARTIJA",
+      "VLOrderNumber": "00017643",
+      "VLOrderId": "8013O000000ahkGQAQ",
+      "PaymentMode": "Split Payment"
+    }
+  ],
+  "Requester": "VLOCITY",
+  "ApiKey": "e639acaa-a891-4864-bba7-87b46b65d9b3",
+  "NotificationCommType": "VLOCITY_NOTIF_1",
+  "SendingType": "C",
+  "ActionCode": "Order Cancelled",
+  "CustomerNo": "13158905"
+}

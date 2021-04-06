@@ -1,0 +1,32 @@
+<SendDocByMailAPIReq xmlns="http://xmlns.oracle.com/DocumentSendByEmailFromVlocity/SendDocByMailAPIReqABCSImp/SendDocByMailAPI">
+	<Requester>SOATEST</Requester>
+	<ApiKey>1q2w3e4r5t6y7u8i9o0p</ApiKey>
+	<Order>
+		<OrderItems>
+			<RootOrderItemId>8023N000002D1AUQA0</RootOrderItemId>
+			<AccountingCode>62022984</AccountingCode>
+			<Name>Acer Aspire 3 A315-42-R73E Black</Name>
+			<ProductType>ConsumerGoods</ProductType>
+			<OrderItemId>8023N000002D1AUQA0</OrderItemId>
+		</OrderItems>
+		<OrderItems>
+			<RootOrderItemId>8023N000002D1AVQA0</RootOrderItemId>
+			<AccountingCode>PDT_SPLIT_PAYMENT_001</AccountingCode>
+			<ServiceId>DLMS1550534</ServiceId>
+			<Name>Split Payment</Name>
+			<ProductType>SplitPayment</ProductType>
+			<OrderItemId>8023N000002D1AVQA0</OrderItemId>
+		</OrderItems>
+		<AccountId>0013N00000Q4nLZQAZ</AccountId>
+		<OrderContactMobile>10883867</OrderContactMobile>
+		<OrderContactEmail>11426601.28508956@ltk.lv</OrderContactEmail>
+		<OrderContact>ĀDAINĀ HEROIKA</OrderContact>
+		<DeliveryMethod>Store Front</DeliveryMethod>
+		<WayBillNo>24254234</WayBillNo>
+		<AccountName>ĀDAINĀ HEROIKA</AccountName>
+		<AccountNo>12345678</AccountNo>
+		<OrderDate>2020-08-17</OrderDate>
+		<OrderNumber>00001556</OrderNumber>
+		<OrderId>8013N0000016fuDQAQ</OrderId>
+	</Order>
+</SendDocByMailAPIReq>

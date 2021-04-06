@@ -1,0 +1,93 @@
+{
+    "Order": [
+        {
+            "OrderItems": [
+                {
+                    "JSONAttribute": {
+                        "TET_ATTRCAT_CONSUMERGOODS": [
+                            {
+                                "value__c": "true",
+                                "attributefilterable__c": false,
+                                "isnottranslatable__c": false,
+                                "valuedatatype__c": "Checkbox",
+                                "attributecloneable__c": true,
+                                "categorycode__c": "TET_ATTRCAT_CONSUMERGOODS",
+                                "objecttype__c": "vlocity_cmt__ObjectClass__c",
+                                "isconfigurable__c": true,
+                                "objectid__c": "a2X5I000000LX4aUAG",
+                                "attributegrouptype__c": null,
+                                "customconfiguitemplate__c": null,
+                                "querylabel__c": null,
+                                "rulemessage__c": null,
+                                "hasrule__c": false,
+                                "valuedescription__c": null,
+                                "valueinnumber__c": null,
+                                "querycode__c": null,
+                                "id": "a0M5I000000e0UIUAY",
+                                "attributedisplaysequence__c": "5",
+                                "isquerydriven__c": false,
+                                "$$AttributeDefinitionStart$$": null,
+                                "formatmask__c": null,
+                                "attributeconfigurable__c": true,
+                                "isreadonly__c": false,
+                                "ishidden__c": true,
+                                "categoryname__c": "ConsumerGoods",
+                                "isactive__c": true,
+                                "categorydisplaysequence__c": 50,
+                                "attributeRunTimeInfo": {
+                                    "default": true,
+                                    "dataType": "Checkbox",
+                                    "value": true
+                                },
+                                "attributeid__c": "a0P5I000000rCicUAE",
+                                "$$AttributeDefinitionEnd$$": null,
+                                "attributedisplayname__c": "CE Flag",
+                                "isrequired__c": false,
+                                "attributecategoryid__c": "a0O5I000000pPXeUAM",
+                                "uidisplaytype__c": null,
+                                "attributeuniquecode__c": "ATT_CE_Flag",
+                                "displaysequence__c": "50"
+                            }
+                        ]
+                    },
+                    "VLRecurringCharge": 0,
+                    "Picture": "https://tet-accept.tet.lv/veikals/media/cache/resolve/product_image/products/lv-uhd-tu7172-ue75tu7172uxxh-frontcarbonsilver-227174746-5ef43b06e7c52-5ef440c700190.jpg",
+                    "ProductType": "ConsumerGoods",
+                    "VLOneTimeCharge": 342,
+                    "RootOrderItemId": "8025I000005OJRlQAO",
+                    "OrderItemId": "8025I000005OJRlQAO",
+                    "Name": "Samsung UltraHD TV 43\" UE43TU7172UXXH"
+                },
+                {
+                    "VLRecurringCharge": 0,
+                    "ProductType": "Shipping",
+                    "VLOneTimeCharge": 0,
+                    "RootOrderItemId": "8025I000005OJSAQA4",
+                    "OrderItemId": "8025I000005OJSAQA4",
+                    "Name": "Saņemt Tet veikalā"
+                }
+            ],
+            "EstimateDeliveryTime": "2020-11-08T02:00:00.000+0200",
+            "VLOrderDeliveryType": "Store Front",
+            "VLOrderCustomerName": "JURIS PRAVDICECS",
+            "VLOrderId": "8015I000000W4qOQAS",
+            "VLOrderTotal": 342,
+            "VLSaleChannel": "Store Front",
+            "CancelReason": "",
+            "VLOrderContactEmail": "mihails.rabkins@tet.lv",
+            "VLWarehauserName": "Dzirnavu ielas veikala noliktava",
+            "VLOrderContactName": "JURIS PRAVDICECS",
+            "VLOrderNumber": "00249302",
+            "VLOrderContactPhone": "20202020",
+            "PaymentMode": "Full Payment"
+        }
+    ],
+    "Requester": "VLOCITY",
+    "ApiKey": "zB6GMPqfVxkM42wp",
+    "Email": "mihails.rabkins@tet.lv",
+    "NotificationCommType": "VLOCITY_NOTIF_1",
+    "Phone": "20202020",
+    "SendingType": "I",
+    "ActionCode": "OrderSummary",
+    "CustomerNo": "13612985"
+}

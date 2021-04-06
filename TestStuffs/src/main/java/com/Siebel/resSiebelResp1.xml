@@ -1,0 +1,57 @@
+<root>
+    <Assets>
+        <StartDate>02/03/2013</StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>DSL Risinājums</ProductName>
+        <Attributes>Name - TV with Internet Start,Basic,Premium; Separate Contracts - N; Speed - Starta ADSL
+        </Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber>DTVS0088635</ServiceNumber>
+        <ProductName>Helio interaktīvā TV privātklientiem</ProductName>
+        <Attributes>Technology - DSL</Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>Oriģinālā paka</ProductName>
+    </Assets>
+    <Assets>
+        <StartDate>05/14/2018</StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>IPTV Dekoderis</ProductName>
+        <Attributes>Empty Value - ; MAC Adrese - ; Samaksas veids - Monthly (LTC owned); Sērijas Numurs -</Attributes>
+    </Assets>
+    <Assets>
+        <StartDate>06/12/2020</StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>Shortcut Family</ProductName>
+        <Attributes></Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber>DSLS1118927</ServiceNumber>
+        <ProductName>DSL Internets privātklientiem</ProductName>
+        <Attributes>Speed - 5-10Mbps ADSL; Technology - DSL</Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>Statiskā IP adrese</ProductName>
+        <Attributes>IP Address -</Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>Līgums</ProductName>
+        <Attributes>Contract Length - Unlimited</Attributes>
+    </Assets>
+    <Assets>
+        <StartDate></StartDate>
+        <ServiceNumber></ServiceNumber>
+        <ProductName>Universālais Modems</ProductName>
+        <Attributes>Device Purchase - N; Payment Type - Monthly (LTC owned); Serial Number - ; WiFi Activated - Y
+        </Attributes>
+    </Assets>
+</root>
