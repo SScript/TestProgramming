@@ -1,0 +1,13 @@
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.exe
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.deps.json
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.runtimeconfig.json
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.runtimeconfig.dev.json
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.dll
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\bin\Debug\netcoreapp3.1\OneneuralNetwork.pdb
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.csprojAssemblyReference.cache
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.AssemblyInfoInputs.cache
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.AssemblyInfo.cs
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.csproj.CoreCompileInputs.cache
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.dll
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.pdb
+D:\TestProgramming\NireonuTiikls\OneneuralNetwork\OneneuralNetwork\obj\Debug\netcoreapp3.1\OneneuralNetwork.genruntimeconfig.cache
