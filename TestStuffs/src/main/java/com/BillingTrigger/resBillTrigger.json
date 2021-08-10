@@ -3,11 +3,8 @@
   "orderno": "00023675",
   "ordernotes": "",
   "orderid": "8013N000001h4kaQAA",
+  "orderOffers": {},
   "orderdetails": [
-    {
-      "value": "ConsumerGoods",
-      "key": "ORD_PRODUCTCATEGORY"
-    },
     {
       "ORD_PAYMENT_TYPE": "SP"
     },

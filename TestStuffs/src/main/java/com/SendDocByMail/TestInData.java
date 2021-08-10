@@ -21,7 +21,7 @@ public class TestInData {
             JSONObject order = jsonData.getJSONObject("SendDocByMailAPIReq").getJSONObject("Order");
             val = GetJsonObjectStringValue(order, "OrderId", true);
             val = GetJsonObjectStringValue(order, "OrderNumber", true);
-            val = GetJsonObjectStringValue(order, "OrderDate ", true);
+            val = GetJsonObjectStringValue(order, "OrderDate", true);
             val = GetJsonObjectStringValue(order, "AccountId", true);
             val = GetJsonObjectStringValue(order, "AccountNo", true);
             val = GetJsonObjectStringValue(order, "AccountName", true);
@@ -44,12 +44,14 @@ public class TestInData {
             }
 
             int itemcount = orderdataitems.length();
+            JSONObject itemObj = null;
             for (int i = 0; i < itemcount; i++) {
-                val = GetJsonObjectStringValue(order, "OrderItemId", true);
-                val = GetJsonObjectStringValue(order, "ProductType", true);
-                val = GetJsonObjectStringValue(order, "Name", true);
-                val = GetJsonObjectStringValue(order, "AccountingCode", true);
-                val = GetJsonObjectStringValue(order, "RootOrderItemId", true);
+                itemObj = orderdataitems.getJSONObject(i);
+                val = GetJsonObjectStringValue(itemObj, "OrderItemId", true);
+                val = GetJsonObjectStringValue(itemObj, "ProductType", true);
+                val = GetJsonObjectStringValue(itemObj, "Name", true);
+                val = GetJsonObjectStringValue(itemObj, "AccountingCode", true);
+                val = GetJsonObjectStringValue(itemObj, "RootOrderItemId", true);
             }
 
         } catch (Exception e) {

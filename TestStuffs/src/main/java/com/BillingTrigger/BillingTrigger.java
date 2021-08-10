@@ -2,8 +2,9 @@ package com.BillingTrigger;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +32,7 @@ public class BillingTrigger {
 
         String paymentMode = GetOrderFieldFirstLEvelValue("PaymentMode", true);
         String orderedServiceType = "";
-        
+
         // OrderItems var nebūt
         try {
             orderdataitems = orderdata.getJSONArray("OrderItems");
@@ -39,10 +40,9 @@ public class BillingTrigger {
             isOrderItems = false;
         }
 
-        // ORD_PRODUCTCATEGORY -> jdev kodā šis ir ielikts un strādā ar vērtībām no dvm
+        // ORD_PRODUCTCATEGORY -> jdev kodā šis ir ielikts un strādā
         //SetOrderProductTypeList(excludeStrs, containsOrEquals);
-        SetOrderProductTypeList("warranty, insurance, SplitPayment", "1");
-        
+
         // TriggerBilling gadījumā ir prasība likt visus parametrus, ja mav vērtība, tad liek tukšu ""
         jsonData
                 .put("orderid", GetOrderFieldFirstLEvelValue("OrderId", true))
@@ -101,25 +101,31 @@ public class BillingTrigger {
 
         // jābūt formātā ‘DD/MM/YYYY’. Ienākošias - YYYY-MM-DD.
         s = GetOrderFieldFirstLEvelValue("BillActivationDate", false);
-                    if (!"".equals(s)) {
-                orderAtrrItems.put(new JSONObject().put("value", FormatDateShort(s)).put("key", "ORD_BILLING_ACTIVATION_DATE"));
-            } else {
-                orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_BILLING_ACTIVATION_DATE"));
-            }
+        if (!"".equals(s)) {
+            orderAtrrItems.put(new JSONObject().put("value", FormatDateShort(s)).put("key", "ORD_BILLING_ACTIVATION_DATE"));
+        } else {
+            orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_BILLING_ACTIVATION_DATE"));
+        }
         //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("BillActivationDate", "ORD_BILLING_ACTIVATION_DATE"));
 
         //If OrderedService is null or not send, then use default value - 'Split payment'
-        s = GetOrderFieldFirstLEvelValue("OrderedService", false);
-        if (!"".equals(s)) {
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_ORDEREDSERVICE"));
+        String orderedService = GetOrderFieldFirstLEvelValue("OrderedService", false);
+        if (!"".equals(orderedService)) {
+            orderAtrrItems.put(new JSONObject().put("value", orderedService).put("key", "ORD_ORDEREDSERVICE"));
         } else {
             orderAtrrItems.put(new JSONObject().put("value", "Split payment").put("key", "ORD_ORDEREDSERVICE"));
+            orderedService= "Split payment";
         }
         //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("OrderedService", "ORD_ORDEREDSERVICE"));
+        if ("Split payment".toUpperCase().equals(orderedService.toUpperCase())) {
+            // SOAIP-1821 - pieliek tukšu "orderOffers" sadaļu
+            JSONObject offerPriceObj = new JSONObject();
+            jsonData.put("orderOffers", offerPriceObj);
+        }
 
         orderAtrrItems.put(GetOrderFirstLevelAtrrValue("OrderedServiceType", "ORD_ORDEREDSERVICETYPE", false));
         orderedServiceType = GetOrderFieldFirstLEvelValue("OrderedServiceType", true);
-        
+
         // (SOAIP-1110) Ja <OrderedServiceType> = 'Change'
         if ("Change".equals(orderedServiceType) && isOrderItems) {
             //orderAtrrItems.put(ProcessIfOrderedServiceTypeIsChange("PaymentD  elayPercents", "ORD_PAYMENT_DELAY_PERCENT", false)); // (SOAIP-1110)
@@ -129,15 +135,14 @@ public class BillingTrigger {
             orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_CE_CANCEL_FLAG"));
         }
 
-
         orderAtrrItems.put(GetOrderFirstLevelAtrrValue("RemovalReason", "ORD_REASON_ID", false));
-        // CE Restructuring.PaymentDelayPercents 
+        // CE Restructuring.PaymentDelayPercents
         GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas procenti", "ORD_PAYMENT_DELAY_PERCENT");
-        // CE Restructuring.PaymentDelayMonths 
+        // CE Restructuring.PaymentDelayMonths
         GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas mēnešu skaits", "ORD_PAYMENT_DELAY_MONTHS");
-        // CE Restructuring.RepayMonths 
+        // CE Restructuring.RepayMonths
         GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Uzkrāto summu izmaksa mēnešos", "ORD_REPAY_MONTHS");
-        
+
         GetOrderItemLevelAtrrValue("SplitPayment", "OrderItemId", "ORD_ORDERITEMID", true);
         //GetOrderItemLevelAtrrValue("SplitPayment", "ServiceId", "serviceno");
         GetOrderItemLevelAtrrValue("SplitPayment", "OneTimeCharge", "ORD_FIRST_PAYMENT", true);
@@ -174,14 +179,14 @@ public class BillingTrigger {
         Ja ir cits <OrderedServiceType> vai nav OrderItem ar atbilstošu <OrderItemSubType>, tad tiek pievienots dinamiskais parametrs ar key =ORD_CE_CANCEL_FLAG un tukšu vērtību.
         */
         String val = "";
-        
+
         int itemcount = orderdataitems.length();
         int counterW = 0;
         int counterI = 0;
         String orderItemSubType = "";
         Boolean isFoundOrderItemSubType = false;
         String productType = "";
-        
+
         for (int i = 0; i < itemcount; i++) {
             itemdata = orderdataitems.getJSONObject(i);
             try {
@@ -192,7 +197,7 @@ public class BillingTrigger {
                 }
             } catch (Exception e) {}
         }
-        
+
         // ir kaut viens OrderItem ar <OrderSubType> = 'Delete Insurance/Warranty'
         if (isFoundOrderItemSubType) {
             for (int i = 0; i < itemcount; i++) {
@@ -204,16 +209,16 @@ public class BillingTrigger {
                 if ("Insurance".equals(productType)) {
                     counterI++;
                 }
-            }        
+            }
         }
-        
+
         if (counterW > 0 && counterI > 0) {val = "WI";}
         if (counterW > 0 && counterI == 0) {val = "W";}
         if (counterW == 0 && counterI > 0) {val = "I";}
-        
+
         orderAtrrItems.put(new JSONObject().put("value", val).put("key", key));
     }
-        
+
     private static String GetOrderItemLevelValue(String productType, String atrribute) {
         boolean foundinitemsvalue = false;
         String value = "";
@@ -265,7 +270,7 @@ public class BillingTrigger {
         return dd1 + "/" + mm1 + "/" + yy1;
     }
 
-    private static void SetOrderProductTypeList(String excludeStrs, String containsOrEquals) {
+    private static String GetOrderProductTypeList() {
         String res = "";
         if (isOrderItems) {
             int itemcount = orderdataitems.length();
@@ -279,48 +284,7 @@ public class BillingTrigger {
                 }
             }
         }
-        res = FormatProductCategoriesString(res, excludeStrs, containsOrEquals);
-
-        orderAtrrItems.put(new JSONObject().put("value", res).put("key", "ORD_PRODUCTCATEGORY"));
-    }
-
-    private static String FormatProductCategoriesString(String data, String excludeStrs, String containsOrEquals) {
-        // izemamie vrdi
-        List<String> sc = Arrays.asList(excludeStrs.split(","));
-        for (int i = 0; i < sc.size(); i++) {
-            sc.set(i, sc.get(i).trim());
-        }
-
-        // product categories
-        List<String> ss = Arrays.asList(data.split(","));
-        for (int i = 0; i < ss.size(); i++) {
-            ss.set(i, ss.get(i).trim());
-        }
-
-        // containsOrEquals => 1-contains 2-equals
-        if (!isEmptyOrNull(excludeStrs)) {
-            for (int i = 0; i < sc.size(); i++) {
-                String d = sc.get(i);
-                if ("1".equals(containsOrEquals)) {
-                    ss = ss.stream()
-                            .distinct()
-                            .filter(el -> !el.toUpperCase().contains(d.toUpperCase()))
-                            .collect(Collectors.toList());
-                } else {
-                    ss = ss.stream()
-                            .distinct()
-                            .filter(el -> !el.toUpperCase().equals(d.toUpperCase()))
-                            .collect(Collectors.toList());
-                }
-            }
-        } else {
-            ss = ss.stream()
-                    .distinct()
-                    .collect(Collectors.toList());
-        }
-
-        String ssss = String.join(",", ss);
-        return ssss;
+        return res;
     }
 
     private static String GetIsOrderItem(String val) {
@@ -378,13 +342,13 @@ public class BillingTrigger {
         return new JSONObject().put("value", val).put("key", key);
     }
 
-     /**
+    /**
      * Order pirmā līmeņa atribūtu parametrs
      *
      * @return
      */
     private static void GetOrderItemLevelAtrrValue(String productType, String field, String key, Boolean mandatory)
-    throws Exception
+            throws Exception
     {
         boolean foundinitemsvalue = false;
         // ja ir padoti orderitems
@@ -414,7 +378,7 @@ public class BillingTrigger {
                     // ja obligāts un tukšs, tad error
                     if (mandatory && isEmptyOrNull(val)) {
                         throw new Exception("Field " + field + " is mandatory");
-                    } else {                    
+                    } else {
                         orderAtrrItems.put(new JSONObject().put("value", val).put("key", newkey));
                     }
                     if ("Shipping".equals(productType)) {
@@ -422,15 +386,15 @@ public class BillingTrigger {
                     }
                 }
             }
-            
+
             if (!foundinitemsvalue) {
                 //if ("Shipping".equals(productType)) {
                 //    orderAtrrItems.put(new JSONObject().put("value", "").put("key", key + "_1"));
                 //} else {
-                    orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
+                orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
                 //}
             }
-            
+
         } else {
             orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
         }
@@ -610,7 +574,7 @@ public class BillingTrigger {
             orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
         }
     }
-    
+
     private static boolean isEmptyOrNull(String str) {
         if (null == str || (null != str && str.trim().equals(""))) {
             return true;

@@ -1,23 +1,32 @@
+/**
+ * CallGenerateOrderVlocityReqABCSImpl -> provaiderī
+ */
 package com;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import org.json.*;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
 import java.util.Iterator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.json.*;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class ProcessJsonData {
+    public static String AccountAddressId = "";
+    public static String ServiceAddressKey = "";
 
     public static void main(String[] args) throws Exception {
         JSONObject orderdata;
         JSONArray orderdataitems = null;
         JSONObject itemdata;
         JSONObject itemattrdata;
-        String AccountAddressId = "";
-        String ServiceAddressKey = "";
 
-        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson01.json");
+        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson_Tet_postpaid.json");
         String longJsonString = IOUtils.toString(fis, "UTF-8");
 
         //JSONObject obj = new JSONObject(jdata);
@@ -57,7 +66,7 @@ public class ProcessJsonData {
 
         sb.append(GetJsonObjectValue(orderdata, "accountAddressId", "accountAddressId"));
         // adreses lauki
-        //sb.append(GetOrderAddressData());
+        sb.append(GetOrderAddressData());
         //--
         sb.append(GetJsonObjectValue(orderdata, "customerSegment", "customerSegment"));
         sb.append(GetJsonObjectValue(orderdata, "customerSubSegment", "customerSubSegment"));
@@ -112,7 +121,7 @@ public class ProcessJsonData {
             sb.append(GetJsonObjectValue(itemdata, "billingAccountNumber", "billingAccountNumber"));
 
             // adreses
-            //sb.append(GetOrderItemAddressData());
+            sb.append(GetOrderItemAddressData(itemdata));
             // ???
             sb.append(GetJsonObjectValue(itemdata, "linkedLineItemId", "linkedLineItemId"));
             // ???
@@ -166,25 +175,26 @@ public class ProcessJsonData {
                         if (!isEmptyOrNull(val)) {
                             sb.append("<orderItemXA>");
                             sb.append("<value>").append(val).append("</value>");
-                            sb.append(GetJsonObjectValue(itemattrdata, "attributedisplayname__c", "atrribute"));
+                            sb.append(GetJsonObjectValue(itemattrdata, "attributeuniquecode__c", "atrribute"));
                             sb.append("</orderItemXA>");
                         }
                     }
                 }
-                
-                // SOAIP-1155 add UsageUnitPrice
-                try {
-                val = GetJsonAtrrObjectStringValue(itemdata.get("UsageUnitPrice"));
-                    if (!isEmptyOrNull(val)) {
-                        sb.append("<orderItemXA>");
-                        sb.append("<value>").append(val).append("</value>");
-                        sb.append("<atrribute>UsageUnitPrice</atrribute>");
-                        sb.append("</orderItemXA>");
-                }
-                } catch (Exception ee) {}
 
             } catch (Exception e) {
             }
+
+            // SOAIP-1155 add UsageUnitPrice
+            try {
+                val = GetJsonAtrrObjectStringValue(itemdata.get("UsageUnitPrice"));
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<orderItemXA>");
+                    sb.append("<value>").append(val).append("</value>");
+                    sb.append("<atrribute>UsageUnitPrice</atrribute>");
+                    sb.append("</orderItemXA>");
+                }
+            } catch (Exception ee) {}
+
             sb.append("</listOfOrderItemXA>");
             sb.append("</orderItem>");
         }
@@ -196,7 +206,7 @@ public class ProcessJsonData {
 
 
         System.out.println(sb.toString());
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson01res.xml"),
+        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson_Tet_postpaid_res.xml"),
                 sb.toString(), Charset.forName("UTF-8"));
     }
 
@@ -280,7 +290,10 @@ public class ProcessJsonData {
                     }
                     break;
                 case "accountAddressId":
-                    //AccountAddressId = valToXml;
+                    AccountAddressId = valToXml;
+                    break;
+                case "serviceAddressKey":
+                    ServiceAddressKey = valToXml;
                     break;
                 }
             }
@@ -308,6 +321,163 @@ public class ProcessJsonData {
                 //break;
             }
         }
+    }
+
+    private static String GetOrderAddressData() throws Exception {
+
+        DataSource ds = null;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        InitialContext ctx = null;
+        StringBuilder sb = new StringBuilder();
+
+        // ja ir padota addreses kods
+        if (!isEmptyOrNull(AccountAddressId)) {
+            String sql =
+                    "select addressconcat, flatname, postofficecode, nvl(othertext,'') as othertext, " +
+                            "lowestlevelid, lowestleveltype from ak_owner.ltk_full_addresses_md where addresskey=" +
+                            AccountAddressId;
+
+            //ctx = new InitialContext();
+            //ds = (DataSource) ctx.lookup("jdbc/AKADMIN"); //eis/DB/AKADMIN
+            //conn = ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@10.2.88.41:1534:CRASO", "AK_OWNER", "akwow45");
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.execute();
+            rs = pstmt.getResultSet();
+            String val = "";
+            Double dval;
+            while (rs.next()) {
+                //addAuditTrailEntry(rs.getString("NAME_LV"));
+                val = rs.getString("addressconcat");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<accountAddressConcat>" + val + "</accountAddressConcat>");
+                } else {
+                    sb.append("<accountAddressConcat/>");
+                }
+                val = rs.getString("flatname");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<accountAddressFlat>" + val + "</accountAddressFlat>");
+                } else {
+                    sb.append("<accountAddressFlat/>");
+                }
+                val = rs.getString("postofficecode");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<accountAddressPostOfficeCode>" + val + "</accountAddressPostOfficeCode>");
+                } else {
+                    sb.append("<accountAddressPostOfficeCode/>");
+                }
+                val = rs.getString("othertext");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<accountAddressOtherText>" + val + "</accountAddressOtherText>");
+                } else {
+                    sb.append("<accountAddressOtherText/>");
+                }
+                dval = rs.getDouble("lowestlevelid");
+                if (!isNull(dval)) {
+                    sb.append("<accountAddressLowestLevelId>" + String.format("%.0f", dval) +
+                            "</accountAddressLowestLevelId>");
+                } else {
+                    sb.append("<accountAddressLowestLevelId/>");
+                }
+                dval = rs.getDouble("lowestleveltype");
+                if (!isNull(dval)) {
+                    sb.append("<accountAddressLowestLevelType>" + String.format("%.0f", dval) +
+                            "</accountAddressLowestLevelType>");
+                } else {
+                    sb.append("<accountAddressLowestLevelType/>");
+                }
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }
+        return sb.toString();
+    }
+
+    private static String GetOrderItemAddressData(JSONObject itemdata) throws Exception {
+
+        DataSource ds = null;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        InitialContext ctx = null;
+        StringBuilder sb = new StringBuilder();
+
+        // ja nav padota ServiceAddressKey, izmantojam galveno AccountAddressId
+        String aa = GetJsonObjectValue(itemdata, "serviceAddressKey", "serviceAddressKey");
+        if (isEmptyOrNull(ServiceAddressKey)) {
+            if (!isEmptyOrNull(AccountAddressId)) {
+                ServiceAddressKey = AccountAddressId;
+            }
+        }
+
+        // ja ir padota addreses kods
+        if (!isEmptyOrNull(ServiceAddressKey)) {
+            String sql =
+                    "select addressconcat, flatname, postofficecode, nvl(othertext,'') as othertext, " +
+                            "lowestlevelid, lowestleveltype from ak_owner.ltk_full_addresses_md where addresskey=" +
+                            ServiceAddressKey;
+
+            //ctx = new InitialContext();
+            //ds = (DataSource) ctx.lookup("jdbc/AKADMIN"); //eis/DB/AKADMIN
+            //conn = ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@10.2.88.41:1534:CRASO", "AK_OWNER", "akwow45");
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.execute();
+            rs = pstmt.getResultSet();
+            String val = "";
+            Double dval;
+
+            while (rs.next()) {
+                //addAuditTrailEntry(rs.getString("NAME_LV"));
+                val = rs.getString("postofficecode");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<serviceAddressPostOfficeCode>" + val + "</serviceAddressPostOfficeCode>");
+                } else {
+                    sb.append("<serviceAddressPostOfficeCode/>");
+                }
+                val = rs.getString("othertext");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<serviceAddressOtherText>" + val + "</serviceAddressOtherText>");
+                } else {
+                    sb.append("<serviceAddressOtherText/>");
+                }
+                dval = rs.getDouble("lowestleveltype");
+                if (!isNull(dval)) {
+                    sb.append("<serviceAddressLowestLevelType>" + String.format("%.0f", dval) +
+                            "</serviceAddressLowestLevelType>");
+                } else {
+                    sb.append("<serviceAddressLowestLevelType/>");
+                }
+                dval = rs.getDouble("lowestlevelid");
+                if (!isNull(dval)) {
+                    sb.append("<serviceAddressLowestLevelId>" + String.format("%.0f", dval) +
+                            "</serviceAddressLowestLevelId>");
+                } else {
+                    sb.append("<serviceAddressLowestLevelId/>");
+                }
+                sb.append(GetJsonObjectValue(itemdata, "serviceAddressKey", "serviceAddressKey"));
+                val = rs.getString("flatname");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<serviceAddressFlat>" + val + "</serviceAddressFlat>");
+                } else {
+                    sb.append("<serviceAddressFlat/>");
+                }
+                val = rs.getString("addressconcat");
+                if (!isEmptyOrNull(val)) {
+                    sb.append("<serviceAddressConcat>" + val + "</serviceAddressConcat>");
+                } else {
+                    sb.append("<serviceAddressConcat/>");
+                }
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }
+        return sb.toString();
     }
 
     private static String GetJsonObjectItemAttrValue(JSONObject itemattrdata, String fieldName) {

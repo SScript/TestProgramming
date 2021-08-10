@@ -1,1 +1,44 @@
-{"SendDocByMailAPIReq":{"xmlns":"http://xmlns.oracle.com/DocumentSendByEmailFromVlocity/SendDocByMailAPIReqABCSImp/SendDocByMailAPI","Requester":"VLOCITY","ApiKey":"1q2w3e4r5t6y7u8i9o0p"}}
+{
+  "SendDocByMailAPIReq": {
+    "Order": {
+      "OrderItems": [
+        {
+          "AccountingCode": "PDT_SPLIT_PAYMENT_001",
+          "ProductType": "SplitPayment",
+          "ServiceId": "DLMS1558346",
+          "RootOrderItemId": "8023N000002UWk7QAG",
+          "OrderItemId": "8023N000002UWk7QAG",
+          "Name": "Split Payment"
+        },
+        {
+          "AccountingCode": 70008404,
+          "ProductType": "Shipping",
+          "RootOrderItemId": "8023N000002UWkCQAW",
+          "OrderItemId": "8023N000002UWkCQAW",
+          "Name": "Saņemt Tet veikalā"
+        },
+        {
+          "AccountingCode": 60010515,
+          "ProductType": "ConsumerGoods",
+          "RootOrderItemId": "8023N000002UWk2QAG",
+          "OrderItemId": "8023N000002UWk2QAG",
+          "Name": "Samsung Galaxy A10 Blue"
+        }
+      ],
+      "DeliveryMethod": "Store Front",
+      "AccountId": "0013N00000WQp8nQAD",
+      "AccountNo": 13470630,
+      "WayBillNo": "TET-355722",
+      "OrderNumber": "00025429",
+      "OrderId": "8013N000001hHvuQAE",
+      "OrderContact": "LIJA MELADZE",
+      "OrderContactEmail": "lijameladze@gmail.com",
+      "OrderDate": "2021-04-14",
+      "OrderContactMobile": 20515504,
+      "AccountName": "LIJA MELADZE"
+    },
+    "xmlns": "http://xmlns.oracle.com/DocumentSendByEmailFromVlocity/SendDocByMailAPIReqABCSImp/SendDocByMailAPI",
+    "Requester": "VLOCITY",
+    "ApiKey": "5aWA7LX8fPfMqarm"
+  }
+}

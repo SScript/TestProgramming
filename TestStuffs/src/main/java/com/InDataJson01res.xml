@@ -2,143 +2,183 @@
     <listOfOrderHeader>
         <order>
             <generatePdfOnline>true</generatePdfOnline>
-            <id>8011q0000006ctEAAQ</id>
-            <orderDate>2021-03-24T11:38:10.000Z</orderDate>
-            <orderNumber>00005113</orderNumber>
-            <channel>ELE Admin</channel>
-            <source>Price offer</source>
-            <account>NORMATĪVĀ TEKILAY</account>
-            <accountNumber>11426614</accountNumber>
-            <accountContactFirstName>TEKILAY</accountContactFirstName>
-            <accountContactLastName>NORMATĪVĀ</accountContactLastName>
+            <id>8013N0000018OzJQAU</id>
+            <orderDate>2021-06-22T06:28:46.000Z</orderDate>
+            <orderNumber>00337762</orderNumber>
+            <channel>LTC Veikali</channel>
+            <source>LTC Veikals "ALFA"</source>
+            <account>NOVATORS, SIA</account>
+            <accountNumber>10473512</accountNumber>
+            <accountContactFirstName>OMEGA</accountContactFirstName>
+            <accountContactLastName>ELLIŠĶĪGĀ</accountContactLastName>
             <accountContactEmailAddress/>
-            <accountAddressId>119073441</accountAddressId>
+            <accountAddressId>103437155</accountAddressId>
+            <accountAddressConcat>ŠVĀGARI, SALGALES PAG., OZOLNIEKU NOV.</accountAddressConcat>
+            <accountAddressFlat/>
+            <accountAddressPostOfficeCode>LV-3045</accountAddressPostOfficeCode>
+            <accountAddressOtherText/>
+            <accountAddressLowestLevelId>103437155</accountAddressLowestLevelId>
+            <accountAddressLowestLevelType>108</accountAddressLowestLevelType>
             <customerSegment>3</customerSegment>
-            <customerSubSegment>16</customerSubSegment>
-            <accountContactPin>061160-16635</accountContactPin>
-            <companyRegistrationNumber>9876543</companyRegistrationNumber>
-            <vatNumber/>
-            <birthDate>1954-10-01T00:00:01</birthDate>
+            <customerSubSegment>286</customerSubSegment>
+            <accountContactPin/>
+            <companyRegistrationNumber>99081460163</companyRegistrationNumber>
+            <vatNumber>41702000314</vatNumber>
+            <birthDate>1908-09-27T00:00:01</birthDate>
             <branch/>
             <accountType/>
-            <residentType>Nerezidents</residentType>
-            <subStatus>Credit Check done</subStatus>
-            <hardCopyAgreement>false</hardCopyAgreement>
+            <residentType>Rezidents</residentType>
+            <subStatus>Order Placed</subStatus>
+            <hardCopyAgreement>N</hardCopyAgreement>
             <foDeliveryAgreement>N</foDeliveryAgreement>
-            <orderCreator>Sunanda P Meena</orderCreator>
+            <orderCreator>Mihails Rabkins</orderCreator>
             <kciOnlyFlg>N</kciOnlyFlg>
             <bulkOrderFlg>N</bulkOrderFlg>
-            <priority/>
+            <priority>20</priority>
             <amendOrderFlg>No</amendOrderFlg>
             <amendPrevOrderNumber/>
             <listOfOrderItem>
                 <orderItem>
-                    <id>8021q000003j9OzAAI</id>
+                    <id>8023N000002qIRFQA2</id>
                     <actionCode>Add</actionCode>
-                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
-                    <parentOrderItemId>8021q000003j9G5AAI</parentOrderItemId>
+                    <rootOrderItemId>8023N000002qIRFQA2</rootOrderItemId>
+                    <parentOrderItemId/>
                     <salesOrderType/>
                     <status>Pending</status>
                     <rootAssetIntegrationId/>
-                    <assetIntegrationId>5cfbd091-9f8b-47c5-a370-bd7ccbe6194b</assetIntegrationId>
-                    <productId>ELE00007</productId>
-                    <partNumber>EP00007</partNumber>
-                    <serviceId/>
-                    <product>ELE Stabilais - 48 mēneši</product>
-                    <productType>Product</productType>
+                    <assetIntegrationId>bb9c9f60-8043-8cdb-c461-d47131646e38</assetIntegrationId>
+                    <productId>ELE00016</productId>
+                    <partNumber>EB00001</partNumber>
+                    <serviceId>99X-STO020086496</serviceId>
+                    <product>Elektroenerģijas risinājums biznesam (ELB)</product>
+                    <productType>Offer</productType>
                     <revisedLineItemId/>
                     <prodPromInstanceId/>
-                    <scheduledShipDate/>
-                    <billingAccountNumber>11426614</billingAccountNumber>
+                    <scheduledShipDate>2021-08-01T00:00:00.000Z</scheduledShipDate>
+                    <billingAccountNumber>3489657</billingAccountNumber>
+                    <serviceAddressPostOfficeCode>LV-1083</serviceAddressPostOfficeCode>
+                    <serviceAddressOtherText/>
+                    <serviceAddressLowestLevelType>109</serviceAddressLowestLevelType>
+                    <serviceAddressLowestLevelId>111633092</serviceAddressLowestLevelId>
+                    <serviceAddressKey>111633092</serviceAddressKey>
+                    <serviceAddressFlat>26</serviceAddressFlat>
+                    <serviceAddressConcat>ELVĪRAS IELA 8 - 26, RĪGA</serviceAddressConcat>
                     <linkedLineItemId/>
                     <prodPromSourceId/>
                     <promotionGroupName/>
-                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <myTetUserId/>
                     <subType/>
                     <parentServiceId/>
                     <subActionCode/>
                     <lineDescription/>
                     <shipMethod/>
-                    <ProductSubType>Plan</ProductSubType>
+                    <ProductSubType/>
                     <listOfOrderItemXA>
+                        <orderItemXA>
+                            <value>N</value>
+                            <atrribute>Kopīgs līgums</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>Nē</value>
+                            <atrribute>Nesūtīt uz Sadales tīklu</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>99X-STO020086496</value>
+                            <atrribute>Pakalpojuma ID</atrribute>
+                        </orderItemXA>
                         <orderItemXA>
                             <value>ELE</value>
                             <atrribute>Product Family</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>0.05061</value>
+                            <value>0</value>
                             <atrribute>UsageUnitPrice</atrribute>
                         </orderItemXA>
                     </listOfOrderItemXA>
                 </orderItem>
                 <orderItem>
-                    <id>8021q000003j9GAAAY</id>
+                    <id>8023N000002qIRGQA2</id>
                     <actionCode>Add</actionCode>
-                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
-                    <parentOrderItemId>8021q000003j9G5AAI</parentOrderItemId>
+                    <rootOrderItemId>8023N000002qIRFQA2</rootOrderItemId>
+                    <parentOrderItemId>8023N000002qIRFQA2</parentOrderItemId>
                     <salesOrderType/>
                     <status>Pending</status>
                     <rootAssetIntegrationId/>
-                    <assetIntegrationId>e3c0b294-39bd-4c1c-1d92-bfe22170e9ed</assetIntegrationId>
-                    <productId>ELE00002</productId>
-                    <partNumber>EP00002</partNumber>
+                    <assetIntegrationId>91d7f468-c524-b8ae-4bb8-8676a573dcde</assetIntegrationId>
+                    <productId>ELE00017</productId>
+                    <partNumber>EB00002</partNumber>
                     <serviceId/>
-                    <product>Elektroenerģijas Pakalpojuma objekts</product>
+                    <product>Elektrības objekts biznesam</product>
                     <productType>Product</productType>
                     <revisedLineItemId/>
                     <prodPromInstanceId/>
-                    <scheduledShipDate/>
-                    <billingAccountNumber>11426614</billingAccountNumber>
+                    <scheduledShipDate>2021-08-01T00:00:00.000Z</scheduledShipDate>
+                    <billingAccountNumber>3489657</billingAccountNumber>
+                    <serviceAddressPostOfficeCode>LV-1006</serviceAddressPostOfficeCode>
+                    <serviceAddressOtherText/>
+                    <serviceAddressLowestLevelType>108</serviceAddressLowestLevelType>
+                    <serviceAddressLowestLevelId>102643844</serviceAddressLowestLevelId>
+                    <serviceAddressKey>102643844</serviceAddressKey>
+                    <serviceAddressFlat/>
+                    <serviceAddressConcat>ŠMERĻA IELA 1, RĪGA</serviceAddressConcat>
                     <linkedLineItemId/>
                     <prodPromSourceId/>
                     <promotionGroupName/>
-                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <myTetUserId/>
                     <subType/>
                     <parentServiceId/>
                     <subActionCode/>
                     <lineDescription/>
                     <shipMethod/>
-                    <ProductSubType>Technical Object</ProductSubType>
+                    <ProductSubType/>
                     <listOfOrderItemXA>
                         <orderItemXA>
-                            <value>300</value>
+                            <value>99X-STJ03371759D</value>
+                            <atrribute>Klienta EIC</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>0.4 kV līnijas</value>
+                            <atrribute>Kopnes (Spriegums)</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>OBJEKTS85221153</value>
+                            <atrribute>Objekta nosaukums</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>157.644</value>
                             <atrribute>Mēneša vidējais patēriņš</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>USER</value>
-                            <atrribute>Skaitītāja nolasīšanas veids</atrribute>
-                        </orderItemXA>
-                        <orderItemXA>
-                            <value>32</value>
+                            <value>40</value>
                             <atrribute>Ievadaizsardzības strāva</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>14622518</value>
+                            <value>11713568</value>
                             <atrribute>Skaitītāja Numurs</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>CONNECTED</value>
-                            <atrribute>Objekta Statuss</atrribute>
+                            <value>PIEGĀDĀTĀJS (AEUS)</value>
+                            <atrribute>Skaitītāja nolasīšanas veids</atrribute>
                         </orderItemXA>
                         <orderItemXA>
                             <value>false</value>
                             <atrribute>Move In</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>APARTMENT</value>
-                            <atrribute>Objekta nosaukums</atrribute>
-                        </orderItemXA>
-                        <orderItemXA>
-                            <value>S-2 Households 17A to 63A</value>
-                            <atrribute>ST Tarifs</atrribute>
-                        </orderItemXA>
-                        <orderItemXA>
-                            <value>16</value>
+                            <value>21</value>
                             <atrribute>Atļautā slodze (kW)</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>43Z-STP1111111K</value>
-                            <atrribute>Klienta EIC</atrribute>
+                            <value>CONNECTED</value>
+                            <atrribute>Objekta Statuss</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>S-6</value>
+                            <atrribute>ST Tarifs</atrribute>
+                        </orderItemXA>
+                        <orderItemXA>
+                            <value>Pamattarifs</value>
+                            <atrribute>Apakštarifs</atrribute>
                         </orderItemXA>
                         <orderItemXA>
                             <value>ELE</value>
@@ -151,52 +191,47 @@
                     </listOfOrderItemXA>
                 </orderItem>
                 <orderItem>
-                    <id>8021q000003j9G5AAI</id>
+                    <id>8023N000002qIRPQA2</id>
                     <actionCode>Add</actionCode>
-                    <rootOrderItemId>8021q000003j9G5AAI</rootOrderItemId>
-                    <parentOrderItemId/>
+                    <rootOrderItemId>8023N000002qIRFQA2</rootOrderItemId>
+                    <parentOrderItemId>8023N000002qIRFQA2</parentOrderItemId>
                     <salesOrderType/>
                     <status>Pending</status>
                     <rootAssetIntegrationId/>
-                    <assetIntegrationId>16e2d4f6-c86d-80f1-b0ae-1cb676eb1913</assetIntegrationId>
-                    <productId>ELE00001</productId>
-                    <partNumber>EP00001</partNumber>
-                    <serviceId>43Z-STO11111111K</serviceId>
-                    <product>Elektroenerģijas Risinājums privātpersonām (ELP)</product>
-                    <productType>Offer</productType>
+                    <assetIntegrationId>3f671cb8-8076-533c-1802-469339b05de6</assetIntegrationId>
+                    <productId>ELE00023</productId>
+                    <partNumber>EB00008</partNumber>
+                    <serviceId/>
+                    <product>ELE Dinamiskais - Bezlimita</product>
+                    <productType>Product</productType>
                     <revisedLineItemId/>
                     <prodPromInstanceId/>
-                    <scheduledShipDate>2021-03-24T00:00:00.000Z</scheduledShipDate>
-                    <billingAccountNumber>3744699</billingAccountNumber>
+                    <scheduledShipDate>2021-08-01T00:00:00.000Z</scheduledShipDate>
+                    <billingAccountNumber>3489657</billingAccountNumber>
+                    <serviceAddressPostOfficeCode>LV-1006</serviceAddressPostOfficeCode>
+                    <serviceAddressOtherText/>
+                    <serviceAddressLowestLevelType>108</serviceAddressLowestLevelType>
+                    <serviceAddressLowestLevelId>102643844</serviceAddressLowestLevelId>
+                    <serviceAddressKey>102643844</serviceAddressKey>
+                    <serviceAddressFlat/>
+                    <serviceAddressConcat>ŠMERĻA IELA 1, RĪGA</serviceAddressConcat>
                     <linkedLineItemId/>
                     <prodPromSourceId/>
                     <promotionGroupName/>
-                    <myTetUserId>test123@gamil.com</myTetUserId>
+                    <myTetUserId/>
                     <subType/>
                     <parentServiceId/>
                     <subActionCode/>
                     <lineDescription/>
                     <shipMethod/>
-                    <ProductSubType>Root Object</ProductSubType>
+                    <ProductSubType/>
                     <listOfOrderItemXA>
-                        <orderItemXA>
-                            <value>Nē</value>
-                            <atrribute>Nesūtīt uz Sadales tīklu</atrribute>
-                        </orderItemXA>
-                        <orderItemXA>
-                            <value>43Z-STO11111111K</value>
-                            <atrribute>Pakalpojuma ID</atrribute>
-                        </orderItemXA>
-                        <orderItemXA>
-                            <value>N</value>
-                            <atrribute>Kopīgs līgums</atrribute>
-                        </orderItemXA>
                         <orderItemXA>
                             <value>ELE</value>
                             <atrribute>Product Family</atrribute>
                         </orderItemXA>
                         <orderItemXA>
-                            <value>0</value>
+                            <value>0.0447</value>
                             <atrribute>UsageUnitPrice</atrribute>
                         </orderItemXA>
                     </listOfOrderItemXA>

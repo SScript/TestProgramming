@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class ReadExcel {
+public class ReadExcelEShop {
     public static void main(String[] args) throws Exception {
 
         FileInputStream file = null;
@@ -31,12 +31,13 @@ public class ReadExcel {
             sb.append("    select rid, rname into eshop_id, eshop_name from soa_cfg_owner.order_status_recipient WHERE rstatus = 0 and rname = 'EShop' and ROWNUM = 1;\n");
             sb.append("\n");
 
-            file = new FileInputStream(new File("C:/Tmp/522ordersCompCanc.xlsx"));
+            file = new FileInputStream(new File("C:/tmp/15052021_09_31_import-2.xlsx"));
 
             Workbook workbook = WorkbookFactory.create(file);
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.iterator();
             String ordernr = "";
+            String orderid = "";
             String status = "";
             String substatus = "";
             Row row = null;
@@ -62,6 +63,9 @@ public class ReadExcel {
                         if (index == 0) {
                             ordernr = "00" + cell.getStringCellValue();
                         }
+                        if (index == 1) {
+                            orderid = cell.getStringCellValue();
+                        }
                         if (index == 2) {
                             status = cell.getStringCellValue();
                         }
@@ -73,9 +77,9 @@ public class ReadExcel {
                 sb.append("    select SOA_CFG_OWNER.ORDER_STATUS_QUE_SEQ.NEXTVAL into next_id from dual;\n");
                 sb.append("    Insert into ");
                 sb.append("SOA_CFG_OWNER.ORDER_STATUS_QUE ");
-                sb.append("(QID, ORDERNUMBER, STATUS, SUBSTATUS, INDATE) \n");
+                sb.append("(QID, ORDERNUMBER, ORDERID, STATUS, SUBSTATUS, INDATE) \n");
                 sb.append("    values ");
-                val = "(next_id, '" + ordernr + "', '" + status + "', '" + substatus + "', sysdate);";
+                val = "(next_id, '" + ordernr + "', '" + orderid + "', '" + status + "', '" + substatus + "', sysdate);";
                 sb.append(val);
                 sb.append("\n");
                 sb.append("    Insert into\n");
@@ -93,7 +97,7 @@ public class ReadExcel {
             sb.append("    commit;\n");
             sb.append("end;");
 
-            FileUtils.writeStringToFile(new File("C:/tmp/insdataall.sql"), sb.toString(), Charset.forName("UTF-8"));
+            FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/ReadWriteExcel/insertEshopData17052021.sql"), sb.toString(), Charset.forName("UTF-8"));
 
         } catch (Exception e) {
             file.close();

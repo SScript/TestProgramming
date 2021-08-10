@@ -1,5 +1,6 @@
 /**
  * DT.ELE - SendNotificationsVLocityReqABCSImpl
+ *  + Telco izmaiņas
  */
 package com.reach;
 
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ProcessJsonDataReach_1 {
+public class ProcessJsonDataReach_2 {
 
     private JSONArray orderdataarray;
     private JSONArray orderdataitems;
@@ -191,33 +192,75 @@ public class ProcessJsonDataReach_1 {
                 //VLOrderCustomerName
                 sb.append(AddDinamicParam("VLOrderCustomerName", GetJsonAtrrObjectStringValue(orderdata, "VLOrderCustomerName", true)));
                 //VLOrderDeliveryType
-                sb.append(AddDinamicParam("VLOrderDeliveryType", GetJsonAtrrObjectStringValue(orderdata, "VLOrderDeliveryType", false)));
+                if ("OrderSummary_Telco".equalsIgnoreCase(actcode)) {
+                    // If ActionCode = 'OrderSummary_Telco':
+                    // if exist OrderItem with ProductCode = 'PD_TELCO_INSTALL_PACKAGE', then DeliveryMethod from the same OrderItem
+                    //    else Name from OrderItem with ProductSubType = 'Installation'
+                    sb.append(AddDinamicParam("VLOrderDeliveryType", GetVLOrderDeliveryTypeTelco(orderdataitems)));
+                } else {
+                    // else - VLOrderDeliveryType
+                    sb.append(AddDinamicParam("VLOrderDeliveryType", GetJsonAtrrObjectStringValue(orderdata, "VLOrderDeliveryType", false)));
+                }
 
-                //VLOrderDeliveryAddress
-                //Ja <VLOrderDeliveryType> = 'DPD Courier', tad Addressconcat no AK_ADMIN db tabulas LTK_FULL_ADDRESSES_MD, meklēt pēc addresskey = <VLOrderDeliveryAddress>,
-                //Ja <VLOrderDeliveryType> = 'Store front', tad <VLWarehauserName>.
-                //Pārējos gadījumos - <VLPickUpPoint>.
                 String VLOrderDeliveryType = "";
                 try {
                     VLOrderDeliveryType = GetJsonAtrrObjectStringValue(orderdata, "VLOrderDeliveryType", false);
                 } catch (Exception e) {
                     VLOrderDeliveryType = "";
                 }
+                //VLOrderDeliveryAddress
+                // Ja ActionCode = 'OrderSummary_Telco':
+                //  Ja ir OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE', tad ja:
+                //    DeliveryMethod = 'Courier', tad CourierAddressString
+                //    DeliveryMethod = 'PickUpPoint', tad ParcelMachineAddress
+                //    DeliveryMethod  = 'StoreFront', tad ?
+                //    DeliveryMethod = 'AlreadyDelivered', tad nepadot šo parametru
+                //    else
+                //      OrderItem.serviceAccountAddress
+                // else
+                //   Ja <VLOrderDeliveryType> ir tukšs, tad tukšs
+                //   Ja <VLOrderDeliveryType> = 'DPD Courier', tad Addressconcat no AK_ADMIN db tabulas LTK_FULL_ADDRESSES_MD, meklēt pēc addresskey = <VLOrderDeliveryAddress>,
+                //   Ja <VLOrderDeliveryType> = 'Store front', tad <VLWarehauserName>.
+                //     Pārējos gadījumos - <VLPickUpPoint>.
+                if ("OrderSummary_Telco".equalsIgnoreCase(actcode)) {
+                    String s = GetVLOrderDeliveryAddressTelco(orderdataitems);
+                    if (!"ALREADYDELIVERED".equalsIgnoreCase(s)) {
+                        sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetVLOrderDeliveryAddressTelco(orderdataitems)));
+                    }
+                } else {
+                    switch (VLOrderDeliveryType) {
+                        case "":
+                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", ""));
+                            break;
+                        case "DPD Courier":
+                            //sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetOrderAddressData(orderdata)));
+                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", "aaaa"));
+                            break;
+                        case "Store Front":
+                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetJsonAtrrObjectStringValue(orderdata, "VLWarehauserName", false)));
+                            break;
+                        default:
+                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetJsonAtrrObjectStringValue(orderdata, "VLPickUpPoint", false)));
+                            break;
+                    }
+                }
+                // VLOrderDeliveryContactPerson
+                if ("OrderSummary_Telco".equalsIgnoreCase(actcode)) {
+                    String s = GetVLOrderDeliveryContactPersonTelco(orderdataitems);
+                    if (!"".equalsIgnoreCase(s)) {
+                        sb.append(AddDinamicParam("VLOrderDeliveryContactPerson", s));
+                    }
+                }
 
-                switch (VLOrderDeliveryType) {
-                    case "":
-                        sb.append(AddDinamicParam("VLOrderDeliveryAddress", ""));
-                        break;
-                    case "DPD Courier":
-                        //sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetOrderAddressData(orderdata)));
-                        sb.append(AddDinamicParam("VLOrderDeliveryAddress", "aaaa"));
-                        break;
-                    case "Store Front":
-                        sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetJsonAtrrObjectStringValue(orderdata, "VLWarehauserName", false)));
-                        break;
-                    default:
-                        sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetJsonAtrrObjectStringValue(orderdata, "VLPickUpPoint", false)));
-                        break;
+                String s = GetOrderItemFieldValueByProductType("Telco", "MonthlyTotal");
+                // VLOrderMonthlyTotal
+                if (!isEmptyOrNull(s)) {
+                    sb.append(AddDinamicParam("VLOrderMonthlyTotal", s));
+                }
+                // VLOrderTotalTotal
+                s = GetOrderItemFieldValueByProductType("Telco", "TotalOneTimeAndRecurring");
+                if (!isEmptyOrNull(s)) {
+                    sb.append(AddDinamicParam("VLOrderTotalTotal", s));
                 }
 
                 //VLOrderContactData
@@ -259,7 +302,7 @@ public class ProcessJsonDataReach_1 {
                 }
 
                 //VLOrderInstallmentMonthPaym
-                String VLOrderInstallmentMonthPaym = GetVLOrderInstallmentMonthPaymValue();
+                String VLOrderInstallmentMonthPaym = GetOrderItemFieldValueByProductType("SplitPayment", "VLRecurringCharge"); //GetVLOrderInstallmentMonthPaymValue();
                 if (!isEmptyOrNull(VLOrderInstallmentMonthPaym)) {
                     sb.append(AddDinamicParam("VLOrderInstallmentMonthPaym", VLOrderInstallmentMonthPaym));
                 }
@@ -361,6 +404,128 @@ public class ProcessJsonDataReach_1 {
         return res;
     }
 
+    /**
+     * Ja ActionCode = 'OrderSummary_Telco' un ir OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' un ja DeliveryMethod = 'Courier',
+     *   tad parametru DeliveryContactName, DeliveryContactEmail un DeliveryContactPhone vērtības - konkatinēt,atdalītājs - komats
+     *   parējos gadījumos - nesūtīt parametru
+     * @param orderdataitems
+     * @return
+     * @throws Exception
+     */
+    private String GetVLOrderDeliveryContactPersonTelco(JSONArray orderdataitems) throws Exception {
+        int itemc = orderdataitems.length();
+        String result = "";
+        String prdCode = "";
+        String prdDeliveryMethod = "";
+        JSONObject d = null;
+        if (isOrderItems) {
+            try {
+                for (int i = 0; i < itemc; i++) {
+                    d = orderdataitems.getJSONObject(i);
+                    prdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    prdDeliveryMethod = GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+
+                    if ("PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(prdCode)) {
+                        if ("COURIER".equalsIgnoreCase(prdDeliveryMethod)) {
+                            String s1 = GetJsonAtrrObjectStringValue(d, "DeliveryContactName", false);
+                            String s2 = GetJsonAtrrObjectStringValue(d, "DeliveryContactEmail", false);
+                            String s3 = GetJsonAtrrObjectStringValue(d, "DeliveryContactPhone", false);
+                            result = s1;
+                            if (isEmptyOrNull(result)) {result = s2;} else {result = result + ", " + s2;}
+                            if (isEmptyOrNull(result)) {result = s3;} else {result = result + ", " + s3;}
+                        }
+                    }
+                }
+            } catch (Exception e) {}
+        }
+        return result;
+    }
+
+    /**
+     * Ja ir OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE', tad ja:
+     *   DeliveryMethod = 'Courier', tad CourierAddressString
+     *   DeliveryMethod = 'PickUpPoint', tad ParcelMachineAddress
+     *   DeliveryMethod  = 'StoreFront', tad ?
+     *   DeliveryMethod = 'AlreadyDelivered', tad nepadot šo parametru
+     *     else
+     *       OrderItem.serviceAccountAddress
+     * @param orderdataitems
+     * @return
+     * @throws Exception
+     */
+    private String GetVLOrderDeliveryAddressTelco(JSONArray orderdataitems) throws Exception {
+        int itemc = orderdataitems.length();
+        String result = "";
+        String prdCode = "";
+        String prdDeliveryMethod = "";
+        JSONObject d = null;
+        if (isOrderItems) {
+            try {
+                for (int i = 0; i < itemc; i++) {
+                    d = orderdataitems.getJSONObject(i);
+                    prdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    prdDeliveryMethod = GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+
+                    if ("PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(prdCode)) {
+                        switch (prdDeliveryMethod.toUpperCase()) {
+                            case "COURIER":
+                                return GetJsonAtrrObjectStringValue(d, "CourierAddressString", false);
+                                //break;
+                            case "PICKUPPOINT":
+                                return GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress", false);
+                                //break;
+                            case "STOREFRON":
+                                return GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress1", false);
+                                //break;
+                            case "ALREADYDELIVERED":
+                                return "ALREADYDELIVERED";
+                                //break;
+                            default:
+                                return GetJsonAtrrObjectStringValue(d, "serviceAccountAddress", false);
+                                //break;
+                        }
+                    } else {
+                        if ("Installation".equalsIgnoreCase(prdDeliveryMethod)) {
+                            result = GetJsonAtrrObjectStringValue(d, "Name", false);
+                        }
+                    }
+                }
+            } catch (Exception e) {}
+        }
+        return result;
+    }
+    /**
+     * if exist OrderItem with ProductCode = 'PD_TELCO_INSTALL_PACKAGE', then DeliveryMethod from the same OrderItem
+     * else Name from OrderItem with ProductSubType = 'Installation'
+     *
+     * @param orderdataitems
+     * @return
+     */
+    private String GetVLOrderDeliveryTypeTelco(JSONArray orderdataitems) throws Exception {
+        int itemc = orderdataitems.length();
+        String result = "";
+        String prdCode = "";
+        String prdSubType = "";
+        JSONObject d = null;
+        if (isOrderItems) {
+            try {
+                for (int i = 0; i < itemc; i++) {
+                    d = orderdataitems.getJSONObject(i);
+                    prdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    prdSubType = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
+                    if ("PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(prdCode)) {
+                        return GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+                    } else {
+                        if ("Installation".equalsIgnoreCase(prdSubType)) {
+                            result = GetJsonAtrrObjectStringValue(d, "Name", false);
+                        }
+                    }
+                }
+            } catch (Exception e) {}
+        }
+
+        return result;
+    }
     private String GetServiceStartDate(JSONObject orderData) throws Exception {
         String res = "";
         String nd = "";
@@ -585,6 +750,8 @@ public class ProcessJsonDataReach_1 {
         StringBuilder sb = new StringBuilder();
         String productType = "";
         String productSubType = "";
+        String productActionCode = "";
+        String productCode = "";
 
         int itemcount = orderdataitems.length();
         String fieldName = "";
@@ -592,6 +759,9 @@ public class ProcessJsonDataReach_1 {
             itemdata = orderdataitems.getJSONObject(i);
             productType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
             productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", false); //mandatory only for Electricity
+            productActionCode = GetJsonAtrrObjectStringValue(itemdata, "ActionCode", false);
+            productCode = GetJsonAtrrObjectStringValue(itemdata, "ProductCode", false);
+
             //Tiek ņemti tikai OrderItems ar ProductType = ConsumerGoods, Insurance , Warranty  and PersonalLiabilityInsurance.
             if ("ConsumerGoods".equals(productType) || "Insurance".equals(productType) ||
                     "Warranty".equals(productType) || "PersonalLiabilityInsurance".equals(productType)) {
@@ -683,14 +853,124 @@ public class ProcessJsonDataReach_1 {
                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "UsageUnitPrice", false)));
             }
 
+            // Tiek ņemti OrderItems ar ProductType = Telco un ProductSubType = Offer
+            if ("Telco".equals(productType) && "Offer".equals(productSubType)) {
+                fieldName = "VLOrderItem" + (i + 1) + "Name";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "Name  ", false)));
+                // VLOrderItemXStartDate
+                fieldName = "VLOrderItem" + (i + 1) + "StartDate";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "ServiceStartDate", false)));
+                // VLOrderItemXTerm
+                fieldName = "VLOrderItem" + (i + 1) + "Term";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "TelcoContractTerm", false)));
+                // OrderItemXRCcharge
+                fieldName = "VLOrderItem" + (i + 1) + "RCcharge";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "VLRecurringCharge", false)));
+            }
+
+            // Tiek ņemti OrderItems ar ProductType = Telco
+            // VLOrderItemXProductYName, VLOrderItemXProductYRC, VLOrderItemXProductYNRC
+            if ("Telco".equals(productType) && "Offer".equals(productSubType)) {
+                String ShowInVlocityOrderSummaryFlag = "";
+                String PrdSubType = "";
+                String PrdCode = "";
+                JSONObject d = null;
+                int c = 0;
+                for (int j = 0; j < itemcount; j++) {
+                    d = orderdataitems.getJSONObject(j);
+                    ShowInVlocityOrderSummaryFlag = GetJsonAtrrObjectStringValue(d, "ShowInVlocityOrderSummaryFlag", false);
+                    PrdSubType = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
+                    PrdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    if ("true".equalsIgnoreCase(ShowInVlocityOrderSummaryFlag)
+                            && !("ServiceBundle".equalsIgnoreCase(PrdSubType) || "Offer".equalsIgnoreCase(PrdSubType)
+                            && !"PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(PrdCode))) {
+                        c = c + 1;
+                        fieldName = "VLOrderItem" + i + "Product" + c + "Name";
+                        sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "Name", false)));
+                        fieldName = "VLOrderItem" + i + "Product" + c + "RC";
+                        sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "VLRecurringCharge", false)));
+                        fieldName = "VLOrderItem" + i + "Product" + c + "YNRC";
+                        sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "VLOneTimeCharge", false)));
+                    }
+                }
+            }
+
+            // ja ActionCode = 'OrderSummary_Telco'
+            if ("OrderSummary_Telco".equalsIgnoreCase(productActionCode)) {
+                // if exist OrderItem with ProductCode = 'PD_TELCO_INSTALL_PACKAGE'
+                boolean is_PD_TELCO_INSTALL_PACKAGE = false;
+                String PrdCode = "";
+                String DelMEth = "";
+                String PrdSubType = "";
+                JSONObject d = null;
+                String ProductSubTypeInstallationName = "";
+                for (int j = 0; j < itemcount; j++) {
+                    d = orderdataitems.getJSONObject(j);
+                    PrdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    DelMEth = GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+                    PrdSubType = GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+                    if ("Installation".equalsIgnoreCase(PrdSubType)) {
+                        ProductSubTypeInstallationName = GetJsonAtrrObjectStringValue(d, "Name", false);
+                    }
+                    if ("PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(PrdCode)) {
+                        is_PD_TELCO_INSTALL_PACKAGE = true;
+                        // VLOrderItemXDeliveryType
+                        fieldName = "VLOrderItem" + i + "DeliveryType";
+                        sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false)));
+                        // VLOrderItemXDeliveryAddress
+                        fieldName = "VLOrderItem" + i + "DeliveryAddress";
+                        switch (DelMEth.toUpperCase()) {
+                            case "COURIER":
+                                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "CourierAddressString", false)));
+                                break;
+                            case "PICKUPPOINT":
+                                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress", false)));
+                                break;
+                            case "STOREFRON":
+                                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress1", false)));
+                                break;
+                            case "ALREADYDELIVERED":
+                                break;
+                        }
+                        // VLOrderItemXDeliveryContactPerson
+                        if ("Courier".equalsIgnoreCase(DelMEth)) {
+                            fieldName = "VLOrderItem" + i + "DeliveryContactPerson";
+                            String s1 = GetJsonAtrrObjectStringValue(d, "DeliveryContactName", false);
+                            String s2 = GetJsonAtrrObjectStringValue(d, "DeliveryContactEmail", false);
+                            String s3 = GetJsonAtrrObjectStringValue(d, "DeliveryContactPhone", false);
+                            String result = s1;
+                            if (isEmptyOrNull(result)) {result = s2;} else {result = result + ", " + s2;}
+                            if (isEmptyOrNull(result)) {result = s3;} else {result = result + ", " + s3;}
+                            sb.append(AddDinamicParam(fieldName, result));
+                        }
+                    }
+                }
+                // paskatamies vai ir bijis -> if exist OrderItem with ProductCode = 'PD_TELCO_INSTALL_PACKAGE', ja nav, tad ...
+                if (!is_PD_TELCO_INSTALL_PACKAGE) {
+                    // VLOrderItemXDeliveryType -> else Name from OrderItem with ProductSubType = 'Installation'
+                    fieldName = "VLOrderItem" + i + "DeliveryType";
+                    sb.append(AddDinamicParam(fieldName, ProductSubTypeInstallationName));
+                    // VLOrderItemXDeliveryAddress -> else OrderItem.serviceAccountAddress
+                    fieldName = "VLOrderItem" + i + "DeliveryAddress";
+                    sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "serviceAccountAddress", false)));
+                    // VLOrderItemXDeliveryContactPerson -> else nesūtīt parametru
+                }
+            } // end of -> if ("OrderSummary_Telco".equalsIgnoreCase(productActionCode))
+
+            // VLOrderItemXTetLogin
+            // OrderItems.TetLogin no OrderItem, kur ProductCode = 'PD_TELCO_OTT_CHANNEL'
+            if ("PD_TELCO_OTT_CHANNEL".equalsIgnoreCase(productCode)) {
+                fieldName = "VLOrderItem" + i + "TetLogin";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "TetLogin", false)));
+            }
         }
         return sb.toString();
     }
 
     /**
      * ServiceNumber from Item, with OrderItemId = insuarnce/warranty item.ParentOrderItemId
-     * @param orderdataitems
-     * @param itemdata
+     * @param orderdataitems - all orderdataitems
+     * @param itemdata - current itemdata
      * @param sField - lauks, kuram jāmeklē vērtība no pField
      * @param pField - esošā itema lauks, pēc kura meklē sField lauku
      * @return
@@ -756,11 +1036,31 @@ public class ProcessJsonDataReach_1 {
         return res;
     }
 
+    private String GetOrderItemFieldValueByProductType(String prdType, String itemField) throws Exception {
+        String result = "";
+        String finalRes = "";
+        String ProductType = "";
+        if (isOrderItems) {
+            int itemcount = orderdataitems.length();
+            for (int i = 0; i < itemcount; i++) {
+                itemdata = orderdataitems.getJSONObject(i);
+                //SplitPayment
+                ProductType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
+                if (prdType.equals(ProductType)) {
+                    finalRes = GetJsonAtrrObjectStringValue(itemdata, itemField, true);
+                }
+            }
+            return String.valueOf(finalRes);
+        } else {
+            return "";
+        }
+    }
+
     /**
      * Month payment
      * OrderItems.VLRecurringCharge where  ProductType = SplitPayment
      */
-    private String GetVLOrderInstallmentMonthPaymValue() throws Exception {
+    /*private String GetVLOrderInstallmentMonthPaymValue() throws Exception {
         String result = "";
         String finalRes = "";
         String ProductType = "";
@@ -778,7 +1078,7 @@ public class ProcessJsonDataReach_1 {
         } else {
             return "";
         }
-    }
+    }*/
 
     /**
      * Order delivery charge - summa no visiem piegādes produktu cenam
@@ -921,7 +1221,7 @@ public class ProcessJsonDataReach_1 {
                     //if (c > 0x7e) {
                     //    sb.append("&#" + ((int) c) + ";");
                     //} else
-                        sb.append(c);
+                    sb.append(c);
             }
         }
         return sb.toString();
