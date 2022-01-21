@@ -1,0 +1,140 @@
+{
+  "caller": "SOATEST",
+  "orderno": "00570248",
+  "ordernotes": "",
+  "orderid": "80168000001Url6AAC",
+  "orderOffers": [
+    {
+      "ORDER_LINE_NRC_WAIVER_REASON": "",
+      "ORDER_LINE_UOM": "",
+      "ORDER_LINE_PRODUCT_CODE": "",
+      "ORDER_LINE_COMPONENT_QTY": "1",
+      "ORDER_LINE_AMOUNT": "",
+      "ORDER_LINE_SUB_TYPE": "One-time",
+      "ORDER_LINE_PROMOTION_PERIOD": "",
+      "ORDER_LINE_TYPE": "C",
+      "ORDER_LINE_COMPONENT_CODE": "",
+      "ORDER_LINE_SPECIAL_DISCOUNT_CODE": "",
+      "ORDER_LINE_PRODUCT_QTY": "1",
+      "ORDER_LINE_ITEM": "80268000002zjZcAAI",
+      "ORDER_LINE_PACKAGE_CODE": "d.ELK.001",
+      "ORDER_LINE_PLAN_CODE": "a.ELST.002",
+      "ORDER_LINE_ACTION": "ON",
+      "ORDER_LINE_PROMOTION_UOM": "",
+      "ORDER_LINE_PROMO_ORDERNO": ""
+    },
+    {
+      "ORDER_LINE_NRC_WAIVER_REASON": "",
+      "ORDER_LINE_UOM": "",
+      "ORDER_LINE_PRODUCT_CODE": "b.R1.EL.001",
+      "ORDER_LINE_COMPONENT_QTY": "1",
+      "ORDER_LINE_AMOUNT": "",
+      "ORDER_LINE_SUB_TYPE": "Usage",
+      "ORDER_LINE_PROMOTION_PERIOD": "",
+      "ORDER_LINE_TYPE": "C",
+      "ORDER_LINE_COMPONENT_CODE": "",
+      "ORDER_LINE_SPECIAL_DISCOUNT_CODE": "",
+      "ORDER_LINE_PRODUCT_QTY": "1",
+      "ORDER_LINE_ITEM": "80268000002zjZhAAI",
+      "ORDER_LINE_PACKAGE_CODE": "d.ELK.001",
+      "ORDER_LINE_PLAN_CODE": "a.ELST.002",
+      "ORDER_LINE_ACTION": "ON",
+      "ORDER_LINE_PROMOTION_UOM": "",
+      "ORDER_LINE_PROMO_ORDERNO": ""
+    },
+    {
+      "ORDER_LINE_NRC_WAIVER_REASON": "",
+      "ORDER_LINE_UOM": "",
+      "ORDER_LINE_PRODUCT_CODE": "b.B.5555",
+      "ORDER_LINE_COMPONENT_QTY": "1",
+      "ORDER_LINE_AMOUNT": "",
+      "ORDER_LINE_SUB_TYPE": "One-time",
+      "ORDER_LINE_PROMOTION_PERIOD": "",
+      "ORDER_LINE_TYPE": "C",
+      "ORDER_LINE_COMPONENT_CODE": "",
+      "ORDER_LINE_SPECIAL_DISCOUNT_CODE": "",
+      "ORDER_LINE_PRODUCT_QTY": "1",
+      "ORDER_LINE_ITEM": "80268000002zjZXAAY",
+      "ORDER_LINE_PACKAGE_CODE": "d.ELK.001",
+      "ORDER_LINE_PLAN_CODE": "a.ELST.002",
+      "ORDER_LINE_ACTION": "ON",
+      "ORDER_LINE_PROMOTION_UOM": "",
+      "ORDER_LINE_PROMO_ORDERNO": ""
+    }
+  ],
+  "orderdetails": [
+    {
+      "value": "Electricity",
+      "key": "ORD_ORDEREDSERVICE"
+    },
+    {
+      "value": "43Z-STO00476759N",
+      "key": "serviceno"
+    },
+    {
+      "value": "13543221",
+      "key": "ORD_CUSTOMERNO"
+    },
+    {
+      "value": "3499051",
+      "key": "ORD_BILLINGACCOUNTNO"
+    },
+    {
+      "value": "01/01/2022",
+      "key": "ORD_BILLING_ACTIVATION_DATE"
+    },
+    {
+      "value": "",
+      "key": "ORD_CE_CANCEL_FLAG"
+    },
+    {
+      "value": "Change",
+      "key": "ORD_ORDEREDSERVICETYPE"
+    },
+    {
+      "value": "263",
+      "key": "ORD_REASON_ID"
+    },
+    {
+      "value": "80268000002zjZXAAY",
+      "key": "ORD_ORDERITEMID"
+    },
+    {
+      "value": "C",
+      "key": "ORD_PAYMENT_METHOD"
+    },
+    {
+      "value": "G",
+      "key": "ORD_PRICE_TYPE"
+    },
+    {
+      "value": "10",
+      "key": "ORD_LINE_ID"
+    },
+    {
+      "value": "101",
+      "key": "ORD_PRICE_ID"
+    },
+    {
+      "value": "P5D",
+      "key": "ORD_CONTRACT_LENGTH"
+    },
+    {
+      "value": "0.13",
+      "key": "ORD_PRICE_KWH"
+    },
+    {
+      "value": "161.835",
+      "key": "ORD_AVG_CONS_KWH"
+    },
+    {
+      "value": "S-1",
+      "key": "ORD_ST_TP_CODE"
+    },
+    {
+      "value": "16",
+      "key": "ORD_AMPERAGE"
+    }
+  ],
+  "orderdate": "29/12/2021 09:22:41"
+}

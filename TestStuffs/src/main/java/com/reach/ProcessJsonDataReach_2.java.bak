@@ -501,7 +501,7 @@ public class ProcessJsonDataReach_2 {
                             case "PICKUPPOINT":
                                 return GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress", false);
                             //break;
-                            case "STOREFRONT":
+                            case "STOREFRON":
                                 return ""; //GetJsonAtrrObjectStringValue(d, "ParcelMachineAddress1", false);
                             //break;
                             case "ALREADYDELIVERED":

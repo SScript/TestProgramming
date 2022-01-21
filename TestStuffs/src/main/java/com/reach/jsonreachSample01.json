@@ -1,0 +1,122 @@
+{
+  "Order": [
+    {
+      "OrderItems": [
+        {
+          "UsageUnitPrice": 0,
+          "TPName": "Elektroenerģijas Risinājums privātpersonām (ELP)",
+          "OrderSubType": "New",
+          "ProductType": "Electricity",
+          "OrderItemAction": "Add",
+          "Name": "Elektroenerģijas Risinājums privātpersonām (ELP)"
+        },
+        {
+          "UsageUnitPrice": 0,
+          "TPName": "Pieslēguma objekts",
+          "OrderSubType": "New",
+          "ProductType": "Electricity",
+          "OrderItemAction": "Add",
+          "Name": "Elektroenerģijas Pakalpojuma objekts"
+        },
+        {
+          "UsageUnitPrice": 0.13181,
+          "TPName": "Tet Stabilais ",
+          "OrderSubType": "New",
+          "ProductType": "Electricity",
+          "ContractTerm": "48 mēn.",
+          "OrderItemAction": "Add",
+          "Name": "ELE Stabilais - 48 mēneši"
+        }
+      ],
+      "VLOrderCustomerName": "GUNTA PUŠMUCĀNE",
+      "VLOrderId": "8013N0000035YPYQA2",
+      "VLOrderTotal": 0,
+      "VLSaleChannel": "Store Front",
+      "CancelReason": "",
+      "VLOrderContactEmail": "liene123@test.lv",
+      "VLWarehauserName": "",
+      "VLOrderContactName": "GUNTA PUŠMUCĀNE",
+      "VLOrderNumber": "00066289",
+      "VLOrderContactPhone": "27117119",
+      "PaymentMode": "Full Payment"
+    }
+  ],
+  "ELE_Calculator": {
+    "OIKTotal": "1.12290",
+    "AverageConsumtion": 200,
+    "TechnicalInformation": "S-1",
+    "OIKFixed": "0.65340",
+    "CompetitorMonthlyPayment": "21.19",
+    "MonthlyPayments": [
+      {
+        "TPMonthlyPayment": "36.92",
+        "TPName": "Tet Stabilais ",
+        "TPAnnualSaving": "-188.76",
+        "TPTotalPrice": "0.18460",
+        "TPPrice": "0.15057",
+        "ElectricityPart": "30.11",
+        "TPContractTerm": "12 mēn.",
+        "Selected": false
+      },
+      {
+        "TPMonthlyPayment": "33.43",
+        "TPName": "Tet Stabilais ",
+        "TPAnnualSaving": "-146.88",
+        "TPTotalPrice": "0.16715",
+        "TPPrice": "0.13310",
+        "ElectricityPart": "26.62",
+        "TPContractTerm": "24 mēn.",
+        "Selected": false
+      },
+      {
+        "TPMonthlyPayment": "33.50",
+        "TPName": "Tet Stabilais ",
+        "TPAnnualSaving": "-147.72",
+        "TPTotalPrice": "0.16750",
+        "TPPrice": "0.13343",
+        "ElectricityPart": "26.69",
+        "TPContractTerm": "36 mēn.",
+        "Selected": false
+      },
+      {
+        "TPMonthlyPayment": "33.17",
+        "TPName": "Tet Stabilais ",
+        "TPAnnualSaving": "-143.76",
+        "TPTotalPrice": "0.16585",
+        "TPPrice": "0.13181",
+        "ElectricityPart": "26.36",
+        "TPContractTerm": "48 mēn.",
+        "Selected": true
+      },
+      {
+        "TPMonthlyPayment": "27.23",
+        "TPName": "Tet Dinamiskais ",
+        "TPAnnualSaving": "-72.48",
+        "TPTotalPrice": "0.13615",
+        "TPPrice": "0.26949",
+        "ElectricityPart": "20.42",
+        "TPContractTerm": "Beztermiņa",
+        "Selected": false
+      }
+    ],
+    "CustomerType": "Consumer",
+    "CompetitorPrice": 0.0669,
+    "TechnicalInformationAmperation": "16",
+    "DSOTotal": "5.68220",
+    "DSOVariableCharge": "4.93196",
+    "Total": "6.80504",
+    "CompetitorPlan": "ELEKTRUM Izdevīgais 200+",
+    "DSOFixedCharge": "0.75020",
+    "OIKVariable": "0.46948"
+  },
+  "Requester": "VLOCITY",
+  "VLOrderCustomerType": "Consumer",
+  "Email": "liene123@test.lv",
+  "ApiKey": "5aWA7LX8fPfMqarm",
+  "NotificationCommType": "VLOCITY_NOTIF_1",
+  "Phone": "27117119",
+  "SendingType": "I",
+  "ActionCode": "ELE_Calculator",
+  "CustomerType": "Normal",
+  "CustomerNo": "13291513"
+}

@@ -1,0 +1,97 @@
+{
+  "response": {
+    "Result": "Success",
+    "Resultcode": 1
+  },
+  "ResponseSuccessBillingActivationStatus": true,
+  "CreateTaskStatus": false,
+  "DR_UpdateSubstatusBillingforELEStatus": false,
+  "DR_UpdateSubstatusBilling": {
+    "vlocity_cmt__FulfilmentRequestLine__c_3": [{
+      "UpsertSuccess": true,
+      "Tet_Bill_Status__c": "Billing Activated",
+      "Id": "a2868000000JtjVAAS"
+    }
+    ],
+    "OrderItem_2": [{
+      "UpsertSuccess": true,
+      "Tet_Billing_Activation_Error__c": null,
+      "Tet_Line_Item_Status__c": "Billing Activated",
+      "Tet_Billing_Activation_Date__c": "2021-10-19",
+      "Id": "80268000002dkymAAA"
+    }
+    ],
+    "Order_1": [{
+      "UpsertSuccess": true,
+      "Tet_Billing_Activation_Error__c": "",
+      "Tet_Status__c": "In Progress",
+      "Tet_Order_SubStatus__c": "Billing Activated",
+      "Tet_Billing_Activation_Date__c": "2021-10-19",
+      "Id": "80168000001Rk24AAC"
+    }
+    ],
+    "error": "OK",
+    "responseType": "SObject"
+  },
+  "DR_UpdateSubstatusBillingStatus": true,
+  "GetFRLItems": {
+    "OrderStatus": "In Progress",
+    "OrderId": "80168000001Rk24AAC",
+    "IsProgressNotification": true,
+    "FRLId": "a2868000000JtjVAAS"
+  },
+  "GetFRLItemsStatus": true,
+  "SetErrorValuesStatus": false,
+  "PublishDeactivationSuccesFailed": {
+    "Notified": "",
+    "orderStatus": {
+      "Result": {
+        "ResultText": "OK",
+        "ResultCode": "1"
+      },
+      "OrderNumber": "00456426",
+      "OrderId": "80168000001Rk24AAC"
+    }
+  },
+  "PublishDeactivationSuccesFailedStatus": true,
+  "SetCeaseOrderIdStatus": false,
+  "DRExtractOrderStatus": {
+    "ProductType": "SplitPayment",
+    "TetOrderStatus": "In Progress",
+    "Status": "Billing Activation Triggered",
+    "AccountId": "00168000008NXzqAAG"
+  },
+  "DRExtractOrderStatusStatus": true,
+  "SetRequestValues": {
+    "BillActivationDate": "2021-10-19",
+    "Description": "",
+    "OrderId": "80168000001Rk24AAC",
+    "OrderItemID": "80268000002dkymAAA",
+    "OrderNumber": "00456426",
+    "OrderSubStatus": "Billing Activated",
+    "ServiceNumber": "DLMS076674"
+  },
+  "SetRequestValuesStatus": true,
+  "options": {
+    "Content-Type": "application/json",
+    "X-B3-TraceId": "2332b8ca85ebe51d",
+    "X-Salesforce-SNI": "PRESENT",
+    "X-B3-Sampled": "0",
+    "X-B3-SpanId": "2332b8ca85ebe51d",
+    "X-Salesforce-SIP": "194.8.16.11",
+    "Host": "siatet.my.salesforce.com",
+    "Charset": "UTF-8",
+    "Connection": "keep-alive",
+    "User-Agent": "Java/1.8.0_241",
+    "CipherSuite": "ECDHE-RSA-AES256-GCM-SHA384 TLSv1.2 443",
+    "Accept": "application/json",
+    "Accept-Charset": "UTF-8"
+  },
+  "OrderItemID": "80268000002dkymAAA",
+  "OrderId": "80168000001Rk24AAC",
+  "BillActivationDate": "2021-10-19",
+  "OrderNumber": "00456426",
+  "Description": "",
+  "ServiceNumber": "DLMS076674",
+  "Status": "Billing Activated"
+}

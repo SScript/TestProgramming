@@ -13,24 +13,24 @@ import org.json.JSONObject;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-public class BillingTrigger1 {
+public class BillingTrigger2 {
 
-    protected static JSONObject obj;
-    protected static JSONObject orderdata_;
-    protected static JSONObject orderdata;
-    protected static JSONArray orderdataitems;
-    protected static JSONObject itemdata;
-    protected static JSONObject itemattrdata;
-    protected static JSONObject jsonData = new JSONObject();
-    protected static JSONArray orderAtrrItems = new JSONArray();
-    protected static boolean isOrderItems = true;
-    protected static boolean isAddressFound = false;
-    protected static String AccountAddressId = "";
+    protected JSONObject obj;
+    protected JSONObject orderdata_;
+    protected JSONObject orderdata;
+    protected JSONArray orderdataitems;
+    protected JSONObject itemdata;
+    protected JSONObject itemattrdata;
+    protected JSONObject jsonData = new JSONObject();
+    protected JSONArray orderAtrrItems = new JSONArray();
+    protected boolean isOrderItems = true;
+    protected boolean isAddressFound = false;
+    protected String AccountAddressId = "";
 
-    public static void main(String[] args) throws Exception {
-        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/BillTriggerInput_N3.json");
-        String longJsonString = IOUtils.toString(fis, "UTF-8");
-        orderdata_ = new JSONObject(longJsonString);
+    public Resp ProcessJsonData(String jsonDataStr) throws Exception {
+        Resp result = new Resp();
+
+        orderdata_ = new JSONObject(jsonDataStr);
         orderdata = orderdata_.getJSONObject("Order");
         orderdataitems = new JSONArray();
 
@@ -166,7 +166,7 @@ public class BillingTrigger1 {
         //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("OrderedService", "ORD_ORDEREDSERVICE"));
         //SOAIP-1821 : DT. Trigger billing (SOA_164) - ja <OrderedService> ir 'Split Payment' , tad tiek pievienota tukša struktūra "orderOffers".
         //if ("Split payment".toUpperCase().equals(orderedService.toUpperCase())) {
-            jsonData.put("orderOffers", ProcessOrderPricing());
+        jsonData.put("orderOffers", ProcessOrderPricing());
         //}
 
         if ("Split payment".toUpperCase().equals(orderedService.toUpperCase())) {
@@ -297,13 +297,12 @@ public class BillingTrigger1 {
         //-----------
 
         jsonData.put("orderdetails", orderAtrrItems);
+        result.SendJsonStr = jsonData.toString();
 
-        System.out.println(jsonData.toString());
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/resBillTrigger_N3.json"),
-                jsonData.toString(), Charset.forName("UTF-8"));
+        return result;
     }
 
-    private static JSONArray GetJSONArrObj(JSONObject data, String arrName) {
+    private JSONArray GetJSONArrObj(JSONObject data, String arrName) {
         JSONArray result = new JSONArray();
         try {
             Object orderdataitems_o = data.get(arrName);
@@ -319,7 +318,7 @@ public class BillingTrigger1 {
         return result;
     }
 
-    private static String GetORD_PRICE_KWHValue() throws Exception {
+    private String GetORD_PRICE_KWHValue() throws Exception {
         String result = "";
         String productSubTypeValue = "";
         String orderItemActionValue = "";
@@ -370,14 +369,14 @@ public class BillingTrigger1 {
         return result;
     }
 
-    private static String TranslateOrderLineAction(String orderItemAction) {
+    private String TranslateOrderLineAction(String orderItemAction) {
         if ("Disconnect".equalsIgnoreCase(orderItemAction))
             return "OFF";
         else
             return "ON";
     }
 
-    private static String TranslateOrderPricingSource(String source) {
+    private String TranslateOrderPricingSource(String source) {
         switch (source.toUpperCase()) {
             case "BASE": return "C";
             case "PROMOTION": return "A";
@@ -385,7 +384,7 @@ public class BillingTrigger1 {
         }
     }
 
-    private static String TranslateOrderLineAmount(String giftQuantity, String adjustmentValue, String vATExclusive, String vATRateValue) {
+    private String TranslateOrderLineAmount(String giftQuantity, String adjustmentValue, String vATExclusive, String vATRateValue) {
         String result = "";
         if (!isEmptyOrNull(giftQuantity.replace("-", "")))
             return giftQuantity;
@@ -406,7 +405,7 @@ public class BillingTrigger1 {
         return result.replace("-", "");
     }
 
-    private static String TranslateOrderPricingSource(String source, JSONObject itemdata) throws Exception {
+    private String TranslateOrderPricingSource(String source, JSONObject itemdata) throws Exception {
         // ar switchu laikam nesanāktu, saglabāju tikmēr tepat ieprieksējo gabalu
         //            switch (source.toUpperCase()) {
         //                case "BASE": return "C";
@@ -431,7 +430,7 @@ public class BillingTrigger1 {
 
     }
 
-    private static String TranslateOrderLineSubType(String source, String chargeType, JSONObject itemdata) throws Exception {
+    private String TranslateOrderLineSubType(String source, String chargeType, JSONObject itemdata) throws Exception {
         //            switch (TranslateOrderPricingSource(source, itemdata)) {
         //                case "C": return chargeType;
         //                case "A": return "Debit";
@@ -455,7 +454,7 @@ public class BillingTrigger1 {
 
     }
 
-    private static String TranslateOrderLineUOM(String adjustmentMethod, String giftQuantity, JSONObject itemdata) throws Exception {
+    private String TranslateOrderLineUOM(String adjustmentMethod, String giftQuantity, JSONObject itemdata) throws Exception {
 
         String UnicornSpecialDiscountCode = GetJsonObjectStringValue(itemdata, "UnicornSpecialDiscountCode", false);
 
@@ -478,49 +477,49 @@ public class BillingTrigger1 {
 
         return "";
     }
-    private static String getUnicornPlanCode(JSONArray data, String orderedServiceType) {
+    private String getUnicornPlanCode(JSONObject itemdata, JSONArray data, String orderedServiceType) {
         String res = "";
         JSONObject itemdata1 = null;
-        JSONObject itemdata2 = null;
-
         int itemcount = data.length();
         String prdtSubType = "";
-        String orderPricingAction = "";
+        String orderItemAction = "";
 
-        for (int i = 0; i < itemcount; i++) {
-            itemdata1 = orderdataitems.getJSONObject(i);
-            try {
-                prdtSubType = GetJsonObjectStringValue(itemdata1.get("ProductSubType"));
-                if ("Remove".equalsIgnoreCase(orderedServiceType)) {
+        prdtSubType = GetJsonObjectStringValue(itemdata.get("ProductSubType"));
+        try {
+            if ("Remove".equalsIgnoreCase(orderedServiceType)) {
+                for (int i = 0; i < itemcount; i++) {
+                    itemdata1 = orderdataitems.getJSONObject(i);
+                    prdtSubType = GetJsonObjectStringValue(itemdata1.get("ProductSubType"));
                     if ("Plan".equalsIgnoreCase(prdtSubType)) {
                         return GetJsonObjectStringValue(itemdata1.get("UnicornPlanCode"));
                     }
+                }
+            } else {
+                if ("Plan".equalsIgnoreCase(prdtSubType)) {
+                    return GetJsonObjectStringValue(itemdata.get("UnicornPlanCode"));
                 } else {
-                    if ("Plan".equalsIgnoreCase(prdtSubType)) {
-                        // jātiek klāt pie OrderPricing, lai salīdzinātu vai Action ir Add, skatīt dok.
-                        JSONArray dd = GetJSONArrObj(itemdata1, "OrderPricing");
-                        int cc = dd.length();
-                        for (int j = 0; j < itemcount; j++) {
-                            itemdata2 = dd.getJSONObject(j);
-                            orderPricingAction = GetJsonObjectStringValue(itemdata2.get("Action"));
-                            if ("Add".equalsIgnoreCase(orderPricingAction)) {
-                                return GetJsonObjectStringValue(itemdata1.get("UnicornPlanCode"));
-                            }
+                    for (int i = 0; i < itemcount; i++) {
+                        itemdata1 = orderdataitems.getJSONObject(i);
+                        prdtSubType = GetJsonObjectStringValue(itemdata1.get("ProductSubType"));
+                        orderItemAction = GetJsonObjectStringValue(itemdata1.get("OrderItemAction"));
+                        if ("Plan".equalsIgnoreCase(prdtSubType) && "Add".equalsIgnoreCase(orderItemAction)) {
+                            return GetJsonObjectStringValue(itemdata1.get("UnicornPlanCode"));
                         }
                     }
                 }
-            } catch (Exception e) {
-                res = "";
             }
+        } catch (Exception e) {
+            res = "";
         }
+
         return res;
     }
 
-    private static String getOrderLinePackageCode(JSONObject data) {
+    private String getOrderLinePackageCode(JSONObject data) {
         String res = "";
         JSONObject itemdata1 = null;
 
-        int itemcount = data.length();
+        int itemcount = orderdataitems.length();
         String prdtSubType = "";
 
         for (int i = 0; i < itemcount; i++) {
@@ -538,7 +537,7 @@ public class BillingTrigger1 {
         return res;
     }
 
-    private static JSONArray ProcessOrderPricing() {
+    private JSONArray ProcessOrderPricing() {
         JSONArray offerPriceObj = new JSONArray();
         int itemcount = orderdataitems.length();
         JSONObject objOrdPricing = null;
@@ -552,67 +551,80 @@ public class BillingTrigger1 {
             String ORDER_LINE_TYPE = "";
             int typeDcount = 0;
             itemdata = orderdataitems.getJSONObject(i);
+            Boolean addline = true;
             try {
-                // orderpricing var būt masīvs
-                JSONArray pricdata = GetJSONArrObj(itemdata, "OrderPricing");
-                int itempriccount = pricdata.length();
-                for (int j = 0; j < itempriccount; j++) {
-                    objOrdPricing = pricdata.getJSONObject(j);
-                    String sourcestr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
-                    String actionstr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
-
-                    String orderedServiceType = GetJsonObjectStringValue(itemdata.get("OrderedServiceType"));
-                    if ("Promotion".equalsIgnoreCase(sourcestr)) {
-
-                        ORDER_LINE_PLAN_CODE_VALUE = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
-                        ORDER_LINE_PACKAGE_CODE = GetJsonObjectStringValue(objOrdPricing, "OCPPackageCode", false);
-                        ORDER_LINE_PROMOTION_UOM = GetJsonObjectStringValue(objOrdPricing, "TimePlanUnit", false);
-                        ORDER_LINE_PROMOTION_UOM = ORDER_LINE_PROMOTION_UOM.substring(0,1);  // Translate Day -> D | Month -> M
-
-
-                    } else if ("Base".equalsIgnoreCase(sourcestr)){
-                        ORDER_LINE_PLAN_CODE_VALUE = getUnicornPlanCode(orderdataitems, orderedServiceType);
-                        ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
-                    } else {
-                        ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                String orderItemSubType = GetJsonObjectStringValue(itemdata, "OrderSubType", false);
+                String orderItemAction = GetJsonObjectStringValue(itemdata, "OrderItemAction", false);
+                String productSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
+                if ("Tariff Change".equalsIgnoreCase(orderItemSubType)) {
+                    if ("Disconnect".equalsIgnoreCase(orderItemAction) && "Plan".equalsIgnoreCase(productSubType)) {
+                        addline = false;
                     }
-                    ORDER_LINE_TYPE = TranslateOrderPricingSource(GetJsonObjectStringValue(objOrdPricing, "Source", false), objOrdPricing);
-                    if ("D".equalsIgnoreCase(ORDER_LINE_TYPE)) {
-                        typeDcount++;
-                    }
-                    offerPriceObj.put(
-                            new JSONObject()
-                                    .put("ORDER_LINE_ITEM", "D".equalsIgnoreCase(ORDER_LINE_TYPE)
-                                            ? GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false) + "_" + typeDcount
-                                            : GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false))
-                                    .put("ORDER_LINE_PACKAGE_CODE", ORDER_LINE_PACKAGE_CODE)
-                                    .put("ORDER_LINE_PLAN_CODE", ORDER_LINE_PLAN_CODE_VALUE)
-                                    .put("ORDER_LINE_PRODUCT_CODE", GetJsonObjectStringValue(itemdata, "UnicornProductCode", false))
-                                    .put("ORDER_LINE_COMPONENT_CODE", GetJsonObjectStringValue(itemdata, "UnicornComponentCode", false))
-                                    .put("ORDER_LINE_SPECIAL_DISCOUNT_CODE", GetJsonObjectStringValue(objOrdPricing, "UnicornSpecialDiscountCode", false))
-                                    .put("ORDER_LINE_ACTION", TranslateOrderLineAction(GetJsonObjectStringValue(itemdata, "OrderItemAction", false)))
-                                    .put("ORDER_LINE_TYPE", ORDER_LINE_TYPE)
-                                    .put("ORDER_LINE_AMOUNT",
-                                            TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "AdjustmentValue", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "VATExclusive", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "VATRate", false)).replace("-", ""))
-                                    .put("ORDER_LINE_SUB_TYPE",
-                                            TranslateOrderLineSubType(GetJsonObjectStringValue(objOrdPricing, "Source", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "ChargeType", false), objOrdPricing))
-
-                                    .put("ORDER_LINE_UOM", TranslateOrderLineUOM(GetJsonObjectStringValue(objOrdPricing, "AdjustmentMethod", false),
-                                            GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false), itemdata))
-                                    .put("ORDER_LINE_PROMOTION_PERIOD", GetJsonObjectStringValue(objOrdPricing, "TimePlanDuration", false))
-                                    .put("ORDER_LINE_PROMOTION_UOM", ORDER_LINE_PROMOTION_UOM)
-                                    .put("ORDER_LINE_PRODUCT_QTY", "1")
-                                    .put("ORDER_LINE_COMPONENT_QTY", "1")
-                                    // šis tika izņemts ar SOAIP-1943, pagaidām atstāju aizkomentētu
-                                    // .put("ORDER_LINE_PROMO_ENDDATE", GetJsonObjectStringValue(objOrdPricing, "PromoEndDate", false))
-                                    .put("ORDER_LINE_PROMO_ORDERNO", GetJsonObjectStringValue(objOrdPricing, "OCPRemark", false))
-                                    .put("ORDER_LINE_NRC_WAIVER_REASON", GetJsonObjectStringValue(objOrdPricing, "OTCRemark", false))
-                    );
                 }
+                if (addline) {
+                    // orderpricing var būt masīvs
+                    JSONArray pricdata = GetJSONArrObj(itemdata, "OrderPricing");
+                    int itempriccount = pricdata.length();
+                    for (int j = 0; j < itempriccount; j++) {
+                        objOrdPricing = pricdata.getJSONObject(j);
+                        String sourcestr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
+                        String actionstr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
+
+                        String orderedServiceType = GetJsonObjectStringValue(itemdata.get("OrderedServiceType"));
+                        if ("Promotion".equalsIgnoreCase(sourcestr)) {
+
+                            ORDER_LINE_PLAN_CODE_VALUE = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
+                            ORDER_LINE_PACKAGE_CODE = GetJsonObjectStringValue(objOrdPricing, "OCPPackageCode", false);
+                            ORDER_LINE_PROMOTION_UOM = GetJsonObjectStringValue(objOrdPricing, "TimePlanUnit", false);
+                            ORDER_LINE_PROMOTION_UOM = ORDER_LINE_PROMOTION_UOM.substring(0, 1);  // Translate Day -> D | Month -> M
+
+
+                        } else if ("Base".equalsIgnoreCase(sourcestr)) {
+                            ORDER_LINE_PLAN_CODE_VALUE = getUnicornPlanCode(itemdata, orderdataitems, orderedServiceType);
+                            ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                        } else {
+                            ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                        }
+                        ORDER_LINE_TYPE = TranslateOrderPricingSource(GetJsonObjectStringValue(objOrdPricing, "Source", false), objOrdPricing);
+                        if ("D".equalsIgnoreCase(ORDER_LINE_TYPE)) {
+                            typeDcount++;
+                        }
+
+
+                        offerPriceObj.put(
+                                new JSONObject()
+                                        .put("ORDER_LINE_ITEM", "D".equalsIgnoreCase(ORDER_LINE_TYPE)
+                                                ? GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false) + "_" + typeDcount
+                                                : GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false))
+                                        .put("ORDER_LINE_PACKAGE_CODE", ORDER_LINE_PACKAGE_CODE)
+                                        .put("ORDER_LINE_PLAN_CODE", ORDER_LINE_PLAN_CODE_VALUE)
+                                        .put("ORDER_LINE_PRODUCT_CODE", GetJsonObjectStringValue(itemdata, "UnicornProductCode", false))
+                                        .put("ORDER_LINE_COMPONENT_CODE", GetJsonObjectStringValue(itemdata, "UnicornComponentCode", false))
+                                        .put("ORDER_LINE_SPECIAL_DISCOUNT_CODE", GetJsonObjectStringValue(objOrdPricing, "UnicornSpecialDiscountCode", false))
+                                        .put("ORDER_LINE_ACTION", TranslateOrderLineAction(GetJsonObjectStringValue(itemdata, "OrderItemAction", false)))
+                                        .put("ORDER_LINE_TYPE", ORDER_LINE_TYPE)
+                                        .put("ORDER_LINE_AMOUNT",
+                                                TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "AdjustmentValue", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "VATExclusive", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "VATRate", false)).replace("-", ""))
+                                        .put("ORDER_LINE_SUB_TYPE",
+                                                TranslateOrderLineSubType(GetJsonObjectStringValue(objOrdPricing, "Source", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "ChargeType", false), objOrdPricing))
+
+                                        .put("ORDER_LINE_UOM", TranslateOrderLineUOM(GetJsonObjectStringValue(objOrdPricing, "AdjustmentMethod", false),
+                                                GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false), itemdata))
+                                        .put("ORDER_LINE_PROMOTION_PERIOD", GetJsonObjectStringValue(objOrdPricing, "TimePlanDuration", false))
+                                        .put("ORDER_LINE_PROMOTION_UOM", ORDER_LINE_PROMOTION_UOM)
+                                        .put("ORDER_LINE_PRODUCT_QTY", "1")
+                                        .put("ORDER_LINE_COMPONENT_QTY", "1")
+                                        // šis tika izņemts ar SOAIP-1943, pagaidām atstāju aizkomentētu
+                                        // .put("ORDER_LINE_PROMO_ENDDATE", GetJsonObjectStringValue(objOrdPricing, "PromoEndDate", false))
+                                        .put("ORDER_LINE_PROMO_ORDERNO", GetJsonObjectStringValue(objOrdPricing, "OCPRemark", false))
+                                        .put("ORDER_LINE_NRC_WAIVER_REASON", GetJsonObjectStringValue(objOrdPricing, "OTCRemark", false))
+                        );
+                    }
+            }
             } catch (Exception e) {
                 err = e.getMessage();
             }
@@ -620,7 +632,7 @@ public class BillingTrigger1 {
         return offerPriceObj;
     }
 
-    private static String GetOrderItemFieldAtrrrObject(
+    private String GetOrderItemFieldAtrrrObject(
             String productType, String productTypeCompareTo,
             String itemSubtypeCompare,
             String field,
@@ -654,7 +666,7 @@ public class BillingTrigger1 {
         return val;
     }
 
-    private static String GetOrderItemFieldRootObject(
+    private String GetOrderItemFieldRootObject(
             String productType, String productTypeCompareTo,
             String itemSubtypeCompare,
             String field,
@@ -688,7 +700,7 @@ public class BillingTrigger1 {
         return val;
     }
 
-    private static void GetOrderItemLevelWithActionVAlue(String jsonfield, String field, boolean orderedServiceTypeRemove) {
+    private void GetOrderItemLevelWithActionVAlue(String jsonfield, String field, boolean orderedServiceTypeRemove) {
         // ja <OrderedServiceType> nav  'Remove', tad sekojošie dinamiskie parametri tiks aizpildīti no OrderItem ar <ProductSubType> = 'Plan'
         // un ar <OrderItemAction> = 'ADD', ja <OrderedServiceType> ir 'Remove', tad no OrderItem ar <OrderItemAction> = 'Disconnect'
         int itemcount = orderdataitems.length();
@@ -733,7 +745,7 @@ public class BillingTrigger1 {
         }
     }
 
-    private static void ProcessIfOrderedServiceTypeIsChange(String key) {
+    private void ProcessIfOrderedServiceTypeIsChange(String key) {
         /*
         (SOAIP-1110) Ja <OrderedServiceType> = 'Change' un ir kaut viens OrderItem ar <OrderItemSubType> = 'Delete Insurance/Warranty' un:
         a. Orderī ir šādi OrderItem  gan ar <ProductType> = 'Warranty', gan ar <ProductType> = 'Insurance' (jāņem vērā tikai tiek OrderItem, kuriem <OrderItemSubType> = 'Delete Insurance/Warranty'),
@@ -783,7 +795,7 @@ public class BillingTrigger1 {
         orderAtrrItems.put(new JSONObject().put("value", val).put("key", key));
     }
 
-    private static String GetOrderItemLevelValue(String productType, String atrribute) {
+    private String GetOrderItemLevelValue(String productType, String atrribute) {
         boolean foundinitemsvalue = false;
         String value = "";
 
@@ -814,7 +826,7 @@ public class BillingTrigger1 {
         return value;
     }
 
-    private static String FormatDate(String d) {
+    private String FormatDate(String d) {
         // ir   -> 2020-07-15 10:00:00
         // vaig -> 15/07/2020 10:00:00
         String dd1 = d.substring(8, 10);
@@ -825,7 +837,7 @@ public class BillingTrigger1 {
         return dd1 + "/" + mm1 + "/" + yy1 + " " + time;
     }
 
-    private static String FormatDateShort(String d) {
+    private String FormatDateShort(String d) {
         // ir   -> 2020-07-15 10:00:00
         // vaig -> 15/07/2020 10:00:00
         String dd1 = d.substring(8, 10);
@@ -834,7 +846,7 @@ public class BillingTrigger1 {
         return dd1 + "/" + mm1 + "/" + yy1;
     }
 
-    private static void SetOrderProductTypeList(String excludeStrs, String containsOrEquals) {
+    private void SetOrderProductTypeList(String excludeStrs, String containsOrEquals) {
         String res = "";
         if (isOrderItems) {
             int itemcount = orderdataitems.length();
@@ -854,7 +866,7 @@ public class BillingTrigger1 {
         orderAtrrItems.put(new JSONObject().put("value", res).put("key", "ORD_PRODUCTCATEGORY"));
     }
 
-    private static String FormatProductCategoriesString(String data, String excludeStrs, String containsOrEquals) {
+    private String FormatProductCategoriesString(String data, String excludeStrs, String containsOrEquals) {
         // izemamie vrdi
         List<String> sc = Arrays.asList(excludeStrs.split(","));
         for (int i = 0; i < sc.size(); i++) {
@@ -893,7 +905,7 @@ public class BillingTrigger1 {
         return ssss;
     }
 
-    private static String GetOrderProductTypeList() {
+    private String GetOrderProductTypeList() {
         String res = "";
         if (isOrderItems) {
             int itemcount = orderdataitems.length();
@@ -910,7 +922,7 @@ public class BillingTrigger1 {
         return res;
     }
 
-    private static String GetIsOrderItem(String val) {
+    private String GetIsOrderItem(String val) {
         String res = "N";
         if (isOrderItems) {
             int itemcount = orderdataitems.length();
@@ -933,7 +945,7 @@ public class BillingTrigger1 {
      *
      * @return
      */
-    private static String GetOrderFieldFirstLEvelValue(String field, Boolean mandatory) throws Exception{
+    private String GetOrderFieldFirstLEvelValue(String field, Boolean mandatory) throws Exception{
         String res = "";
         try {
             res = GetJsonObjectStringValue(orderdata.get(field));
@@ -952,7 +964,7 @@ public class BillingTrigger1 {
      *
      * @return
      */
-    private static JSONObject GetOrderFirstLevelAtrrValue(String field, String key, Boolean mandatory) throws Exception {
+    private JSONObject GetOrderFirstLevelAtrrValue(String field, String key, Boolean mandatory) throws Exception {
         String val = "";
         try {
             val = GetJsonObjectStringValue(orderdata.get(field));
@@ -970,7 +982,7 @@ public class BillingTrigger1 {
      *
      * @return
      */
-    private static void GetOrderItemLevelAtrrValue(String productType, String field, String key, Boolean mandatory)
+    private void GetOrderItemLevelAtrrValue(String productType, String field, String key, Boolean mandatory)
             throws Exception
     {
         boolean foundinitemsvalue = false;
@@ -1023,7 +1035,7 @@ public class BillingTrigger1 {
         }
     }
 
-    private static String GetOrderItemLevelValue(String productType, String atrribute, Boolean mandatory) {
+    private String GetOrderItemLevelValue(String productType, String atrribute, Boolean mandatory) {
         boolean foundinitemsvalue = false;
         String value = "";
 
@@ -1054,7 +1066,7 @@ public class BillingTrigger1 {
         return value;
     }
 
-    private static String GetItemDinamicValue(JSONObject itemdat, String field) {
+    private String GetItemDinamicValue(JSONObject itemdat, String field) {
         String res = "";
         try {
             JSONObject atrr = itemdat.getJSONObject("JSONAttribute");
@@ -1095,7 +1107,7 @@ public class BillingTrigger1 {
         return res;
     }
 
-    private static void GetOrderItemLevelAtrrDinamicValue(String productType, String atrribute, String key) {
+    private void GetOrderItemLevelAtrrDinamicValue(String productType, String atrribute, String key) {
         boolean foundValue = false;
         boolean addEmptyValue = false;
         boolean isFoundProdType = false;
@@ -1179,7 +1191,7 @@ public class BillingTrigger1 {
         }
     }
 
-    private static String GetJsonObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {
+    private String GetJsonObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {
         String result = "";
         try {
             result = GetJsonObjectStringValue(data.get(jsonfieldName));
@@ -1193,7 +1205,7 @@ public class BillingTrigger1 {
         return result;
     }
 
-    private static String GetJsonObjectStringValue(Object objvalue) {
+    private String GetJsonObjectStringValue(Object objvalue) {
         String valToXml = "";
         try {
             if (objvalue instanceof Boolean) {
@@ -1217,7 +1229,7 @@ public class BillingTrigger1 {
         return valToXml;
     }
 
-    private static String GetItemServiceAddressKey() throws Exception {
+    private String GetItemServiceAddressKey() throws Exception {
         //ItemServiceAddressKey
         String res = "";
         if (isOrderItems) {
@@ -1233,7 +1245,7 @@ public class BillingTrigger1 {
         return res;
     }
 
-    private static void GetOrderItemLevelOrderTotalSumm(String productType, String field, String key) {
+    private void GetOrderItemLevelOrderTotalSumm(String productType, String field, String key) {
         Double res = 0d;
         String v = "";
         // ja ir padoti orderitems
@@ -1269,7 +1281,7 @@ public class BillingTrigger1 {
         }
     }
 
-    private static boolean isEmptyOrNull(String str) {
+    private boolean isEmptyOrNull(String str) {
         if (null == str || (null != str && str.trim().equals(""))) {
             return true;
         }

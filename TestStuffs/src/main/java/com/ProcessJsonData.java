@@ -21,29 +21,42 @@ public class ProcessJsonData {
     public static String ServiceAddressKey = "";
 
     public static void main(String[] args) throws Exception {
-        JSONObject orderdata;
+        JSONObject orderdata = new JSONObject();
         JSONArray orderdataitems = null;
         JSONObject itemdata;
         JSONObject itemattrdata;
 
-        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson_Tet_postpaid.json");
+        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/TestData001.json");
         String longJsonString = IOUtils.toString(fis, "UTF-8");
 
         //JSONObject obj = new JSONObject(jdata);
         JSONObject obj = new JSONObject(longJsonString);
 
-        orderdata = obj.getJSONObject("order");
+        try {
+            Object orderdataitems_o = obj.get("order");
+            if (orderdataitems_o instanceof JSONArray) {
+                orderdata = (JSONObject) ((JSONArray) orderdataitems_o).get(0);
+            }
+            if (orderdataitems_o instanceof JSONObject) {
+                orderdata = (JSONObject)orderdataitems_o;
+            }
+        } catch (Exception e) {
+            //result.RetCode = "SOA_154[099]";
+            //result.RetMsg = "Nav padots order data";
+            //return result;
+        }
+
         try {
         
             Object orderdataitems_o = orderdata.get("orderItem");
-        if (orderdataitems_o instanceof JSONArray) {
-            orderdataitems = (JSONArray) orderdataitems_o;
-        }
-        if (orderdataitems_o instanceof JSONObject) {
+            if (orderdataitems_o instanceof JSONArray) {
+                orderdataitems = (JSONArray) orderdataitems_o;
+            }
+            if (orderdataitems_o instanceof JSONObject) {
 
-            orderdataitems = new JSONArray();
-            orderdataitems.put(orderdataitems_o);
-        }
+                orderdataitems = new JSONArray();
+                orderdataitems.put(orderdataitems_o);
+            }
         } catch (Exception e) {
             orderdataitems = new JSONArray();
         }
@@ -94,9 +107,30 @@ public class ProcessJsonData {
         sb.append("<listOfOrderItem>");
 
         int itemcount = orderdataitems.length();
+        JSONObject orderPromotionData = null;
         for (int i = 0; i < itemcount; i++) {
             sb.append("<orderItem>");
             itemdata = orderdataitems.getJSONObject(i);
+            try {
+                orderPromotionData = itemdata.getJSONObject("orderPromotion");
+                sb.append("<orderPromotion>");
+                sb.append(GetJsonObjectValue(orderPromotionData, "TimePolicy", "TimePolicy"));
+                sb.append(GetJsonObjectValue(orderPromotionData, "TimePlanUoM", "TimePlanUoM"));
+                sb.append(GetJsonObjectValue(orderPromotionData, "TimePlanDuration", "TimePlanDuration"));
+                sb.append(GetJsonObjectValue(orderPromotionData, "TimePlan", "TimePlan"));
+                sb.append(GetJsonObjectValue(orderPromotionData, "PromoCode", "PromoCode"));
+                sb.append(GetJsonObjectValue(orderPromotionData, "PromoName", "PromoName"));
+                sb.append("</orderPromotion>");
+            } catch (Exception e) {
+                sb.append("<orderPromotion>");
+                sb.append("<TimePolicy/>");
+                sb.append("<TimePlanUoM/>");
+                sb.append("<TimePlanDuration/>");
+                sb.append("<TimePlan/>");
+                sb.append("<PromoCode/>");
+                sb.append("<PromoName/>");
+                sb.append("</orderPromotion>");
+            }
 
             sb.append(GetJsonObjectValue(itemdata, "Id", "id"));
             sb.append(GetJsonObjectValue(itemdata, "actionCode", "actionCode"));
@@ -206,7 +240,7 @@ public class ProcessJsonData {
 
 
         System.out.println(sb.toString());
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/InDataJson_Tet_postpaid_res.xml"),
+        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/TestData001_res.xml"),
                 sb.toString(), Charset.forName("UTF-8"));
     }
 

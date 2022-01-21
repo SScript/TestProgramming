@@ -1,0 +1,139 @@
+{
+  "caller": "SOATEST",
+  "orderno": "00391918",
+  "ordernotes": "",
+  "orderid": "80168000000XEkbAAG",
+  "orderOffers": [],
+  "orderdetails": [
+    {
+      "value": "Split payment",
+      "key": "ORD_ORDEREDSERVICE"
+    },
+    {
+      "value": "Apple iPhone 11 64GB White,3MT Apdrošināšana Dzintars,Saņemt Tet veikalā",
+      "key": "ORD_PRODUCTCATEGORY"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_SUM"
+    },
+    {
+      "value": "SP",
+      "key": "ORD_PAYMENT_TYPE"
+    },
+    {
+      "value": "654,00",
+      "key": "ORD_INSTALLMENT_SUM"
+    },
+    {
+      "value": "Y",
+      "key": "ORD_INSURANCE_FLAG"
+    },
+    {
+      "value": "N",
+      "key": "ORD_WARRANTY_FLAG"
+    },
+    {
+      "value": "N",
+      "key": "ORD_CTA_FLAG"
+    },
+    {
+      "value": "",
+      "key": "ORD_DP_BILL_NO"
+    },
+    {
+      "value": "11437671",
+      "key": "ORD_CUSTOMERNO"
+    },
+    {
+      "value": "2850197",
+      "key": "ORD_BILLINGACCOUNTNO"
+    },
+    {
+      "value": "15/08/2021",
+      "key": "ORD_BILLING_ACTIVATION_DATE"
+    },
+    {
+      "value": "Installation",
+      "key": "ORD_ORDEREDSERVICETYPE"
+    },
+    {
+      "value": "",
+      "key": "ORD_CE_CANCEL_FLAG"
+    },
+    {
+      "value": "",
+      "key": "ORD_REASON_ID"
+    },
+    {
+      "value": "80268000002GUPgAAO",
+      "key": "ORD_ORDERITEMID"
+    },
+    {
+      "value": "",
+      "key": "ORD_PAYMENT_DELAY_PERCENT"
+    },
+    {
+      "value": "",
+      "key": "ORD_PAYMENT_DELAY_MONTHS"
+    },
+    {
+      "value": "",
+      "key": "ORD_REPAY_MONTHS"
+    },
+    {
+      "value": "70008404",
+      "key": "ORD_COURIERPRODUCTID"
+    },
+    {
+      "value": "0",
+      "key": "ORD_COURIERCHARGE"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_MONTHS"
+    },
+    {
+      "value": "",
+      "key": "ORD_CTA_MONTHS_DELAY"
+    },
+    {
+      "value": "0",
+      "key": "ORD_FIRST_PAYMENT"
+    },
+    {
+      "value": "24",
+      "key": "ORD_MONTHS"
+    },
+    {
+      "value": "",
+      "key": "ORD_MONTH_DELAY"
+    },
+    {
+      "value": "24",
+      "key": "ORD_INSURANCE_MONTHS"
+    },
+    {
+      "value": "24",
+      "key": "ORD_WARRANTY_MONTHS"
+    },
+    {
+      "value": "107.91",
+      "key": "ORD_INSURANCE_SUM"
+    },
+    {
+      "value": "2",
+      "key": "ORD_INSURANCE_MONTHS_DELAY"
+    },
+    {
+      "value": "1",
+      "key": "ORD_WARRANTY_SUM"
+    },
+    {
+      "value": "0",
+      "key": "ORD_WARRANTY_MONTHS_DELAY"
+    }
+  ],
+  "serviceno": "DLMS062157",
+  "orderdate": "13/08/2021 19:06:03"
+}

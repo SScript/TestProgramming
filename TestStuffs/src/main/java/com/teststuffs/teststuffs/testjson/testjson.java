@@ -20,6 +20,7 @@ public class testjson {
         String a = 
                 "{  \"Id\" : \"8013O000000YJ1kQAG\",  \"resultCode\" : \"SOA_154[001]\",  \"resultText\" : \"ESP service returned error: 1. Darījuma \\\"ESP/ListOfOrder/v1-0\\\" apstrādes laikā tika konstatētas kļūdas! Darījums netika iesūtīts. (The 'source' element is invalid - The value '' is invalid according to its datatype 'RequiredLength30Type' - The actual length is less than the MinLength value. The actual length is less than the MinLength value.)\"}";
         JSONObject jsonData1 = new JSONObject(a);
+
         //System.out.println(jsonData1.toString());
         
     }
