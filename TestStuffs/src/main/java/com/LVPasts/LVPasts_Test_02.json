@@ -1,0 +1,102 @@
+{
+  "LPData": {
+    "company_name_cfg1": "",
+    "contact_phone_cfg1": "",
+    "company_name_cfg": "",
+    "postCode_cfg1": "",
+    "warehouseName_cfg1": "",
+    "area_cfg": "Rīga",
+    "country_id_cfg": 7,
+    "apartment_nr_cfg1": "",
+    "swapCategory": "",
+    "type": "Ie",
+    "doorDelivery": false,
+    "street_cfg1": "",
+    "apartment_nr_cfg": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "call_courier_cfg": 1,
+    "call_courier": "",
+    "city_adr": "RĪGA",
+    "transport_cfg": 1,
+    "contact_phone_cfg": 26027914,
+    "deliveryMode": "LVPasts Parcel Machine",
+    "district_cfg1": "",
+    "house_cfg1": "",
+    "district_adr": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "call_courier_cfg1": "",
+    "addressKey": "",
+    "swap": 0,
+    "numOfParcel": 1,
+    "weight": 2,
+    "city_cfg1": "",
+    "firstPickUpTime_cfg1": "",
+    "zipcode_adr": "LV-1011",
+    "street_cfg": "Jaunmoku iela",
+    "customerName": "ERVĪNS ŠAICĀNS",
+    "house_adr": 105,
+    "phone": "+37137120004845",
+    "warehouseId": 1,
+    "add_address_cfg": "T/C Spice Home",
+    "pickUpId": 1,
+    "contact_email_cfg": "roberts.granits@t2t.lv",
+    "full_address_cfg1": "",
+    "zipcode_cfg1": "",
+    "order_id": "8010D000002bU7zQAE",
+    "country_id_cfg1": "",
+    "village_adr": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "village_cfg1": "",
+    "contact_email_cfg1": "",
+    "accountName": "ERVĪNS ŠAICĀNS",
+    "order_number": "00578698-2",
+    "area_cfg1": "",
+    "area_adr": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "contact_person_cfg": "Jānis Kalniņš",
+    "contact_person_cfg1": "",
+    "paleteCount_cfg": 1,
+    "secret_cfg": "a6463887eDc24Fc0a934b483F14604D4",
+    "district_cfg": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "postCode_cfg": 1046,
+    "country_id_adr": 7,
+    "warehouseName_cfg": "Tet Spices veikala noliktava",
+    "city_cfg": "Rīga",
+    "floor": "",
+    "email": "haralds.trankals2@gmail.com",
+    "secret_cfg1": "",
+    "comments": "",
+    "add_address_cfg1": "",
+    "lastPickUpTime_cfg1": "",
+    "house_cfg": 13,
+    "internalWarehouseId": "",
+    "zipcode_cfg": "LV-1000",
+    "apartment_nr_adr": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "deliveryType": "Pickup",
+    "userName": "",
+    "village_cfg": {
+      "xsi:nil": true,
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "lastPickUpTime_cfg": "17:00",
+    "street_adr": "DZIRNAVU IELA",
+    "firstPickUpTime_cfg": "13:00",
+    "transport_cfg1": "",
+    "full_address_cfg": "Jaunmoku iela 13",
+    "paleteCount_cfg1": ""
+  }
+}

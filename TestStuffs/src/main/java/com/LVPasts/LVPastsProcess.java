@@ -1,5 +1,7 @@
-package com.BillingTrigger;
+package com.LVPasts;
 
+import com.BillingTrigger.BillingTrigger2;
+import com.BillingTrigger.Resp;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -7,10 +9,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.nio.charset.Charset;
 
-public class BillingTriggerRunner {
+public class LVPastsProcess {
+
     public static void main(String[] args) throws Exception {
 
-        String filename = "BillTriggerInput_N6.json";
+        String filename = "LVPasts_Test_01.json";
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/" + filename);
 
         String longJsonString = IOUtils.toString(fis, "UTF-8");
@@ -22,4 +25,5 @@ public class BillingTriggerRunner {
                 res2.SendJsonStr, Charset.forName("UTF-8"));
 
     }
+
 }

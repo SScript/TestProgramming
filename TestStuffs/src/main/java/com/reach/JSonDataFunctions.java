@@ -3,7 +3,11 @@ package com.reach;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class JSonDataFunctions {
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class JSonDataFunctions extends BaseFunctions {
 
     /**
      * Ja ir OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE', tad ja:
@@ -198,13 +202,18 @@ public class JSonDataFunctions {
         int itemc = orderdataitems.length();
         JSONObject d = null;
         String productSubTypeFieldval = "";
+        String productCode = "";
+        String orderItemAction = "";
         String nameField2val = "";
         String issTelco = isOrderItemFieldWithValue(orderdataitems, "ProductType", "Telco");
         if ("true".equalsIgnoreCase(issTelco)) {
             for (int i = 0; i < itemc; i++) {
                 d = orderdataitems.getJSONObject(i);
                 productSubTypeFieldval = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
-                if ("Offer".equalsIgnoreCase(productSubTypeFieldval)) {
+                productCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                orderItemAction = GetJsonAtrrObjectStringValue(d, "OrderItemAction", false);
+                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
+                    && !"Disconect".equalsIgnoreCase(orderItemAction)) {
                     nameField2val = GetJsonAtrrObjectStringValue(d, "Name", false);
                     if (!isEmptyOrNull(nameField2val)) {
                         if (isEmptyOrNull(result)) {
@@ -216,6 +225,255 @@ public class JSonDataFunctions {
                 }
             }
         }
+        return result;
+    }
+
+    public String GetVlOfferNameValueRemove(JSONArray orderdataitems) throws Exception {
+        String result = "";
+        int itemc = orderdataitems.length();
+        JSONObject d = null;
+        String productSubTypeFieldval = "";
+        String productCode = "";
+        String orderItemAction = "";
+        String nameField2val = "";
+        String issTelco = isOrderItemFieldWithValue(orderdataitems, "ProductType", "Telco");
+        if ("true".equalsIgnoreCase(issTelco)) {
+            for (int i = 0; i < itemc; i++) {
+                d = orderdataitems.getJSONObject(i);
+                productSubTypeFieldval = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
+                productCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                orderItemAction = GetJsonAtrrObjectStringValue(d, "OrderItemAction", false);
+                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
+                        && "Disconect".equalsIgnoreCase(orderItemAction)) {
+                    nameField2val = GetJsonAtrrObjectStringValue(d, "Name", false);
+                    if (!isEmptyOrNull(nameField2val)) {
+                        if (isEmptyOrNull(result)) {
+                            result = nameField2val;
+                        } else {
+                            result = result + ";" + nameField2val;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * ServiceNumber, where  ProductType = SplitPayment or 'Electricity'
+     * WE document number - if ProductType = 'Warranty' or 'Insurance'
+     *
+     * @return
+     */
+    public String GetServiceNumberValue(JSONArray orderdataitems) throws Exception {
+        String productType;
+        String val = "";
+        String result = "";
+        JSONObject itemdata = null;
+        List<String> data = new ArrayList<>();
+        int itemcount = orderdataitems.length();
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = orderdataitems.getJSONObject(i);
+            productType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
+            if ("SplitPayment".equals(productType) || "Electricity".equals(productType)) {
+                return GetJsonAtrrObjectStringValue(itemdata, "ServiceNumber", false);
+            } else {
+                if ("Telco".equals(productType)) {
+                    for (int j = 0; j < itemcount; j++) {
+                        itemdata = orderdataitems.getJSONObject(j);
+                        val = GetJsonAtrrObjectStringValue(itemdata, "ServiceLine", false);
+                        if ("Phone".equalsIgnoreCase(val)) {
+                            val = GetJsonAtrrObjectStringValue(itemdata, "ServiceNumber", false);
+                            if (!isEmptyOrNull(val)) {
+                                data.add(val);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (data.size() > 0) {
+            return data.stream().collect(Collectors.joining(","));
+        }
+        return result;
+    }
+
+    public String GetVlVoipValue(JSONArray orderdataitems) throws Exception {
+        String result = "false";
+        JSONObject itemdata = null;
+        String productSubType = "";
+        String productCode = "";
+        String productType = "";
+
+        List<String> data = new ArrayList<>();
+        int itemcount = orderdataitems.length();
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = orderdataitems.getJSONObject(i);
+            productType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
+            if ("Telco".equalsIgnoreCase(productType)) {
+                for (int j = 0; j < itemcount; j++) {
+                    itemdata = orderdataitems.getJSONObject(j);
+                    productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", false);
+                    productCode = GetJsonAtrrObjectStringValue(itemdata, "ProductCode", false);
+                    if ("Offer".equalsIgnoreCase(productSubType) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)) {
+                        return "True";
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String GetVLOrderMonthlyTotalWithoutDiscountValue(JSONObject orderdata) throws Exception {
+        String result = "";
+        Object data = null;
+        JSONArray apr = new JSONArray();
+        JSONObject d = null;
+        double finalResSum = 0;
+        String val = "";
+        String promotionAction = "";
+
+        try {
+            data = orderdata.get("AppliedPromotion");
+            if (data instanceof JSONArray) {
+                apr = (JSONArray) data;
+            }
+            if (data instanceof JSONObject) {
+                apr = new JSONArray();
+                apr.put(data);
+            }
+        } catch (Exception e) {
+            return "";
+        }
+
+        String VLOrderTotalTotal = GetJsonAtrrObjectStringValue(orderdata, "VLOrderTotalTotal", false);
+        if (!isEmptyOrNull(VLOrderTotalTotal)) {
+            finalResSum = finalResSum + Double.valueOf(VLOrderTotalTotal);
+        }
+        int itemcount = apr.length();
+        for (int j = 0; j < itemcount; j++) {
+            d = apr.getJSONObject(j);
+            val = GetJsonAtrrObjectStringValue(d, "PromotionName", true);
+            promotionAction = GetJsonAtrrObjectStringValue(d, "PromotionAction", true);
+            if (!isEmptyOrNull(val) && ("New".equalsIgnoreCase(promotionAction) || "Existing".equalsIgnoreCase(promotionAction))) {
+                finalResSum = finalResSum + Double.valueOf(VLOrderTotalTotal);
+            }
+        }
+        if (finalResSum == 0) {
+            return "";
+        } else {
+            return String.valueOf(finalResSum);
+        }
+    }
+
+    public String GetResumeDateValueFromSuspendEndDate(JSONArray orderdataitems) throws Exception {
+        String result = "";
+        String productSubType = "";
+        String suspendEndDate = "";
+        JSONObject itemdata = null;
+        int itemcount = orderdataitems.length();
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = orderdataitems.getJSONObject(i);
+            productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", true);
+            if ("Offer".equalsIgnoreCase(productSubType)) {
+                suspendEndDate = GetJsonAtrrObjectStringValue(itemdata, "SuspendEndDate", true);
+                if (!isEmptyOrNull(suspendEndDate)) {
+                    return suspendEndDate;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String GetEquipmentNameValue(JSONArray orderdataitems) throws Exception {
+        String productType;
+        String val = "";
+        String name = "";
+        String result = "";
+        JSONObject itemdata = null;
+        List<String> data = new ArrayList<>();
+        int itemcount = orderdataitems.length();
+        Map<String, Integer> iekartuList = new HashMap<>();
+        Integer count = 0;
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = orderdataitems.getJSONObject(i);
+            productType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
+
+                if ("Telco".equals(productType)) {
+                    for (int j = 0; j < itemcount; j++) {
+
+                        itemdata = orderdataitems.getJSONObject(j);
+                        val = GetJsonAtrrObjectStringValue(itemdata, "WillCustomerReturnesCPE", false);
+                        if ("true".equalsIgnoreCase(val)) {
+                            name = GetJsonAtrrObjectStringValue(itemdata, "Name", false);
+
+                            if (!iekartuList.containsKey(name)) {
+                                iekartuList.put("", 1);
+                            } else {
+                                iekartuList.computeIfPresent(name, (k, v) -> v + 1);
+                            }
+
+                        }
+                    }
+
+
+                }
+
+        }
+        if (iekartuList.size() > 0) {
+            for (Map.Entry<String, Integer> entry : iekartuList.entrySet()) {
+                result = result + entry.getKey() + "(" + entry.getValue() + "),";
+            }
+            return result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+
+    public String GetServiceStartDate(JSONArray orderdataitems) throws Exception {
+        String result = "";
+        String productType = "";
+        String productSubType = "";
+        String res = "";
+        String nd = "";
+        JSONObject d = null;
+        int itemcount = orderdataitems.length();
+
+        // ServiceStartDate ir katrā orderitemā
+        for (int i = 0; i < itemcount; i++) {
+            d = orderdataitems.getJSONObject(i);
+            productType = GetJsonAtrrObjectStringValue(d, "ProductType", false);
+            if ("Electricity".equalsIgnoreCase(productType)) {
+                for (int j = 0; j < itemcount; j++) {
+                    d = orderdataitems.getJSONObject(j);
+                    nd = GetJsonAtrrObjectStringValue(d, "ServiceStartDate", false);
+                    if (isEmptyOrNull(res) && !isEmptyOrNull(nd)) {
+                        res = nd;
+                    } else {
+                        if (!isEmptyOrNull(nd)) {
+                            res = CompareDates(res, nd);
+                        }
+                    }
+                }
+                return res;
+            } else {
+                if ("Telco".equalsIgnoreCase(productType)) {
+                    for (int j = 0; j < itemcount; j++) {
+                        d = orderdataitems.getJSONObject(j);
+                        productSubType = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
+                        if ("Offer".equalsIgnoreCase(productSubType)) {
+                            nd = GetJsonAtrrObjectStringValue(d, "ServiceStartDate", false);
+                            if (!isEmptyOrNull(nd)) {
+                                return  nd;
+                            }
+                        }
+                    }
+                    return res;
+                }
+            }
+        }
+
         return result;
     }
 
@@ -234,33 +492,19 @@ public class JSonDataFunctions {
         return res;
     }
 
-    public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
-        JSONArray result = new JSONArray();
-        try {
-            Object orderdataitems_o = data.get(arrName);
-            if (orderdataitems_o instanceof JSONArray) {
-                result = (JSONArray) orderdataitems_o;
-            }
-            if (orderdataitems_o instanceof JSONObject) {
-                result.put(orderdataitems_o);
-            }
-        } catch (Exception e) {}
-
-        return result;
-    }
-
-    public String GetJsonAtrrObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {
-        String result = "";
-        try {
-            result = GetJsonObjectStringValue(data.get(jsonfieldName));
-        } catch (Exception e) {
-            if (mandatory) {
-                throw new Exception("Field: " + jsonfieldName + " is mandatory");
-            } else {
-                result = "";
-            }
+    public String isNotOrderItemFieldWithValue(JSONArray orderdataitems,
+                                            String field, String fieldValue) throws Exception {
+        int itemc = orderdataitems.length();
+        JSONObject d = null;
+        String fieldval = "";
+        String res = "false";
+        for (int i = 0; i < itemc; i++) {
+            d = orderdataitems.getJSONObject(i);
+            fieldval = GetJsonAtrrObjectStringValue(d, field, false);
+            if (!fieldValue.equalsIgnoreCase(fieldval)) {return "true";}
         }
-        return result;
+
+        return res;
     }
 
     public String FormatDate(String d) {
@@ -293,31 +537,16 @@ public class JSonDataFunctions {
         }
     }
 
-    public String GetJsonObjectStringValue(Object objvalue) {
-        String valToXml = "";
-        if (objvalue instanceof Boolean) {
-            Boolean boolToUse = ((Boolean) objvalue).booleanValue();
-            valToXml = boolToUse.toString();
-        } else if (objvalue instanceof Integer || objvalue instanceof Long) {
-            long intToUse = ((Number) objvalue).longValue();
-            valToXml = String.valueOf(intToUse);
-        } else if (objvalue instanceof Float || objvalue instanceof Double) {
-            double floatToUse = ((Number) objvalue).doubleValue();
-            valToXml = String.valueOf(floatToUse);
-        } else if (JSONObject.NULL.equals(objvalue)) {
-            valToXml = "";
+
+    public String CompareDates(String currentDate, String newDate) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = sdf.parse(currentDate);
+        Date end = sdf.parse(newDate);
+
+        if (start.before(end)) {
+            return currentDate;
         } else {
-            valToXml = ((String) objvalue).toString();
+            return newDate;
         }
-
-        return valToXml;
-    }
-
-    public boolean isEmptyOrNull(String str) {
-        if (null == str || (null != str && str.trim().equals(""))) {
-            return true;
-        }
-
-        return false;
     }
 }

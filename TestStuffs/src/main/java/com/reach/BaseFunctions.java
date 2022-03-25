@@ -1,10 +1,9 @@
-package com.BillingTrigger;
+package com.reach;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class JSonDataFunctionsBase {
-
+public class BaseFunctions {
 
     public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
         JSONArray result = new JSONArray();
@@ -21,10 +20,10 @@ public class JSonDataFunctionsBase {
         return result;
     }
 
-    public String GetJsonObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {
+    public String GetJsonAtrrObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {
         String result = "";
         try {
-            result = GetJsonObjectValue(data.get(jsonfieldName));
+            result = GetJsonObjectStringValue(data.get(jsonfieldName));
         } catch (Exception e) {
             if (mandatory) {
                 throw new Exception("Field: " + jsonfieldName + " is mandatory");
@@ -32,11 +31,10 @@ public class JSonDataFunctionsBase {
                 result = "";
             }
         }
-
         return result;
     }
 
-    private String GetJsonObjectValue(Object objvalue) {
+    public String GetJsonObjectStringValue(Object objvalue) {
         String valToXml = "";
         if (objvalue instanceof Boolean) {
             Boolean boolToUse = ((Boolean) objvalue).booleanValue();
@@ -53,8 +51,8 @@ public class JSonDataFunctionsBase {
             valToXml = ((String) objvalue).toString();
         }
 
-        return valToXml;
-    }
+    return valToXml;
+}
 
     public boolean isEmptyOrNull(String str) {
         if (null == str || (null != str && str.trim().equals(""))) {

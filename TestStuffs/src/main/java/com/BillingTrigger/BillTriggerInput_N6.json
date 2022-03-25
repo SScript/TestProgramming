@@ -1,0 +1,351 @@
+{
+  "Requester": "VLOCITY",
+  "Order": {
+    "OrderedService": "Electricity",
+    "OrderDate": "2022-02-01T15:27:41.000Z",
+    "BillAccountNumber": "3882592",
+    "OrderItems": [
+      {
+        "ProductType": "Electricity",
+        "ORD_PRICE_TYPE": "G",
+        "ORD_PAYMENT_METHOD": "C",
+        "ORD_LINE_ID": "10",
+        "OrderPricing": {
+          "VATRate": 21,
+          "VATExclusive": "N"
+        },
+        "VATRate": 21,
+        "VATExclusive": "N",
+        "UnicornProductCode": "b.B.5555",
+        "UnicornPlanCode": "12345",
+        "UnicornPackageCode": "d.ELK.001",
+        "ServiceId": "43Z-STO008895997",
+        "RootOrderItemId": "80268000003FujXAAS",
+        "RemovalReason": "229",
+        "RecurringCharge": 0.00,
+        "Quantity": 1.00,
+        "ProductSubType": "RootObject",
+        "PlanType": "PGP",
+        "OrderedServiceType": "Remove",
+        "OrderSubType": "Disconnect PGP",
+        "OrderItemId": "80268000003FujXAAS",
+        "OrderItemAction": "Disconnect",
+        "OneTimeCharge": 0.00,
+        "ORD_PRICE_KWH": 0.00000,
+        "Name": "PGP Elektroenerģijas Risinājums",
+        "LineNumberId": "0030",
+        "JSONAttribute": {
+          "TET_PROD_FAMILY": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "ELE PGP",
+                  "sequence": 10,
+                  "id": "39ce790a-3a43-8a03-3ba4-f2b1a87ce4f8",
+                  "displayText": "ELE PGP"
+                },
+                "values": [
+                  {
+                    "value": "ELE PGP",
+                    "sequence": 10,
+                    "id": "39ce790a-3a43-8a03-3ba4-f2b1a87ce4f8",
+                    "displayText": "ELE PGP"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "ELE PGP",
+                    "sequence": 10,
+                    "id": "39ce790a-3a43-8a03-3ba4-f2b1a87ce4f8",
+                    "displayText": "ELE PGP"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "ELE PGP",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M68000000GsJeEAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": true,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 1,
+              "displaysequence__c": "1",
+              "attributedisplayname__c": "Product Family",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": true,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PROD_FAMILY",
+              "categoryname__c": "Product Family",
+              "categorycode__c": "TET_PROD_FAMILY",
+              "attributecategoryid__c": "a0O68000000TaRgEAK",
+              "attributeid__c": "a0P68000000YVPxEAO",
+              "objectid__c": "01t68000000Un1hAAC",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ],
+          "TET_SOLU_INFO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Jā",
+                  "sequence": 20,
+                  "id": "3cd9cdaf-eb5c-c068-7531-48677d509224",
+                  "displayText": "Jā"
+                },
+                "values": [
+                  {
+                    "value": "Nē",
+                    "sequence": 10,
+                    "id": "b2088656-cd4b-c037-1a52-6c2320c508f2",
+                    "displayText": "Nē"
+                  },
+                  {
+                    "value": "Jā",
+                    "sequence": 20,
+                    "id": "3cd9cdaf-eb5c-c068-7531-48677d509224",
+                    "displayText": "Jā"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Jā",
+                    "sequence": 20,
+                    "id": "3cd9cdaf-eb5c-c068-7531-48677d509224",
+                    "displayText": "Jā"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Jā",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M68000000GsJfEAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 80,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Nesūtīt uz Sadales tīklu",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_ELE_NOT_SEND_TO_DSO",
+              "categoryname__c": "ELE Solution Information",
+              "categorycode__c": "TET_SOLU_INFO",
+              "attributecategoryid__c": "a0O68000000TaRkEAK",
+              "attributeid__c": "a0P68000000YVQJEA4",
+              "objectid__c": "01t68000000Un1hAAC",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "43Z-STO008895997",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M68000000GsJgEAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 80,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Pakalpojuma ID",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "5",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_ELE_SERVICE_ID",
+              "categoryname__c": "ELE Solution Information",
+              "categorycode__c": "TET_SOLU_INFO",
+              "attributecategoryid__c": "a0O68000000TaRkEAK",
+              "attributeid__c": "a0P68000000YVQKEA4",
+              "objectid__c": "01t68000000Un1hAAC",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        },
+        "ItemServiceAddressKey": "104060430",
+        "ItemBillingAddressKey": "101588306",
+        "ItemBillingAccountNumber": "3882592",
+        "BillActivationDate": "2022-01-31",
+        "AccountingCode": "PGP00001"
+      },
+      {
+        "ProductType": "Electricity",
+        "ORD_PRICE_TYPE": "G",
+        "ORD_PAYMENT_METHOD": "C",
+        "ORD_LINE_ID": "10",
+        "OrderPricing": {
+          "VATRate": 21,
+          "VATExclusive": "N",
+          "PriceId": 10,
+          "Source": "Base",
+          "Sequence": 1,
+          "ReferenceNumber": "a3D680000016OjU",
+          "PricingVariableType": "Price",
+          "OrderItemId": "80268000003FujYAAS",
+          "OrderId": "80168000001VzprAAC",
+          "ChargeType": "Usage",
+          "Amount": 0.01314,
+          "AdjustmentValue": 0.00,
+          "Action": "Disconnect"
+        },
+        "VATRate": 21,
+        "VATExclusive": "N",
+        "UnicornProductCode": "b.R1.EL.001",
+        "UnicornPlanCode": "a.ELDI.005",
+        "UnicornPackageCode": "d.ELK.001",
+        "RootOrderItemId": "80268000003FujXAAS",
+        "RemovalReason": "229",
+        "RelatedServiceNo": "43Z-STO008895997",
+        "RecurringCharge": 0.00,
+        "Quantity": 1.00,
+        "ProductSubType": "Plan",
+        "PlanType": "PGP",
+        "ParentOrderItemId": "80268000003FujXAAS",
+        "OrderedServiceType": "Remove",
+        "OrderSubType": "Disconnect PGP",
+        "OrderItemId": "80268000003FujYAAS",
+        "OrderItemAction": "Disconnect",
+        "OneTimeCharge": 0.00,
+        "ORD_PRICE_KWH": 0.01314,
+        "ORD_PRICE_ID": 10,
+        "ORD_CONTRACT_LENGTH": "P0Y",
+        "Name": "Pēdējā Garantētā Piegāde - Beztermiņa",
+        "LineNumberId": "0030.0002",
+        "JSONAttribute": {
+          "TET_PROD_FAMILY": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "ELE PGP",
+                  "sequence": 10,
+                  "id": "8f60c5a7-68c3-f23d-5863-6ba2db286266",
+                  "displayText": "ELE PGP"
+                },
+                "values": [
+                  {
+                    "value": "ELE PGP",
+                    "sequence": 10,
+                    "id": "8f60c5a7-68c3-f23d-5863-6ba2db286266",
+                    "displayText": "ELE PGP"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "ELE PGP",
+                    "sequence": 10,
+                    "id": "8f60c5a7-68c3-f23d-5863-6ba2db286266",
+                    "displayText": "ELE PGP"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "ELE PGP",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M68000000GsIvEAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": true,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 1,
+              "displaysequence__c": "1",
+              "attributedisplayname__c": "Product Family",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": true,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PROD_FAMILY",
+              "categoryname__c": "Product Family",
+              "categorycode__c": "TET_PROD_FAMILY",
+              "attributecategoryid__c": "a0O68000000TaRgEAK",
+              "attributeid__c": "a0P68000000YVPxEAO",
+              "objectid__c": "01t68000000Un0UAAS",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        },
+        "ItemServiceAddressKey": "104060430",
+        "ItemBillingAddressKey": "101588306",
+        "ItemBillingAccountNumber": "3882592",
+        "BillActivationDate": "2022-01-31",
+        "AccountingCode": "PGP00003"
+      }
+    ],
+    "PaymentMode": "Full Payment",
+    "OrderNumber": "00614245",
+    "OrderId": "80168000001VzprAAC",
+    "AddressKey": "101588306",
+    "AccountNo": "10130880"
+  },
+  "ApiKey": "zB6GMPqfVxkM42wp"
+}

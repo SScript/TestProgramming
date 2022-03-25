@@ -1,0 +1,18 @@
+{
+  "secret": "secret",
+  "parcels": [
+    {
+      "time_to": "aaa",
+      "ooooooo": "ooooo",
+      "address": "aaa",
+      "comments": "aaa",
+      "time_from": "aaa",
+      "phone": "aaa",
+      "pallet_count": "aaa",
+      "transport": "aaa",
+      "when": "aaa",
+      "email": "aaa",
+      "parcel_count": "aaa"
+    }
+  ]
+}

@@ -4,10 +4,7 @@
  */
 package com.reach;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.naming.InitialContext;
 
@@ -62,21 +60,6 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
         // check if is orderitems data
         orderdataitems = GetJSONArrObj(orderdata, "OrderItems");
         if (orderdataitems.length() == 0) {isOrderItems = false;} else {isOrderItems= true;}
-        /*
-        try {
-            isOrderItems = false;
-            orderdataitems_o = orderdata.get("OrderItems");
-            if (orderdataitems_o instanceof JSONArray) {
-                orderdataitems = (JSONArray) orderdataitems_o;
-            }
-            if (orderdataitems_o instanceof JSONObject) {
-                orderdataitems = new JSONArray();
-                orderdataitems.put(orderdataitems_o);
-            }
-            isOrderItems = true;
-        } catch (Exception e) {
-            isOrderItems = false;
-        }*/
 
         Object objCASE = null;
         casedata = null;
@@ -176,7 +159,20 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
 
             // SOAIP-1791 - add AuthenticationMethod and CustomerType
             sb.append(AddDinamicParam("AuthenticationMethod", GetJsonAtrrObjectStringValue(orderdata, "AuthenticationMethod", false)));
-            sb.append(AddDinamicParam("CustomerType", GetJsonAtrrObjectStringValue(orderdata, "CustomerType", false)));
+            sb.append(AddDinamicParam("CustomerStatusType", GetJsonAtrrObjectStringValue(orderdata, "CustomerType", false)));
+
+            // CustomerSubSegment SOAIP-2199
+            sb.append(AddDinamicParam("CustomerSubSegment", GetJsonAtrrObjectStringValue(orderdata, "CustomerSubSegment", false)));
+            if ("ResumeOrder".equalsIgnoreCase(actcode) || "Suspend".equalsIgnoreCase(actcode)) {
+                // resume_date  SOAIP-2199
+                String resumeDate = GetJsonAtrrObjectStringValue(orderdata, "resume_date", false);
+                if (isEmptyOrNull(resumeDate)) {
+                    resumeDate = GetResumeDateValueFromSuspendEndDate(orderdataitems);
+                }
+                sb.append(AddDinamicParam("resume_date", FormatDate(resumeDate)));
+                // IsDebt SOAIP-2199
+                sb.append(AddDinamicParam("IsDebt", GetJsonAtrrObjectStringValue(orderdata, "IsDebt", false)));
+            }
 
             //OrderSubType (SOAIP-1076)
             if (isOrderData && isOrderItems) {
@@ -236,8 +232,8 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                             sb.append(AddDinamicParam("VLOrderDeliveryAddress", ""));
                             break;
                         case "DPD Courier":
-                            //sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetOrderAddressData(orderdata)));
-                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", "aaaa"));
+                            sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetOrderAddressData(orderdata)));
+                            //sb.append(AddDinamicParam("VLOrderDeliveryAddress", "aaaa"));
                             break;
                         case "Store Front":
                             sb.append(AddDinamicParam("VLOrderDeliveryAddress", GetJsonAtrrObjectStringValue(orderdata, "VLWarehauserName", false)));
@@ -281,6 +277,13 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 if (!isEmptyOrNull(s) && isItemWithProductTypeX(("Telco"))) {
                     sb.append(AddDinamicParam("VLOrderMonthlyTotal", s));
                 }
+
+                // VLOrderMonthlyTotalWithoutDiscount SOAIP-2015
+                String VLOrderMonthlyTotalWithoutDiscount = GetVLOrderMonthlyTotalWithoutDiscountValue(orderdata);
+                if (!isEmptyOrNull(s)) {
+                    sb.append(AddDinamicParam("VLOrderMonthlyTotalWithoutDiscount", s));
+                }
+
                 // VLOrderTotalTotal
                 s = GetJsonAtrrObjectStringValue(orderdata, "VLOrderTotalTotal", false);
                 // GetOrderItemFieldValueByProductType("Telco", "VLOrderTotalTotal");
@@ -371,8 +374,18 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 // FillerTimeIsSelected (SOAIP-2016)
                 sb.append(AddDinamicParam("FillerTimeIsSelected", GetJsonFitterVisitNeedValue(orderdataitems, "Installation", "Fitter", true)));
 
-                // IsContractSigned (SOAIP-2016)
-                sb.append(AddDinamicParam("IsContractSigned", isOrderItemFieldWithValue(orderdataitems, "ContractStatus", "Contract Accepted")));
+                // IsContractSigned (SOAIP-2016) => no IsContractSkipped SOAIP-2064
+                s =  GetJsonAtrrObjectStringValue(orderdata, "IsContractSkipped", false);
+                if ("true".equalsIgnoreCase(s)) {
+                    sb.append(AddDinamicParam("IsContractSigned", "true"));
+                } else {
+                    s = isOrderItemFieldWithValue(orderdataitems, "ContractStatus", "Contract Accepted");
+                    if ("true".equalsIgnoreCase(s)) {
+                        sb.append(AddDinamicParam("IsContractSigned", "false"));
+                    } else {
+                        sb.append(AddDinamicParam("IsContractSigned", "true"));
+                    }
+                }
 
                 // AgreedDate (SOAIP-2016)
                 sb.append(AddDinamicParam("AgreedDate", GetItemFieldValueByTwoFields(orderdataitems, "ProductSubType", "Installation", "ServiceType", "Self", "ServiceStartDate")));
@@ -403,8 +416,17 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 // VlOfferName
                 sb.append(AddDinamicParam("VlOfferName", GetVlOfferNameValue(orderdataitems)));
 
-                // ServiceNumber (SOAIP-1076)
-                sb.append(AddDinamicParam("ServiceNumber", GetServiceNumberValue()));
+                // VlOfferName_remove (SOAIP-2064)
+                sb.append(AddDinamicParam("VlOfferName_remove", GetVlOfferNameValueRemove(orderdataitems)));
+
+                // ServiceNumber (SOAIP-1076, SOAIP-2064)
+                sb.append(AddDinamicParam("ServiceNumber", GetServiceNumberValue(orderdataitems)));
+
+                // VlVoip SOAIP-2233
+                sb.append(AddDinamicParam("VlVoip", GetVlVoipValue(orderdataitems)));
+
+                // EquipmentName SOAIP-2064
+                sb.append(AddDinamicParam("EquipmentName", GetEquipmentNameValue(orderdataitems)));
 
                 // OldCustomerNo
                 sb.append(AddDinamicParam("OldCustomerNo", GetJsonAtrrObjectStringValue(orderdata, "OldCustomerNo", false)));
@@ -419,7 +441,7 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 sb.append(AddDinamicParam("AcceptanceAddress", GetAcceptanceAddress(orderdata)));
 
                 // ServiceStartDate
-                sb.append(AddDinamicParam("ServiceStartDate", GetServiceStartDate(orderdata)));
+                sb.append(AddDinamicParam("ServiceStartDate", FormatDate(GetServiceStartDate(orderdataitems))));
 
                 // DiscountText
                 //sb.append(AddDinamicParam("DiscountText", FormatDiscountText(orderdata)));
@@ -427,7 +449,7 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 //Swap
                 String swapval = GetJsonAtrrObjectStringValue(orderdata, "Swap", false);
                 if (!isEmptyOrNull(swapval)) {
-                    sb.append(AddDinamicParam("ServiceNumber", swapval));
+                    sb.append(AddDinamicParam("Swap", swapval));
                 }
 
                 // ParcelId
@@ -435,6 +457,13 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 if (!isEmptyOrNull(parcelIdval)) {
                     parcelIdval = parcelIdval.contains(",") ? parcelIdval.substring(0, parcelIdval.indexOf(',')) : parcelIdval;
                     sb.append(AddDinamicParam("ParcelId", parcelIdval));
+                }
+
+
+                // AppliedPromotionX fields
+                String AppliedPromotionXFields = GetAppliedPromotionXFields(orderdata);
+                if (!isEmptyOrNull(AppliedPromotionXFields)) {
+                    sb.append(AppliedPromotionXFields);
                 }
 
                 // VLOrderItemX fields
@@ -580,28 +609,6 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
 
         return result;
     }
-    private String GetServiceStartDate(JSONObject orderData) throws Exception {
-        String res = "";
-        String nd = "";
-        JSONObject d = null;
-
-        // ServiceStartDate ir katrā orderitemā
-        if (isOrderItems) {
-            for (int i = 0; i < orderdataitems.length(); i++) {
-                d = orderdataitems.getJSONObject(i);
-                nd = GetJsonAtrrObjectStringValue(d, "ServiceStartDate", false);
-                if (isEmptyOrNull(res) && !isEmptyOrNull(nd)) {
-                    res = nd;
-                } else {
-                    if (!isEmptyOrNull(nd)) {
-                        res = CompareDates(res, nd);
-                    }
-                }
-            }
-        }
-
-        return res;
-    }
 
     /**
      * if OrderItems ar ProductType = Electricity,
@@ -614,6 +621,7 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
         String r = "";
         String productType;
         String productSubType;
+        String orderItemAction;
         JSONObject d = null;
 
         int itemcount = orderdataitems.length();
@@ -621,10 +629,17 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
             d = orderdataitems.getJSONObject(i);
             productType = GetJsonAtrrObjectStringValue(d, "ProductType", true);
             productSubType = GetJsonAtrrObjectStringValue(d, "ProductSubType", false); //mandatory only for Electricity
+            orderItemAction = GetJsonAtrrObjectStringValue(d, "OrderItemAction ", false);
             if ("Electricity".equals(productType) && "Root Object".equals(productSubType)) {
                 r = GetJsonAtrrObjectStringValue(d, "ObjectAddress", false);
                 if (!isEmptyOrNull(r)) {
                     ls.add(r);
+                }
+            } else {
+                if ("Telco".equals(productType)) {
+                    if (("Offer".equalsIgnoreCase(productSubType))  && ("Add".equalsIgnoreCase(orderItemAction) || "Change".equalsIgnoreCase(orderItemAction))) {
+                        return GetJsonAtrrObjectStringValue(d, "serviceAccountAddress ", false);
+                    }
                 }
             }
         }
@@ -663,19 +678,6 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
         }
 
         return res;
-    }
-
-    private String CompareDates(String currentDate, String newDate) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date start = sdf.parse(currentDate);
-        Date end = sdf.parse(newDate);
-        System.out.println();
-
-        if (start.before(end)) {
-            return currentDate;
-        } else {
-            return newDate;
-        }
     }
 
     private String AddDinamicParam(String key, String value) {
@@ -734,24 +736,6 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
         return "";
     }
 
-    /**
-     * ServiceNumber, where  ProductType = SplitPayment or 'Electricity'
-     * WE document number - if ProductType = 'Warranty' or 'Insurance'
-     *
-     * @return
-     */
-    private String GetServiceNumberValue() throws Exception {
-        String productType;
-        int itemcount = orderdataitems.length();
-        for (int i = 0; i < itemcount; i++) {
-            itemdata = orderdataitems.getJSONObject(i);
-            productType = GetJsonAtrrObjectStringValue(itemdata, "ProductType", true);
-            if ("SplitPayment".equals(productType) || "Electricity".equals(productType)) {
-                return GetJsonAtrrObjectStringValue(itemdata, "ServiceNumber", false);
-            }
-        }
-        return "";
-    }
 
     // ELE_Calculator
     private String GetVLOrderXFieldsELE_Calculator(JSONObject elecalcdata) throws Exception {
@@ -795,6 +779,70 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
             // SelectedX
             fieldName = "Selected" + (i + 1);
             sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(data, "Selected", false)));
+        }
+
+        return sb.toString();
+    }
+    private String GetAppliedPromotionXFields(JSONObject orderdata) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        String productType = "";
+        Object data = null;
+        JSONArray apr = new JSONArray();
+        JSONObject d = null;
+
+        try {
+            data = orderdata.get("AppliedPromotion");
+            if (data instanceof JSONArray) {
+                apr = (JSONArray) data;
+            }
+            if (data instanceof JSONObject) {
+                apr = new JSONArray();
+                apr.put(data);
+            }
+        } catch (Exception e) {
+            return "";
+        }
+
+        int itemcount = orderdataitems.length();
+        for (int i = 0; i < itemcount; i++) {
+            d = orderdataitems.getJSONObject(i);
+            productType = GetJsonAtrrObjectStringValue(d, "ProductType", true);
+            if ("Telco".equalsIgnoreCase(productType)) {
+                itemcount = apr.length();
+                String val = "";
+                String promotionAction = "";
+                for (int j = 0; j < itemcount; j++) {
+                    d = orderdataitems.getJSONObject(j);
+                    val = GetJsonAtrrObjectStringValue(d, "PromotionName", true);
+                    promotionAction = GetJsonAtrrObjectStringValue(d, "PromotionAction", true);
+                    // DiscountNameX
+                    if (!isEmptyOrNull(val)) {
+                        if (!isEmptyOrNull(promotionAction)) {
+                            if ("New".equalsIgnoreCase(promotionAction)) {
+                                sb.append(AddDinamicParam("DiscountName" + j + 1, val));
+                            }
+                        }
+                    }
+                    // DiscountTermX
+                    val = GetJsonAtrrObjectStringValue(d, "PromotionTerm", true);
+                    if (!isEmptyOrNull(val)) {
+                        if (!isEmptyOrNull(promotionAction)) {
+                            if ("New".equalsIgnoreCase(promotionAction)) {
+                                sb.append(AddDinamicParam("DiscountTerm" + j + 1, val));
+                            }
+                        }
+                    }
+                    // DiscountAmountX
+                    val = GetJsonAtrrObjectStringValue(d, "DiscountAmount", true);
+                    if (!isEmptyOrNull(val)) {
+                        if (!isEmptyOrNull(promotionAction)) {
+                            if ("New".equalsIgnoreCase(promotionAction)) {
+                                sb.append(AddDinamicParam("DiscountAmount" + j + 1, val));
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         return sb.toString();
@@ -908,12 +956,15 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
             }
 
             // Tiek ņemti OrderItems ar ProductType = Telco un ProductSubType = Offer
-            if ("Telco".equals(productType) && "Offer".equals(productSubType)) {
+            if ("Telco".equals(productType) && "Offer".equals(productSubType) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)) {
                 fieldName = "VLOrderItem" + (i + 1) + "Name";
                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "Name", false)));
                 // VLOrderItemXStartDate
                 fieldName = "VLOrderItem" + (i + 1) + "StartDate";
                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "ServiceStartDate", false)));
+                // VLOrderItemXAction
+                fieldName = "VLOrderItem" + (i + 1) + "Action";
+                sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "OrderItemAction", false)));
                 // VLOrderItemXTerm
                 fieldName = "VLOrderItem" + (i + 1) + "Term";
                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "TelcoContractTerm", false)));
@@ -928,6 +979,7 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                 String ShowInVlocityOrderSummaryFlag = "";
                 String PrdSubType = "";
                 String PrdCode = "";
+                String ServiceLine = "";
                 JSONObject d = null;
                 int c = 0;
                 for (int j = 0; j < itemcount; j++) {
@@ -935,9 +987,10 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                     ShowInVlocityOrderSummaryFlag = GetJsonAtrrObjectStringValue(d, "ShowInVlocityOrderSummaryFlag", false);
                     PrdSubType = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
                     PrdCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
+                    ServiceLine = GetJsonAtrrObjectStringValue(d, "GetJsonAtrrObjectStringValue(d, \"ProductCode\", false);", false);
                     if ("true".equalsIgnoreCase(ShowInVlocityOrderSummaryFlag)
                             && !("ServiceBundle".equalsIgnoreCase(PrdSubType) || "Offer".equalsIgnoreCase(PrdSubType)
-                            && !"PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(PrdCode))) {
+                            && !"PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(PrdCode) && !"Voice Technical Line".equalsIgnoreCase(ServiceLine))) {
                         c = c + 1;
                         fieldName = "VLOrderItem" + (i + 1)  + "Product" + (j + 1) + "Name";
                         sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "Name", false)));
@@ -945,7 +998,8 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                         sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "VLRecurringCharge", false)));
                         fieldName = "VLOrderItem" + (i + 1)  + "Product" + (j + 1) + "NRC";
                         sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "VLOneTimeCharge", false)));
-                    }
+                        fieldName = "VLOrderItem" + (i + 1)  + "Product" + (j + 1) + "Action";
+                        sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(d, "OrderItemAction", false)));                    }
                 }
             }
 
@@ -988,7 +1042,7 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                         }
                         // VLOrderItemXDeliveryContactPerson
                         if ("Courier".equalsIgnoreCase(DelMEth)) {
-                            fieldName = "VLOrderItem" + i + "DeliveryContactPerson";
+                            fieldName = "VLOrderItem" + (i + 1) + "DeliveryContactPerson";
                             String s1 = GetJsonAtrrObjectStringValue(d, "DeliveryContactName", false);
                             String s2 = GetJsonAtrrObjectStringValue(d, "DeliveryContactEmail", false);
                             String s3 = GetJsonAtrrObjectStringValue(d, "DeliveryContactPhone", false);
@@ -1218,36 +1272,6 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
         }
     }
 
-    private String xmlEscapeText(String t) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < t.length(); i++) {
-            char c = t.charAt(i);
-            switch (c) {
-                //case '<':
-                //    sb.append("&lt;");
-                //    break;
-                //case '>':
-                //    sb.append("&gt;");
-                //    break;
-                case '\"':
-                    sb.append("&quot;");
-                    break;
-                case '&':
-                    sb.append("&amp;");
-                    break;
-                case '\'':
-                    sb.append("&apos;");
-                    break;
-                default:
-                    //if (c > 0x7e) {
-                    //    sb.append("&#" + ((int) c) + ";");
-                    //} else
-                    sb.append(c);
-            }
-        }
-        return sb.toString();
-    }
-
     private String GetOrderAddressData(JSONObject orderdata) throws Exception {
 
         DataSource ds = null;
@@ -1267,9 +1291,11 @@ public class ProcessJsonDataReach_3 extends JSonDataFunctions {
                     "select addressconcat, flatname, postofficecode, nvl(othertext,'') as othertext, " +
                             "lowestlevelid, lowestleveltype from ak_owner.ltk_full_addresses_md where addresskey=" + addressId;
 
-            ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("jdbc/AKADMIN"); //eis/DB/AKADMIN
-            conn = ds.getConnection();
+            //ctx = new InitialContext();
+            //ds = (DataSource) ctx.lookup("jdbc/AKADMIN"); //eis/DB/AKADMIN
+            //conn = ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@10.2.88.41:1534:CRASO", "AK_OWNER", "akwow45");
+
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.execute();
             rs = pstmt.getResultSet();

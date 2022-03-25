@@ -1,0 +1,17 @@
+{
+  "secret": "secret",
+  "parcels": {
+    "Internal-ID-1": {
+      "time_to": "aaa",
+      "address": "aaa",
+      "comments": "aaa",
+      "time_from": "aaa",
+      "phone": "aaa",
+      "pallet_count": "aaa",
+      "transport": "aaa",
+      "when": "aaa",
+      "email": "aaa",
+      "parcel_count": "aaa"
+    }
+  }
+}
