@@ -5,6 +5,72 @@ import org.json.JSONObject;
 
 public class JSonDataFunctionsBase {
 
+    // ienākošie dati
+    private String jsonFullData = "";
+
+
+
+    protected JSONObject orderDataFull;
+    protected JSONObject orderData;
+
+    // rezultātam
+    protected JSONObject outData;
+    protected JSONArray outDetailsData;
+    protected JSONArray outOffersData;
+
+    public JSonDataFunctionsBase(String inFullData) {
+        this.jsonFullData = inFullData;
+        this.orderDataFull = new JSONObject(this.jsonFullData);
+    }
+
+    public JSONObject getOrderDataFull() {
+        return this.orderDataFull;
+    }
+
+    public JSONObject getOrderData() {
+        if (null == this.orderData) {
+            this.orderData = this.orderDataFull.getJSONObject("Order");
+        }
+        return this.orderData;
+    }
+
+    public void addFieldToOutDataData(String field, String value) {
+        if (null == outData) {
+            outData = new JSONObject();
+        }
+        this.outData.put(field, value);
+    }
+
+    public void addFieldToOutDetailsDataData(String value, String keyValue) {
+        if (null == outDetailsData) {
+            outDetailsData = new JSONArray();
+        }
+        this.outDetailsData.put(new JSONObject().put("value", value).put("key", keyValue));
+    }
+
+    public JSONArray getOutDetailsData() {
+        if (null == this.outDetailsData) {
+            this.outDetailsData = new JSONArray();
+        }
+        return outDetailsData;
+    }
+
+    public JSONArray getOutOffersData() {
+        if (null == this.outOffersData) {
+            this.outOffersData = new JSONArray();
+        }
+        return outOffersData;
+    }
+
+    public JSONObject getFullOutJsonData() {
+        if (null != this.outDetailsData) {
+            this.outData.put("orderdetails", this.outDetailsData);
+        }
+        if (null != this.outOffersData) {
+            this.orderData.put("orderOffers", this.outOffersData);
+        }
+        return this.outData;
+    }
 
     public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
         JSONArray result = new JSONArray();
@@ -92,6 +158,26 @@ public class JSonDataFunctionsBase {
             }
         }
         return sb.toString();
+    }
+
+    public String FormatDate(String d) {
+        // ir   -> 2020-07-15 10:00:00
+        // vaig -> 15/07/2020 10:00:00
+        String dd1 = d.substring(8, 10);
+        String mm1 = d.substring(5, 7);
+        String yy1 = d.substring(0, 4);
+        String time = d.substring(11, 19);
+        //System.out.println(dd1 + "/" + mm1 + "/" + yy1 + " " + time);
+        return dd1 + "/" + mm1 + "/" + yy1 + " " + time;
+    }
+
+    public String FormatDateShort(String d) {
+        // ir   -> 2020-07-15 10:00:00
+        // vaig -> 15/07/2020 10:00:00
+        String dd1 = d.substring(8, 10);
+        String mm1 = d.substring(5, 7);
+        String yy1 = d.substring(0, 4);
+        return dd1 + "/" + mm1 + "/" + yy1;
     }
 
 }

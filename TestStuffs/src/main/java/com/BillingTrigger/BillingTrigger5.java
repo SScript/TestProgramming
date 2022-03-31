@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * SOAIP-1978 - viss pārtaisīts pa jaunam
  */
-public class BillingTrigger5 extends JSonDataFunctions {
+public class BillingTrigger5 {
 
     public Resp ProcessJsonData(String jsonDataStr) throws Exception {
         Resp result = new Resp();
@@ -25,20 +25,24 @@ public class BillingTrigger5 extends JSonDataFunctions {
             return result;
         }
 
-        String orderedService = GetJsonObjectStringValue(orderdata, "GetJsonObjectStringValue", true);
-        result.OrderedServiceOrigin = orderedService;
+        String orderedService = "";
+        try {
+            orderedService = orderdata.getString("OrderedService");
+            result.OrderedServiceOrigin = orderedService;
+        } catch (Exception e) {result.OrderedServiceOrigin = "";}
 
+        orderedService = "telco";
         switch (orderedService.toUpperCase()) {
             case "TELCO":
-                ProcessTelco pt = new ProcessTelco();
-                result = pt.ProcessForTelco(orderdata);
+                ProcessTelco pt = new ProcessTelco(jsonDataStr);
+                result = pt.ProcessForTelco();
                 break;
             case "ELECTRICITY":
-                ProcessElectricity pe = new ProcessElectricity();
+                ProcessElectricity pe = new ProcessElectricity(jsonDataStr);
                 result = pe.ProcessForElectricity(orderdata);
                 break;
             default:// Split payment
-                ProcessSplitPayment ps = new ProcessSplitPayment();
+                ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr);
                 result = ps.ProcessForSplitPayment(orderdata);
                 break;
         }
