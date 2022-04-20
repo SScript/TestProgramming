@@ -10,12 +10,14 @@ import java.nio.charset.Charset;
 public class BillingTriggerRunner {
     public static void main(String[] args) throws Exception {
 
-        String filename = "BillTriggerInput_N6.json";
+        String filename = "BillingTriggerInput_N7_Telco.json";
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/" + filename);
 
         String longJsonString = IOUtils.toString(fis, "UTF-8");
-        BillingTrigger5 b2 = new BillingTrigger5();
-        Resp res2 = b2.ProcessJsonData(longJsonString);
+        ProcessBillingTrigger b2 = new ProcessBillingTrigger();
+        Resp res2 = b2.ProcessJsonData(longJsonString, "Additional insurance, warranty, Split Payment", "1");
+        System.out.println(res2.RetCode);
+        System.out.println(res2.RetMsg);
         System.out.println(res2.SendJsonStr);
 
         FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/Res_" + filename),

@@ -2,15 +2,12 @@ package com.BillingTrigger;
 
 import org.json.JSONObject;
 
-import java.lang.invoke.SwitchPoint;
-import java.util.Locale;
-
 /**
  * SOAIP-1978 - viss pārtaisīts pa jaunam
  */
-public class BillingTrigger5 {
+public class ProcessBillingTrigger {
 
-    public Resp ProcessJsonData(String jsonDataStr) throws Exception {
+    public Resp ProcessJsonData(String jsonDataStr, String excludeStrs, String containsOrEquals) throws Exception {
         Resp result = new Resp();
         JSONObject orderdata_;
         JSONObject orderdata;
@@ -31,7 +28,7 @@ public class BillingTrigger5 {
             result.OrderedServiceOrigin = orderedService;
         } catch (Exception e) {result.OrderedServiceOrigin = "";}
 
-        orderedService = "telco";
+        //orderedService = "telco";
         switch (orderedService.toUpperCase()) {
             case "TELCO":
                 ProcessTelco pt = new ProcessTelco(jsonDataStr);
@@ -42,8 +39,8 @@ public class BillingTrigger5 {
                 result = pe.ProcessForElectricity(orderdata);
                 break;
             default:// Split payment
-                ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr);
-                result = ps.ProcessForSplitPayment(orderdata);
+                ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr, excludeStrs, containsOrEquals);
+                result = ps.ProcessForSplitPayment();
                 break;
         }
         return result;

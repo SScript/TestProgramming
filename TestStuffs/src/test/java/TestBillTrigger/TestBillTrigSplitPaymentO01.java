@@ -1,7 +1,4 @@
-package com.BillingTrigger.BillTrigTests;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+package TestBillTrigger;
 
 import com.BillingTrigger.ProcessBillingTrigger;
 import com.BillingTrigger.Resp;
@@ -11,7 +8,9 @@ import org.junit.jupiter.api.*;
 
 import java.io.FileInputStream;
 
-public class TestBillTrigTELCO01 {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TestBillTrigSplitPaymentO01 {
 
     public static Resp r = new Resp();
     public static JSONObject obj;
@@ -25,11 +24,10 @@ public class TestBillTrigTELCO01 {
         String longJsonString = IOUtils.toString(fis, "UTF-8");
         ProcessBillingTrigger test = new ProcessBillingTrigger();
         r = test.ProcessJsonData(longJsonString, "", "");
-        try {
-            obj = new JSONObject(r.SendJsonStr);
-        } catch (Exception e) {obj = null;}
+        obj = new JSONObject(r.SendJsonStr);
     }
-/*
+
+    /*
     @BeforeEach
     void LoadTestData() {
         testNumber++;
@@ -39,13 +37,12 @@ public class TestBillTrigTELCO01 {
     @Test
     @DisplayName("Check if is test data loaded")
     void checkOrderIdValue() {
-        //System.out.println(testNumber);
-        assertNotEquals(null, obj);
+        assertEquals("80168000001VzprAAC", obj.getString("orderid"));
     }
 
     @Nested
     @DisplayName("TriggerBilling Telco test 1")
-    class TestTriggerBilTelco1 {
+    class TestTriggerBilSplitPayment001 {
 /*
         @BeforeEach
         void LoadTestDataTelco1() {
@@ -57,7 +54,7 @@ public class TestBillTrigTELCO01 {
         @Test
         @DisplayName("Check field \"orderid\"")
         void checkOrderIdValue() {
-           // System.out.println(testNumber);
+            //System.out.println(testNumber);
             assertEquals("8013N000003rtmOQAQ", obj.getString("orderid"));
         }
 

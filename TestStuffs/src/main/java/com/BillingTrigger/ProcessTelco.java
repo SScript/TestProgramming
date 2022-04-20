@@ -1,7 +1,5 @@
 package com.BillingTrigger;
 
-import org.json.JSONObject;
-
 public class ProcessTelco extends JSonDataFunctions {
 
     public ProcessTelco(String inFullData) throws Exception {
@@ -9,14 +7,19 @@ public class ProcessTelco extends JSonDataFunctions {
         ProcessForTelco();
     }
 
-    public Resp ProcessForTelco() {
+    public Resp ProcessForTelco() throws Exception {
         Resp result = new Resp();
 
 
+        String s = GetOrderItemFieldLevel3(
+                "Telco", "Telco",
+                "Offer",
+                "OrderedServiceType",
+                false);
+        addFieldToOutDetailsDataData(s, "ORD_ORDEREDSERVICETYPE");
 
 
         result.SendJsonStr = getFullOutJsonData().toString();
-
         return result;
     }
 }
