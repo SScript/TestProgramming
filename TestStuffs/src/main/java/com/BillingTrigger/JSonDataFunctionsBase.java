@@ -12,6 +12,7 @@ public class JSonDataFunctionsBase {
 
     protected JSONObject orderDataFull;
     protected JSONObject orderData;
+    protected JSONArray orderDataItems;
 
     // rezultātam
     protected JSONObject outData;
@@ -19,6 +20,8 @@ public class JSonDataFunctionsBase {
     protected JSONArray outOffersData;
 
     protected RequestBaseData baseData;
+
+    protected String AccountAddressId = "";
 
     public JSonDataFunctionsBase(String inFullData) {
         this.jsonFullData = inFullData;
@@ -34,6 +37,17 @@ public class JSonDataFunctionsBase {
             this.orderData = this.orderDataFull.getJSONObject("Order");
         }
         return this.orderData;
+    }
+
+    public JSONArray getOrderDataItems() {
+        if (null == this.orderDataItems) {
+            this.orderDataItems = GetJSONArrayObj(getOrderData(), "OrderItems");
+        }
+        return orderDataItems;
+    }
+
+    public void setOrderDataItems(JSONArray orderDataItems) {
+        this.orderDataItems = orderDataItems;
     }
 
     public void addFieldToOutDataData(String field, String value) {
@@ -74,13 +88,32 @@ public class JSonDataFunctionsBase {
         return this.outData;
     }
 
-    public RequestBaseData getBaseData() throws Exception {
+    public RequestBaseData GetBaseData() throws Exception {
         if (null == baseData) {
             baseData = new RequestBaseData();
+
+            baseData.setCaller(GetJsonObjectStringValue(getOrderDataFull(), "Requester", true));
+
+            baseData.setOrderId(GetJsonObjectStringValue(getOrderData(), "OrderId", true));
+            baseData.setOrderNumber(GetJsonObjectStringValue(getOrderData(), "OrderNumber", true));
+            baseData.setOrderDate(GetJsonObjectStringValue(getOrderData(), "OrderDate", true));
+            baseData.setAccountNo(GetJsonObjectStringValue(getOrderData(), "AccountNo", true));
+            baseData.setBillAccountNumber(GetJsonObjectStringValue(getOrderData(), "BillAccountNumber", true));
+            baseData.setAddressKey(GetJsonObjectStringValue(getOrderData(), "AddressKey", false));
+            baseData.setDownPaymentBillNo(GetJsonObjectStringValue(getOrderData(), "DownPaymentBillNo", false));
+            baseData.setMonthDelay(GetJsonObjectStringValue(getOrderData(), "MonthDelay", false));
+            baseData.setBillActivationDate(GetJsonObjectStringValue(getOrderData(), "BillActivationDate", false));
             baseData.setOrderedService(("".equalsIgnoreCase(GetJsonObjectStringValue(getOrderData(), "OrderedService", false)) )
                     ? "Split payment"
                     : GetJsonObjectStringValue(getOrderData(), "OrderedService", false));
+            baseData.setOrderedServiceType(GetJsonObjectStringValue(getOrderData(), "OrderedServiceType", false));
+            baseData.setRemovalReason(GetJsonObjectStringValue(getOrderData(), "RemovalReason", false));
+            baseData.setOrderReason(GetJsonObjectStringValue(getOrderData(), "OrderReason", false));
+            baseData.setNotes(GetJsonObjectStringValue(getOrderData(), "Notes", false));
+            baseData.setPaymentMode(GetJsonObjectStringValue(getOrderData(), "PaymentMode", false));
+
         }
+
         return baseData;
     }
 
@@ -88,7 +121,7 @@ public class JSonDataFunctionsBase {
         this.baseData = baseData;
     }
 
-    public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
+    public JSONArray GetJSONArrayObj(JSONObject data, String arrName) {
         JSONArray result = new JSONArray();
         try {
             Object orderdataitems_o = data.get(arrName);

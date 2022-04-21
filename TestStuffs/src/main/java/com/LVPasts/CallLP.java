@@ -431,13 +431,21 @@ public class CallLP {
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "zipcode");
             if (!isEmptyOrNull(dat)) {dati.put("zipcode", dat);}
 
-            dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, !isEmptyOrNull(InternalWarehouseId) ? "contact_phone" : "phone");
+            if (!isEmptyOrNull(InternalWarehouseId)) {
+                dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "contact_phone");
+            } else {
+                dat = GetJsonAtrrObjectStringValue(data, "phone");
+            }
             if (!isEmptyOrNull(dat) && (dat.length()!=8)) {
                 dat = dat.substring(dat.length()-8, dat.length());
             }
             if (!isEmptyOrNull(dat)) {dati.put("phone", dat);}
 
-            dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, !isEmptyOrNull(InternalWarehouseId) ? "contact_email" : "email");
+            if (!isEmptyOrNull(InternalWarehouseId)) {
+                dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "contact_email");
+            } else {
+                dat = GetJsonAtrrObjectStringValue(data, "email");
+            }
             if (!isEmptyOrNull(dat)) {dati.put("email", dat);}
 
             dat = GetJsonAtrrObjectStringValue(data, "comments");
@@ -487,7 +495,7 @@ public class CallLP {
             parcels.put(dati);
         }
         obj.put("parcels", parcels);
-
+        System.out.println(obj.toString());
         return jsonToURLEncoding(obj);
     }
 
