@@ -1,1 +1,13 @@
-{"caller":"VLOCITY","orderno":"00614245","ordernotes":"","orderid":"80168000001VzprAAC","orderdetails":[{"value":"Split payment","key":"ORD_ORDEREDSERVICE"}],"orderdate":"01/02/2022 15:27:41"}
+{
+  "caller": "VLOCITY",
+  "orderno": "00614245",
+  "ordernotes": "",
+  "orderid": "80168000001VzprAAC",
+  "orderdetails": [
+    {
+      "value": "Split payment",
+      "key": "ORD_ORDEREDSERVICE"
+    }
+  ],
+  "orderdate": "01/02/2022 15:27:41"
+}

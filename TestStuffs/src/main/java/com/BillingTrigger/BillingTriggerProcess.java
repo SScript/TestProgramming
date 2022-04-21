@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * SOAIP-1978 - viss pārtaisīts pa jaunam
  */
-public class BillingTrigger5 {
+public class BillingTriggerProcess {
 
     public Resp ProcessJsonData(String jsonDataStr) throws Exception {
         Resp result = new Resp();
@@ -31,7 +31,7 @@ public class BillingTrigger5 {
             result.OrderedServiceOrigin = orderedService;
         } catch (Exception e) {result.OrderedServiceOrigin = "";}
 
-        orderedService = "telco";
+        //orderedService = "telco";
         switch (orderedService.toUpperCase()) {
             case "TELCO":
                 ProcessTelco pt = new ProcessTelco(jsonDataStr);

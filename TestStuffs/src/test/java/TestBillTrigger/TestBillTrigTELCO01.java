@@ -2,7 +2,7 @@ package com.BillingTrigger.BillTrigTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.BillingTrigger.BillingTrigger5;
+import com.BillingTrigger.BillingTriggerProcess;
 import com.BillingTrigger.Resp;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -13,7 +13,7 @@ import java.io.FileInputStream;
 public class TestBillTrigTELCO01 {
 
     public static Resp r = new Resp();
-    public static JSONObject o;
+    public static JSONObject obj;
     public static int testNumber = 0;
 
     @BeforeAll
@@ -22,9 +22,9 @@ public class TestBillTrigTELCO01 {
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/" + filename);
 
         String longJsonString = IOUtils.toString(fis, "UTF-8");
-        BillingTrigger5 test = new BillingTrigger5();
+        BillingTriggerProcess test = new BillingTriggerProcess();
         r = test.ProcessJsonData(longJsonString);
-        o = new JSONObject(r.SendJsonStr);
+        obj = new JSONObject(r.SendJsonStr);
     }
 
     @BeforeEach
@@ -37,7 +37,7 @@ public class TestBillTrigTELCO01 {
     @DisplayName("Check if is test data loaded")
     void checkOrderIdValue() {
         System.out.println(testNumber);
-        assertEquals("80168000001VzprAAC", o.getString("orderid"));
+        assertEquals("80168000001VzprAAC", obj.getString("orderid"));
     }
 
     @Nested
@@ -55,14 +55,14 @@ public class TestBillTrigTELCO01 {
         @DisplayName("Check field \"orderid\"")
         void checkOrderIdValue() {
             System.out.println(testNumber);
-            assertEquals("80168000001VzprAAC", o.getString("orderid"));
+            assertEquals("80168000001VzprAAC", obj.getString("orderid"));
         }
 
         @Test
         @DisplayName("Check field \"orderno\"")
         void checkOrderNumberValue() {
             System.out.println(testNumber);
-            assertEquals("00614245", o.getString("orderno"));
+            assertEquals("00614245", obj.getString("orderno"));
         }
 
     }

@@ -25,7 +25,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
     }
 
     public void ProcessDefaultAtrributeData() throws Exception {
-
+        JSONObject orderData = getOrderData();
 
         addFieldToOutDetailsDataData("Split payment", "ORD_ORDEREDSERVICE");
     }

@@ -14,7 +14,7 @@ public class BillingTriggerRunner {
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/" + filename);
 
         String longJsonString = IOUtils.toString(fis, "UTF-8");
-        BillingTrigger5 b2 = new BillingTrigger5();
+        BillingTriggerProcess b2 = new BillingTriggerProcess();
         Resp res2 = b2.ProcessJsonData(longJsonString);
         System.out.println(res2.SendJsonStr);
 

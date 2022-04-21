@@ -5,10 +5,10 @@ import org.json.JSONObject;
 
 public class JSonDataFunctionsBase {
 
+    static final String STR_SPLIT_PAYMENT = "Split payment";
+
     // ienākošie dati
-    private String jsonFullData = "";
-
-
+    protected String jsonFullData;
 
     protected JSONObject orderDataFull;
     protected JSONObject orderData;
@@ -17,6 +17,8 @@ public class JSonDataFunctionsBase {
     protected JSONObject outData;
     protected JSONArray outDetailsData;
     protected JSONArray outOffersData;
+
+    protected RequestBaseData baseData;
 
     public JSonDataFunctionsBase(String inFullData) {
         this.jsonFullData = inFullData;
@@ -70,6 +72,20 @@ public class JSonDataFunctionsBase {
             this.orderData.put("orderOffers", this.outOffersData);
         }
         return this.outData;
+    }
+
+    public RequestBaseData getBaseData() throws Exception {
+        if (null == baseData) {
+            baseData = new RequestBaseData();
+            baseData.setOrderedService(("".equalsIgnoreCase(GetJsonObjectStringValue(getOrderData(), "OrderedService", false)) )
+                    ? "Split payment"
+                    : GetJsonObjectStringValue(getOrderData(), "OrderedService", false));
+        }
+        return baseData;
+    }
+
+    public void setBaseData(RequestBaseData baseData) {
+        this.baseData = baseData;
     }
 
     public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
