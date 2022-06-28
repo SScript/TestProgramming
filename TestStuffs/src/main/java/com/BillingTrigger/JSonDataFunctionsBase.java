@@ -57,6 +57,13 @@ public class JSonDataFunctionsBase {
         this.outData.put(field, value);
     }
 
+    public void addArrFieldToOutDataData(String field, JSONArray value) {
+        if (null == outData) {
+            outData = new JSONObject();
+        }
+        this.outData.put(field, value);
+    }
+
     public void addFieldToOutDetailsDataData(String value, String keyValue) {
         if (null == outDetailsData) {
             outDetailsData = new JSONArray();
@@ -92,6 +99,7 @@ public class JSonDataFunctionsBase {
         if (null == baseData) {
             baseData = new RequestBaseData();
 
+            baseData.setGuid(java.util.UUID.randomUUID().toString());
             baseData.setCaller(GetJsonObjectStringValue(getOrderDataFull(), "Requester", true));
 
             baseData.setOrderId(GetJsonObjectStringValue(getOrderData(), "OrderId", true));
@@ -223,10 +231,14 @@ public class JSonDataFunctionsBase {
     public String FormatDateShort(String d) {
         // ir   -> 2020-07-15 10:00:00
         // vaig -> 15/07/2020 10:00:00
-        String dd1 = d.substring(8, 10);
-        String mm1 = d.substring(5, 7);
-        String yy1 = d.substring(0, 4);
-        return dd1 + "/" + mm1 + "/" + yy1;
+        if (!isEmptyOrNull(d)) {
+            String dd1 = d.substring(8, 10);
+            String mm1 = d.substring(5, 7);
+            String yy1 = d.substring(0, 4);
+            return dd1 + "/" + mm1 + "/" + yy1;
+        } else {
+            return "";
+        }
     }
 
 }

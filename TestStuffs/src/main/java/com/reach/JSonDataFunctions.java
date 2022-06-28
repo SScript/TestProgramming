@@ -212,7 +212,7 @@ public class JSonDataFunctions extends BaseFunctions {
                 productSubTypeFieldval = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
                 productCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
                 orderItemAction = GetJsonAtrrObjectStringValue(d, "OrderItemAction", false);
-                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
+                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && !"PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
                     && !"Disconect".equalsIgnoreCase(orderItemAction)) {
                     nameField2val = GetJsonAtrrObjectStringValue(d, "Name", false);
                     if (!isEmptyOrNull(nameField2val)) {
@@ -243,7 +243,7 @@ public class JSonDataFunctions extends BaseFunctions {
                 productSubTypeFieldval = GetJsonAtrrObjectStringValue(d, "ProductSubType", false);
                 productCode = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
                 orderItemAction = GetJsonAtrrObjectStringValue(d, "OrderItemAction", false);
-                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && "PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
+                if ("Offer".equalsIgnoreCase(productSubTypeFieldval) && !"PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)
                         && "Disconect".equalsIgnoreCase(orderItemAction)) {
                     nameField2val = GetJsonAtrrObjectStringValue(d, "Name", false);
                     if (!isEmptyOrNull(nameField2val)) {
@@ -354,8 +354,8 @@ public class JSonDataFunctions extends BaseFunctions {
         int itemcount = apr.length();
         for (int j = 0; j < itemcount; j++) {
             d = apr.getJSONObject(j);
-            val = GetJsonAtrrObjectStringValue(d, "PromotionName", true);
-            promotionAction = GetJsonAtrrObjectStringValue(d, "PromotionAction", true);
+            val = GetJsonAtrrObjectStringValue(d, "PromotionName", false);
+            promotionAction = GetJsonAtrrObjectStringValue(d, "PromotionAction", false);
             if (!isEmptyOrNull(val) && ("New".equalsIgnoreCase(promotionAction) || "Existing".equalsIgnoreCase(promotionAction))) {
                 finalResSum = finalResSum + Double.valueOf(VLOrderTotalTotal);
             }
@@ -502,6 +502,70 @@ public class JSonDataFunctions extends BaseFunctions {
             d = orderdataitems.getJSONObject(i);
             fieldval = GetJsonAtrrObjectStringValue(d, field, false);
             if (!fieldValue.equalsIgnoreCase(fieldval)) {return "true";}
+        }
+
+        return res;
+    }
+
+    public ResValues isOrderItemAtrrFieldWithValue(JSONObject itemData, String field, String value) throws Exception {
+        ResValues res = new ResValues();
+        String r = "";
+        JSONObject itemattrdata = null;
+        try {
+            JSONObject atrr = itemData.getJSONObject("JSONAttribute");
+            Iterator<String> keys = atrr.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONArray a = atrr.getJSONArray(key);
+                int itemattrcount = a.length();
+                for (int j = 0; j < itemattrcount; j++) {
+                    itemattrdata = a.getJSONObject(j);
+                    r = GetJsonAtrrObjectStringValue(itemattrdata, field, false);
+                    if (value.equalsIgnoreCase(r)) {
+                        res.RetBoolValue = true;
+                        res.RetString1Value = GetJsonAtrrObjectStringValue(itemattrdata, "attributeuniquecode__c", false);
+                        return res;
+                    }
+                }
+            } // end while
+
+        } catch (Exception e) {
+            res = new ResValues();
+        }
+
+        return res;
+    }
+
+    public ResValues isOrderWithItemAtrrFieldWithValue(JSONArray orderdataitems, String field, String value) throws Exception {
+        ResValues res = new ResValues();
+        String r = "";
+        JSONObject itemdata = null;
+        JSONObject itemattrdata = null;
+
+        int itemcount = orderdataitems.length();
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = orderdataitems.getJSONObject(i);
+                try {
+                    JSONObject atrr = itemdata.getJSONObject("JSONAttribute");
+                    Iterator<String> keys = atrr.keys();
+                    while (keys.hasNext()) {
+                        String key = keys.next();
+                        JSONArray a = atrr.getJSONArray(key);
+                        int itemattrcount = a.length();
+                        for (int j = 0; j < itemattrcount; j++) {
+                            itemattrdata = a.getJSONObject(j);
+                            r = GetJsonAtrrObjectStringValue(itemattrdata, field, false);
+                            if (value.equalsIgnoreCase(r)) {
+                                res.RetBoolValue = true;
+                                res.RetString1Value = GetJsonAtrrObjectStringValue(itemattrdata, "attributeuniquecode__c", false);
+                                return res;
+                            }
+                        }
+                    }
+
+                } catch (Exception e) {
+                    res = new ResValues();
+                }
         }
 
         return res;

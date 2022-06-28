@@ -26,6 +26,7 @@ import javax.net.ssl.SSLSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.CDL;
 
 public class CallLP {
 
@@ -88,6 +89,7 @@ public class CallLP {
                     // ResponseStr: [{"country_id":"Valsts nav pareizi nor\u0101d\u012bta (j\u0101nor\u0101da Latvija)"}] -> not ok
                     // ResponseStr: {"Internal-ID-1":{"station_id":"Nor\u0101d\u012btais pakom\u0101ta indekss netika atrasts"}} -> not ok
                     //  ResponseStr: ["CE723011323LV"] - ok
+                    // ResponseStr: {"Internal-ID-1":"CE723100981LV"} ok
                     if (!result.ResponseStr.startsWith("[\"CE")) {
 
                         // {"Internal-ID-1":"CE723100981LV"}
@@ -106,8 +108,9 @@ public class CallLP {
                                 }
                             } else {
                                 JSONObject obj = new JSONObject(result.ResponseStr);
-                                result.respMsg = obj.getString("Internal-ID-1");
-                                result.ResponseStr = "[" + obj.getString("Internal-ID-1") + "]";
+                                result.respMsg = "OK"; //obj.getString("Internal-ID-1");
+                                result.ResponseStr = "[\"" + obj.getString("Internal-ID-1") + "\"]";
+                                result.ParcelId = obj.getString("Internal-ID-1");
                                 result.respCode = "1";
                             }
                         } else {
@@ -130,7 +133,7 @@ public class CallLP {
                         result.respCode = "1";
                         result.respMsg = "OK";
                         JSONArray o = new JSONArray(result.ResponseStr);
-                        result.ParcelId = (String)o.get(0);
+                        result.ParcelId = CDL.rowToString(o);
 
                     }
                 } else {
@@ -395,8 +398,8 @@ public class CallLP {
             }
 
             if (isEmptyOrNull(InternalWarehouseId)) {
-                dat = GetJsonAtrrObjectStringValue(data, "customerName");
-                if (!isEmptyOrNull(dat)) {dati.put("company_name", dat);}
+                dat1 = GetJsonAtrrObjectStringValue(data, "customerName");
+                if (!dat.equalsIgnoreCase(dat1)) {dati.put("company_name", dat);}
             }
 
             //dat = GetJsonAtrrObjectStringValue(data, "country_id");
@@ -487,7 +490,7 @@ public class CallLP {
             if ("LVPasts Pickup Point".equalsIgnoreCase(dat)) {
                 dati.put("pickup", 1);
                 dat1 = GetJsonAtrrObjectStringValue(data, "pickUpId");
-                dati.put("pickup_zipcode", dat1);
+                dati.put("pickup_zipcode", (!dat.startsWith("LV-") ? "LV-"+dat1 : dat1));
             }
 
             dati.put("sms_invite", 1);

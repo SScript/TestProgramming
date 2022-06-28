@@ -48,6 +48,7 @@ public class BillingTrigger4 {
 
         // TriggerBilling gadījumā ir prasība likt visus parametrus, ja mav vērtība, tad liek tukšu ""
         jsonData
+                .put("ORD_REQUEST_ID", java.util.UUID.randomUUID().toString())
                 .put("orderid", GetOrderFieldFirstLEvelValue("OrderId", true))
                 .put("orderno", GetOrderFieldFirstLEvelValue("OrderNumber", true))
                 .put("orderdate", FormatDate(GetOrderFieldFirstLEvelValue("OrderDate", true)))
@@ -287,19 +288,35 @@ public class BillingTrigger4 {
                     "ATT_ELE_INCURRENT_VAL",
                     false);
             orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_AMPERAGE"));
-            //s = GetOrderItemFieldAtrrrObject(
-            //        "Electricity", "Electricity",
-            //        "TechnicalObject",
-            //        "ORD_PRICE_KWH",
-            //        false);
-            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_PRICE_KWH"));
         }
+
+        orderAtrrItems.put(new JSONObject().put("value", GetUnicalOrederIdCount(paymentMode)).put("key", "ORD_SERVICE_COUNT"));
         //-----------
 
         jsonData.put("orderdetails", orderAtrrItems);
         result.SendJsonStr = jsonData.toString();
 
         return result;
+    }
+
+    private int GetUnicalOrederIdCount(String paymentMode) throws Exception {
+        int res = 0;
+        JSONObject itemdat = null;
+        String serviceId = "";
+        int itemcount = orderdataitems.length();
+        List<String> mylist = new ArrayList<>();
+
+        for (int i = 0; i < itemcount; i++) {
+            itemdat = orderdataitems.getJSONObject(i);
+            serviceId = GetJsonObjectStringValue(itemdat, "ServiceId", false);
+            if (!isEmptyOrNull(serviceId)) {
+                mylist.add(serviceId);
+            }
+        }
+        List<String> distinctElements = mylist.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        return distinctElements.size();
     }
 
     private JSONArray GetJSONArrObj(JSONObject data, String arrName) {

@@ -33,7 +33,7 @@ public class KafkaTest01 {
 
 
     public static void main(String[] args) throws Exception {
-        KafkaConsumer<String, String> consumer;
+        KafkaConsumer<String, String> consumer = null;
 
         try{
             ConsumerRecords<String, String> records;

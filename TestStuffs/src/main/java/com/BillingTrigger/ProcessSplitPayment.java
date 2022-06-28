@@ -24,13 +24,16 @@ public class ProcessSplitPayment extends JSonDataFunctions {
         switch (GetBaseData().getPaymentMode()) {
             case "Split Payment":
                 addFieldToOutDetailsDataData("SP", "ORD_PAYMENT_TYPE");
+                addFieldToOutDetailsDataData(GetOrderItemLevelValue("SplitPayment", "ServiceId"), "serviceno");
                 break;
             case "Full Payment":
                 addFieldToOutDetailsDataData(GetBaseData().getOrderNumber(), "serviceno");
                 addFieldToOutDetailsDataData("FP", "ORD_PAYMENT_TYPE");
+                addFieldToOutDetailsDataData(GetBaseData().getOrderNumber(), "serviceno");
                 break;
             default:
                 addFieldToOutDetailsDataData("", "ORD_PAYMENT_TYPE");
+                addFieldToOutDetailsDataData("", "serviceno");
                 break;
         }
         SetOrderProductTypeList(this.excludeStrs, this.containsOrEquals);
@@ -42,8 +45,155 @@ public class ProcessSplitPayment extends JSonDataFunctions {
         addFieldToOutDetailsDataData(FormatDownPaymentsBillNo(), "ORD_DP_BILL_NO");
 
         addFieldToOutDetailsDataData(GetBaseData().getOrderedServiceType(), "ORD_ORDEREDSERVICETYPE");
+        // ORD_BILLING_ACTIVATION_DATE
+        addFieldToOutDetailsDataData(FormatDateShort(GetBaseData().getBillActivationDate()), "ORD_BILLING_ACTIVATION_DATE");
 
+        if ("Change".equals(GetBaseData().getOrderedServiceType()) && getOrderDataItems().length() > 0) {
+            //ProcessIfOrderedServiceTypeIsChange("ORD_CE_CANCEL_FLAG");
+            addFieldToOutDetailsDataData(ProcessIfOrderedServiceTypeIsChange(), "ORD_CE_CANCEL_FLAG");
+        } else {
+            addFieldToOutDetailsDataData("", "ORD_CE_CANCEL_FLAG");
+        }
+        addFieldToOutDetailsDataData(GetBaseData().getRemovalReason(), "ORD_REASON_ID");
+
+        //"OrderItemId", "ORD_ORDERITEMID"
+        GetOrderItemLevelAtrrValue("SplitPayment", "OrderItemId", "ORD_ORDERITEMID", true);
+
+        // CE Restructuring.PaymentDelayPercents
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Atlikšanas procenti", "ORD_PAYMENT_DELAY_PERCENT");
+        // CE Restructuring.PaymentDelayMonths
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Atlikšanas mēnešu skaits", "ORD_PAYMENT_DELAY_MONTHS");
+        // CE Restructuring.RepayMonths
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Uzkrāto summu izmaksa mēnešos", "ORD_REPAY_MONTHS");
+
+        GetOrderItemLevelAtrrValue("Shipping", "AccountingCode", "ORD_COURIERPRODUCTID", false);
+        GetOrderItemLevelAtrrValue("Shipping", "OneTimeCharge", "ORD_COURIERCHARGE", false);
+        GeOrderItemsDinamicAtrrValueByProductType("PersonalLiabilityInsurance", "Term", "ORD_CTA_MONTHS");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Warranty Delayed Months", "ORD_CTA_MONTHS_DELAY");
+        GetOrderItemLevelAtrrValue("SplitPayment", "OneTimeCharge", "ORD_FIRST_PAYMENT", true);
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Term", "ORD_MONTHS");
+
+        // ORD_MONTH_DELAY
+        addFieldToOutDetailsDataData(GetBaseData().getMonthDelay(), "ORD_ORDEREDSERVICETYPE");
+
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Term", "ORD_INSURANCE_MONTHS");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Term", "ORD_WARRANTY_MONTHS");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Total Insurance", "ORD_INSURANCE_SUM");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Delayed Months-Insurance", "ORD_INSURANCE_MONTHS_DELAY");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Total Warranty", "ORD_WARRANTY_SUM");
+        GeOrderItemsDinamicAtrrValueByProductType("SplitPayment", "Delayed Months-Warranty", "ORD_WARRANTY_MONTHS_DELAY");
+
+        String orderedServiceType = GetJsonObjectStringValue((JSONObject) getOrderDataItems().get(0), "OrderedServiceType", false);
+        GetOrderItemLevelWithActionVAlue("ORD_PAYMENT_METHOD", "ORD_PAYMENT_METHOD", "Remove".equalsIgnoreCase(orderedServiceType));
+        GetOrderItemLevelWithActionVAlue("ORD_PRICE_TYPE", "ORD_PRICE_TYPE", "Remove".equalsIgnoreCase(orderedServiceType));
+        GetOrderItemLevelWithActionVAlue("ORD_LINE_ID", "ORD_LINE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
+        GetOrderItemLevelWithActionVAlue("ORD_PRICE_ID", "ORD_PRICE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
+        GetOrderItemLevelWithActionVAlue("ORD_CONTRACT_LENGTH", "ORD_CONTRACT_LENGTH", "Remove".equalsIgnoreCase(orderedServiceType));
+
+        // return full result
+        result.SendJsonStr0 = getFullOutJsonData().toString();
         return result;
+    }
+
+
+    private void GetOrderItemLevelWithActionVAlue(String jsonfield, String field, boolean orderedServiceTypeRemove) {
+        // ja <OrderedServiceType> nav  'Remove', tad sekojošie dinamiskie parametri tiks aizpildīti no OrderItem ar <ProductSubType> = 'Plan'
+        // un ar <OrderItemAction> = 'ADD', ja <OrderedServiceType> ir 'Remove', tad no OrderItem ar <OrderItemAction> = 'Disconnect'
+        int itemcount = getOrderDataItems().length();
+        String orderItemAction = "";
+        String prdSubType = "";
+        String val = "";
+        JSONObject itemdata = null;
+
+        // ja <OrderedServiceType> ir  'Remove'
+        if (orderedServiceTypeRemove) {
+            //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("MonthDelay", "ORD_MONTH_DELAY", false));
+            for (int i = 0; i < itemcount; i++) {
+                itemdata = getOrderDataItems().getJSONObject(i);
+                try {
+                    orderItemAction = GetJsonObjectStringValue(itemdata, "OrderItemAction", false);
+                    prdSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
+                    if ("Disconnect".equalsIgnoreCase(orderItemAction) && "Plan".equalsIgnoreCase(prdSubType)) {
+                        try {
+                            val = GetJsonObjectStringValue(itemdata, jsonfield, false);
+                        } catch (Exception e) {}
+                        addFieldToOutDetailsDataData(val, field);
+                        //orderAtrrItems.put(new JSONObject().put("value", val).put("key", field));
+                        break;
+                    }
+                } catch (Exception e) {}
+            }
+        } else {
+            // ja <OrderedServiceType> nav  'Remove'
+            for (int i = 0; i < itemcount; i++) {
+                itemdata = getOrderDataItems().getJSONObject(i);
+                try {
+                    orderItemAction = GetJsonObjectStringValue(itemdata, "OrderItemAction", false);
+                    prdSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
+                    if ("ADD".equalsIgnoreCase(orderItemAction) && "Plan".equalsIgnoreCase(prdSubType)) {
+                        try {
+                            val = GetJsonObjectStringValue(itemdata, jsonfield, false);
+                        } catch (Exception e) {
+                        }
+                        addFieldToOutDetailsDataData(val, field);
+                        //orderAtrrItems.put(new JSONObject().put("value", val).put("key", field));
+                        break;
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    private String ProcessIfOrderedServiceTypeIsChange() throws Exception {
+        /*
+        (SOAIP-1110) Ja <OrderedServiceType> = 'Change' un ir kaut viens OrderItem ar <OrderItemSubType> = 'Delete Insurance/Warranty' un:
+        a. Orderī ir šādi OrderItem  gan ar <ProductType> = 'Warranty', gan ar <ProductType> = 'Insurance' (jāņem vērā tikai tiek OrderItem, kuriem <OrderItemSubType> = 'Delete Insurance/Warranty'),
+            tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'WI';
+        b. ja atbilstošiem OrderItem  <ProductType> ir tikai 'Warranty', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'W';
+        b. ja atbilstošiem OrderItem  <ProductType> ir tikai 'Insurance', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'I'.
+        Ja ir cits <OrderedServiceType> vai nav OrderItem ar atbilstošu <OrderItemSubType>, tad tiek pievienots dinamiskais parametrs ar key =ORD_CE_CANCEL_FLAG un tukšu vērtību.
+        */
+        String val = "";
+
+        int itemcount = getOrderDataItems().length();
+        int counterW = 0;
+        int counterI = 0;
+        String orderItemSubType = "";
+        Boolean isFoundOrderItemSubType = false;
+        String productType = "";
+
+        JSONObject itemdata = null;
+        for (int i = 0; i < itemcount; i++) {
+            itemdata = getOrderDataItems().getJSONObject(i);
+            try {
+                orderItemSubType = GetJsonObjectStringValue(itemdata, "OrderSubType", false);
+                if ("Delete Insurance/Warranty".equals(orderItemSubType)) {
+                    isFoundOrderItemSubType = true;
+                    break;
+                }
+            } catch (Exception e) {}
+        }
+
+        // ir kaut viens OrderItem ar <OrderSubType> = 'Delete Insurance/Warranty'
+        if (isFoundOrderItemSubType) {
+            for (int i = 0; i < itemcount; i++) {
+                itemdata = getOrderDataItems().getJSONObject(i);
+                productType = GetJsonObjectStringValue(itemdata, "ProductType", false);
+                if ("Warranty".equals(productType)) {
+                    counterW++;
+                }
+                if ("Insurance".equals(productType)) {
+                    counterI++;
+                }
+            }
+        }
+
+        if (counterW > 0 && counterI > 0) {val = "WI";}
+        if (counterW > 0 && counterI == 0) {val = "W";}
+        if (counterW == 0 && counterI > 0) {val = "I";}
+
+        return val;
     }
 
     private void SetOrderProductTypeList(String excludeStrs, String containsOrEquals) {

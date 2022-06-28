@@ -100,8 +100,8 @@ public class BillingTrigger4_1 {
                         break;
                     case "Full Payment":
                         //orderAtrrItems.put(new JSONObject().put("value", "FP").put("key", "ORD_PAYMENT_TYPE"));
-                        orderAtrrItems.put(new JSONObject().put("value", GetOrderFieldFirstLEvelValue("OrderNumber", true)).put("key", "serviceno"));
-                        jsonData.put("serviceno", GetOrderFieldFirstLEvelValue("OrderNumber", true));
+                        //orderAtrrItems.put(new JSONObject().put("value", GetOrderFieldFirstLEvelValue("OrderNumber", true)).put("key", "serviceno"));
+                        //jsonData.put("serviceno", GetOrderFieldFirstLEvelValue("OrderNumber", true));
                         // SOAIP-1950 full payment gadījumā vajadzēja serviceno padot Vlocity header līmenī
                         break;
                     default:
@@ -143,45 +143,45 @@ public class BillingTrigger4_1 {
         }
 
         // saliekam atribūtus
-        orderAtrrItems.put(GetOrderFirstLevelAtrrValue("AccountNo", "ORD_CUSTOMERNO", true));
-        orderAtrrItems.put(GetOrderFirstLevelAtrrValue("BillAccountNumber", "ORD_BILLINGACCOUNTNO", true));
+        //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("AccountNo", "ORD_CUSTOMERNO", true));
+        //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("BillAccountNumber", "ORD_BILLINGACCOUNTNO", true));
 
         // jābūt formātā ‘DD/MM/YYYY’. Ienākošias - YYYY-MM-DD.
         if ("Split payment".equalsIgnoreCase(orderedService)) {
-            s = GetOrderFieldFirstLEvelValue("BillActivationDate", true);
+            //s = GetOrderFieldFirstLEvelValue("BillActivationDate", true);
         } else {
             // jānem no "Electricity.RootObject.BillActivationDate"
-            s = GetOrderItemFieldRootObject(
-                    "Electricity", "Electricity",
-                    "RootObject",
-                    "BillActivationDate",
-                    true);
+            //s = GetOrderItemFieldRootObject(
+            //        "Electricity", "Electricity",
+           //         "RootObject",
+            //        "BillActivationDate",
+            //        true);
         }
         if (!"".equals(s)) {
-            orderAtrrItems.put(new JSONObject().put("value", FormatDateShort(s)).put("key", "ORD_BILLING_ACTIVATION_DATE"));
+            //orderAtrrItems.put(new JSONObject().put("value", FormatDateShort(s)).put("key", "ORD_BILLING_ACTIVATION_DATE"));
         } else {
-            orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_BILLING_ACTIVATION_DATE"));
+            //orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_BILLING_ACTIVATION_DATE"));
         }
 
         //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("OrderedService", "ORD_ORDEREDSERVICE"));
         //SOAIP-1821 : DT. Trigger billing (SOA_164) - ja <OrderedService> ir 'Split Payment' , tad tiek pievienota tukša struktūra "orderOffers".
         //if ("Split payment".toUpperCase().equals(orderedService.toUpperCase())) {
-        jsonData.put("orderOffers", ProcessOrderPricing());
+          //jsonData.put("orderOffers", ProcessOrderPricing());
         //}
 
         if ("Split payment".toUpperCase().equals(orderedService.toUpperCase())) {
             //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("OrderedServiceType", "ORD_ORDEREDSERVICETYPE", false));
-            orderedServiceType = GetOrderFieldFirstLEvelValue("OrderedServiceType", true);
+           // orderedServiceType = GetOrderFieldFirstLEvelValue("OrderedServiceType", true);
 
             // (SOAIP-1110) Ja <OrderedServiceType> = 'Change'
             if ("Change".equals(orderedServiceType) && isOrderItems) {
-                ProcessIfOrderedServiceTypeIsChange("ORD_CE_CANCEL_FLAG");
+                //ProcessIfOrderedServiceTypeIsChange("ORD_CE_CANCEL_FLAG");
             } else {
-                orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_CE_CANCEL_FLAG"));
+                //orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_CE_CANCEL_FLAG"));
             }
 
         }else {
-            orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_CE_CANCEL_FLAG"));
+            //orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_CE_CANCEL_FLAG"));
             //s = GetOrderItemFieldRootObject(
             //        "Electricity", "Electricity",
             //        "RootObject",
@@ -192,101 +192,100 @@ public class BillingTrigger4_1 {
 
         //"RemovalReason", "ORD_REASON_ID"
         if ("Split payment".equalsIgnoreCase(orderedService)) {
-            s = GetOrderFieldFirstLEvelValue("RemovalReason", false);
+            //s = GetOrderFieldFirstLEvelValue("RemovalReason", false);
         } else {
             // jānem no "Electricity.RootObject.BillActivationDate"
-            s = GetOrderItemFieldRootObject(
-                    "Electricity", "Electricity",
-                    "RootObject",
-                    "RemovalReason",
-                    false);
+            //s = GetOrderItemFieldRootObject(
+            //        "Electricity", "Electricity",
+            //        "RootObject",
+            //        "RemovalReason",
+           //         false);
         }
         if (!"".equals(s)) {
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_REASON_ID"));
+            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_REASON_ID"));
         } else {
-            orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_REASON_ID"));
+            //orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_REASON_ID"));
         }
 
         //"OrderItemId", "ORD_ORDERITEMID"
         if ("Split payment".equalsIgnoreCase(orderedService)) {
-            GetOrderItemLevelAtrrValue("SplitPayment", "OrderItemId", "ORD_ORDERITEMID", true);
+            //GetOrderItemLevelAtrrValue("SplitPayment", "OrderItemId", "ORD_ORDERITEMID", true);
             //s = GetOrderFieldFirstLEvelValue("OrderItemId", true);
         } else {
             // jānem no "Electricity.RootObject.BillActivationDate"
-            s = GetOrderItemFieldRootObject(
-                    "Electricity", "Electricity",
-                    "RootObject",
-                    "OrderItemId",
-                    true);
+            //s = GetOrderItemFieldRootObject(
+            //        "Electricity", "Electricity",
+            //        "RootObject",
+            //        "OrderItemId",
+            //        true);
             if (!"".equals(s)) {
-                orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_ORDERITEMID"));
+                //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_ORDERITEMID"));
             } else {
-                orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_ORDERITEMID"));
+                //orderAtrrItems.put(new JSONObject().put("value", "").put("key", "ORD_ORDERITEMID"));
             }
         }
         //-----------
         if ("Split payment".equalsIgnoreCase(orderedService)) {
             // CE Restructuring.PaymentDelayPercents
-            GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas procenti", "ORD_PAYMENT_DELAY_PERCENT");
+            //GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas procenti", "ORD_PAYMENT_DELAY_PERCENT");
             // CE Restructuring.PaymentDelayMonths
-            GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas mēnešu skaits", "ORD_PAYMENT_DELAY_MONTHS");
+            //GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Atlikšanas mēnešu skaits", "ORD_PAYMENT_DELAY_MONTHS");
             // CE Restructuring.RepayMonths
-            GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Uzkrāto summu izmaksa mēnešos", "ORD_REPAY_MONTHS");
+            //GetOrderItemLevelAtrrDinamicValue("CE Restructuring", "Uzkrāto summu izmaksa mēnešos", "ORD_REPAY_MONTHS");
 
-            GetOrderItemLevelAtrrValue("Shipping", "AccountingCode", "ORD_COURIERPRODUCTID", false);
-            GetOrderItemLevelAtrrValue("Shipping", "OneTimeCharge", "ORD_COURIERCHARGE", false);
-            GetOrderItemLevelAtrrDinamicValue("PersonalLiabilityInsurance", "Term", "ORD_CTA_MONTHS");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Warranty Delayed Months", "ORD_CTA_MONTHS_DELAY");
-            GetOrderItemLevelAtrrValue("SplitPayment", "OneTimeCharge", "ORD_FIRST_PAYMENT", true);
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_MONTHS");
-            orderAtrrItems.put(GetOrderFirstLevelAtrrValue("MonthDelay", "ORD_MONTH_DELAY", false));
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_INSURANCE_MONTHS");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_WARRANTY_MONTHS");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Total Insurance", "ORD_INSURANCE_SUM");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Delayed Months-Insurance", "ORD_INSURANCE_MONTHS_DELAY");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Total Warranty", "ORD_WARRANTY_SUM");
-            GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Delayed Months-Warranty", "ORD_WARRANTY_MONTHS_DELAY");
+            //GetOrderItemLevelAtrrValue("Shipping", "AccountingCode", "ORD_COURIERPRODUCTID", false);
+            //GetOrderItemLevelAtrrValue("Shipping", "OneTimeCharge", "ORD_COURIERCHARGE", false);
+            //GetOrderItemLevelAtrrDinamicValue("PersonalLiabilityInsurance", "Term", "ORD_CTA_MONTHS");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Warranty Delayed Months", "ORD_CTA_MONTHS_DELAY");
+            //GetOrderItemLevelAtrrValue("SplitPayment", "OneTimeCharge", "ORD_FIRST_PAYMENT", true);
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_MONTHS");
+            //orderAtrrItems.put(GetOrderFirstLevelAtrrValue("MonthDelay", "ORD_MONTH_DELAY", false));
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_INSURANCE_MONTHS");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Term", "ORD_WARRANTY_MONTHS");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Total Insurance", "ORD_INSURANCE_SUM");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Delayed Months-Insurance", "ORD_INSURANCE_MONTHS_DELAY");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Total Warranty", "ORD_WARRANTY_SUM");
+            //GetOrderItemLevelAtrrDinamicValue("SplitPayment", "Delayed Months-Warranty", "ORD_WARRANTY_MONTHS_DELAY");
 
         }
 
 
         if (!"Split payment".equalsIgnoreCase(orderedService) && isOrderItems) {
-            orderedServiceType = GetJsonObjectStringValue((JSONObject) orderdataitems.get(0), "OrderedServiceType", false);
-            GetOrderItemLevelWithActionVAlue("ORD_PAYMENT_METHOD", "ORD_PAYMENT_METHOD", "Remove".equalsIgnoreCase(orderedServiceType));
-            GetOrderItemLevelWithActionVAlue("ORD_PRICE_TYPE", "ORD_PRICE_TYPE", "Remove".equalsIgnoreCase(orderedServiceType));
-            GetOrderItemLevelWithActionVAlue("ORD_LINE_ID", "ORD_LINE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
-            GetOrderItemLevelWithActionVAlue("ORD_PRICE_ID", "ORD_PRICE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
-            GetOrderItemLevelWithActionVAlue("ORD_CONTRACT_LENGTH", "ORD_CONTRACT_LENGTH", "Remove".equalsIgnoreCase(orderedServiceType));
-
+            //orderedServiceType = GetJsonObjectStringValue((JSONObject) orderdataitems.get(0), "OrderedServiceType", false);
+            //GetOrderItemLevelWithActionVAlue("ORD_PAYMENT_METHOD", "ORD_PAYMENT_METHOD", "Remove".equalsIgnoreCase(orderedServiceType));
+            //GetOrderItemLevelWithActionVAlue("ORD_PRICE_TYPE", "ORD_PRICE_TYPE", "Remove".equalsIgnoreCase(orderedServiceType));
+            //GetOrderItemLevelWithActionVAlue("ORD_LINE_ID", "ORD_LINE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
+            //GetOrderItemLevelWithActionVAlue("ORD_PRICE_ID", "ORD_PRICE_ID", "Remove".equalsIgnoreCase(orderedServiceType));
+            //GetOrderItemLevelWithActionVAlue("ORD_CONTRACT_LENGTH", "ORD_CONTRACT_LENGTH", "Remove".equalsIgnoreCase(orderedServiceType));
             // "ORD_PRICE_KWH"
             // If <OrderedService> nav 'Split Payment', tad tiek pievienots dinamiskais parametrs ar key = 'ORD_PRICE_KWH'
             // un value - tiek noteikta no OrderItem ar <ProductSubType> = 'Plan' un ar <OrderItemAction> = 'ADD', OrderPricing ieraksta ar <Source> = 'Base':
             //ja VATExclusive = 'N', tad value = round(<OrderItem.OrderPricing.Amount> devide with (1.<OrderItem.OrderPricing.VatRate>),2)
             //pretejā gadijumā - value = <OrderItem.OrderPricing.Amount>
-            s = GetORD_PRICE_KWHValue();
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_PRICE_KWH"));
+            //s = GetORD_PRICE_KWHValue();
+            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_PRICE_KWH"));
         }
 
         if ("Electricity".equalsIgnoreCase(orderedService)) {
             // jānem no "Electricity.RootObject.BillActivationDate"
-            s = GetOrderItemFieldAtrrrObject(
-                    "Electricity", "Electricity",
-                    "TechnicalObject",
-                    "ATT_ELE_CONSUMP",
-                    false);
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_AVG_CONS_KWH"));
-            s = GetOrderItemFieldAtrrrObject(
-                    "Electricity", "Electricity",
-                    "TechnicalObject",
-                    "ATT_ELE_ST_TRF",
-                    false);
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_ST_TP_CODE"));
-            s = GetOrderItemFieldAtrrrObject(
-                    "Electricity", "Electricity",
-                    "TechnicalObject",
-                    "ATT_ELE_INCURRENT_VAL",
-                    false);
-            orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_AMPERAGE"));
+            //s = GetOrderItemFieldAtrrrObject(
+           //         "Electricity", "Electricity",
+            //        "TechnicalObject",
+            //        "ATT_ELE_CONSUMP",
+            //        false);
+            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_AVG_CONS_KWH"));
+            //s = GetOrderItemFieldAtrrrObject(
+            //        "Electricity", "Electricity",
+            //        "TechnicalObject",
+            //        "ATT_ELE_ST_TRF",
+            //        false);
+            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_ST_TP_CODE"));
+            //s = GetOrderItemFieldAtrrrObject(
+            //        "Electricity", "Electricity",
+            //        "TechnicalObject",
+            //        "ATT_ELE_INCURRENT_VAL",
+           //         false);
+            //orderAtrrItems.put(new JSONObject().put("value", s).put("key", "ORD_AMPERAGE"));
             //s = GetOrderItemFieldAtrrrObject(
             //        "Electricity", "Electricity",
             //        "TechnicalObject",
@@ -553,66 +552,77 @@ public class BillingTrigger4_1 {
             String ORDER_LINE_TYPE = "";
             int typeDcount = 0;
             itemdata = orderdataitems.getJSONObject(i);
+            Boolean addline = true;
             try {
-                // orderpricing var būt masīvs
-                JSONArray pricdata = GetJSONArrObj(itemdata, "OrderPricing");
-                int itempriccount = pricdata.length();
-                for (int j = 0; j < itempriccount; j++) {
-                    objOrdPricing = pricdata.getJSONObject(j);
-                    String sourcestr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
-                    String actionstr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
-
-                    String orderedServiceType = GetJsonObjectStringValue(itemdata.get("OrderedServiceType"));
-                    if ("Promotion".equalsIgnoreCase(sourcestr)) {
-
-                        ORDER_LINE_PLAN_CODE_VALUE = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
-                        ORDER_LINE_PACKAGE_CODE = GetJsonObjectStringValue(objOrdPricing, "OCPPackageCode", false);
-                        ORDER_LINE_PROMOTION_UOM = GetJsonObjectStringValue(objOrdPricing, "TimePlanUnit", false);
-                        ORDER_LINE_PROMOTION_UOM = ORDER_LINE_PROMOTION_UOM.substring(0,1);  // Translate Day -> D | Month -> M
-
-
-                    } else if ("Base".equalsIgnoreCase(sourcestr)){
-                        ORDER_LINE_PLAN_CODE_VALUE = getUnicornPlanCode(orderdataitems, orderedServiceType);
-                        ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
-                    } else {
-                        ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                String orderItemSubType = GetJsonObjectStringValue(itemdata, "OrderSubType", false);
+                String orderItemAction = GetJsonObjectStringValue(itemdata, "OrderItemAction", false);
+                String productSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
+                if ("Tariff Change".equalsIgnoreCase(orderItemSubType)) {
+                    if ("Disconnect".equalsIgnoreCase(orderItemAction) && "Plan".equalsIgnoreCase(productSubType)) {
+                        addline = false;
                     }
-                    ORDER_LINE_TYPE = TranslateOrderPricingSource(GetJsonObjectStringValue(objOrdPricing, "Source", false), objOrdPricing);
-                    if ("D".equalsIgnoreCase(ORDER_LINE_TYPE)) {
-                        typeDcount++;
-                    }
-                    offerPriceObj.put(
-                            new JSONObject()
-                                    .put("ORDER_LINE_ITEM", "D".equalsIgnoreCase(ORDER_LINE_TYPE)
-                                            ? GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false) + "_" + typeDcount
-                                            : GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false))
-                                    .put("ORDER_LINE_PACKAGE_CODE", ORDER_LINE_PACKAGE_CODE)
-                                    .put("ORDER_LINE_PLAN_CODE", ORDER_LINE_PLAN_CODE_VALUE)
-                                    .put("ORDER_LINE_PRODUCT_CODE", GetJsonObjectStringValue(itemdata, "UnicornProductCode", false))
-                                    .put("ORDER_LINE_COMPONENT_CODE", GetJsonObjectStringValue(itemdata, "UnicornComponentCode", false))
-                                    .put("ORDER_LINE_SPECIAL_DISCOUNT_CODE", GetJsonObjectStringValue(objOrdPricing, "UnicornSpecialDiscountCode", false))
-                                    .put("ORDER_LINE_ACTION", TranslateOrderLineAction(GetJsonObjectStringValue(itemdata, "OrderItemAction", false)))
-                                    .put("ORDER_LINE_TYPE", ORDER_LINE_TYPE)
-                                    .put("ORDER_LINE_AMOUNT",
-                                            TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "AdjustmentValue", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "VATExclusive", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "VATRate", false)).replace("-", ""))
-                                    .put("ORDER_LINE_SUB_TYPE",
-                                            TranslateOrderLineSubType(GetJsonObjectStringValue(objOrdPricing, "Source", false),
-                                                    GetJsonObjectStringValue(objOrdPricing, "ChargeType", false), objOrdPricing))
+                }
+                if (addline) {
+                    // orderpricing var būt masīvs
+                    JSONArray pricdata = GetJSONArrObj(itemdata, "OrderPricing");
+                    int itempriccount = pricdata.length();
+                    for (int j = 0; j < itempriccount; j++) {
+                        objOrdPricing = pricdata.getJSONObject(j);
+                        String sourcestr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
+                        String actionstr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
 
-                                    .put("ORDER_LINE_UOM", TranslateOrderLineUOM(GetJsonObjectStringValue(objOrdPricing, "AdjustmentMethod", false),
-                                            GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false), itemdata))
-                                    .put("ORDER_LINE_PROMOTION_PERIOD", GetJsonObjectStringValue(objOrdPricing, "TimePlanDuration", false))
-                                    .put("ORDER_LINE_PROMOTION_UOM", ORDER_LINE_PROMOTION_UOM)
-                                    .put("ORDER_LINE_PRODUCT_QTY", "1")
-                                    .put("ORDER_LINE_COMPONENT_QTY", "1")
-                                    // šis tika izņemts ar SOAIP-1943, pagaidām atstāju aizkomentētu
-                                    // .put("ORDER_LINE_PROMO_ENDDATE", GetJsonObjectStringValue(objOrdPricing, "PromoEndDate", false))
-                                    .put("ORDER_LINE_PROMO_ORDERNO", GetJsonObjectStringValue(objOrdPricing, "OCPRemark", false))
-                                    .put("ORDER_LINE_NRC_WAIVER_REASON", GetJsonObjectStringValue(objOrdPricing, "OTCRemark", false))
-                    );
+                        String orderedServiceType = GetJsonObjectStringValue(itemdata.get("OrderedServiceType"));
+                        if ("Promotion".equalsIgnoreCase(sourcestr)) {
+
+                            ORDER_LINE_PLAN_CODE_VALUE = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
+                            ORDER_LINE_PACKAGE_CODE = GetJsonObjectStringValue(objOrdPricing, "OCPPackageCode", false);
+                            ORDER_LINE_PROMOTION_UOM = GetJsonObjectStringValue(objOrdPricing, "TimePlanUnit", false);
+                            ORDER_LINE_PROMOTION_UOM = ORDER_LINE_PROMOTION_UOM.substring(0, 1);  // Translate Day -> D | Month -> M
+
+
+                        } else if ("Base".equalsIgnoreCase(sourcestr)) {
+                            ORDER_LINE_PLAN_CODE_VALUE = getUnicornPlanCode(orderdataitems, orderedServiceType);
+                            ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                        } else {
+                            ORDER_LINE_PACKAGE_CODE = getOrderLinePackageCode(itemdata);
+                        }
+                        ORDER_LINE_TYPE = TranslateOrderPricingSource(GetJsonObjectStringValue(objOrdPricing, "Source", false), objOrdPricing);
+                        if ("D".equalsIgnoreCase(ORDER_LINE_TYPE)) {
+                            typeDcount++;
+                        }
+                        offerPriceObj.put(
+                                new JSONObject()
+                                        .put("ORDER_LINE_ITEM", "D".equalsIgnoreCase(ORDER_LINE_TYPE)
+                                                ? GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false) + "_" + typeDcount
+                                                : GetJsonObjectStringValue(objOrdPricing, "OrderItemId", false))
+                                        .put("ORDER_LINE_PACKAGE_CODE", ORDER_LINE_PACKAGE_CODE)
+                                        .put("ORDER_LINE_PLAN_CODE", ORDER_LINE_PLAN_CODE_VALUE)
+                                        .put("ORDER_LINE_PRODUCT_CODE", GetJsonObjectStringValue(itemdata, "UnicornProductCode", false))
+                                        .put("ORDER_LINE_COMPONENT_CODE", GetJsonObjectStringValue(itemdata, "UnicornComponentCode", false))
+                                        .put("ORDER_LINE_SPECIAL_DISCOUNT_CODE", GetJsonObjectStringValue(objOrdPricing, "UnicornSpecialDiscountCode", false))
+                                        .put("ORDER_LINE_ACTION", TranslateOrderLineAction(GetJsonObjectStringValue(itemdata, "OrderItemAction", false)))
+                                        .put("ORDER_LINE_TYPE", ORDER_LINE_TYPE)
+                                        .put("ORDER_LINE_AMOUNT",
+                                                TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "AdjustmentValue", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "VATExclusive", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "VATRate", false)).replace("-", ""))
+                                        .put("ORDER_LINE_SUB_TYPE",
+                                                TranslateOrderLineSubType(GetJsonObjectStringValue(objOrdPricing, "Source", false),
+                                                        GetJsonObjectStringValue(objOrdPricing, "ChargeType", false), objOrdPricing))
+
+                                        .put("ORDER_LINE_UOM", TranslateOrderLineUOM(GetJsonObjectStringValue(objOrdPricing, "AdjustmentMethod", false),
+                                                GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false), itemdata))
+                                        .put("ORDER_LINE_PROMOTION_PERIOD", GetJsonObjectStringValue(objOrdPricing, "TimePlanDuration", false))
+                                        .put("ORDER_LINE_PROMOTION_UOM", ORDER_LINE_PROMOTION_UOM)
+                                        .put("ORDER_LINE_PRODUCT_QTY", "1")
+                                        .put("ORDER_LINE_COMPONENT_QTY", "1")
+                                        // šis tika izņemts ar SOAIP-1943, pagaidām atstāju aizkomentētu
+                                        // .put("ORDER_LINE_PROMO_ENDDATE", GetJsonObjectStringValue(objOrdPricing, "PromoEndDate", false))
+                                        .put("ORDER_LINE_PROMO_ORDERNO", GetJsonObjectStringValue(objOrdPricing, "OCPRemark", false))
+                                        .put("ORDER_LINE_NRC_WAIVER_REASON", GetJsonObjectStringValue(objOrdPricing, "OTCRemark", false))
+                        );
+                    }
                 }
             } catch (Exception e) {
                 err = e.getMessage();

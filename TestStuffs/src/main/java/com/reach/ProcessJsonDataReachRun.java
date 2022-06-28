@@ -13,7 +13,7 @@ public class ProcessJsonDataReachRun {
 
         //FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/jsonreach3CASE.json"); // Case
         //FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/jsonReachOnlyOrder.json"); // order
-        String filename = "jsonreachServiceStartDate.json";
+        String filename = "jsonReachQuates.json";
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/" + filename); // order
         
         String longJsonString = IOUtils.toString(fis, "UTF-8");
@@ -27,13 +27,15 @@ public class ProcessJsonDataReachRun {
         
         //System.out.println(res1.RetXmlStr);
         System.out.println(res2.RetXmlStr);
+        System.out.println("");
+        System.out.println(res2.RetXmlStr2th);
         //System.out.println(res1.RetError);
         System.out.println(res2.RetError);
         
         //FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/jsonreach3CASERes.xml"), res.RetXmlStr, Charset.forName("UTF-8"));
         //FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/" + filename + "Res2.xml"),
         //        res1.RetXmlStr, Charset.forName("UTF-8"));
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/" + filename + "ResServiceStartDate.xml"),
+        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/reach/" + filename + ".xml"),
                 res2.RetXmlStr, Charset.forName("UTF-8"));
         
     }

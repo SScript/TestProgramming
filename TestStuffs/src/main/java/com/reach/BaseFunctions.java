@@ -5,6 +5,14 @@ import org.json.JSONObject;
 
 public class BaseFunctions {
 
+    public String AddXMLField(String xmlfieldname, String valToXml) {
+        if (!isEmptyOrNull(valToXml)) {
+            return "<" + xmlfieldname + ">" + valToXml + "</" + xmlfieldname + ">";
+        } else {
+            return "<" + xmlfieldname + "/>";
+        }
+    }
+
     public JSONArray GetJSONArrObj(JSONObject data, String arrName) {
         JSONArray result = new JSONArray();
         try {
@@ -49,6 +57,9 @@ public class BaseFunctions {
             valToXml = "";
         } else {
             valToXml = ((String) objvalue).toString();
+            if (valToXml.contains("\"")) {
+                valToXml = valToXml.replace("\"", "\\\"");
+            }
         }
 
     return valToXml;

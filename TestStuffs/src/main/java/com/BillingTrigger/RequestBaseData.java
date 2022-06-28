@@ -1,6 +1,7 @@
 package com.BillingTrigger;
 
 public class RequestBaseData {
+    private String guid  = "";
     private String caller = "";
 
     private String OrderedService = "";
@@ -21,6 +22,14 @@ public class RequestBaseData {
 
     //-----------------
     private String serviceno = "";
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
 
     public String getCaller() {
         return this.caller;
