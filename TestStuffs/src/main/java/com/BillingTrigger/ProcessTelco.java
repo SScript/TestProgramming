@@ -31,18 +31,22 @@ public class ProcessTelco extends JSonDataFunctions {
 
         if (itemdata_primary.length() > 0) {
             result.SendJsonStr1 = ProcessTelcoServiceBundleLine(itemdata_primary, "Primary");
+            result.callCount = 1;
         }
 
         if (itemdata_secondary.length() > 0) {
             result.SendJsonStr2 = ProcessTelcoServiceBundleLine(itemdata_primary, "Secondary");
+            result.callCount = 2;
         }
 
         if (itemdata_tertiary.length() > 0) {
             result.SendJsonStr3 = ProcessTelcoServiceBundleLine(itemdata_primary, "Tertiary");
+            result.callCount = 3;
         }
 
         if (itemdata_quarternary.length() > 0) {
             result.SendJsonStr4 = ProcessTelcoServiceBundleLine(itemdata_primary, "Quarternary");
+            result.callCount = 4;
         }
 
         return result;

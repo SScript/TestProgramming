@@ -2,11 +2,8 @@ package com.BillingTrigger;
 
 import org.json.JSONObject;
 
-/**
- * SOAIP-1978 - viss pārtaisīts pa jaunam
- */
 public class ProcessBillingTrigger {
-    public Resp ProcessJsonData(String jsonDataStr, String excludeStrs, String containsOrEquals) throws Exception {
+    public Resp ProcessJsonData(String jsonDataStr, String excludeStrs, String containsOrEquals, String caller) throws Exception {
         Resp result = new Resp();
         JSONObject orderdatafull;
         JSONObject orderdata;
@@ -46,18 +43,22 @@ public class ProcessBillingTrigger {
         } catch (Exception e) {result.OrderedServiceOrigin = "";}
 
         //orderedService = "telco";
+        BillingTrigger4 b4 = new BillingTrigger4();
         switch (orderedService.toUpperCase()) {
             case "TELCO":
                 ProcessTelco pt = new ProcessTelco(jsonDataStr);
                 result = pt.ProcessForTelco();
                 break;
             case "ELECTRICITY":
-                ProcessElectricity pe = new ProcessElectricity(jsonDataStr);
-                result = pe.ProcessForElectricity();
+                //ProcessElectricity pe = new ProcessElectricity(jsonDataStr);
+                //result = pe.ProcessForElectricity();
+
+                result = b4.ProcessJsonData(orderdata.toString());
                 break;
             default:// Split payment
-                ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr, excludeStrs, containsOrEquals);
-                result = ps.ProcessForSplitPayment();
+                //ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr, excludeStrs, containsOrEquals);
+                //result = ps.ProcessForSplitPayment();
+                result = b4.ProcessJsonData(orderdata.toString());
                 break;
         }
         return result;

@@ -929,7 +929,7 @@ public class BillingTrigger4_1 {
             for (int i = 0; i < itemcount; i++) {
                 itemdata = orderdataitems.getJSONObject(i);
                 productTypeValue = GetJsonObjectStringValue(itemdata.get("ProductType"));
-                if (val.equals(productTypeValue)) {
+                if (val.equalsIgnoreCase(productTypeValue)) {
                     res = "Y";
                     break;
                 }

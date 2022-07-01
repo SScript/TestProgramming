@@ -43,7 +43,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         addFieldToOutDetailsDataData(GetBaseData().getOrderedService(), "ORD_ORDEREDSERVICE");
         addFieldToOutDetailsDataData("ORD_CUSTOMERNO", GetBaseData().getAccountNo());
         addFieldToOutDetailsDataData("ORD_BILLINGACCOUNTNO", GetBaseData().getBillAccountNumber());
-        addFieldToOutDetailsDataData("ORD_SERVICE_COUNT", GetUnicalOrederIdCount());
+        addFieldToOutDetailsDataData("ORD_SERVICE_COUNT", String.valueOf(GetUnicalOrederIdCount()));
 
     }
 

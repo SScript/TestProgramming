@@ -10,6 +10,7 @@ public class Resp {
     public String OrderedService = "";
 
 
+    public int callCount = 0;
     public String SendJsonStr0 = "";
     public String SendJsonStr1 = "";
     public String SendJsonStr2 = "";

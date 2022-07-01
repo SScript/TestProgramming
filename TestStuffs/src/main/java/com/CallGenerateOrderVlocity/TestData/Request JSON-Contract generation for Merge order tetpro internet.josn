@@ -1,0 +1,4266 @@
+{
+  "Requester": "VLOCITY",
+  "order": {
+    "salesOrderType": "Provide",
+    "foDeliveryAgreement": false,
+    "KCIOnlyFlg": false,
+    "BulkOrderFlg": false,
+    "AmendOrderFlg": "No",
+    "Priority": "20",
+    "myTETUserId": "sangita.bhuyan@capgemini.com",
+    "residentType": true,
+    "accountContactFirstName": "TESTACC",
+    "accountContactLastName": "SANGITA",
+    "customerSubSegment": "16",
+    "customerSegment": "1",
+    "birthDate": "03.06.1955",
+    "accountNumber": "13601077",
+    "accountContactPin": "030655-14525",
+    "accountContactEmailAddress": "rilee_russow@contact.com",
+    "accountAddressId": "111071015",
+    "account": "SANGITA TESTACC",
+    "orderItem": [
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQ6QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TETPLUS_POST",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+",
+        "partNumber": "TC000013",
+        "assetIntegrationId": "3f484cfd-2127-8362-30b0-8d9e0b1860db",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0001",
+        "Id": "8023N000003iYQ6QAM",
+        "JSONAttribute": {
+          "TET_PROD_FAMILY": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Telco",
+                  "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                  "sequence": 10,
+                  "value": "Telco"
+                },
+                "values": [
+                  {
+                    "displayText": "Telco",
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "sequence": 10,
+                    "value": "Telco"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Telco",
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "sequence": 10,
+                    "value": "Telco"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Telco",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000000v4aaUAA",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": true,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 1,
+              "displaysequence__c": "1",
+              "attributedisplayname__c": "Product Family",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": true,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PROD_FAMILY",
+              "categoryname__c": "Product Family",
+              "categorycode__c": "TET_PROD_FAMILY",
+              "attributecategoryid__c": "a0O1q0000001hPOEAY",
+              "attributeid__c": "a0P1q0000026Vp0EAE",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ],
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Pēcapmaksa",
+                  "id": "e633fbd1-924f-c260-0ecc-be5e4ea67f19",
+                  "sequence": 10,
+                  "value": "Post-paid"
+                },
+                "values": [
+                  {
+                    "displayText": "Pēcapmaksa",
+                    "id": "e633fbd1-924f-c260-0ecc-be5e4ea67f19",
+                    "sequence": 10,
+                    "value": "Post-paid"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Pēcapmaksa",
+                    "id": "e633fbd1-924f-c260-0ecc-be5e4ea67f19",
+                    "sequence": 10,
+                    "value": "Post-paid"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Post-paid",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001rCPFUA2",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Samaksas veids",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "160",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+_PAYMENTTYPE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nCoqUAE",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001RXv4UAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Nepiemērot līgumsodu",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "50",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_PENALTY",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007DP8DUAW",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Beztermiņa",
+                  "id": "78729ca3-e90a-af50-9541-79220b51c52a",
+                  "sequence": 10,
+                  "value": "Unlimited"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "displayText": "Beztermiņa",
+                    "id": "78729ca3-e90a-af50-9541-79220b51c52a",
+                    "sequence": 10,
+                    "value": "Unlimited"
+                  },
+                  {
+                    "displayText": "6",
+                    "id": "cb0054bd-a67e-41fd-5d57-52413e2cf4e8",
+                    "sequence": 20,
+                    "value": "6"
+                  },
+                  {
+                    "displayText": "12",
+                    "id": "f894f1f0-99f1-9180-6f50-9a2ffe1f04c4",
+                    "sequence": 30,
+                    "value": "12"
+                  },
+                  {
+                    "displayText": "24",
+                    "id": "f6bad43f-0ad8-a793-4016-e9de72a9fc37",
+                    "sequence": 40,
+                    "value": "24"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001Nhl7UAC",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Līguma termiņš",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "10",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_TERM",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDNUA2",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001RcpXUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Tehniski jau ierīkots",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "60",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_IS_ALREADY_INSTALLED",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dlvVUAQ",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001RcphUAC",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālie norēķini",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "12",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_BILL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003e7xaUAA",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001Rk1IUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālā konfigurācija",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "97",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_CONFIG",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007ChkBUAS",
+              "objectid__c": "01t3N000004eDZ5QAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceId": "STVS8100119",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQ6QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_OTT_CHANNEL",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ abonements",
+        "partNumber": "TC000065",
+        "parentOrderItemId": "8023N000003iYQ6QAM",
+        "assetIntegrationId": "99fbeaee-51f4-6392-20b7-dd8ab062138b",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0001.0001",
+        "Id": "8023N000003iYQ7QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": 1,
+                "uiDisplayType": "Single Value",
+                "dataType": "Number"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Number",
+              "value__c": null,
+              "uidisplaytype__c": "Single Value",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001pZzpUAE",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "My Tet UID",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "20",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_iTV_My Tet UID",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007ZRmgUAG",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.WTV.002",
+                "default": "a.WTV.002",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.WTV.002",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001pcYpUAI",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Primary",
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "sequence": 10,
+                  "value": "Primary"
+                },
+                "values": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  },
+                  {
+                    "displayText": "Secondary",
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "sequence": 20,
+                    "value": "Secondary"
+                  },
+                  {
+                    "displayText": "Tertiary",
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "sequence": 30,
+                    "value": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001TtxAUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "aaa@ba.com",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001pZzkUAE",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "E-pasts",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "15",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_iTV_EMAIL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDmUAM",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQ6QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TET_SMALL_PTS",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ Mazais (80 Punkti)",
+        "partNumber": "TC000067",
+        "parentOrderItemId": "8023N000003iYQ7QAM",
+        "assetIntegrationId": "525dfcf3-d471-34d1-9f29-509430e31e8b",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0001.0001.0001",
+        "Id": "8023N000003iYQ8QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "ff6c69de-ef61-021b-cd33-2ed90a98512a",
+                    "sequence": 10,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "943a690e-707b-fa8b-750a-2eed082308f1",
+                    "sequence": 20,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNXrUAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Static TV kanāli",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "200",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_STATICTVKANALI",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nEvPUAU",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "displayText": "80",
+                    "id": "01b60d11-a83a-de53-ea47-a9fd5a9eeee5",
+                    "sequence": 10,
+                    "value": "80"
+                  },
+                  {
+                    "displayText": "120",
+                    "id": "8ec652c0-350b-1980-12fb-c01488e2781b",
+                    "sequence": 20,
+                    "value": "120"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNXsUAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Punkti",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "210",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_Punkti",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nEvUUAU",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "displayText": "Apple",
+                    "id": "83890b91-3880-1de2-562e-4b852c74369f",
+                    "sequence": 10,
+                    "value": "Apple"
+                  },
+                  {
+                    "displayText": "Google",
+                    "id": "9634d6a3-14c1-98bb-bbae-da31e2ff71cd",
+                    "sequence": 20,
+                    "value": "Google"
+                  },
+                  {
+                    "displayText": "WEB",
+                    "id": "fc673c3e-dcd3-26f7-8129-1ce8a959b2f1",
+                    "sequence": 30,
+                    "value": "WEB"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNY7UAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Samaksas metode",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "170",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_PAYMENTMETHOD",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nCpqUAE",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQ6QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TETPLUS_BOX",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ Box",
+        "partNumber": "TC000072",
+        "parentOrderItemId": "8023N000003iYQ6QAM",
+        "assetIntegrationId": "68d6ec59-9c01-0207-34ad-4b67a6f21e8a",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0001.0002",
+        "Id": "8023N000003iYQ9QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Monthly (Tet owned)",
+                  "sequence": 20,
+                  "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                  "displayText": "Tet īpašums"
+                },
+                "values": [
+                  {
+                    "value": "Monthly (Tet owned)",
+                    "sequence": 20,
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "displayText": "Tet īpašums"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Monthly (Tet owned)",
+                    "sequence": 20,
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "displayText": "Tet īpašums"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Monthly (Tet owned)",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SoZVUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Īpašnieks",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "145",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_OWNERSHIP",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007KgvxUAC",
+              "objectid__c": "01t3N000004eDBwQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQAQA2",
+        "productType": "Product",
+        "productId": "PD_TELCO_PRO",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Pro internets",
+        "partNumber": "TC000003",
+        "assetIntegrationId": "8960b61a-a3a4-00aa-9348-97e16aca745a",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0002",
+        "Id": "8023N000003iYQAQA2",
+        "JSONAttribute": {
+          "TET_PROD_FAMILY": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Telco",
+                  "sequence": 10,
+                  "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                  "displayText": "Telco"
+                },
+                "values": [
+                  {
+                    "value": "Telco",
+                    "sequence": 10,
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "displayText": "Telco"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Telco",
+                    "sequence": 10,
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "displayText": "Telco"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Telco",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000000v4aBUAQ",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": true,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 1,
+              "displaysequence__c": "1",
+              "attributedisplayname__c": "Product Family",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": true,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PROD_FAMILY",
+              "categoryname__c": "Product Family",
+              "categorycode__c": "TET_PROD_FAMILY",
+              "attributecategoryid__c": "a0O1q0000001hPOEAY",
+              "attributeid__c": "a0P1q0000026Vp0EAE",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ],
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "No",
+                  "sequence": 10,
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "displayText": "Nē"
+                },
+                "values": [
+                  {
+                    "value": "Yes",
+                    "sequence": 5,
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "displayText": "Jā"
+                  },
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U7R0UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Nepiemērot līgumsodu",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "50",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_PENALTY",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007DP8DUAW",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "12",
+                  "sequence": 20,
+                  "id": "cc1cde6f-65d1-a205-6b4e-0a94ba10fcd1",
+                  "displayText": "12"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "Unlimited",
+                    "sequence": 10,
+                    "id": "55ca1843-a3f7-626d-a3e7-90048f3dd4bf",
+                    "displayText": "Beztermiņa"
+                  },
+                  {
+                    "value": "12",
+                    "sequence": 20,
+                    "id": "cc1cde6f-65d1-a205-6b4e-0a94ba10fcd1",
+                    "displayText": "12"
+                  },
+                  {
+                    "value": "24",
+                    "sequence": 30,
+                    "id": "b86d8c4b-32b8-cd9d-de70-432dc4402806",
+                    "displayText": "24"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001NhaJUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Līguma termiņš",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "10",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_TERM",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDNUA2",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "No",
+                  "sequence": 10,
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "displayText": "Nē"
+                },
+                "values": [
+                  {
+                    "value": "Yes",
+                    "sequence": 5,
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "displayText": "Jā"
+                  },
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U7QvUAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Tehniski jau ierīkots",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "60",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_IS_ALREADY_INSTALLED",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dlvVUAQ",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "No",
+                  "sequence": 10,
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "displayText": "Nē"
+                },
+                "values": [
+                  {
+                    "value": "Yes",
+                    "sequence": 5,
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "displayText": "Jā"
+                  },
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U7KzUAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālie norēķini",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "12",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_BILL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003e7xaUAA",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "No",
+                  "sequence": 10,
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "displayText": "Nē"
+                },
+                "values": [
+                  {
+                    "value": "Yes",
+                    "sequence": 5,
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "displayText": "Jā"
+                  },
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "No",
+                    "sequence": 10,
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "displayText": "Nē"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U7MWUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālā konfigurācija",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "97",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_CONFIG",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007ChkBUAS",
+              "objectid__c": "01t3N000004eDLTQA2",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceId": "PONS3000518",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQAQA2",
+        "productType": "Product",
+        "productId": "PD_TELCO_INET_SERVICE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Internets",
+        "partNumber": "TC000017",
+        "parentOrderItemId": "8023N000003iYQAQA2",
+        "assetIntegrationId": "fe97e841-9017-3d34-9b6d-58214cbc0197",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0002.0001",
+        "Id": "8023N000003iYQBQA2",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "1000 mbp/s",
+                  "sequence": 70,
+                  "id": "6c699732-8a30-19cf-e6a4-a4d154e67e6c",
+                  "displayText": "1000 mbp/s"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "10 mbp/s",
+                    "sequence": 10,
+                    "id": "263c693d-d2a8-9cf7-c6ef-9636e8cb1ab5",
+                    "displayText": "10 mbp/s"
+                  },
+                  {
+                    "value": "30 mbp/s",
+                    "sequence": 20,
+                    "id": "d75ca474-8737-3f8d-4eb5-d213f7ff92d4",
+                    "displayText": "30 mbp/s"
+                  },
+                  {
+                    "value": "60 mbp/s",
+                    "sequence": 30,
+                    "id": "4999cf50-31e4-3ee1-1e51-7e8d41d8ef36",
+                    "displayText": "60 mbp/s"
+                  },
+                  {
+                    "value": "100 mbp/s",
+                    "sequence": 40,
+                    "id": "40a23741-8b44-bdb5-d5c3-b710aafaa911",
+                    "displayText": "100 mbp/s"
+                  },
+                  {
+                    "value": "200 mbp/s",
+                    "sequence": 50,
+                    "id": "2d1778bb-e2d1-43de-b327-8f00a21c4820",
+                    "displayText": "200 mbp/s"
+                  },
+                  {
+                    "value": "500 mbp/s",
+                    "sequence": 60,
+                    "id": "9bd2ddcd-c50b-c520-0303-3e02a54918ca",
+                    "displayText": "500 mbp/s"
+                  },
+                  {
+                    "value": "1000 mbp/s",
+                    "sequence": 70,
+                    "id": "6c699732-8a30-19cf-e6a4-a4d154e67e6c",
+                    "displayText": "1000 mbp/s"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SxWWUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Maksimālais lejupielādes ātrums",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "20",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SPEED",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDcUAM",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Primary",
+                  "sequence": 10,
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "displayText": "Primary"
+                },
+                "values": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  },
+                  {
+                    "value": "Secondary",
+                    "sequence": 20,
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "displayText": "Secondary"
+                  },
+                  {
+                    "value": "Tertiary",
+                    "sequence": 30,
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "displayText": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U0UTUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001UG1fUAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQAQA2",
+        "productType": "Product",
+        "productId": "PD_TELCO_TECH_LINE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tehnoloģiskā līnija",
+        "partNumber": "TC000021",
+        "parentOrderItemId": "8023N000003iYQAQA2",
+        "assetIntegrationId": "51c8ac00-f145-fdc3-99ec-0a12d511a2fc",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0002.0002",
+        "Id": "8023N000003iYQCQA2",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "GPON",
+                  "sequence": 40,
+                  "id": "cbd88f62-42c5-d105-c420-f28c40537902",
+                  "displayText": "GPON"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "DSL",
+                    "sequence": 10,
+                    "id": "ca604448-0702-6e8f-836d-fb3fd7111e36",
+                    "displayText": "DSL"
+                  },
+                  {
+                    "value": "VDSL",
+                    "sequence": 20,
+                    "id": "4bacd54e-1218-85bb-4c0a-0e80616626f8",
+                    "displayText": "VDSL"
+                  },
+                  {
+                    "value": "3 Play",
+                    "sequence": 30,
+                    "id": "8ff9d901-a553-76aa-6d10-d4c8c0978676",
+                    "displayText": "3 Play"
+                  },
+                  {
+                    "value": "GPON",
+                    "sequence": 40,
+                    "id": "cbd88f62-42c5-d105-c420-f28c40537902",
+                    "displayText": "GPON"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001TDqkUAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": true,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Tehnoloģija",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "30",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_ACCESS_TECH",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDhUAM",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "PD_TELCO_PRO",
+                "default": "PD_TELCO_PRO",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "PD_TELCO_PRO",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001StnFUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Parent Product Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "150",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PARENT_PRODUCT_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003e8NCUAY",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Primary",
+                  "sequence": 10,
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "displayText": "Primary"
+                },
+                "values": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  },
+                  {
+                    "value": "Secondary",
+                    "sequence": 20,
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "displayText": "Secondary"
+                  },
+                  {
+                    "value": "Tertiary",
+                    "sequence": 30,
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "displayText": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U0pIUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.TCL.OPT.032",
+                "default": "a.TCL.OPT.032",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.TCL.OPT.032",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U2NaUAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYQAQA2",
+        "productType": "Product",
+        "productId": "PD_TELCO_MODEM",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Modems",
+        "partNumber": "TC000022",
+        "parentOrderItemId": "8023N000003iYQCQA2",
+        "assetIntegrationId": "3665c6c3-7fd1-eac1-84da-fa0aa8a5d97b",
+        "actionCode": "Disconnect",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0002.0002.0001",
+        "Id": "8023N000003iYQDQA2",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Tet īpašums",
+                  "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                  "sequence": 20,
+                  "value": "Monthly (Tet owned)"
+                },
+                "values": [
+                  {
+                    "displayText": "Klienta īpašums",
+                    "id": "1cd1891b-d997-e163-c8ad-24c92cd78d60",
+                    "sequence": 10,
+                    "value": "Customer owned"
+                  },
+                  {
+                    "displayText": "Tet īpašums",
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "sequence": 20,
+                    "value": "Monthly (Tet owned)"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Tet īpašums",
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "sequence": 20,
+                    "value": "Monthly (Tet owned)"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Monthly (Tet owned)",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SsN8UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Īpašnieks",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "145",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_OWNERSHIP",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007KgvxUAC",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Universālais modems",
+                  "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                  "sequence": 40,
+                  "value": "Universal modem"
+                },
+                "values": [
+                  {
+                    "displayText": "DSL modem",
+                    "id": "0f2b15f7-620f-76ab-602e-19cf7b5fcdbc",
+                    "sequence": 10,
+                    "value": "DSL modem"
+                  },
+                  {
+                    "displayText": "VDSL modem",
+                    "id": "b047d3f5-3458-e641-d0e2-e50c3ad6697a",
+                    "sequence": 20,
+                    "value": "VDSL modem"
+                  },
+                  {
+                    "displayText": "Modem (DRG)",
+                    "id": "38eb7ddf-0d84-edaf-0989-70ecdd63ef6f",
+                    "sequence": 30,
+                    "value": "Modem (DRG)"
+                  },
+                  {
+                    "displayText": "Universālais modems",
+                    "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                    "sequence": 40,
+                    "value": "Universal modem"
+                  },
+                  {
+                    "displayText": "GPON modem",
+                    "id": "5ab8c12d-26b4-3ebd-a656-38cd0fcf6345",
+                    "sequence": 50,
+                    "value": "GPON modem"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Universālais modems",
+                    "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                    "sequence": 40,
+                    "value": "Universal modem"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Universal modem",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SsN7UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Modema veids",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "51",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MODEMTYPE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003duVEUAY",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.INT.DSL.013",
+                "default": "a.INT.DSL.013",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.INT.DSL.013",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001UFrNUAW",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TET_PRO",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ un Pro internets",
+        "partNumber": "TC000105",
+        "assetIntegrationId": "5c6f01a5-8b08-8b6c-0f7d-85622c0f7f83",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 37.50,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003",
+        "Id": "8023N000003iYU1QAM",
+        "JSONAttribute": {
+          "TET_PROD_FAMILY": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Telco",
+                  "sequence": 10,
+                  "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                  "displayText": "Telco"
+                },
+                "values": [
+                  {
+                    "value": "Telco",
+                    "sequence": 10,
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "displayText": "Telco"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Telco",
+                    "sequence": 10,
+                    "id": "c08fb6cd-491c-503e-4ff8-77c58adea746",
+                    "displayText": "Telco"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Telco",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001NhDEUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": true,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 1,
+              "displaysequence__c": "1",
+              "attributedisplayname__c": "Product Family",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": true,
+              "attributedisplaysequence__c": "1",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PROD_FAMILY",
+              "categoryname__c": "Product Family",
+              "categorycode__c": "TET_PROD_FAMILY",
+              "attributecategoryid__c": "a0O1q0000001hPOEAY",
+              "attributeid__c": "a0P1q0000026Vp0EAE",
+              "objectid__c": "01t3N00000523AqQAI",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ],
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001RXvBUAW",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Nepiemērot līgumsodu",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "50",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_PENALTY",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007DP8DUAW",
+              "objectid__c": "a2X3N000000lxrOUAQ",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Unlimited",
+                  "sequence": 10,
+                  "id": "55ca1843-a3f7-626d-a3e7-90048f3dd4bf",
+                  "displayText": "Beztermiņa"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "Unlimited",
+                    "sequence": 10,
+                    "id": "55ca1843-a3f7-626d-a3e7-90048f3dd4bf",
+                    "displayText": "Beztermiņa"
+                  },
+                  {
+                    "value": "12",
+                    "sequence": 20,
+                    "id": "cc1cde6f-65d1-a205-6b4e-0a94ba10fcd1",
+                    "displayText": "12"
+                  },
+                  {
+                    "value": "24",
+                    "sequence": 30,
+                    "id": "b86d8c4b-32b8-cd9d-de70-432dc4402806",
+                    "displayText": "24"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001NitDUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Līguma termiņš",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "10",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_CONTRACT_TERM",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDNUA2",
+              "objectid__c": "01t3N00000523AqQAI",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001P5bnUAC",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Jau ierīkots",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "60",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_IS_ALREADY_INSTALLED",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dlvVUAQ",
+              "objectid__c": "a2X3N000000lxrOUAQ",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001RcivUAC",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālie norēķini",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "12",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_BILL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003e7xaUAA",
+              "objectid__c": "a2X3N000000lxrOUAQ",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Nē",
+                  "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                  "sequence": 10,
+                  "value": "No"
+                },
+                "values": [
+                  {
+                    "displayText": "Jā",
+                    "id": "34d99ac2-a2b7-e229-aba4-d56f7dbf5416",
+                    "sequence": 5,
+                    "value": "Yes"
+                  },
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Nē",
+                    "id": "2f38c073-00c5-d0f9-8ed7-a48845ef3cc5",
+                    "sequence": 10,
+                    "value": "No"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "No",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001Rg1VUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "vlocity_cmt__ObjectClass__c",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "250",
+              "attributedisplayname__c": "Manuālā konfigurācija",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "97",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MANUAL_CONFIG",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007ChkBUAS",
+              "objectid__c": "a2X3N000000lxrOUAQ",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceId": "PONS3000518",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_INET_SERVICE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Internets",
+        "partNumber": "TC000017",
+        "parentOrderItemId": "8023N000003iYU1QAM",
+        "assetIntegrationId": "97231a78-93a7-2c9c-481e-ad22e60594fd",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0001",
+        "Id": "8023N000003iYU2QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Primary",
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "sequence": 10,
+                  "value": "Primary"
+                },
+                "values": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  },
+                  {
+                    "displayText": "Secondary",
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "sequence": 20,
+                    "value": "Secondary"
+                  },
+                  {
+                    "displayText": "Tertiary",
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "sequence": 30,
+                    "value": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U0UTUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "1000 mbp/s",
+                  "id": "6c699732-8a30-19cf-e6a4-a4d154e67e6c",
+                  "sequence": 70,
+                  "value": "1000 mbp/s"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "displayText": "10 mbp/s",
+                    "id": "263c693d-d2a8-9cf7-c6ef-9636e8cb1ab5",
+                    "sequence": 10,
+                    "value": "10 mbp/s"
+                  },
+                  {
+                    "displayText": "30 mbp/s",
+                    "id": "d75ca474-8737-3f8d-4eb5-d213f7ff92d4",
+                    "sequence": 20,
+                    "value": "30 mbp/s"
+                  },
+                  {
+                    "displayText": "60 mbp/s",
+                    "id": "4999cf50-31e4-3ee1-1e51-7e8d41d8ef36",
+                    "sequence": 30,
+                    "value": "60 mbp/s"
+                  },
+                  {
+                    "displayText": "100 mbp/s",
+                    "id": "40a23741-8b44-bdb5-d5c3-b710aafaa911",
+                    "sequence": 40,
+                    "value": "100 mbp/s"
+                  },
+                  {
+                    "displayText": "200 mbp/s",
+                    "id": "2d1778bb-e2d1-43de-b327-8f00a21c4820",
+                    "sequence": 50,
+                    "value": "200 mbp/s"
+                  },
+                  {
+                    "displayText": "500 mbp/s",
+                    "id": "9bd2ddcd-c50b-c520-0303-3e02a54918ca",
+                    "sequence": 60,
+                    "value": "500 mbp/s"
+                  },
+                  {
+                    "displayText": "1000 mbp/s",
+                    "id": "6c699732-8a30-19cf-e6a4-a4d154e67e6c",
+                    "sequence": 70,
+                    "value": "1000 mbp/s"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SxWWUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Maksimālais lejupielādes ātrums",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "20",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SPEED",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDcUAM",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001UFexUAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDZsQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TECH_LINE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tehnoloģiskā līnija",
+        "partNumber": "TC000021",
+        "parentOrderItemId": "8023N000003iYU1QAM",
+        "assetIntegrationId": "f4eadf01-5db8-cda3-dac5-76bd56ce3dff",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0002",
+        "Id": "8023N000003iYU3QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "GPON",
+                  "sequence": 40,
+                  "id": "cbd88f62-42c5-d105-c420-f28c40537902",
+                  "displayText": "GPON"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "DSL",
+                    "sequence": 10,
+                    "id": "ca604448-0702-6e8f-836d-fb3fd7111e36",
+                    "displayText": "DSL"
+                  },
+                  {
+                    "value": "VDSL",
+                    "sequence": 20,
+                    "id": "4bacd54e-1218-85bb-4c0a-0e80616626f8",
+                    "displayText": "VDSL"
+                  },
+                  {
+                    "value": "3 Play",
+                    "sequence": 30,
+                    "id": "8ff9d901-a553-76aa-6d10-d4c8c0978676",
+                    "displayText": "3 Play"
+                  },
+                  {
+                    "value": "GPON",
+                    "sequence": 40,
+                    "id": "cbd88f62-42c5-d105-c420-f28c40537902",
+                    "displayText": "GPON"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001TDqkUAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": true,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Tehnoloģija",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "30",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_ACCESS_TECH",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDhUAM",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "PD_TELCO_PRO",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001pa4QUAQ",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Parent Product Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "150",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_PARENT_PRODUCT_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003e8NCUAY",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Primary",
+                  "sequence": 10,
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "displayText": "Primary"
+                },
+                "values": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  },
+                  {
+                    "value": "Secondary",
+                    "sequence": 20,
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "displayText": "Secondary"
+                  },
+                  {
+                    "value": "Tertiary",
+                    "sequence": 30,
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "displayText": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U0pIUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.TCL.OPT.032",
+                "default": "a.TCL.OPT.671",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.TCL.OPT.671",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U2VwUAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDbkQAE",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_MODEM",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Modems",
+        "partNumber": "TC000022",
+        "parentOrderItemId": "8023N000003iYU3QAM",
+        "assetIntegrationId": "fec0570d-7692-8a04-6e14-733500866280",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0002.0001",
+        "Id": "8023N000003iYU4QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.INT.DSL.013",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001UFf7UAG",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Universālais modems",
+                  "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                  "sequence": 40,
+                  "value": "Universal modem"
+                },
+                "values": [
+                  {
+                    "displayText": "DSL modem",
+                    "id": "0f2b15f7-620f-76ab-602e-19cf7b5fcdbc",
+                    "sequence": 10,
+                    "value": "DSL modem"
+                  },
+                  {
+                    "displayText": "VDSL modem",
+                    "id": "b047d3f5-3458-e641-d0e2-e50c3ad6697a",
+                    "sequence": 20,
+                    "value": "VDSL modem"
+                  },
+                  {
+                    "displayText": "Modem (DRG)",
+                    "id": "38eb7ddf-0d84-edaf-0989-70ecdd63ef6f",
+                    "sequence": 30,
+                    "value": "Modem (DRG)"
+                  },
+                  {
+                    "displayText": "Universālais modems",
+                    "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                    "sequence": 40,
+                    "value": "Universal modem"
+                  },
+                  {
+                    "displayText": "GPON modem",
+                    "id": "5ab8c12d-26b4-3ebd-a656-38cd0fcf6345",
+                    "sequence": 50,
+                    "value": "GPON modem"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Universālais modems",
+                    "id": "a2b5b4d6-3c29-881b-41d7-3468fb2a0bfe",
+                    "sequence": 40,
+                    "value": "Universal modem"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Universal modem",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SsN7UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Modema veids",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "51",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_MODEMTYPE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003duVEUAY",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Tet īpašums",
+                  "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                  "sequence": 20,
+                  "value": "Monthly (Tet owned)"
+                },
+                "values": [
+                  {
+                    "displayText": "Klienta īpašums",
+                    "id": "1cd1891b-d997-e163-c8ad-24c92cd78d60",
+                    "sequence": 10,
+                    "value": "Customer owned"
+                  },
+                  {
+                    "displayText": "Tet īpašums",
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "sequence": 20,
+                    "value": "Monthly (Tet owned)"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Tet īpašums",
+                    "id": "854b11d5-3f1b-a8ce-cc0e-f0e41ee0fa57",
+                    "sequence": 20,
+                    "value": "Monthly (Tet owned)"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Monthly (Tet owned)",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001SsN8UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Īpašnieks",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "145",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_OWNERSHIP",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007KgvxUAC",
+              "objectid__c": "01t3N000004eDQyQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceId": "STVS8100119",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_OTT_CHANNEL",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ abonements",
+        "partNumber": "TC000065",
+        "parentOrderItemId": "8023N000003iYU1QAM",
+        "assetIntegrationId": "1df11b1a-3355-9655-a307-c9ab801992ba",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 37.50,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0003",
+        "Id": "8023N000003iYU5QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "aaa@ba.com",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": null,
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001pZzkUAE",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "E-pasts",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "15",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_iTV_EMAIL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZDmUAM",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": 1,
+                "uiDisplayType": "Single Value",
+                "dataType": "Number"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Number",
+              "value__c": null,
+              "uidisplaytype__c": "Single Value",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001pZzpUAE",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "My Tet UID",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "20",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_iTV_My Tet UID",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007ZRmgUAG",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "displayText": "Primary",
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "sequence": 10,
+                  "value": "Primary"
+                },
+                "values": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  },
+                  {
+                    "displayText": "Secondary",
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "sequence": 20,
+                    "value": "Secondary"
+                  },
+                  {
+                    "displayText": "Tertiary",
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "sequence": 30,
+                    "value": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "displayText": "Primary",
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "sequence": 10,
+                    "value": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001TtxAUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.WTV.002",
+                "default": "a.TEB.OPT.070",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.TEB.OPT.070",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U2W1UAK",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDAoQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_TET_SMALL_PTS",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Tet+ Mazais (80 Punkti)",
+        "partNumber": "TC000067",
+        "parentOrderItemId": "8023N000003iYU5QAM",
+        "assetIntegrationId": "a72dcbd7-b423-e094-884a-55088750051d",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 37.50,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 37.50,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0003.0001",
+        "Id": "8023N000003iYU6QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "Yes",
+                    "sequence": 10,
+                    "id": "ff6c69de-ef61-021b-cd33-2ed90a98512a",
+                    "displayText": "Jā"
+                  },
+                  {
+                    "value": "No",
+                    "sequence": 20,
+                    "id": "943a690e-707b-fa8b-750a-2eed082308f1",
+                    "displayText": "Nē"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNXrUAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Static TV kanāli",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "200",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_STATICTVKANALI",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nEvPUAU",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "80",
+                    "sequence": 10,
+                    "id": "01b60d11-a83a-de53-ea47-a9fd5a9eeee5",
+                    "displayText": "80"
+                  },
+                  {
+                    "value": "120",
+                    "sequence": 20,
+                    "id": "8ec652c0-350b-1980-12fb-c01488e2781b",
+                    "displayText": "120"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNXsUAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Punkti",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "210",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_Punkti",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nEvUUAU",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "Apple",
+                    "sequence": 10,
+                    "id": "83890b91-3880-1de2-562e-4b852c74369f",
+                    "displayText": "Apple"
+                  },
+                  {
+                    "value": "Google",
+                    "sequence": 20,
+                    "id": "9634d6a3-14c1-98bb-bbae-da31e2ff71cd",
+                    "displayText": "Google"
+                  },
+                  {
+                    "value": "WEB",
+                    "sequence": 30,
+                    "id": "fc673c3e-dcd3-26f7-8129-1ce8a959b2f1",
+                    "displayText": "WEB"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001rNY7UAM",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Samaksas metode",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "170",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_Tet+  (Pre-paid)_PAYMENTMETHOD",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007nCpqUAE",
+              "objectid__c": "01t3N000004eDAyQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_INST_SERVICE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Uzstādīšanas informācija",
+        "partNumber": "TC000023",
+        "parentOrderItemId": "8023N000003iYU1QAM",
+        "assetIntegrationId": "26e92349-5c64-6815-d3c4-4588ef04ceab",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0004",
+        "Id": "8023N000003iYU7QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Primary",
+                  "sequence": 10,
+                  "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                  "displayText": "Primary"
+                },
+                "values": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  },
+                  {
+                    "value": "Secondary",
+                    "sequence": 20,
+                    "id": "23b02f20-4229-7735-0d03-644c77378865",
+                    "displayText": "Secondary"
+                  },
+                  {
+                    "value": "Tertiary",
+                    "sequence": 30,
+                    "id": "6b504ced-20d4-489b-da52-ca9af181a0d4",
+                    "displayText": "Tertiary"
+                  }
+                ],
+                "default": [
+                  {
+                    "value": "Primary",
+                    "sequence": 10,
+                    "id": "a44c6178-cda3-7d09-95bb-6c7fe36817a4",
+                    "displayText": "Primary"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": "Primary",
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U1uzUAC",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Service Level",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "301",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_SERVICE_LEVEL",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007Y7mjUAC",
+              "objectid__c": "01t3N000004eDQoQAM",
+              "$$AttributeDefinitionStart$$": null
+            },
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "value": "a.UIF.OPT.781",
+                "default": "a.UIF.OPT.781",
+                "uiDisplayType": "Text",
+                "dataType": "Text"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Text",
+              "value__c": "a.UIF.OPT.781",
+              "uidisplaytype__c": "Text",
+              "rulemessage__c": null,
+              "isrequired__c": false,
+              "id": "a0M3N000001U2WGUA0",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": null,
+              "valueinnumber__c": null,
+              "ishidden__c": true,
+              "isconfigurable__c": false,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": null,
+              "attributedisplayname__c": "Unicorn Plan Code",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "500",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_UNICORN_PLAN_CODE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000007XzCyUAK",
+              "objectid__c": "01t3N000004eDQoQAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYU1QAM",
+        "productType": "Product",
+        "productId": "PD_TELCO_INSTALL_PACKAGE",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Pašinstalācija",
+        "partNumber": "TC000081",
+        "parentOrderItemId": "8023N000003iYU7QAM",
+        "assetIntegrationId": "fde02047-ab42-c7c7-1984-4faebc41cb02",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 0.00,
+        "OneTimeCharge": 0.00,
+        "LineNumber": "0003.0004.0001",
+        "Id": "8023N000003iYU8QAM",
+        "JSONAttribute": {
+          "ATTR_CC_TELCO": [
+            {
+              "$$AttributeDefinitionEnd$$": null,
+              "attributeRunTimeInfo": {
+                "selectedItem": {
+                  "value": "Paid",
+                  "sequence": 10,
+                  "id": "f19385d2-a617-26af-4c72-1b1d4aad118a",
+                  "displayText": "Maksas"
+                },
+                "default": [
+                  
+                ],
+                "values": [
+                  {
+                    "value": "Paid",
+                    "sequence": 10,
+                    "id": "f19385d2-a617-26af-4c72-1b1d4aad118a",
+                    "displayText": "Maksas"
+                  },
+                  {
+                    "value": "Free",
+                    "sequence": 20,
+                    "id": "b7573702-1620-100f-e9d4-469f590366fe",
+                    "displayText": "Bezmaksas"
+                  },
+                  {
+                    "value": "No Fee",
+                    "sequence": 30,
+                    "id": "1fc4cf0a-5718-0765-f141-f9f5aae8a811",
+                    "displayText": "Nav paredzēta"
+                  }
+                ],
+                "uiDisplayType": "Dropdown",
+                "dataType": "Picklist"
+              },
+              "isnotassetizable__c": false,
+              "attributegrouptype__c": null,
+              "valuedescription__c": null,
+              "valuedatatype__c": "Picklist",
+              "value__c": null,
+              "uidisplaytype__c": "Dropdown",
+              "rulemessage__c": null,
+              "isrequired__c": true,
+              "id": "a0M3N000001NhiSUAS",
+              "querylabel__c": null,
+              "isquerydriven__c": false,
+              "isnottranslatable__c": false,
+              "isreadonly__c": false,
+              "querycode__c": null,
+              "objecttype__c": "Product2",
+              "valueinnumber__c": null,
+              "ishidden__c": false,
+              "isconfigurable__c": true,
+              "hasrule__c": false,
+              "formatmask__c": null,
+              "customconfiguitemplate__c": null,
+              "categorydisplaysequence__c": 250,
+              "displaysequence__c": "null",
+              "attributedisplayname__c": "Aktivizācijas maksa",
+              "isactive__c": true,
+              "attributecloneable__c": true,
+              "attributefilterable__c": false,
+              "attributedisplaysequence__c": "100",
+              "attributeconfigurable__c": true,
+              "attributeuniquecode__c": "ATT_ACTIVATION_FEE",
+              "categoryname__c": "BB Attribute Category",
+              "categorycode__c": "ATTR_CC_TELCO",
+              "attributecategoryid__c": "a0O3N000001zw6FUAQ",
+              "attributeid__c": "a0P3N000003dZJhUAM",
+              "objectid__c": "01t3N000004eDE3QAM",
+              "$$AttributeDefinitionStart$$": null
+            }
+          ]
+        }
+      },
+      {
+        "status": "Pending",
+        "serviceAddressKey": "111071015",
+        "rootOrderItemId": "8023N000003iYUOQA2",
+        "productType": "Product",
+        "productId": "PD_TELCO_COURIER",
+        "scheduledShipDate": "2022-06-16T00:00:00.000Z",
+        "product": "Piegāde ar kurjeru (TELCO)",
+        "partNumber": "TC000083",
+        "billingAccountNumber": "13601077",
+        "assetIntegrationId": "d915d1d8-ae76-4c69-86d0-7c2f548b9b07",
+        "actionCode": "Add",
+        "UsageUnitPrice": 0.00000,
+        "ServiceStartDate": "2022-06-16T00:00:00.000Z",
+        "RecurringTotal": 0.00,
+        "UsagePriceTotal": 0.00,
+        "RecurringCharge": 0.00,
+        "ProductCategory": "Telco",
+        "OrderType": "Modify",
+        "OrderSubType": "Merge",
+        "OneTimeTotal": 9.50,
+        "OneTimeCharge": 9.50,
+        "LineNumber": "0004",
+        "Id": "8023N000003iYUOQA2"
+      }
+    ],
+    "subStatus": "Order Placed",
+    "source": "177 ITV Izmaiņas",
+    "orderNumber": "00029298",
+    "orderDate": "2022-06-13T11:34:59.000Z",
+    "orderCreator": "Niraj Mahesh Kor",
+    "hardCopyAgreement": "N",
+    "channel": "177 ITV Izmaiņas",
+    "Id": "8013N000003tsmVQAQ",
+    "GeneratePdfOnline": "1"
+  },
+  "ApiKey": "62aff0b1-1b49-4a4c-83a2-24ad38cff43c"
+}

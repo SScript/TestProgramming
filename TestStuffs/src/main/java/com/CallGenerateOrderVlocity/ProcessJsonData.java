@@ -26,7 +26,8 @@ public class ProcessJsonData {
         JSONObject itemdata;
         JSONObject itemattrdata;
 
-        FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/TestData002.json");
+        FileInputStream fis =
+                new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/CallGenerateOrderVlocity/TestData/Request JSONContract generation for Merge order tetpro internet.json");
         String longJsonString = IOUtils.toString(fis, "UTF-8");
 
         //JSONObject obj = new JSONObject(jdata);
@@ -247,7 +248,7 @@ public class ProcessJsonData {
 
 
         System.out.println(sb.toString());
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/TestData002_res.xml"),
+        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/CallGenerateOrderVlocity/TestData/Request JSONContract generation for Merge order tetpro internet.xml"),
                 sb.toString(), Charset.forName("UTF-8"));
     }
 
