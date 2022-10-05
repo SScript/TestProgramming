@@ -1,0 +1,25 @@
+{
+  "Requester": "VLOCITY",
+  "OrderUpdate": {
+    "OrderSubType": "",
+    "OldOrderCustomerName": "",
+    "OldCustomerNo": "",
+    "OldCustomerDeceased": "",
+    "Item": {
+      "NewAgreedTimePeriod": "",
+      "NewAgreedDate": "23/8/2022",
+      "SAAddress": "BĒRZU IELA 53 - 21, VENTSPILS",
+      "InstallationType": "Pašinstalācija/ Pakalpojuma uzlabošana",
+      "OfferName": "Pro internets"
+    },
+    "OrderNumber": "00135498",
+    "OrderContactPhone": "27576717",
+    "OrderContactName": "PENELOPA SANČESA"
+  },
+  "SendingType": "I",
+  "NotificationCommType": "VLOCITY_NOTIF_1",
+  "Email": "sanchez@ltk.lv",
+  "CustomerNo": "13676025",
+  "ApiKey": "5aWA7LX8fPfMqarm",
+  "ActionCode": "ChangeAgreedDate_telco"
+}

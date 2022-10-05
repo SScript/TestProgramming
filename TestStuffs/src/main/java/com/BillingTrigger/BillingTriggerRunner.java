@@ -10,8 +10,8 @@ import java.nio.charset.Charset;
 public class BillingTriggerRunner {
     public static void main(String[] args) throws Exception {
 
-        String filename = "BillingTriggerInput_N7_Telco.json";
-        //String filename = "BillTriggerInput_N6.json";
+        String filename = "BillingTriggerInput_N10_Telco_divi_sercibundle.json";
+        //String filename = "BillingTriggerInput_N9_Telco.json";
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/samples/" + filename);
 
         String longJsonString = IOUtils.toString(fis, "UTF-8");
@@ -24,13 +24,15 @@ public class BillingTriggerRunner {
 
         System.out.println(res2.RetCode);
         System.out.println(res2.RetMsg);
-        System.out.println("Pa vecam: " + res2.SendJsonStr);
-        System.out.println("TELCO1: " + res2.SendJsonStr1);
-        System.out.println("TELCO2: " + res2.SendJsonStr2);
-        System.out.println("TELCO3: " + res2.SendJsonStr3);
-        System.out.println("TELCO4: " + res2.SendJsonStr4);
+        //System.out.println("Pa vecam: " + res2.SendJsonStr);
 
-        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/Res_" + filename),
+        //System.out.println("TELCO1");
+        //System.out.println("TELCO1: " + res2.SendJsonStr1);
+        //System.out.println("TELCO2: " + res2.SendJsonStr2);
+        //System.out.println("TELCO3: " + res2.SendJsonStr3);
+        //System.out.println("TELCO4: " + res2.SendJsonStr4);
+
+        FileUtils.writeStringToFile(new File("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/samples/res/Res_" + filename),
                 res2.SendJsonStr0, Charset.forName("UTF-8"));
 
     }

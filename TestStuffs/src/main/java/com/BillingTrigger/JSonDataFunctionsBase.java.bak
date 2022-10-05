@@ -3,9 +3,6 @@ package com.BillingTrigger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class JSonDataFunctionsBase {
 
     static final String STR_SPLIT_PAYMENT = "Split payment";
@@ -232,21 +229,6 @@ public class JSonDataFunctionsBase {
             }
         }
         return sb.toString();
-    }
-
-    public String getBillActivationDate(String billDate) {
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String billActivationDate = "";
-        try {
-            Date date = simpleDateFormat.parse(billDate);
-            billActivationDate = simpleDateFormat.format(date);
-        } catch (Exception ex) {
-            billActivationDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());;
-        }
-
-        return billActivationDate;
-
     }
 
     public String FormatDate(String d) {

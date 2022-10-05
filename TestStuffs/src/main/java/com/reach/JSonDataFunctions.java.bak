@@ -528,7 +528,7 @@ public class JSonDataFunctions {
         return result;
     }
 
-    public String GetVLOrderMonthlyTotalWithoutDiscountValue(JSONObject orderdata) throws Exception {
+    public String VLOrderMonthlyTotal(JSONObject orderdata) throws Exception {
         String result = "";
         Object data = null;
         JSONArray apr = new JSONArray();
@@ -582,7 +582,6 @@ public class JSonDataFunctions {
     public String GetResumeDateValueFromSuspendEndDate(JSONArray orderdataitems) throws Exception {
         String result = "";
         String productSubType = "";
-        String resumeDate = "";
         String suspendEndDate = "";
         JSONObject itemdata = null;
         int itemcount = orderdataitems.length();
@@ -590,12 +589,9 @@ public class JSonDataFunctions {
             itemdata = orderdataitems.getJSONObject(i);
             productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", false);
             if ("Offer".equalsIgnoreCase(productSubType)) {
-                resumeDate = GetJsonAtrrObjectStringValue(itemdata, "ResumeDate", false);
                 suspendEndDate = GetJsonAtrrObjectStringValue(itemdata, "SuspendEndDate", false);
                 if (!isEmptyOrNull(suspendEndDate)) {
                     return suspendEndDate;
-                } else if (!isEmptyOrNull(resumeDate)) {
-                    return resumeDate;
                 }
             }
         }

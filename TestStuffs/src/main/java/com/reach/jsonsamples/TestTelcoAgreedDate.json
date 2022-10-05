@@ -1,0 +1,25 @@
+{
+  "Requester": "VLOCITY",
+  "OrderUpdate": {
+    "OldOrderCustomerName": "",
+    "Item": {
+      "NewAgreedDate": "29/08/2022",
+      "OfferName": "Starta internets",
+      "SAAddress": "SMILŠU IELA 28 - 4, JELGAVA",
+      "NewAgreedTimePeriod": "09:00 - 12:00",
+      "InstallationType": "Ierīkošana ar meistaru"
+    },
+    "OrderContactPhone": "27274141",
+    "OldCustomerDeceased": "",
+    "OrderContactName": "MĀRIS APARKALNIŅŠ",
+    "OrderSubType": "",
+    "OrderNumber": "00138099",
+    "OldCustomerNo": ""
+  },
+  "Email": "aparkalnins@ltk.lv",
+  "ApiKey": "5aWA7LX8fPfMqarm",
+  "NotificationCommType": "VLOCITY_NOTIF_1",
+  "SendingType": "I",
+  "ActionCode": "ChangeAgreedDate_telco",
+  "CustomerNo": "13695178"
+}

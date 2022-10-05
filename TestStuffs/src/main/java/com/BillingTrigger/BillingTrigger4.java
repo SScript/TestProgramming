@@ -434,7 +434,7 @@ public class BillingTrigger4 {
         String OCPPlanCode = GetJsonObjectStringValue(itemdata, "OCPPlanCode", false);
         String UnicornSpecialDiscountCode = GetJsonObjectStringValue(itemdata, "UnicornSpecialDiscountCode", false);
 
-        if (source.equalsIgnoreCase("BASE")) {
+        if (source.equalsIgnoreCase("BASE") || source.equalsIgnoreCase("ABP")) {
             return "C";
         } else {
 
@@ -454,8 +454,13 @@ public class BillingTrigger4 {
         //                default : return "";
         //            }
 
-        if (TranslateOrderPricingSource(source, itemdata).equals("C")) {
-            return chargeType;
+        if (TranslateOrderPricingSource(source, itemdata).equalsIgnoreCase("C")) {
+            switch (chargeType.toUpperCase()) {
+                case "RECURRING": return "RC";
+                case "ONE-TIME": return "NRC";
+                case "USAGE": return "USAGE";
+                default : return "";
+            }
         } else if (TranslateOrderPricingSource(source, itemdata).equals("D")) {
 
             String UnicornSpecialDiscountCode = GetJsonObjectStringValue(itemdata, "UnicornSpecialDiscountCode", false);

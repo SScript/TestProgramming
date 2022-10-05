@@ -1,0 +1,25 @@
+{
+  "Requester": "VLOCITY",
+  "OrderUpdate": {
+    "OldOrderCustomerName": "BAIBIŅA ĪPAŠĀ",
+    "Item": {
+      "NewAgreedDate": "26/7/2022",
+      "OfferName": "Pamata Internets,Pārreģistrācijas maksa",
+      "SAAddress": "RĪGAS IELA 15 - 3, SALDUS, SALDUS NOV.",
+      "NewAgreedTimePeriod": "",
+      "InstallationType": "Pašinstalācija/ Pakalpojuma uzlabošana"
+    },
+    "OrderContactPhone": "26666688",
+    "OrderContactName": "VINETA VIVJĒNA",
+    "OldCustomerDeceased": false,
+    "OrderSubType": "Ownership Change",
+    "OrderNumber": "00116695",
+    "OldCustomerNo": "13675065"
+  },
+  "Email": "vivjena@ltk.lv",
+  "ApiKey": "5aWA7LX8fPfMqarm",
+  "NotificationCommType": "VLOCITY_NOTIF_1",
+  "SendingType": "I",
+  "ActionCode": "ChangeAgreedDate_telco",
+  "CustomerNo": "13674912"
+}

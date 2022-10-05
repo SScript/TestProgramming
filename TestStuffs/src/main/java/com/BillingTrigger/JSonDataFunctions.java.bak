@@ -36,7 +36,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
         //addFieldToOutDataData("serviceno", GetServiceNoFromServiceBundle());
 
-        //addArrFieldToOutDataData("orderOffers", ProcessOrderPricing(""));
+        addArrFieldToOutDataData("orderOffers", ProcessOrderPricing(""));
 
     }
 
@@ -367,22 +367,22 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         }
     }
 
-    protected JSONArray ProcessOrderPricing(JSONArray bundleItems, String serviceBundle, String serviceNo) throws Exception {
+    protected JSONArray ProcessOrderPricing(String serviceBundle, String serviceNo) throws Exception {
         JSONArray offerPriceObj = new JSONArray();
-        //int itemcount = getOrderDataItems().length();
+        int itemcount = getOrderDataItems().length();
         JSONObject objOrdPricing = null;
         JSONObject itemdata = null;
-        String offerOrderItemId = getOfferOrderItemId(bundleItems);
+        String offerOrderItemId = getOfferOrderItemId();
 
         String err = "";
 
-        for (int i = 0; i < bundleItems.length(); i++) {
+        for (int i = 0; i < itemcount; i++) {
             String ORDER_LINE_PLAN_CODE_VALUE = ""; // pārnesu zem for loopa, savādāk string variablī saglabājas vērtība no iepriekšēja cikla
             String ORDER_LINE_PACKAGE_CODE = "";
             String ORDER_LINE_PROMOTION_UOM = "";
             String ORDER_LINE_TYPE = "";
             int typeDcount = 0;
-            itemdata = bundleItems.getJSONObject(i);
+            itemdata = getOrderDataItems().getJSONObject(i);
             Boolean addline = true;
             try {
                 String orderItemSubType = GetJsonObjectStringValue(itemdata, "OrderSubType", false);
@@ -407,28 +407,26 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
 //                System.out.println("=================================");
                     // pagaidām rindiņas aizkomentēju debuggingam, jo nav skaidrs, vai strādā 100%
-                    //if ("Primary".equals(serviceBundle)) {
+                    if ("Primary".equals(serviceBundle)) {
 //                        System.out.println("1st itemdId: " + orderItemId + " and ProductSubType: " + productSubType + " and unicornServiceLevel: " + unicornServiceLevel);
-                   //     if (("ServiceBundle".equalsIgnoreCase(productSubType)
-                    //        && !"Primary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, "Secondary")) {
+                        if (("ServiceBundle".equalsIgnoreCase(productSubType) && !"Primary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, "Secondary")) {
 //                            System.out.println("Skipping whats NOT in Primary");
-                   //         continue;
-                    //    } else {
+                            continue;
+                        } else {
 //                            System.out.println("Primary else OK");
-                    //    }
+                        }
 
 
 
-                    //} else {
+                    } else {
 //                        System.out.println("2nd ProductSubType: " + productSubType + " and unicornServiceLevel: " + unicornServiceLevel);
-                    //    if (orderItemId.equals(offerOrderItemId) || ("ServiceBundle".equalsIgnoreCase(productSubType)
-                    //        && "Secondary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, serviceBundle)) {
+                        if (orderItemId.equals(offerOrderItemId) || ("ServiceBundle".equalsIgnoreCase(productSubType) && "Secondary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, serviceBundle)) {
 //                            System.out.println("Secondary if OK, PASSED");
-                    //    } else {
+                        } else {
 //                            System.out.println("Skipping whats NOT in Secondary");
-                    //        continue;
-                    //    }
-                    //}
+                            continue;
+                        }
+                    }
 
 
 
@@ -639,17 +637,17 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
     }
 
 
-    private String getOfferOrderItemId(JSONArray items) throws Exception {
+    private String getOfferOrderItemId() throws Exception {
 
 
         JSONObject itemdata = null;
         String orderItemId = "";
 
-        int itemcount = items.length();
+        int itemcount = getOrderDataItems().length();
         String prdtSubType = "";
 
         for (int i = 0; i < itemcount; i++) {
-            itemdata = items.getJSONObject(i);
+            itemdata = getOrderDataItems().getJSONObject(i);
             prdtSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
 
             if ("Offer".equalsIgnoreCase(prdtSubType)) {
@@ -1128,7 +1126,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
             // for testing purposes LOCAL
             if ("LOCAL".equalsIgnoreCase(getEnv())) {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
-                conn = DriverManager.getConnection("jdbc:oracle:thin:@10.2.88.41:1534:CRASO", "AK_OWNER", "akwow45");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@alfredo.telekom.lv:1534:CRASO", "AK_OWNER", "akwow45");
             } else { // server
                 ctx = new InitialContext();
                 ds = (DataSource) ctx.lookup("jdbc/AKADMIN"); //eis/DB/AKADMIN

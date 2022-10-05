@@ -1,7 +1,6 @@
 package com.BillingTrigger;
 
 import jdk.nashorn.internal.parser.JSONParser;
-import org.apache.kafka.clients.admin.AlterConsumerGroupOffsetsOptions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,12 +36,7 @@ public class ProcessTelco extends JSonDataFunctions {
     protected JSONObject responseVlocJson;
     public JSONObject order;
     public static JSONArray orderItems;
-
-    public JSONArray itemdata_primary = new JSONArray();
-    public JSONArray itemdata_secondary = new JSONArray();
-    public JSONArray itemdata_tertiary = new JSONArray();
-    public JSONArray itemdata_quarternary = new JSONArray();
-
+    
     public List<String> servidslist = new ArrayList<>();
     public Map<String, JSONObject> servidslistdata = new HashMap<>();
 
@@ -59,6 +53,10 @@ public class ProcessTelco extends JSonDataFunctions {
         //String ServiceBundlevalues[] = {"Primary", "Secondary", "Tertiary", "Quarternary"};
 
         // sadalu itemus jau pa ServiceBundlevalues
+        JSONArray itemdata_primary;
+        JSONArray itemdata_secondary;
+        JSONArray itemdata_tertiary;
+        JSONArray itemdata_quarternary;
         String primaryserviceNumber = "";
         String secondaryserviceNumber = "";
         String tertiaryserviceNumber = "";
@@ -66,20 +64,10 @@ public class ProcessTelco extends JSonDataFunctions {
         
 //        String serviceNumber = "";
         try {
-            //itemdata_primary = GeOrderItemsByServiceLevel("Primary");
-            //itemdata_secondary = GeOrderItemsByServiceLevel("Secondary");
-            //itemdata_tertiary = GeOrderItemsByServiceLevel("Tertiary");
-            //itemdata_quarternary = GeOrderItemsByServiceLevel("Quarternary");
-
-            servidslist = GeOrderServiceNumbers();
-            //if (!servidslist.contains(secondaryserviceNumber)) {servidslist.add(secondaryserviceNumber);}
-            //if (!servidslist.contains(tertiaryserviceNumber)) {servidslist.add(tertiaryserviceNumber);}
-            //if (!servidslist.contains(quarternaryserviceNumber)) {servidslist.add(quarternaryserviceNumber);}
-            System.out.println("servidslist: " + servidslist.toString());
-
-            // aizpildam itemus pēc serviceid, izsaukumi ir tik, cik unikālie service id
-            // servidslistdata
-            servidslistdata = filldatawithitems(servidslist);
+            itemdata_primary = GeOrderItemsByServiceLevel("Primary");
+            itemdata_secondary = GeOrderItemsByServiceLevel("Secondary");
+            itemdata_tertiary = GeOrderItemsByServiceLevel("Tertiary");
+            itemdata_quarternary = GeOrderItemsByServiceLevel("Quarternary");
 
             if (itemdata_primary.length() > 0) {
                 serviceNumber = getTelcoServiceNo(itemdata_primary);
@@ -113,7 +101,15 @@ public class ProcessTelco extends JSonDataFunctions {
                 quarternaryserviceNumber = serviceNumber;
             }
 
-
+            servidslist.add(primaryserviceNumber);
+            if (!servidslist.contains(secondaryserviceNumber)) {servidslist.add(secondaryserviceNumber);}
+            if (!servidslist.contains(tertiaryserviceNumber)) {servidslist.add(tertiaryserviceNumber);}
+            if (!servidslist.contains(quarternaryserviceNumber)) {servidslist.add(quarternaryserviceNumber);}
+            
+            // aizpildam itemus pēc serviceid, izsaukumi ir tik, cik unikālie service id
+            // servidslistdata
+            servidslistdata = filldatawithitems(servidslist);
+            
             result.RetCode = "1";
             result.RetMsg = "OK";
         } catch (Exception e) {
@@ -136,22 +132,6 @@ public class ProcessTelco extends JSonDataFunctions {
 
 
         result.responseVlocJson = responseVlocJson.toString();
-        return result;
-    }
-
-    private List<String> GeOrderServiceNumbers() throws Exception {
-        List<String> result = new ArrayList<>();
-        String data = "";
-        JSONArray orderdataitems  = getOrderDataItems();
-        JSONObject itemdata = null;
-        int itemcount = orderdataitems.length();
-        for (int i = 0; i < itemcount; i++) {
-            itemdata = orderdataitems.getJSONObject(i);
-            data = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-            if (!"".equalsIgnoreCase(data) && !result.contains(data)) {
-                result.add(data);
-            }
-        }
         return result;
     }
 
@@ -491,7 +471,7 @@ public class ProcessTelco extends JSonDataFunctions {
 
         newData.put("orderdetails", orderAtrrItems);
 
-        newData.put("orderOffers", ProcessOrderPricing(bundleItems, serviceBundle, getTelcoServiceNo(bundleItems)));
+        newData.put("orderOffers", ProcessOrderPricing(serviceBundle, getTelcoServiceNo(bundleItems)));
 
         return newData.toString();
     }
@@ -885,170 +865,65 @@ public class ProcessTelco extends JSonDataFunctions {
         return result;
     }
 
+    }
+
     private Map<String, JSONObject> filldatawithitems(List<String> servidslist) throws Exception {
         Map<String, JSONObject> result = new HashMap<>();
         String serviceNumber = "";
         String itemServiceNumber = "";
         String orderItemId = "";
-        String parentOrderItemId = "";
-        String orderItemId1 = "";
-        String parentOrderItemId1 = "";
         String unicornServiceLevel = "";
         boolean isPrimary = false;
         
         JSONArray data  = getOrderDataItems();
         int itemcount = data.length();
         JSONObject itemdata = null;
-        JSONObject itemdata1 = null;
         
         for (int i = 0; i < servidslist.size(); i++) {
             serviceNumber = servidslist.get(i); //
             // UnicornServiceLevel
             
             // sākumā pievieno visus, kam sakrīt serviceNumber
-            for (int j = 0; j < itemcount; j++) {
-                itemdata = data.getJSONObject(j);
-
+            for (int j = 0; j < itemcount; i++) {
+                itemdata = data.getJSONObject(i);
+                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                 itemServiceNumber  = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                //orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
                 
                 if (serviceNumber.equalsIgnoreCase(itemServiceNumber)) {
-                    switch (i) {
-                        case 0:
-                            itemdata_primary = addParrentsAndChilds(itemdata, "Primary");
-                            itemdata_primary.put(itemdata);
-                            break;
-                        case 1:
-                            itemdata_secondary = addParrentsAndChilds(itemdata, "Secondary");
-                            itemdata_secondary.put(itemdata);
-                            break;
-                        case 2:
-                            itemdata_tertiary = addParrentsAndChilds(itemdata, "Tertiary");
-                            itemdata_tertiary.put(itemdata);
-                            break;
-                        case 3:
-                            itemdata_quarternary = addParrentsAndChilds(itemdata, "Quarternary");
-                            itemdata_quarternary.put(itemdata);
-                            break;
-                    }
+                    servidslistdata.put(orderItemId, itemdata);
+                }
+                
+                // ja tas ir primary, tad jāliek klāt arī tukšo, kam rootorderitemid = ar šo orderitemid
+                if ("Primary".equals(unicornServiceLevel) && "".equalsIgnoreCase(unicornServiceLevel)) {
+                    orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                    
+                    
+                }
+                switch (i) {
+                case 1: 
+                     break;
+                case 2: 
+                    break;
+                case 3: 
+                    break;
+                case 4: 
                     break;
                 }
-            } // end of for (int j = 0; j < itemcount; j++)
-        } // end of for (int i = 0; i < servidslist.size(); i++) {
+                
+                // servidslistdata <String,JSONObject>
+                
+            }
+            
+            // ja tas ir primary, tad pirmajam izsaukumam pieliek arī tukšos
+            if (isPrimary) {
+                for (int j = 0; j < itemcount; i++) {
+                    itemdata = data.getJSONObject(i);
+                    unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                    
+                }
+            }
+        }
         return result;
     }
-
-    private JSONArray addParrentsAndChilds(JSONObject bundleItem, String level) throws Exception {
-        JSONArray res = new JSONArray();
-        boolean isParent = false;
-        String parentOrderItemId = "";
-        String orderItemId = "";
-        String rootOrderId = "";
-        String unicornServiceLevel = "";
-        String serviceId = "";
-        JSONArray data  = getOrderDataItems();
-        JSONObject itemdata = null;
-        int itemcount = data.length();
-        String parentOrderItemIdCurr = GetJsonObjectStringValue(bundleItem, "ParentOrderItemId", false);
-
-        // add parrents
-        do {
-            for (int j = 0; j < itemcount; j++) {
-                itemdata = data.getJSONObject(j);
-                parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                // ja sakrīt items
-                if (orderItemId.equalsIgnoreCase(parentOrderItemIdCurr)) {
-                    // vai tas ir pēdējais
-                    if (isEmptyOrNull(parentOrderItemId)) {
-                        isParent = true;
-                        rootOrderId = orderItemId;
-                    }
-                    res.put(itemdata);
-                    if (!isEmptyOrNull(parentOrderItemId)) {
-                        parentOrderItemIdCurr = parentOrderItemId;
-                        break;
-                    }
-                }
-            }
-
-        } while (!isParent);
-
-        // add childs
-        String orderItemIdCurr = GetJsonObjectStringValue(bundleItem, "OrderItemId", false);
-        boolean isFullFor = true;
-        int count = 0;
-        do {
-            isFullFor = true;
-            for (int j = 0; j < itemcount; j++) {
-                itemdata = data.getJSONObject(j);
-                parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                if (isEmptyOrNull(unicornServiceLevel) && parentOrderItemId.equalsIgnoreCase(orderItemIdCurr)) {
-                    res.put(itemdata);
-                    orderItemIdCurr = orderItemId;
-                    isFullFor = false;
-                    break;
-                }
-            }
-        } while (!isFullFor);
-
-        // skatamies vai nav citi levelji
-        for (int j = 0; j < itemcount; j++) {
-            itemdata = data.getJSONObject(j);
-            unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-            serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-            orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-            if (level.equalsIgnoreCase(unicornServiceLevel) && isEmptyOrNull(serviceId)) {
-                // ja ir paņemam viņu
-                res.put(itemdata);
-                orderItemIdCurr = orderItemId;
-                // un viņa childus
-                do {
-                    isFullFor = true;
-                    for (int jj = 0; jj < itemcount; jj++) {
-                        itemdata = data.getJSONObject(jj);
-                        parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                        orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                        unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                        serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                        //if (isEmptyOrNull(parentOrderItemId)) {isParent = true;}
-                        if ((isEmptyOrNull(unicornServiceLevel) || isEmptyOrNull(serviceId))
-                                && parentOrderItemId.equalsIgnoreCase(orderItemIdCurr)) {
-                            res.put(itemdata);
-                            orderItemIdCurr = orderItemId;
-                            isFullFor = false;
-                            break;
-                        }
-                    }
-                } while (!isFullFor);
-            }
-
-        }
-        // add offer childs
-       /** orderItemIdCurr = rootOrderId;
-        do {
-            isFullFor = true;
-            for (int j = 0; j < itemcount; j++) {
-                itemdata = data.getJSONObject(j);
-                parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                //if (isEmptyOrNull(parentOrderItemId)) {isParent = true;}
-                if ((isEmptyOrNull(unicornServiceLevel) || isEmptyOrNull(serviceId))
-                        && parentOrderItemId.equalsIgnoreCase(orderItemIdCurr)) {
-                    res.put(itemdata);
-                    orderItemIdCurr = orderItemId;
-                    isFullFor = false;
-                    break;
-                }
-            }
-        } while (!isFullFor);*/
-
-        return res;
-    }
-
 }

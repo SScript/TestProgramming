@@ -75,7 +75,7 @@ public class BillingTrigger4_1 {
         }
         //try {
         //    if (!isEmptyOrNull(AccountAddressId)) {
-        //        //GetOrderAddressData();
+        //        GetOrderAddressData();
         //        if (!isAddressFound && !"Split payment".equalsIgnoreCase(orderedService)) {
         //            //result.RetCode = "SOA_164[003]";
         //            //result.RetMsg = "Adrese : " + AccountAddressId + " nav atrasta.";

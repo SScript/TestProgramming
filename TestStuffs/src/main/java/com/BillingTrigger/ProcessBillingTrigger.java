@@ -2,9 +2,11 @@ package com.BillingTrigger;
 
 import org.json.JSONObject;
 
+
 public class ProcessBillingTrigger {
     public Resp ProcessJsonData(String jsonDataStr, String excludeStrs, String containsOrEquals, String caller) throws Exception {
         Resp result = new Resp();
+        Resp resultOld = new Resp();
         JSONObject orderdatafull;
         JSONObject orderdata;
 
@@ -36,29 +38,49 @@ public class ProcessBillingTrigger {
             return result;
         }
 
-        String orderedService = "";
+        String orderedService = "Split payment";
         try {
             orderedService = orderdata.getString("OrderedService");
             result.OrderedServiceOrigin = orderedService;
-        } catch (Exception e) {result.OrderedServiceOrigin = "";}
+        } catch (Exception e) {
+            orderedService = "Split payment";
+            result.OrderedServiceOrigin = "";
+        }
 
         //orderedService = "telco";
         BillingTrigger4 b4 = new BillingTrigger4();
+        String env = "LOCAL";
+        System.out.println("orderedService: " + orderedService);
         switch (orderedService.toUpperCase()) {
             case "TELCO":
-                ProcessTelco pt = new ProcessTelco(jsonDataStr);
+                ProcessTelco pt = new ProcessTelco(jsonDataStr, env);
                 result = pt.ProcessForTelco();
+                System.out.println("--> SendJsonStr1: " + result.SendJsonStr1);
+                System.out.println("--> SendJsonStr2: " + result.SendJsonStr2);
+                System.out.println("--> SendJsonStr3: " + result.SendJsonStr3);
+                System.out.println("--> SendJsonStr4: " + result.SendJsonStr4);
                 break;
             case "ELECTRICITY":
-                //ProcessElectricity pe = new ProcessElectricity(jsonDataStr);
-                //result = pe.ProcessForElectricity();
+                // jaunais
+                System.out.println("Pa jaunam:");
+                ProcessElectricity pe = new ProcessElectricity(jsonDataStr, env);
+                result = pe.ProcessForElectricity();
+                System.out.println("--> SendJsonStr: " + result.SendJsonStr);
 
-                result = b4.ProcessJsonData(orderdata.toString());
+                // pa vecam
+                System.out.println("Pa vecam:");
+                resultOld = b4.ProcessJsonData(orderdata.toString());
+                System.out.println("--> SendJsonStr: " + resultOld.SendJsonStr);
                 break;
             default:// Split payment
-                //ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr, excludeStrs, containsOrEquals);
-                //result = ps.ProcessForSplitPayment();
-                result = b4.ProcessJsonData(orderdata.toString());
+                // jaunais
+                ProcessSplitPayment ps = new ProcessSplitPayment(jsonDataStr, excludeStrs, containsOrEquals, env);
+                result = ps.ProcessForSplitPayment();
+                System.out.println("--> SendJsonStr: " + result.SendJsonStr);
+
+                // pa vecam
+                resultOld = b4.ProcessJsonData(orderdata.toString());
+                System.out.println("--> SendJsonStr: " + resultOld.SendJsonStr);
                 break;
         }
         return result;

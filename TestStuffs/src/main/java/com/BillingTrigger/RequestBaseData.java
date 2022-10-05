@@ -1,7 +1,9 @@
 package com.BillingTrigger;
 
 public class RequestBaseData {
-    private String guid  = "";
+
+    private String env = "LOCAL";
+    private String guid = "";
     private String caller = "";
 
     private String OrderedService = "";
@@ -11,6 +13,7 @@ public class RequestBaseData {
     private String OrderNumber = "";
     private String OrderId = "";
     private String AddressKey = "";
+    private boolean isAddressFound = false;
     private String AccountNo = "";
     private String Notes = "";
     private String DownPaymentBillNo = "";
@@ -19,8 +22,18 @@ public class RequestBaseData {
     private String OrderedServiceType = "";
     private String RemovalReason = "";
     private String OrderReason = "";
+    private String OrdDeactCancelFlag = "";
 
     //-----------------
+
+    public String getEnv() {
+        return env;
+    }
+
+    public void setEnv(String env) {
+        this.env = env;
+    }
+
     private String serviceno = "";
 
     public String getGuid() {
@@ -91,6 +104,14 @@ public class RequestBaseData {
         return AddressKey;
     }
 
+    public boolean isAddressFound() {
+        return isAddressFound;
+    }
+
+    public void setAddressFound(boolean addressFound) {
+        isAddressFound = addressFound;
+    }
+
     public void setAddressKey(String addressKey) {
         AddressKey = addressKey;
     }
@@ -143,6 +164,7 @@ public class RequestBaseData {
         OrderReason = orderReason;
     }
 
+
     public String getAccountNo() {
         return AccountNo;
     }
@@ -165,5 +187,14 @@ public class RequestBaseData {
 
     public void setServiceno(String serviceno) {
         this.serviceno = serviceno;
+    }
+
+
+    public String getOrdDeactCancelFlag() {
+        return OrdDeactCancelFlag;
+    }
+
+    public void setOrdDeactCancelFlag(String ordDeactCancelFlag) {
+        OrdDeactCancelFlag = ordDeactCancelFlag;
     }
 }

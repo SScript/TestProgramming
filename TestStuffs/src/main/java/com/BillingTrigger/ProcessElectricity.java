@@ -7,8 +7,8 @@ import java.math.RoundingMode;
 
 public class ProcessElectricity extends JSonDataFunctions {
 
-    public ProcessElectricity(String inFullData) throws Exception {
-        super(inFullData);
+    public ProcessElectricity(String inFullData, String env) throws Exception {
+        super(inFullData, env);
     }
 
     public Resp ProcessForElectricity() throws Exception {
