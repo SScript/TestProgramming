@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 public class BillingTriggerRunner {
     public static void main(String[] args) throws Exception {
 
-        String filename = "BillingTriggerInput_N10_Telco_divi_sercibundle.json";
+        String filename = "BillingTriggerInput_N10_Telco_divi_sercibundle.json"; //"BillingTriggerOCPPLancode_Telco.json";
         //String filename = "BillingTriggerInput_N9_Telco.json";
         FileInputStream fis = new FileInputStream("C:/TestProgramming/TestProgramming/TestStuffs/src/main/java/com/BillingTrigger/samples/" + filename);
 

@@ -28,7 +28,7 @@ public class JSonDataFunctions {
      *   DeliveryMethod = 'Courier', tad CourierAddressString
      *   DeliveryMethod = 'PickUpPoint', tad ParcelMachineAddress
      *   DeliveryMethod  = 'StoreFront', tad "Tet veikals"
-     *   DeliveryMethod = 'AlreadyDelivered', tad nepadot ≈°o parametru
+     *   DeliveryMethod = 'AlreadyDelivered', tad nepadot o parametru
      *     else
      *       OrderItem.serviceAccountAddress
      * @param orderdataitems
@@ -101,7 +101,7 @@ public class JSonDataFunctions {
         Mapping:
             StoreFront - TET veikals
             Courier - Kurjers
-            PickUpPoint - Omniva pakomƒÅts
+            PickUpPoint - Omniva pakom‚ts
             KAI - Meistars
         For root order line item parentOrderItem will be null.
     * */
@@ -129,7 +129,7 @@ public class JSonDataFunctions {
                         result = "Kurjers";
                         break;
                     case "PICKUPPOINT":
-                        result = "Omniva pakomƒÅts";
+                        result = "Omniva pakom‚ts";
                         break;
                     case "KAI":
                         result = "Meistars";
@@ -374,7 +374,7 @@ public class JSonDataFunctions {
         return result;
     }
 
-    // FulfilmentStatus <> 'InComplete' un ≈°ƒ´m OrderItem ir child OrderItem ar OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' (SOAIP-2257)
+    // FulfilmentStatus <> 'InComplete' un Óm OrderItem ir child OrderItem ar OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' (SOAIP-2257)
     public boolean findChildOrderItemVlOfferNameSelfInstall(JSONArray orderdataitems, String orderItemId) throws Exception {
 
         if (orderItemId.isEmpty()) {
@@ -401,7 +401,7 @@ public class JSonDataFunctions {
     }
 
 
-    // FulfilmentStatus <> 'InComplete' un ≈°ƒ´m OrderItem ir child OrderItem ar ProductSubType = 'Installation' and ServiceType = 'Fitter'
+    // FulfilmentStatus <> 'InComplete' un Óm OrderItem ir child OrderItem ar ProductSubType = 'Installation' and ServiceType = 'Fitter'
     public boolean findChildOrderItemVlOfferNameFitter(JSONArray orderdataitems, String orderItemId) throws Exception {
 
         if (orderItemId.isEmpty()) {
@@ -665,7 +665,7 @@ public class JSonDataFunctions {
         JSONObject d = null;
         int itemcount = orderdataitems.length();
 
-        // ServiceStartDate ir katrƒÅ orderitemƒÅ
+        // ServiceStartDate ir katr‚ orderitem‚
         for (int i = 0; i < itemcount; i++) {
             d = orderdataitems.getJSONObject(i);
             productType = GetJsonAtrrObjectStringValue(d, "ProductType", false);
@@ -816,7 +816,7 @@ public class JSonDataFunctions {
     }
 
     public String FormatDate(String d) {
-        // var ienƒÅkt:
+        // var ien‚kt:
         // ir   -> 2020-07-15 10:00:00
         // vai -> 15/07/2020 10:00:00
         // vai -> 2022-07-28

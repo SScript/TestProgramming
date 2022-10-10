@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="PROJECT" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/JSonDataFunctionsBase.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessBillingTrigger.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessElectricity.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessSplitPayment.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessTelco.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/reach/JSonDataFunctions.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/reach/ProcessJsonDataReach.java" charset="windows-1257" />
+    <file url="PROJECT" charset="windows-1257" />
   </component>
 </project>

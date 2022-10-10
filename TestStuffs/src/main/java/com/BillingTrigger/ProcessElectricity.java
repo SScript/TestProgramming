@@ -54,7 +54,7 @@ public class ProcessElectricity extends JSonDataFunctions {
                 true, false);
         addFieldToOutDetailsDataData(s, "ORD_ORDERITEMID");
 
-        // jƒÅnem no "Electricity.RootObject.BillActivationDate"
+        // j‚nem no "Electricity.RootObject.BillActivationDate"
         s = GetOrderItemFieldValueByProductType(
                 "Electricity", "Electricity",
                 "TechnicalObject",
@@ -81,7 +81,7 @@ public class ProcessElectricity extends JSonDataFunctions {
         // If <OrderedService> nav 'Split Payment', tad tiek pievienots dinamiskais parametrs ar key = 'ORD_PRICE_KWH'
         // un value - tiek noteikta no OrderItem ar <ProductSubType> = 'Plan' un ar <OrderItemAction> = 'ADD', OrderPricing ieraksta ar <Source> = 'Base':
         //ja VATExclusive = 'N', tad value = round(<OrderItem.OrderPricing.Amount> devide with (1.<OrderItem.OrderPricing.VatRate>),2)
-        //pretejƒÅ gadijumƒÅ - value = <OrderItem.OrderPricing.Amount>
+        //pretej‚ gadijum‚ - value = <OrderItem.OrderPricing.Amount>
         //s = GetORD_PRICE_KWHValue();
         addFieldToOutDetailsDataData(GetORD_PRICE_KWHValue(), "ORD_PRICE_KWH");
         //orderAtrrItems.put(new JSONObject().put("value", GetORD_PRICE_KWHValue()).put("key", "ORD_PRICE_KWH"));
@@ -106,7 +106,7 @@ public class ProcessElectricity extends JSonDataFunctions {
 
         // value - tiek noteikta no OrderItem ar <ProductSubType> = 'Plan' un ar <OrderItemAction> = 'ADD', OrderPricing ieraksta ar <Source> = 'Base':
         // ja VATExclusive = 'N', tad value = round(<OrderItem.OrderPricing.Amount> devide with (1.<OrderItem.OrderPricing.VatRate>),2)
-        // pretejƒÅ gadijumƒÅ - value = <OrderItem.OrderPricing.Amount>
+        // pretej‚ gadijum‚ - value = <OrderItem.OrderPricing.Amount>
         int itemcount = getOrderDataItems().length();
         for (int i = 0; i < itemcount; i++) {
             itemdat = getOrderDataItems().getJSONObject(i);
@@ -115,7 +115,7 @@ public class ProcessElectricity extends JSonDataFunctions {
             vATExclusiveValue = GetJsonObjectStringValue(itemdat, "VATExclusive", false);
             vATRateValue = GetJsonObjectStringValue(itemdat, "VATRate", false);
 
-            // ja vƒìrtƒ´bas ir iek≈° OrderPricing, tad ≈Üem no turienes
+            // ja vÁrtÓbas ir iek OrderPricing, tad Úem no turienes
             try {objOrdPricing = itemdat.getJSONObject("OrderPricing");} catch (Exception e) {}
             if (null != objOrdPricing) {
                 orderPricingSourceValue = GetJsonObjectStringValue(objOrdPricing, "Source", false);

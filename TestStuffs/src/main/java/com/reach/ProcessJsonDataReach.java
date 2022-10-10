@@ -1,6 +1,6 @@
 /**
  * DT.ELE - SendNotificationsVLocityReqABCSImpl
- *  + Telco izmaiÅ†as
+ *  + Telco izmaiòas
  */
 package com.reach;
 
@@ -85,7 +85,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
             isCaseStructureAdded = false;
         }
 
-        // sadaÄ¼a ELE_Calculator
+        // sadaïa ELE_Calculator
         Object objELE = null;
         JSONArray elecalcdataarray = null;
         JSONObject elecalcdata = null;
@@ -106,7 +106,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
             isELECalcStructureAdded = false;
         }
 
-        // sadaÄ¼a OrderUpdate
+        // sadaïa OrderUpdate
         Object objOrderUpdate = null;
         JSONArray orderUpdatearray = new JSONArray();
         JSONObject orderUpdatedata = null;
@@ -140,9 +140,9 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 sb.append(GetJsonObjectValue(obj, "Email", "notificationaddress_EMAIL", false));
             }
 
-            sb.append("<notificationaddress_MOBTOKEN/>"); //vienmÄ“r tukÅ¡s
-            sb.append("<mtetuserid/>"); //vienmÄ“r tukÅ¡s
-            sb.append("<mobileappid>1</mobileappid>"); //vienmÄ“r 1
+            sb.append("<notificationaddress_MOBTOKEN/>"); //vienmçr tukğs
+            sb.append("<mtetuserid/>"); //vienmçr tukğs
+            sb.append("<mobileappid>1</mobileappid>"); //vienmçr 1
 
             sb.append("<DynamicParametersList>");
 
@@ -160,7 +160,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                     break;
             }
 
-            // actioncode -> vÄ“l no galvenÄ bloka
+            // actioncode -> vçl no galvenâ bloka
             // UNISERVE template identifier - SOA will remove spaces in the REACH call.
             //(SOAIP-1079) - if at least one orderItem have ProductType = 'Electricity' and actioncode = 'OrderSummary', than send value 'OrderSummary_Electricity'
             String actcode = GetJsonAtrrObjectStringValue(obj, "ActionCode", true).replaceAll("\\s", "");
@@ -177,7 +177,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 sb.append(AddDinamicParam("ReadyMadeAddress", "N"));
             }
 
-            // SOAIP-1791 - add AuthenticationMethod and CustomerType (pÄrsaucam par CustomerStatusType)
+            // SOAIP-1791 - add AuthenticationMethod and CustomerType (pârsaucam par CustomerStatusType)
             sb.append(AddDinamicParam("AuthenticationMethod", GetJsonAtrrObjectStringValue(obj, "AuthenticationMethod", false)));
             sb.append(AddDinamicParam("CustomerStatusType", GetJsonAtrrObjectStringValue(obj, "CustomerType", false)));
 
@@ -210,7 +210,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
 
             String VLOrderDeliveryType = "";
 
-            // JÄpadod ja no Vlocity saÅ†emta struktÅ«ra Order (SOAIP-1019) un nav TELCO order (SOAIP-2257)
+            // Jâpadod ja no Vlocity saòemta struktûra Order (SOAIP-1019) un nav TELCO order (SOAIP-2257)
             if (isOrderData) {
                 if (!actcode.toLowerCase().contains("telco")) {
                     VLOrderDeliveryType = GetJsonAtrrObjectStringValue(orderdata, "VLOrderDeliveryType", false);
@@ -230,7 +230,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                     if ("ChangeAgreedDate_telco".equalsIgnoreCase(actcode)) {
                         String installationType = "";
                         installationType = GetJsonAtrrObjectStringValue(orderUpdateItemdata, "InstallationType", true);
-                        if (!"IerÄ«koÅ¡ana ar meistaru".equals(installationType)) {
+                        if (!"Ierîkoğana ar meistaru".equals(installationType)) {
                             sb.append(AddDinamicParam("VLOrderDeliveryType_SelfInstall", installationType));
                             sb.append(AddDinamicParam("VLOrderDeliveryType_Fitter", ""));
                         } else {
@@ -244,7 +244,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 // AgreedDate (SOAIP-2313)
                 if ("ChangeAgreedDate_telco".equalsIgnoreCase(actcode)) {
                     insttype = GetJsonAtrrObjectStringValue(orderUpdateItemdata, "InstallationType", true);
-                    if (!"IerÄ«koÅ¡ana ar meistaru".equalsIgnoreCase(insttype)) {
+                    if (!"Ierîkoğana ar meistaru".equalsIgnoreCase(insttype)) {
                         sb.append(AddDinamicParam("AgreedDate",
                                 FormatDate(GetJsonAtrrObjectStringValue(orderUpdateItemdata, "NewAgreedDate", false))
                         ));
@@ -263,7 +263,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 if ("ChangeAgreedDate_telco".equalsIgnoreCase(actcode)) {
                     String installationType = "";
                     installationType = GetJsonAtrrObjectStringValue(orderUpdateItemdata, "InstallationType", true);
-                    if (!"IerÄ«koÅ¡ana ar meistaru".equals(installationType)) {
+                    if (!"Ierîkoğana ar meistaru".equals(installationType)) {
                         sb.append(AddDinamicParam("VlOfferName_SelfInstall", GetJsonAtrrObjectStringValue(orderUpdateItemdata, "OfferName", true)));
                     } else {
                         sb.append(AddDinamicParam("VlOfferName_Fitter", GetJsonAtrrObjectStringValue(orderUpdateItemdata, "OfferName", true)));
@@ -298,7 +298,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                                 .append(GetJsonAtrrObjectStringValue(orderUpdatedata, "OrderContactPhone", true))
                                 .append("</Value>")
                                 .append("</DynamicParameter>");
-                        if ("IerÄ«koÅ¡ana ar meistaru".equalsIgnoreCase(insttype)) {
+                        if ("Ierîkoğana ar meistaru".equalsIgnoreCase(insttype)) {
                             sb.append(AddDinamicParam("TetReservationDate",
                                     FormatDate(GetJsonAtrrObjectStringValue(orderUpdateItemdata, "NewAgreedDate", false)))
                             );
@@ -323,7 +323,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 }
             }
 
-            // ja ir padoti Order sadaÄ¼as dati
+            // ja ir padoti Order sadaïas dati
             if (isOrderData) {
                 //VLOrderId -> SOAIP-1771
                 sb.append(AddDinamicParam("VLOrder", GetJsonAtrrObjectStringValue(orderdata, "VLOrderId", true)));
@@ -337,14 +337,14 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 //    DeliveryMethod = 'Courier', tad CourierAddressString
                 //    DeliveryMethod = 'PickUpPoint', tad ParcelMachineAddress
                 //    DeliveryMethod  = 'StoreFront', tad ?
-                //    DeliveryMethod = 'AlreadyDelivered', tad nepadot Å¡o parametru
+                //    DeliveryMethod = 'AlreadyDelivered', tad nepadot ğo parametru
                 //    else
                 //      OrderItem.serviceAccountAddress
                 // else
-                //   Ja <VLOrderDeliveryType> ir tukÅ¡s, tad tukÅ¡s
-                //   Ja <VLOrderDeliveryType> = 'DPD Courier', tad Addressconcat no AK_ADMIN db tabulas LTK_FULL_ADDRESSES_MD, meklÄ“t pÄ“c addresskey = <VLOrderDeliveryAddress>,
+                //   Ja <VLOrderDeliveryType> ir tukğs, tad tukğs
+                //   Ja <VLOrderDeliveryType> = 'DPD Courier', tad Addressconcat no AK_ADMIN db tabulas LTK_FULL_ADDRESSES_MD, meklçt pçc addresskey = <VLOrderDeliveryAddress>,
                 //   Ja <VLOrderDeliveryType> = 'Store front', tad <VLWarehauserName>.
-                //     PÄrÄ“jos gadÄ«jumos - <VLPickUpPoint>.
+                //     Pârçjos gadîjumos - <VLPickUpPoint>.
                 if ("OrderSummary_Telco".equalsIgnoreCase(actcode)) {
                     String s = GetVLOrderDeliveryAddressTelco(orderdataitems);
                     if (!"ALREADYDELIVERED".equalsIgnoreCase(s)) {
@@ -352,11 +352,11 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                     }
                     sb.append(AddDinamicParam("VLOrderDeliveryAddress_Fitter", GetVLOrderDeliveryAddressFitter(orderdataitems)));
                 } else {
-                    // Ja ActionCode = "ChangeAgreedDate_telco" un OrderUpdate.Item.InstallationType = "IerÄ«koÅ¡ana ar meistaru", tad OrderUpate.Item.SAAddress
+                    // Ja ActionCode = "ChangeAgreedDate_telco" un OrderUpdate.Item.InstallationType = "Ierîkoğana ar meistaru", tad OrderUpate.Item.SAAddress
                     if ("ChangeAgreedDate_telco".equalsIgnoreCase(actcode)) {
                         String installationType = "";
                         installationType = GetJsonAtrrObjectStringValue(orderUpdateItemdata, "InstallationType", true);
-                        if ("IerÄ«koÅ¡ana ar meistaru".equals(installationType)) {
+                        if ("Ierîkoğana ar meistaru".equals(installationType)) {
                             sb.append(AddDinamicParam("VLOrderDeliveryAddress_Fitter", GetJsonAtrrObjectStringValue(orderUpdateItemdata, "SAAddress", true)));
                         } else {
                             sb.append(AddDinamicParam("VLOrderDeliveryAddress_SelfInstall", GetJsonAtrrObjectStringValue(orderUpdateItemdata, "SAAddress", true)));
@@ -459,7 +459,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                     sb.append(AddDinamicParam("VLOrderInstallmentMonthPaym", VLOrderInstallmentMonthPaym));
                 }
 
-                //EstimateDeliveryTime -> vÄ“l no galvenÄ bloka
+                //EstimateDeliveryTime -> vçl no galvenâ bloka
                 sb.append(AddDinamicParam("EstimateDeliveryTime", GetJsonAtrrObjectStringValue(orderdata, "EstimateDeliveryTime", false)));
 
                 //VLBillNumber
@@ -607,7 +607,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 sb.append(AddDinamicParam("CaseType", GetJsonAtrrObjectStringValue(casedata, "CaseType", false)));
             }
 
-            // ElektrÄ«bas sadaÄ¼a
+            // Elektrîbas sadaïa
             if (isELECalcStructureAdded) {
                 // AverageConsumtion
                 sb.append(AddDinamicParam("AverageConsumtion", GetJsonAtrrObjectStringValue(elecalcdata, "AverageConsumtion", true)));
@@ -675,7 +675,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
     }
 
     /**
-     * SOAIP-2263 -> DT. Vlocity <> Reach: PasÅ«tÄ«juma kopsavilkums un citas notifikÄcijas (SOA_137) - W3. MACD Cancelation message
+     * SOAIP-2263 -> DT. Vlocity <> Reach: Pasûtîjuma kopsavilkums un citas notifikâcijas (SOA_137) - W3. MACD Cancelation message
      *
      * @return
      */
@@ -696,9 +696,9 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
         sb.append("<notificationaddress_SMS/>");
         sb.append("<notificationaddress_EMAIL/>");
 
-        sb.append("<notificationaddress_MOBTOKEN/>"); //vienmÄ“r tukÅ¡s
-        sb.append("<mtetuserid/>"); //vienmÄ“r tukÅ¡s
-        sb.append("<mobileappid>1</mobileappid>"); //vienmÄ“r 1
+        sb.append("<notificationaddress_MOBTOKEN/>"); //vienmçr tukğs
+        sb.append("<mtetuserid/>"); //vienmçr tukğs
+        sb.append("<mobileappid>1</mobileappid>"); //vienmçr 1
 
         sb.append("<DynamicParametersList>");
         // actioncode
@@ -714,7 +714,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
     }
 
     /**
-     * SOAIP-2313 -> DT. Vlocity <> Reach: PasÅ«tÄ«juma kopsavilkums un citas notifikÄcijas (SOA_137) - izmaiÅ†as saskaÅ†ota laika izmaiÅ†u notifikÄcijai
+     * SOAIP-2313 -> DT. Vlocity <> Reach: Pasûtîjuma kopsavilkums un citas notifikâcijas (SOA_137) - izmaiòas saskaòota laika izmaiòu notifikâcijai
      *
      * @return
      */
@@ -722,7 +722,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
         String res = "";
         StringBuilder sb = new StringBuilder();
 
-        // sadaÄ¼a ELE_Calculator
+        // sadaïa ELE_Calculator
         Object objOrderUpdate = null;
         JSONArray orderUpdatearray = new JSONArray();
         JSONObject orderUpdatedata = null;
@@ -756,9 +756,9 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
         sb.append("<notificationaddress_SMS/>");
         sb.append("<notificationaddress_EMAIL/>");
 
-        sb.append("<notificationaddress_MOBTOKEN/>"); //vienmÄ“r tukÅ¡s
-        sb.append("<mtetuserid/>"); //vienmÄ“r tukÅ¡s
-        sb.append("<mobileappid>1</mobileappid>"); //vienmÄ“r 1
+        sb.append("<notificationaddress_MOBTOKEN/>"); //vienmçr tukğs
+        sb.append("<mtetuserid/>"); //vienmçr tukğs
+        sb.append("<mobileappid>1</mobileappid>"); //vienmçr 1
 
         sb.append("<DynamicParametersList>");
         // actioncode
@@ -767,13 +767,13 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
 
         sb.append(AddDinamicParam("VlOfferName", GetJsonAtrrObjectStringValue(orderUpdateItem, "OfferName", true)));
 
-        if (!"IerÄ«koÅ¡ana ar meistaru".equalsIgnoreCase(installationType)) {
+        if (!"Ierîkoğana ar meistaru".equalsIgnoreCase(installationType)) {
             sb.append(AddDinamicParam("AgreedDate",
                     FormatDate(GetJsonAtrrObjectStringValue(orderUpdateItem, "NewAgreedDate", false)))
             );
 
         }
-        if ("IerÄ«koÅ¡ana ar meistaru".equalsIgnoreCase(installationType)) {
+        if ("Ierîkoğana ar meistaru".equalsIgnoreCase(installationType)) {
             sb.append(AddDinamicParam("TetReservationDate",
                     FormatDate(GetJsonAtrrObjectStringValue(orderUpdateItem, "NewAgreedDate", false)))
             );
@@ -791,8 +791,8 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
 
     /**
      * Ja ActionCode = 'OrderSummary_Telco' un ir OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' un ja DeliveryMethod = 'Courier',
-     * tad parametru DeliveryContactName, DeliveryContactEmail un DeliveryContactPhone vÄ“rtÄ«bas - konkatinÄ“t,atdalÄ«tÄjs - komats
-     * parÄ“jos gadÄ«jumos - nesÅ«tÄ«t parametru
+     * tad parametru DeliveryContactName, DeliveryContactEmail un DeliveryContactPhone vçrtîbas - konkatinçt,atdalîtâjs - komats
+     * parçjos gadîjumos - nesûtît parametru
      *
      * @param orderdataitems
      * @return
@@ -953,7 +953,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
 
     /**
      * if OrderItems ar ProductType = Electricity,
-     * then  OrderItems.ObjectAddress - konkatinÄ“t no visiem OrderItem, kur ProductSubType = 'Root Object' (SOAIP-1938), atdalÄ«tÄjs - komats.
+     * then  OrderItems.ObjectAddress - konkatinçt no visiem OrderItem, kur ProductSubType = 'Root Object' (SOAIP-1938), atdalîtâjs - komats.
      *
      * @param orderData
      * @return
@@ -979,7 +979,8 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 }
             } else {
                 if ("Telco".equals(productType)) {
-                    if (("Offer".equalsIgnoreCase(productSubType)) && ("Add".equalsIgnoreCase(orderItemAction) || "Change".equalsIgnoreCase(orderItemAction) || "Existing".equalsIgnoreCase(orderItemAction))) {
+                    if (("Offer".equalsIgnoreCase(productSubType)) && ("Add".equalsIgnoreCase(orderItemAction)
+                            || "Change".equalsIgnoreCase(orderItemAction) || "Existing".equalsIgnoreCase(orderItemAction))) {
                         return GetJsonAtrrObjectStringValue(d, "serviceAccountAddress", false);
                     }
                 }
@@ -993,7 +994,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
     }
 
     /**
-     * ContractAccDueDate vai SinBillDueDate - jÄizvelÄs mazÄkais no visiem.
+     * ContractAccDueDate vai SinBillDueDate - jâizvelâs mazâkais no visiem.
      *
      * @param orderData
      * @return
@@ -1005,7 +1006,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
         // SinBillDueDate ir viens, no ordera datiem
         res = GetJsonAtrrObjectStringValue(orderData, "SinBillDueDate", false);
 
-        // ContractAccDueDate ir katrÄ orderitemÄ
+        // ContractAccDueDate ir katrâ orderitemâ
         if (isOrderItems) {
             for (int i = 0; i < orderdataitems.length(); i++) {
                 d = orderdataitems.getJSONObject(i);
@@ -1076,7 +1077,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
             productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", false);
             productCode = GetJsonAtrrObjectStringValue(itemdata, "ProductCode", true);
 
-            // Ja ProductType = Telco, tad OrderSubType no pirmÄ  OrderItem ar ProductSubType = Offer un ProductCode < 'PD_TELCO_TECH_LINE_NONCOMMERCIAL' (SOAIP-2257)
+            // Ja ProductType = Telco, tad OrderSubType no pirmâ  OrderItem ar ProductSubType = Offer un ProductCode < 'PD_TELCO_TECH_LINE_NONCOMMERCIAL' (SOAIP-2257)
             if ("Telco".equalsIgnoreCase(productType)) {
 
                 if ("Offer".equals(productSubType) && !"PD_TELCO_TECH_LINE_NONCOMMERCIAL".equals(productCode)) {
@@ -1243,14 +1244,14 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
             fulfilmentStatus = GetJsonAtrrObjectStringValue(itemdata, "FulfilmentStatus", false);
             orderItemId = GetJsonAtrrObjectStringValue(itemdata, "OrderItemId", true);
 
-            // flag domÄts priekÅ¡ tÄ, lai ir korekta numerÄcija vlOrderItemX ar variabli 'c'
+            // flag domâts priekğ tâ, lai ir korekta numerâcija vlOrderItemX ar variabli 'c'
             if (vlOrderItemCountFlag) {
                 c++;
                 vlOrderItemCountFlag = false;
             }
 
 
-            //Tiek Å†emti tikai OrderItems ar ProductType = ConsumerGoods, Insurance , Warranty  and PersonalLiabilityInsurance.
+            //Tiek òemti tikai OrderItems ar ProductType = ConsumerGoods, Insurance , Warranty  and PersonalLiabilityInsurance.
             if ("ConsumerGoods".equals(productType) || "Insurance".equals(productType) ||
                     "Warranty".equals(productType) || "PersonalLiabilityInsurance".equals(productType)) {
 
@@ -1319,7 +1320,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 vlOrderItemCountFlag = true;
             }
 
-            //Tiek Å†emti OrderItems ar ProductType = Electricity un ProductSubType = 'Plan' (SOAIP-1938)
+            //Tiek òemti OrderItems ar ProductType = Electricity un ProductSubType = 'Plan' (SOAIP-1938)
             if ("Electricity".equals(productType) && "Plan".equals(productSubType)) {
                 // VLOrderItemXName
                 fieldName = "VLOrderItem" + (c) + "Name";
@@ -1344,10 +1345,10 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "UsageUnitPrice", false)));
                 vlOrderItemCountFlag = true;
             }
-            // Tiek Å†emti OrderItems ar ProductType = Telco un ProductSubType = Offer
+            // Tiek òemti OrderItems ar ProductType = Telco un ProductSubType = Offer
             if ("Telco".equals(productType)) {
 
-                // SOAIP-2257 izÅ†emot fulfilmentstatus InComplete
+                // SOAIP-2257 izòemot fulfilmentstatus InComplete
                 if (!"InComplete".equals(fulfilmentStatus) && "Offer".equals(productSubType)
                         && !"PD_TELCO_TECH_LINE_NONCOMMERCIAL".equalsIgnoreCase(productCode)) {
 
@@ -1396,7 +1397,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                 }
             }
 
-            // Tiek Å†emti OrderItems ar ProductType = Telco
+            // Tiek òemti OrderItems ar ProductType = Telco
             // VLOrderItemXProductYName, VLOrderItemXProductYRC, VLOrderItemXProductYNRC
             if ("Telco".equals(productType)
                     && "Offer".equals(productSubType)
@@ -1525,7 +1526,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
                                 // VLOrderItemXDeliveryAddress -> else OrderItem.serviceAccountAddress
                                 fieldName = "VLOrderItem" + (c) + "DeliveryAddress";
                                 sb.append(AddDinamicParam(fieldName, GetJsonAtrrObjectStringValue(itemdata, "serviceAccountAddress", false)));
-                                // VLOrderItemXDeliveryContactPerson -> else nesÅ«tÄ«t parametru
+                                // VLOrderItemXDeliveryContactPerson -> else nesûtît parametru
                             }
 
 
@@ -1554,8 +1555,8 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
      *
      * @param orderdataitems
      * @param itemdata
-     * @param sField         - lauks, kuram jÄmeklÄ“ vÄ“rtÄ«ba no pField
-     * @param pField         - esoÅ¡Ä itema lauks, pÄ“c kura meklÄ“ sField lauku
+     * @param sField         - lauks, kuram jâmeklç vçrtîba no pField
+     * @param pField         - esoğâ itema lauks, pçc kura meklç sField lauku
      * @return
      */
     private String GetItemFieldValueByOtherField(JSONArray orderdataitems, JSONObject itemdata, String sField, String pField) throws Exception {
@@ -1685,7 +1686,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
     }*/
 
     /**
-     * Order delivery charge - summa no visiem piegÄdes produktu cenam
+     * Order delivery charge - summa no visiem piegâdes produktu cenam
      * OrderItems.VLOneTimeCharge, where ProductType = Shipping
      */
     private String GetVLOrderDeliveryChargeValue() throws Exception {
@@ -1739,7 +1740,7 @@ public class ProcessJsonDataReach extends JSonDataFunctions {
         try {
             valToXml = GetJsonObjectStringValue(data.get(jsonfieldName));
         } catch (Exception e) {
-            // ja obligÄtais un nav atrasts, tad error
+            // ja obligâtais un nav atrasts, tad error
             if (mandatory) {
                 throw new Exception("Field: " + jsonfieldName + " is mandatory");
             } else {

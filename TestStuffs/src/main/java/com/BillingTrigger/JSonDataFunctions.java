@@ -17,7 +17,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
     public JSonDataFunctions(String inFullData, String env) throws Exception {
         super(inFullData, env);
-        // ielasa kopƒìjos datus
+        // ielasa kopÁjos datus
         ProcessDefaultData();
         ProcessDefaultAtrributeData();
     }
@@ -44,9 +44,9 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         //JSONObject orderData = getOrderData();
 
         addFieldToOutDetailsDataData(GetBaseData().getOrderedService(), "ORD_ORDEREDSERVICE");
-        addFieldToOutDetailsDataData("ORD_CUSTOMERNO", GetBaseData().getAccountNo());
-        addFieldToOutDetailsDataData("ORD_BILLINGACCOUNTNO", GetBaseData().getBillAccountNumber());
-        addFieldToOutDetailsDataData("ORD_SERVICE_COUNT", String.valueOf(GetUnicalOrederIdCount()));
+        addFieldToOutDetailsDataData(GetBaseData().getAccountNo(), "ORD_CUSTOMERNO");
+        addFieldToOutDetailsDataData(GetBaseData().getBillAccountNumber(), "ORD_BILLINGACCOUNTNO");
+        addFieldToOutDetailsDataData(String.valueOf(GetUnicalOrederIdCount()), "ORD_SERVICE_COUNT");
 
     }
 
@@ -91,7 +91,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
         if (getOrderDataItems().length() > 0) {
             int itemcount = getOrderDataItems().length();
-            // meklƒìjam atbilso≈°o item pƒìc productType
+            // meklÁjam atbilsoo item pÁc productType
             String ProductType = "";
             int counter = 0;
             for (int i = 0; i < itemcount; i++) {
@@ -126,7 +126,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
         if (getOrderDataItems().length() > 0) {
             int itemcount = getOrderDataItems().length();
-            // meklƒìjam atbilso≈°o item pƒìc productType
+            // meklÁjam atbilsoo item pÁc productType
             String ProductSubType = "";
             String atrrname = "";
             int counter = 0;
@@ -179,7 +179,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                                 //    newkey = key;
                                 //}
 
-                                //If any amount parameter (say ORD_WARRANTY_SUM) is 0, there is no need to send 0. You can pass: ‚Äú‚Äù.
+                                //If any amount parameter (say ORD_WARRANTY_SUM) is 0, there is no need to send 0. You can pass: ìî.
                                 //if ("ORD_WARRANTY_SUM".equals(key) && "0".equals(val)) {
                                 //    val = "";
                                 //}
@@ -202,7 +202,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                     }
                 } // --- end of if (productType.equals(ProductType)) {
             } // --- end of -> for (int i = 0; i < itemcount; i++)
-            // var b≈´t, ka neatrod ProductType, tad arƒ´ vaig pielikt tuk≈°u
+            // var b˚t, ka neatrod ProductType, tad arÓ vaig pielikt tuku
             //if (!isFoundProdType && !nameMatch.containsKey(key)) {
             //    addFieldToOutDetailsDataData("", key);
             //orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
@@ -223,7 +223,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
         if (getOrderDataItems().length() > 0) {
             int itemcount = getOrderDataItems().length();
-            // meklƒìjam atbilso≈°o item pƒìc productType
+            // meklÁjam atbilsoo item pÁc productType
             String ProductType = "";
             String atrrname = "";
             int counter = 0;
@@ -271,7 +271,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                                         newkey = key;
                                     }
 
-                                    //If any amount parameter (say ORD_WARRANTY_SUM) is 0, there is no need to send 0. You can pass: ‚Äú‚Äù.
+                                    //If any amount parameter (say ORD_WARRANTY_SUM) is 0, there is no need to send 0. You can pass: ìî.
                                     if ("ORD_WARRANTY_SUM".equals(key) && "0".equals(val)) {
                                         val = "";
                                     }
@@ -294,7 +294,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                     }
                 } // --- end of if (productType.equals(ProductType)) {
             } // --- end of -> for (int i = 0; i < itemcount; i++)
-            // var b≈´t, ka neatrod ProductType, tad arƒ´ vaig pielikt tuk≈°u
+            // var b˚t, ka neatrod ProductType, tad arÓ vaig pielikt tuku
             if (!isFoundProdType && !nameMatch.containsKey(key)) {
                 addFieldToOutDetailsDataData("", key);
                 //orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
@@ -306,7 +306,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
     }
 
     /**
-     * Order pirmƒÅ lƒ´me≈Üa atrib≈´tu parametrs
+     * Order pirm‚ lÓmeÚa atrib˚tu parametrs
      *
      * @return
      */
@@ -318,7 +318,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         // ja ir padoti orderitems
         if (getOrderDataItems().length() > 0) {
             int itemcount = getOrderDataItems().length();
-            // meklƒìjam atbilso≈°o item pƒìc productType
+            // meklÁjam atbilsoo item pÁc productType
             String productTypeValue = "";
             String val = "";
             String newkey = "";
@@ -339,7 +339,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                         val = "";
                         foundinitemsvalue = true;
                     }
-                    // ja obligƒÅts un tuk≈°s, tad error
+                    // ja oblig‚ts un tuks, tad error
                     if (mandatory && isEmptyOrNull(val)) {
                         throw new Exception("Field " + field + " is mandatory");
                     } else {
@@ -377,7 +377,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         String err = "";
 
         for (int i = 0; i < bundleItems.length(); i++) {
-            String ORDER_LINE_PLAN_CODE_VALUE = ""; // pƒÅrnesu zem for loopa, savƒÅdƒÅk string variablƒ´ saglabƒÅjas vƒìrtƒ´ba no iepriek≈°ƒìja cikla
+            String ORDER_LINE_PLAN_CODE_VALUE = ""; // p‚rnesu zem for loopa, sav‚d‚k string variablÓ saglab‚jas vÁrtÓba no iepriekÁja cikla
             String ORDER_LINE_PACKAGE_CODE = "";
             String ORDER_LINE_PROMOTION_UOM = "";
             String ORDER_LINE_TYPE = "";
@@ -404,37 +404,10 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                         continue;
                     }
 
-
-//                System.out.println("=================================");
-                    // pagaidƒÅm rindi≈Üas aizkomentƒìju debuggingam, jo nav skaidrs, vai strƒÅdƒÅ 100%
-                    //if ("Primary".equals(serviceBundle)) {
-//                        System.out.println("1st itemdId: " + orderItemId + " and ProductSubType: " + productSubType + " and unicornServiceLevel: " + unicornServiceLevel);
-                   //     if (("ServiceBundle".equalsIgnoreCase(productSubType)
-                    //        && !"Primary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, "Secondary")) {
-//                            System.out.println("Skipping whats NOT in Primary");
-                   //         continue;
-                    //    } else {
-//                            System.out.println("Primary else OK");
-                    //    }
-
-
-
-                    //} else {
-//                        System.out.println("2nd ProductSubType: " + productSubType + " and unicornServiceLevel: " + unicornServiceLevel);
-                    //    if (orderItemId.equals(offerOrderItemId) || ("ServiceBundle".equalsIgnoreCase(productSubType)
-                    //        && "Secondary".equals(unicornServiceLevel)) || isChildOfServiceBundle(parentOrderItemId, serviceBundle)) {
-//                            System.out.println("Secondary if OK, PASSED");
-                    //    } else {
-//                            System.out.println("Skipping whats NOT in Secondary");
-                    //        continue;
-                    //    }
-                    //}
-
-
-
-                    // lai≈æam offerOrders ciklƒÅ visus TELCO, jƒÅfiltrƒì tur
+                    // lai˛am offerOrders cikl‚ visus TELCO, j‚filtrÁ tur
 //                    addline = true;
-                    if (orderItemActionOnlyDisconnect()) {
+                    boolean isAllDisconnect = orderItemActionOnlyDisconnect(bundleItems);
+                    if (orderItemActionOnlyDisconnect(bundleItems)) {
                         addline = true;
                     } else if ("Cease Order".equalsIgnoreCase(productSubType)) {
                         addline = true;
@@ -448,37 +421,42 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                         }
                     }
                 } else {
-                    // SOABG-1402 // ≈°ƒ´ daƒºa tiek izmantota ProcessJson failƒÅ, ne-TELCO
+                    // SOABG-1402 // Ó daÔa tiek izmantota ProcessJson fail‚, ne-TELCO
                     if (!("Tariff Change".equalsIgnoreCase(orderItemSubType) && "Disconnect".equalsIgnoreCase(orderItemAction) && "Plan".equalsIgnoreCase(productSubType))) {
                         addline = false;
                     }
                 }
                 if (addline) {
-                    // orderpricing var b≈´t masƒ´vs
+                    // orderpricing var b˚t masÓvs
                     JSONArray pricdata = GetJSONArrayObj(itemdata, "OrderPricing");
                     int itempriccount = pricdata.length();
                     for (int j = 0; j < itempriccount; j++) {
                         objOrdPricing = pricdata.getJSONObject(j);
-                        // ≈°eit ir dati no OrderOffers(Pricing daƒºa)
-                        String sourcestr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
-                        String actionstr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
+                        // eit ir dati no OrderOffers(Pricing daÔa)
+                        String pricingSourceStr = GetJsonObjectStringValue(objOrdPricing, "Source", false);
+                        String pricingActionStr = GetJsonObjectStringValue(objOrdPricing, "Action", false);
                         String chargeType = GetJsonObjectStringValue(objOrdPricing, "ChargeType", false);
                         String referenceNumber = GetJsonObjectStringValue(objOrdPricing, "ReferenceNumber", false);
-                        String oCPPlanCode = getTELCOPlanCode(getOrderDataItems(), "", serviceNo);
-                        //GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode ", false);
+                        String unicornPlanCode = getTELCOPlanCode(getOrderDataItems(), "", serviceNo);
+                        String oCPPlanCode = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
 
-
-                        // (SOAIP-2586) Nes≈´tƒ´t tos ierakstus, kuriem Source = Agent
-                        if ("Agent".equalsIgnoreCase(sourcestr)) {
+                        // (SOAIP-2586) Nes˚tÓt tos ierakstus, kuriem Source = Agent
+                        if ("Agent".equalsIgnoreCase(pricingSourceStr)) {
                             continue;
                         }
                         List<String> oCPPlanCodeList = new ArrayList<String>();
-
+                        if (!isEmptyOrNull(unicornPlanCode)) {
+                            if (!isEmptyOrNull(oCPPlanCode)) {
+                                oCPPlanCode = oCPPlanCode + "," + unicornPlanCode;
+                            } else {
+                                oCPPlanCode = unicornPlanCode;
+                            }
+                        }
                         // SOAIP-2576
-                        // Ja OrderItem.OrderPricing.OCPPlanCode satur vairƒÅkus OCP plƒÅnus - t.i. satur ',' -
-                        // pievienot UNICORN izsaukumam OfferPrice katram OCP planam atsevi≈°ƒ∑i.
-                        // PiemƒìrƒÅm OrderItem.OrderPricing.OCPPlanCode = 'z.OCP.Plan1,z.OCP.Plan2',
-                        // tad pirmais OfferPrice ieraksts b≈´s ar ORDER_LINE_PLAN_CODE = 'z.OCP.Plan1',
+                        // Ja OrderItem.OrderPricing.OCPPlanCode satur vair‚kus OCP pl‚nus - t.i. satur ',' -
+                        // pievienot UNICORN izsaukumam OfferPrice katram OCP planam atseviÌi.
+                        // PiemÁr‚m OrderItem.OrderPricing.OCPPlanCode = 'z.OCP.Plan1,z.OCP.Plan2',
+                        // tad pirmais OfferPrice ieraksts b˚s ar ORDER_LINE_PLAN_CODE = 'z.OCP.Plan1',
                         // otrs - ar ORDER_LINE_PLAN_CODE = 'z.OCP.Plan2'.
                         if (!isEmptyOrNull(oCPPlanCode)) {
                             if (oCPPlanCode.contains(",")) {
@@ -490,37 +468,39 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                             oCPPlanCodeList.add("");
                         }
 
-
-
                         // SOAIP-2576
-                        // S≈´tƒ´t visus orderPricing ierakstus, kas ir zem offer, visiem servisiem,
-                        // kas ir zem ≈°ƒ´ offer  - t.i. ja OrderItem.OrderPricing.Source = 'Promotion'
+                        // S˚tÓt visus orderPricing ierakstus, kas ir zem offer, visiem servisiem,
+                        // kas ir zem Ó offer  - t.i. ja OrderItem.OrderPricing.Source = 'Promotion'
                         // vai 'Base' un OrderItem.ProductSubType = 'Offer', tad padot katram servisam,
                         // kuram RootOrderItemId = OrderItemId, kas ir Offerim ar promotion.
 //                                System.out.println("itemId: " + orderItemId + " and root: " + rootOrderItemId + " and offer: " + offerOrderItemId);
-                        if ("Offer".equalsIgnoreCase(productSubType) && ("Promotion".equalsIgnoreCase(sourcestr) || "Base".equalsIgnoreCase(sourcestr))) {
+                        if ("Offer".equalsIgnoreCase(productSubType) && ("Promotion".equalsIgnoreCase(pricingSourceStr) || "Base".equalsIgnoreCase(pricingSourceStr))) {
                             if (!rootOrderItemId.equals(offerOrderItemId)) {
                                 continue;
                             }
                         }
 
 
-                        // ja OrderItem.ABPPriceType = 'RC', ≈Üemt to ierakstu, kuram OrderItem.OrderPricing.ChargeType = 'Recurring';
-                        // ja OrderItem.ABPPriceType = 'OTC', ≈Üemt to ierakstu, kuram OrderItem.OrderPricing.ChargeType = 'One-time'
+                        // ja OrderItem.ABPPriceType = 'RC', Úemt to ierakstu, kuram OrderItem.OrderPricing.ChargeType = 'Recurring';
+                        // ja OrderItem.ABPPriceType = 'OTC', Úemt to ierakstu, kuram OrderItem.OrderPricing.ChargeType = 'One-time'
                         if (!abpPriceType.isEmpty()) {
-                            if (!(abpPriceType.equals("RC") && chargeType.equalsIgnoreCase("recurring"))  && !(abpPriceType.equals("OTC") && chargeType.equalsIgnoreCase("one-time"))) {
+                            if (!(abpPriceType.equals("RC") && chargeType.equalsIgnoreCase("recurring"))
+                                    && !(abpPriceType.equals("OTC") && chargeType.equalsIgnoreCase("one-time"))) {
 //                                System.out.println("skip this1 = " + GetJsonObjectStringValue(objOrdPricing, "Amount", false));
-                                continue; // skipojam iterƒÅciju, ejam uz nƒÅkamo orderPricing objektu
+                                continue; // skipojam iter‚ciju, ejam uz n‚kamo orderPricing objektu
                             }
                         }
 
+                        if (abpPriceType.isEmpty() && "ABP".equalsIgnoreCase(pricingSourceStr)) {
+
+                        }
 
                         // SOAIP-2600
-                        // S≈´tit visus orderPricing ierakstus, kuriem OrderItem.OrderPricing.Source = 'Promotion'
-                        // un kas ir zem OrderItem ar aizpildƒ´tu TetAdjustmentSource, visiem servisiem,
-                        // kas ir zem offer ar to pa≈°u RootOrderItemId
+                        // S˚tit visus orderPricing ierakstus, kuriem OrderItem.OrderPricing.Source = 'Promotion'
+                        // un kas ir zem OrderItem ar aizpildÓtu TetAdjustmentSource, visiem servisiem,
+                        // kas ir zem offer ar to pau RootOrderItemId
                         // un TetAdjustmentDestination =  TetAdjustmentSource no ieraksta ar promotion.
-                        if (!"Offer".equalsIgnoreCase(productSubType) && !"Promotion".equalsIgnoreCase(sourcestr)) {
+                        if (!"Offer".equalsIgnoreCase(productSubType) && !"Promotion".equalsIgnoreCase(pricingSourceStr)) {
                             if (isEmptyOrNull(tetAdjustmentSource)) {
                                 if (!rootOrderItemId.equals(offerOrderItemId) && !tetAdjustmentDestination.equalsIgnoreCase(tetAdjustmentSource)) {
                                     continue;
@@ -530,18 +510,22 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
 
                         for (int a = 0; a < oCPPlanCodeList.size(); a++) {
                             String orderLineAction = "";
-
-
                             String orderedServiceType = GetJsonObjectStringValue(itemdata, "OrderedServiceType", false);
-                            if ("Promotion".equalsIgnoreCase(sourcestr)) {
-                                ORDER_LINE_PLAN_CODE_VALUE = GetJsonObjectStringValue(objOrdPricing, "OCPPlanCode", false);
+                            if ("Promotion".equalsIgnoreCase(pricingSourceStr)) {
+                                // if OrderedService = 'TELCO':
+                                if ("TELCO".equalsIgnoreCase(GetBaseData().getOrderedService())) {
+                                    ORDER_LINE_PLAN_CODE_VALUE = oCPPlanCodeList.get(a); //getTELCOPlanCode(getOrderDataItems(), orderedServiceType, serviceNo);
+                                } else {
+                                    // If <OrderedService> = 'Electricity':
+                                    ORDER_LINE_PLAN_CODE_VALUE = getUnicornPlanCode(getOrderDataItems(), orderedServiceType);
+                                }
                                 ORDER_LINE_PACKAGE_CODE = GetJsonObjectStringValue(objOrdPricing, "OCPPackageCode", false);
                                 ORDER_LINE_PROMOTION_UOM = GetJsonObjectStringValue(objOrdPricing, "TimePlanUnit", false);
                                 if (!isEmptyOrNull(ORDER_LINE_PROMOTION_UOM)) {
                                     ORDER_LINE_PROMOTION_UOM = ORDER_LINE_PROMOTION_UOM.substring(0, 1);  // Translate Day -> D | Month -> M | Year -> Y
                                 }
                             } else {
-                                if ("Base".equalsIgnoreCase(sourcestr)) {
+                                if ("Base".equalsIgnoreCase(pricingSourceStr)) {
                                     // if OrderedService = 'TELCO':
                                     if ("TELCO".equalsIgnoreCase(GetBaseData().getOrderedService())) {
                                         ORDER_LINE_PLAN_CODE_VALUE = oCPPlanCodeList.get(a); //getTELCOPlanCode(getOrderDataItems(), orderedServiceType, serviceNo);
@@ -557,12 +541,22 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                                 typeDcount++;
                             }
 
-                            if ("Disconnect".equalsIgnoreCase(actionstr)) {
-                                orderLineAction = "OFF";
-                            } else if ("Change".equalsIgnoreCase(orderItemAction) && "Promotion".equalsIgnoreCase(sourcestr)) {
-                                orderLineAction = "EXISTING";
+                            if ("Promotion".equalsIgnoreCase(pricingSourceStr)) {
+                                if ("Disconnect".equalsIgnoreCase(pricingActionStr)) {
+                                    orderLineAction = "OFF";
+                                } else {
+                                    if ("Change".equalsIgnoreCase(orderItemAction)) {
+                                        orderLineAction = "EXISTING";
+                                    } else {
+                                        orderLineAction = "ON";
+                                    }
+                                }
                             } else {
-                                orderLineAction = "ON";
+                                if ("Disconnect".equalsIgnoreCase(orderItemAction)) {
+                                    orderLineAction = "OFF";
+                                } else {
+                                    orderLineAction = "ON";
+                                }
                             }
 
                             String orderLineAmount = TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
@@ -591,7 +585,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                                             .put("ORDER_LINE_PROMOTION_UOM", ORDER_LINE_PROMOTION_UOM)
                                             .put("ORDER_LINE_PRODUCT_QTY", GetORDER_LINE_PRODUCT_QTY(itemdata))
                                             .put("ORDER_LINE_COMPONENT_QTY", "1")
-                                            // ≈°is tika iz≈Üemts ar SOAIP-1943, pagaidƒÅm atstƒÅju aizkomentƒìtu
+                                            // is tika izÚemts ar SOAIP-1943, pagaid‚m atst‚ju aizkomentÁtu
                                             // .put("ORDER_LINE_PROMO_ENDDATE", GetJsonObjectStringValue(objOrdPricing, "PromoEndDate", false))
                                             .put("ORDER_LINE_PROMO_ORDERNO", GetJsonObjectStringValue(objOrdPricing, "OCPRemark", false))
                                             .put("ORDER_LINE_NRC_WAIVER_REASON", GetJsonObjectStringValue(objOrdPricing, "OTCRemark", false))
@@ -628,7 +622,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
             if ("ServiceBundle".equals(prdtSubType) && unicornServiceLevel.equals(serviceLevel) && orderItemId.equalsIgnoreCase(parentOrderItemId)) {
 //                System.out.println("parentOrderItemId: " + parentOrderItemId + " serviceLevel: " + serviceLevel);
 //                System.out.println("prdtSubType: " + prdtSubType + " orderItemId: " + orderItemId + " unicornServiceLevel: " + unicornServiceLevel);
-                // aizkomentƒìju testiem
+                // aizkomentÁju testiem
                 return true;
             }
 
@@ -688,15 +682,17 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         return false;
     }
 
-    private boolean orderItemActionOnlyDisconnect() throws Exception {
+    private boolean orderItemActionOnlyDisconnect(JSONArray arr) throws Exception {
 
         JSONObject itemdata = null;
         String orderItemAction = "";
 
-        int itemcount = getOrderDataItems().length();
+        //int itemcount = getOrderDataItems().length();
+        int itemcount = arr.length();
 
         for (int i = 0; i < itemcount; i++) {
-            itemdata = getOrderDataItems().getJSONObject(i);
+            //itemdata = getOrderDataItems().getJSONObject(i);
+            itemdata = arr.getJSONObject(i);
             orderItemAction = GetJsonObjectStringValue(itemdata, "OrderItemAction", false);
 
             if (!"Disconnect".equalsIgnoreCase(orderItemAction)) {
@@ -771,7 +767,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                     }
                 } else {
                     if ("Plan".equalsIgnoreCase(prdtSubType)) {
-                        // jƒÅtiek klƒÅt pie OrderPricing, lai salƒ´dzinƒÅtu vai Action ir Add, skatƒ´t dok.
+                        // j‚tiek kl‚t pie OrderPricing, lai salÓdzin‚tu vai Action ir Add, skatÓt dok.
                         //JSONArray dd = GetJSONArrObj(itemdata1, "OrderPricing");
                         //int cc = dd.length();
                         //for (int j = 0; j < cc; j++) {
@@ -896,7 +892,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
     }
 
     private String TranslateOrderPricingSource(String source, JSONObject itemdata) throws Exception {
-        // ar switchu laikam nesanƒÅktu, saglabƒÅju tikmƒìr tepat ieprieksƒìjo gabalu
+        // ar switchu laikam nesan‚ktu, saglab‚ju tikmÁr tepat ieprieksÁjo gabalu
         //            switch (source.toUpperCase()) {
         //                case "BASE": return "C";
         //                case "PROMOTION": return "A";

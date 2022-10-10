@@ -11,7 +11,7 @@ public class ProcessBillingTrigger {
         JSONObject orderdata;
 
         orderdatafull = new JSONObject(jsonDataStr);
-        // skatamies vai vaig pa jaunam -> ja wave = 3; savÄdÄk pa vecam
+        // skatamies vai vaig pa jaunam -> ja wave = 3; savâdâk pa vecam
         int wave = 2;
         try {
             wave = orderdatafull.getInt("Wave");
@@ -34,7 +34,7 @@ public class ProcessBillingTrigger {
         } catch (Exception e) {
             //throw new Exception("Field " + field + " is mandatory");
             result.RetCode = "SOA_164[005]";
-            result.RetMsg = "Nav padota \"Order\" daÄ¼a.";
+            result.RetMsg = "Nav padota \"Order\" daïa.";
             return result;
         }
 

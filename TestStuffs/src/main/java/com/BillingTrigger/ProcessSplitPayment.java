@@ -67,11 +67,11 @@ public class ProcessSplitPayment extends JSonDataFunctions {
         GetOrderItemLevelAtrrValue("SplitPayment", "OrderItemId", "ORD_ORDERITEMID", true);
 
         // CE Restructuring.PaymentDelayPercents
-        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "AtlikÅ¡anas procenti", "ORD_PAYMENT_DELAY_PERCENT");
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Atlikğanas procenti", "ORD_PAYMENT_DELAY_PERCENT");
         // CE Restructuring.PaymentDelayMonths
-        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "AtlikÅ¡anas mÄ“neÅ¡u skaits", "ORD_PAYMENT_DELAY_MONTHS");
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Atlikğanas mçneğu skaits", "ORD_PAYMENT_DELAY_MONTHS");
         // CE Restructuring.RepayMonths
-        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "UzkrÄto summu izmaksa mÄ“neÅ¡os", "ORD_REPAY_MONTHS");
+        GeOrderItemsDinamicAtrrValueByProductType("CE Restructuring", "Uzkrâto summu izmaksa mçneğos", "ORD_REPAY_MONTHS");
 
         GetOrderItemLevelAtrrValue("Shipping", "AccountingCode", "ORD_COURIERPRODUCTID", false);
         GetOrderItemLevelAtrrValue("Shipping", "OneTimeCharge", "ORD_COURIERCHARGE", false);
@@ -104,7 +104,7 @@ public class ProcessSplitPayment extends JSonDataFunctions {
 
 
     private void GetOrderItemLevelWithActionVAlue(String jsonfield, String field, boolean orderedServiceTypeRemove) {
-        // ja <OrderedServiceType> nav  'Remove', tad sekojoÅ¡ie dinamiskie parametri tiks aizpildÄ«ti no OrderItem ar <ProductSubType> = 'Plan'
+        // ja <OrderedServiceType> nav  'Remove', tad sekojoğie dinamiskie parametri tiks aizpildîti no OrderItem ar <ProductSubType> = 'Plan'
         // un ar <OrderItemAction> = 'ADD', ja <OrderedServiceType> ir 'Remove', tad no OrderItem ar <OrderItemAction> = 'Disconnect'
         int itemcount = getOrderDataItems().length();
         String orderItemAction = "";
@@ -155,11 +155,11 @@ public class ProcessSplitPayment extends JSonDataFunctions {
     private String ProcessIfOrderedServiceTypeIsChange() throws Exception {
         /*
         (SOAIP-1110) Ja <OrderedServiceType> = 'Change' un ir kaut viens OrderItem ar <OrderItemSubType> = 'Delete Insurance/Warranty' un:
-        a. OrderÄ« ir Å¡Ädi OrderItem  gan ar <ProductType> = 'Warranty', gan ar <ProductType> = 'Insurance' (jÄÅ†em vÄ“rÄ tikai tiek OrderItem, kuriem <OrderItemSubType> = 'Delete Insurance/Warranty'),
+        a. Orderî ir ğâdi OrderItem  gan ar <ProductType> = 'Warranty', gan ar <ProductType> = 'Insurance' (jâòem vçrâ tikai tiek OrderItem, kuriem <OrderItemSubType> = 'Delete Insurance/Warranty'),
             tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'WI';
-        b. ja atbilstoÅ¡iem OrderItem  <ProductType> ir tikai 'Warranty', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'W';
-        b. ja atbilstoÅ¡iem OrderItem  <ProductType> ir tikai 'Insurance', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'I'.
-        Ja ir cits <OrderedServiceType> vai nav OrderItem ar atbilstoÅ¡u <OrderItemSubType>, tad tiek pievienots dinamiskais parametrs ar key =ORD_CE_CANCEL_FLAG un tukÅ¡u vÄ“rtÄ«bu.
+        b. ja atbilstoğiem OrderItem  <ProductType> ir tikai 'Warranty', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'W';
+        b. ja atbilstoğiem OrderItem  <ProductType> ir tikai 'Insurance', tad tiek pievienots dinamiskais parametrs ar key = ORD_CE_CANCEL_FLAG un value = 'I'.
+        Ja ir cits <OrderedServiceType> vai nav OrderItem ar atbilstoğu <OrderItemSubType>, tad tiek pievienots dinamiskais parametrs ar key =ORD_CE_CANCEL_FLAG un tukğu vçrtîbu.
         */
         String val = "";
 

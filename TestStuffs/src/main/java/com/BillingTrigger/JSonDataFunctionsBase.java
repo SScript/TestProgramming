@@ -10,7 +10,7 @@ public class JSonDataFunctionsBase {
 
     static final String STR_SPLIT_PAYMENT = "Split payment";
 
-    // ienƒÅko≈°ie dati
+    // ien‚koie dati
     protected String env;
     protected String jsonFullData;
 
@@ -18,7 +18,7 @@ public class JSonDataFunctionsBase {
     protected JSONObject orderData;
     protected JSONArray orderDataItems;
 
-    // rezultƒÅtam
+    // rezult‚tam
     protected JSONObject outData;
     protected JSONArray outDetailsData;
     protected JSONArray outOffersData;
@@ -270,6 +270,12 @@ public class JSonDataFunctionsBase {
             return dd1 + "/" + mm1 + "/" + yy1;
         } else {
             return "";
+        }
+    }
+
+    public void PrintLog(String str) {
+        if ("LOCAL".equalsIgnoreCase(getEnv())) {
+            System.out.println(str);
         }
     }
 
