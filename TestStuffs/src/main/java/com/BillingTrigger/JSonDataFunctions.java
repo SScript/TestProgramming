@@ -375,6 +375,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
         String offerOrderItemId = getOfferOrderItemId(bundleItems);
 
         String err = "";
+        boolean isAddDala = false;
 
         for (int i = 0; i < bundleItems.length(); i++) {
             String ORDER_LINE_PLAN_CODE_VALUE = ""; // pârnesu zem for loopa, savâdâk string variablî saglabâjas vçrtîba no iepriekðçja cikla
@@ -398,6 +399,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                 String sendPricingtoUnicorn = GetJsonObjectStringValue(itemdata, "SendPricingtoUnicorn", false);
                 String unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
 
+
                 //SOAIP-1978
                 if ("TELCO".equalsIgnoreCase(GetBaseData().getOrderedService())) {
                     if (!"true".equalsIgnoreCase(sendPricingtoUnicorn)) {
@@ -409,11 +411,11 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                     boolean isAllDisconnect = orderItemActionOnlyDisconnect(bundleItems);
                     if (orderItemActionOnlyDisconnect(bundleItems)) {
                         addline = true;
-                    } else if ("Cease Order".equalsIgnoreCase(productSubType)) {
+                    } else
+                        if ("Cease Order".equalsIgnoreCase(productSubType)) {
                         addline = true;
-                    } else if (!"Disconnect".equalsIgnoreCase(orderItemAction)) {
-                        addline = true;
-                    } else if (!"true".equalsIgnoreCase(tet_FilterOrderPricing) || !"Y".equalsIgnoreCase(tet_FilterOrderPricing)) {
+                    } else
+                        if (!"Disconnect".equalsIgnoreCase(orderItemAction)) {
                         addline = true;
                     } else {
                         if ("Disconnect".equalsIgnoreCase(orderItemAction) && checkParentOrderItemAction(parentOrderItemId)) {
@@ -426,6 +428,11 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                         addline = false;
                     }
                 }
+
+                if ("true".equalsIgnoreCase(tet_FilterOrderPricing) || "Y".equalsIgnoreCase(tet_FilterOrderPricing)) {
+                    addline = false;
+                }
+
                 if (addline) {
                     // orderpricing var bût masîvs
                     JSONArray pricdata = GetJSONArrayObj(itemdata, "OrderPricing");
@@ -557,6 +564,16 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                                 } else {
                                     orderLineAction = "ON";
                                 }
+                            }
+
+                            // ja ir add daïa, tad disconnect nesûtam
+                            if (!isAddDala) {
+                                if (!"OFF".equalsIgnoreCase(orderLineAction)) {
+                                    isAddDala = true;
+                                }
+                            }
+                            if ("Disconnect".equalsIgnoreCase(orderItemAction) && isAddDala) {
+                                continue;
                             }
 
                             String orderLineAmount = TranslateOrderLineAmount(GetJsonObjectStringValue(objOrdPricing, "GiftQuantity", false),
