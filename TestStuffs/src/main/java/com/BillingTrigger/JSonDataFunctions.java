@@ -454,7 +454,7 @@ public class JSonDataFunctions extends JSonDataFunctionsBase {
                         List<String> oCPPlanCodeList = new ArrayList<String>();
                         if (!isEmptyOrNull(unicornPlanCode)) {
                             if (!isEmptyOrNull(oCPPlanCode)) {
-                                oCPPlanCode = oCPPlanCode + "," + unicornPlanCode;
+                                oCPPlanCode = oCPPlanCode; // + "," + unicornPlanCode;
                             } else {
                                 oCPPlanCode = unicornPlanCode;
                             }
