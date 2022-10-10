@@ -1108,35 +1108,36 @@ public class ProcessTelco extends JSonDataFunctions {
                 }
             } // end for
             // skatmies pârçjos ar ðo serviceId
-
-            for (int ii = 0; ii < itemcount; ii++) {
-                itemdata = orderdataitems.getJSONObject(ii);
-                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                if (!"Secondary".equalsIgnoreCase(unicornServiceLevel)
-                        && !isEmptyOrNull(unicornServiceLevel)
-                        && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
-                    arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
-                    switch (unicornServiceLevel) {
-                        case "Primary":
-                            isPrimaryProcessed = true;
-                            break;
-                        case "Tertiary":
-                            isTertiaryProcessed = true;
-                            break;
-                        case "Quaternary":
-                            isQuaternaryProcessed = true;
-                            break;
-                    }
-                    if (!addedItemsId.contains(orderItemId)) {
-                        addedItemsId.add(orderItemId);
-                        itemdata_secondary.put(itemdata);
-                    }
-                    dataToAdd  = addParrentsAndChilds(itemdata, unicornServiceLevel);
-                    for (int c = 0; c < dataToAdd.length(); c++) {
-                        itemdata1 = (JSONObject) dataToAdd.get(c);
-                        orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
-                        itemdata_secondary.put(itemdata1);
+            if (isSecondaryProcessed) {
+                for (int ii = 0; ii < itemcount; ii++) {
+                    itemdata = orderdataitems.getJSONObject(ii);
+                    serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                    unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                    if (!"Secondary".equalsIgnoreCase(unicornServiceLevel)
+                            && !isEmptyOrNull(unicornServiceLevel)
+                            && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
+                        arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
+                        switch (unicornServiceLevel) {
+                            case "Primary":
+                                isPrimaryProcessed = true;
+                                break;
+                            case "Tertiary":
+                                isTertiaryProcessed = true;
+                                break;
+                            case "Quaternary":
+                                isQuaternaryProcessed = true;
+                                break;
+                        }
+                        if (!addedItemsId.contains(orderItemId)) {
+                            addedItemsId.add(orderItemId);
+                            itemdata_secondary.put(itemdata);
+                        }
+                        dataToAdd = addParrentsAndChilds(itemdata, unicornServiceLevel);
+                        for (int c = 0; c < dataToAdd.length(); c++) {
+                            itemdata1 = (JSONObject) dataToAdd.get(c);
+                            orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
+                            itemdata_secondary.put(itemdata1);
+                        }
                     }
                 }
             }
@@ -1170,34 +1171,36 @@ public class ProcessTelco extends JSonDataFunctions {
                 }
             } // end for
             // skatmies pârçjos ar ðo serviceId
-            for (int ii = 0; ii < itemcount; ii++) {
-                itemdata = orderdataitems.getJSONObject(ii);
-                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                if (!"Tertiary".equalsIgnoreCase(unicornServiceLevel)
-                        && !isEmptyOrNull(unicornServiceLevel)
-                        && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
-                    arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
-                    switch (unicornServiceLevel) {
-                        case "Primary":
-                            isPrimaryProcessed = true;
-                            break;
-                        case "Secondary":
-                            isSecondaryProcessed = true;
-                            break;
-                        case "Quaternary":
-                            isQuaternaryProcessed = true;
-                            break;
-                    }
-                    if (!addedItemsId.contains(orderItemId)) {
-                        addedItemsId.add(orderItemId);
-                        itemdata_tertiary.put(itemdata);
-                    }
-                    dataToAdd  = addParrentsAndChilds(itemdata, unicornServiceLevel);
-                    for (int c = 0; c < dataToAdd.length(); c++) {
-                        itemdata1 = (JSONObject) dataToAdd.get(c);
-                        orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
-                        itemdata_tertiary.put(itemdata1);
+            if (isTertiaryProcessed) {
+                for (int ii = 0; ii < itemcount; ii++) {
+                    itemdata = orderdataitems.getJSONObject(ii);
+                    serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                    unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                    if (!"Tertiary".equalsIgnoreCase(unicornServiceLevel)
+                            && !isEmptyOrNull(unicornServiceLevel)
+                            && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
+                        arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
+                        switch (unicornServiceLevel) {
+                            case "Primary":
+                                isPrimaryProcessed = true;
+                                break;
+                            case "Secondary":
+                                isSecondaryProcessed = true;
+                                break;
+                            case "Quaternary":
+                                isQuaternaryProcessed = true;
+                                break;
+                        }
+                        if (!addedItemsId.contains(orderItemId)) {
+                            addedItemsId.add(orderItemId);
+                            itemdata_tertiary.put(itemdata);
+                        }
+                        dataToAdd = addParrentsAndChilds(itemdata, unicornServiceLevel);
+                        for (int c = 0; c < dataToAdd.length(); c++) {
+                            itemdata1 = (JSONObject) dataToAdd.get(c);
+                            orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
+                            itemdata_tertiary.put(itemdata1);
+                        }
                     }
                 }
             }
@@ -1206,7 +1209,7 @@ public class ProcessTelco extends JSonDataFunctions {
         PrintLog("Apstrâdâjam Quaternary: ");
         addedItemsId = new ArrayList<>();
         serviceIdOrigin = "";
-        if (!isTertiaryProcessed) {
+        if (!isQuaternaryProcessed) {
             for (int i = 0; i < itemcount; i++) {
                 itemdata = orderdataitems.getJSONObject(i);
                 serviceIdOrigin = GetJsonObjectStringValue(itemdata, "ServiceId", false);
@@ -1230,34 +1233,36 @@ public class ProcessTelco extends JSonDataFunctions {
                 }
             } // end for
             // skatmies pârçjos ar ðo serviceId
-            for (int ii = 0; ii < itemcount; ii++) {
-                itemdata = orderdataitems.getJSONObject(ii);
-                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                if (!"Quaternary".equalsIgnoreCase(unicornServiceLevel)
-                        && !isEmptyOrNull(unicornServiceLevel)
-                        && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
-                    arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
-                    switch (unicornServiceLevel) {
-                        case "Primary":
-                            isPrimaryProcessed = true;
-                            break;
-                        case "Secondary":
-                            isSecondaryProcessed = true;
-                            break;
-                        case "Tertiary":
-                            isTertiaryProcessed = true;
-                            break;
-                    }
-                    if (!addedItemsId.contains(orderItemId)) {
-                        addedItemsId.add(orderItemId);
-                        itemdata_tertiary.put(itemdata);
-                    }
-                    dataToAdd  = addParrentsAndChilds(itemdata, unicornServiceLevel);
-                    for (int c = 0; c < dataToAdd.length(); c++) {
-                        itemdata1 = (JSONObject) dataToAdd.get(c);
-                        orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
-                        itemdata_tertiary.put(itemdata1);
+            if (isQuaternaryProcessed) {
+                for (int ii = 0; ii < itemcount; ii++) {
+                    itemdata = orderdataitems.getJSONObject(ii);
+                    serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                    unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                    if (!"Quaternary".equalsIgnoreCase(unicornServiceLevel)
+                            && !isEmptyOrNull(unicornServiceLevel)
+                            && serviceId.equalsIgnoreCase(serviceIdOrigin)) {
+                        arkoapvieno = arkoapvieno + ", " + unicornServiceLevel;
+                        switch (unicornServiceLevel) {
+                            case "Primary":
+                                isPrimaryProcessed = true;
+                                break;
+                            case "Secondary":
+                                isSecondaryProcessed = true;
+                                break;
+                            case "Tertiary":
+                                isTertiaryProcessed = true;
+                                break;
+                        }
+                        if (!addedItemsId.contains(orderItemId)) {
+                            addedItemsId.add(orderItemId);
+                            itemdata_tertiary.put(itemdata);
+                        }
+                        dataToAdd = addParrentsAndChilds(itemdata, unicornServiceLevel);
+                        for (int c = 0; c < dataToAdd.length(); c++) {
+                            itemdata1 = (JSONObject) dataToAdd.get(c);
+                            orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
+                            itemdata_tertiary.put(itemdata1);
+                        }
                     }
                 }
             }
