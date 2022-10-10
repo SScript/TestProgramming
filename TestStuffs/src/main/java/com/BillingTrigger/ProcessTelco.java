@@ -1083,6 +1083,7 @@ public class ProcessTelco extends JSonDataFunctions {
 
         PrintLog("Apstrâdâjam Secondary: ");
         addedItemsId = new ArrayList<>();
+        serviceIdOrigin = "";
         if (!isSecondaryProcessed) {
             for (int i = 0; i < itemcount; i++) {
                 itemdata = orderdataitems.getJSONObject(i);
@@ -1143,6 +1144,7 @@ public class ProcessTelco extends JSonDataFunctions {
         } // end of if (!isSecondaryProcessed) ...
 
         PrintLog("Apstrâdâjam Tertiary: ");
+        serviceIdOrigin = "";
         addedItemsId = new ArrayList<>();
         if (!isTertiaryProcessed) {
             for (int i = 0; i < itemcount; i++) {
@@ -1203,6 +1205,7 @@ public class ProcessTelco extends JSonDataFunctions {
 
         PrintLog("Apstrâdâjam Quaternary: ");
         addedItemsId = new ArrayList<>();
+        serviceIdOrigin = "";
         if (!isTertiaryProcessed) {
             for (int i = 0; i < itemcount; i++) {
                 itemdata = orderdataitems.getJSONObject(i);
