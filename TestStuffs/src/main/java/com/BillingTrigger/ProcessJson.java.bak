@@ -1,19 +1,14 @@
 package com.BillingTrigger;
 
-import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import jdk.nashorn.internal.scripts.JS;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
-public class BillingTrigger4 {
+public class ProcessJson {
 
     protected JSONObject obj;
     protected JSONObject orderdata_;
@@ -26,6 +21,8 @@ public class BillingTrigger4 {
     protected boolean isOrderItems = true;
     protected boolean isAddressFound = false;
     protected String AccountAddressId = "";
+    protected String orderedService = "";
+    protected String paymentMode = "";
 
     public Resp ProcessJsonData(String jsonDataStr) throws Exception {
         Resp result = new Resp();
@@ -34,8 +31,9 @@ public class BillingTrigger4 {
         orderdata = orderdata_.getJSONObject("Order");
         orderdataitems = new JSONArray();
 
-        String paymentMode = GetOrderFieldFirstLEvelValue("PaymentMode", true);
+        paymentMode = GetOrderFieldFirstLEvelValue("PaymentMode", true);
         String orderedServiceType = "";
+
 
         String s = "";
 
@@ -57,7 +55,7 @@ public class BillingTrigger4 {
                 .put("caller", "SOATEST");
 
         //If OrderedService is null or not send, then use default value - 'Split payment'
-        String orderedService = GetOrderFieldFirstLEvelValue("OrderedService", false);
+        orderedService = GetOrderFieldFirstLEvelValue("OrderedService", false);
         if (!"".equals(orderedService)) {
             orderAtrrItems.put(new JSONObject().put("value", orderedService).put("key", "ORD_ORDEREDSERVICE"));
         } else {
@@ -316,7 +314,7 @@ public class BillingTrigger4 {
         List<String> distinctElements = mylist.stream()
                 .distinct()
                 .collect(Collectors.toList());
-        return distinctElements.size();
+        return (distinctElements.size() == 0 ? 1 : distinctElements.size());  // SOAIP-2733, ja nulle, tad default atgriež 1
     }
 
     private JSONArray GetJSONArrObj(JSONObject data, String arrName) {
@@ -1034,11 +1032,23 @@ public class BillingTrigger4 {
             }
 
             if (!foundinitemsvalue) {
-                //if ("Shipping".equals(productType)) {
-                //    orderAtrrItems.put(new JSONObject().put("value", "").put("key", key + "_1"));
-                //} else {
-                orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
-                //}
+                // SOAIP-2739
+                if ("Split payment".equalsIgnoreCase(orderedService) && "ORD_ORDERITEMID".equalsIgnoreCase(key)) {
+                    // meklējam pirmo ar Order Item ar ProductType = ConsumerGoods
+                    if ("Full Payment".equalsIgnoreCase(paymentMode)) {
+                        for (int i = 0; i < itemcount; i++) {
+                            itemdata = orderdataitems.getJSONObject(i);
+                            productTypeValue = GetJsonObjectStringValue(itemdata.get("ProductType"));
+                            if ("ConsumerGoods".equalsIgnoreCase(productTypeValue)) {
+                                val = GetJsonObjectStringValue(itemdata.get("OrderItemId"));
+                                orderAtrrItems.put(new JSONObject().put("value", val).put("key", key));
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    orderAtrrItems.put(new JSONObject().put("value", "").put("key", key));
+                }
             }
 
         } else {

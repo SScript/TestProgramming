@@ -24,9 +24,9 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 
-import org.json.CDL;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.CDL;
 
 public class CallLP {
 
@@ -35,22 +35,21 @@ public class CallLP {
         Resp result = new Resp();
         String newurl = ep.replaceAll(" ", "%20");
         //try {
-            result = ProcessLPRest_1(newurl, connTimeout, readTimeout, "");
+        result = ProcessLPRest_1(newurl, connTimeout, readTimeout, "");
         //} catch (Exception e) {
         //    result.respCode = "SOA_203[001]";
         //    result.respMsg = e.getMessage();
         //}
-        
+
         return result.ResponseStr;
     }
-    
+
     // for parcelsDocumentsApi/stickers
     public Resp callLPServiceSticker(String ep, String secret, String lpdata, int connTimeout, int readTimeout) throws Exception {
         Resp result = new Resp();
         String newurl = ep.replaceAll(" ", "%20");
         try {
-            result = ProcessLPRest_1(newurl, connTimeout, readTimeout,
-                                     jsonToURLEncoding(((JSONObject)FormatLPRestStr_stickers(secret, lpdata)).toString()));
+            result = ProcessLPRest_1(newurl, connTimeout, readTimeout, FormatLPRestStr_stickers(secret, lpdata));
             result.respCode = "1";
             result.respMsg = "OK";
             //result.respPdf = new String(Base64.getEncoder().encode(result.ResponseStr.getBytes()));
@@ -58,8 +57,8 @@ public class CallLP {
         } catch (Exception e) {
             result.respCode = "SOA_203[001]";
             result.respMsg = e.getMessage();
-        }    
-    
+        }
+
         return result;
     }
 
@@ -70,9 +69,8 @@ public class CallLP {
         String newurl = ep.replaceAll(" ", "%20");
         try {
             String formatedJSONData = "";
-            String formatedJSONDataEncoded = "";
-            String pasta_offices = "";
             if (ep.contains("parcelsApi/create")) {
+                String pasta_offices = "";
                 JSONObject data = lpdata.getJSONObject("LPData");
                 // vajag datus par pasta nodaļām
                 String dat = GetJsonAtrrObjectStringValue(data, "deliveryMode");
@@ -80,30 +78,23 @@ public class CallLP {
                     pasta_offices = callLPServicePostOffice(epo, connTimeout, readTimeout);
                 }
                 formatedJSONData = FormatLPRestStr(lpdata, pasta_offices);
-                formatedJSONDataEncoded = jsonToURLEncoding(formatedJSONData);
             } else if (ep.contains("courierApplicationsApi/create")) {
                 formatedJSONData = FormatLPRestStr_courier_create(lpdata);
-                formatedJSONDataEncoded = jsonToURLEncoding(formatedJSONData);
             }
 
-            result = ProcessLPRest_1(newurl, connTimeout, readTimeout, formatedJSONDataEncoded);
-            result.SenJsonStr1 = formatedJSONData;
-            result.pasta_offices = pasta_offices;
-            result.ResponseStrOrigin = result.ResponseStr;
-            
+            result = ProcessLPRest_1(newurl, connTimeout, readTimeout, formatedJSONData);
             if (!result.ResponseStr.contains("error")) {
                 if (ep.contains("parcelsApi/create")) {
-                    System.out.println("Test 1");
+
                     // ResponseStr: [{"country_id":"Valsts nav pareizi nor\u0101d\u012bta (j\u0101nor\u0101da Latvija)"}] -> not ok
                     // ResponseStr: {"Internal-ID-1":{"station_id":"Nor\u0101d\u012btais pakom\u0101ta indekss netika atrasts"}} -> not ok
-                    // ResponseStr: ["CE723011323LV"] - ok
+                    //  ResponseStr: ["CE723011323LV"] - ok
                     // ResponseStr: {"Internal-ID-1":"CE723100981LV"} ok
                     if (!result.ResponseStr.startsWith("[\"CE")) {
-                        System.out.println("Test 2");
-                        // {"Internal-ID-1":"CE723100981LV"} ok
+
+                        // {"Internal-ID-1":"CE723100981LV"}
                         if (result.ResponseStr.contains("Internal-ID-1")) {
                             if (result.ResponseStr.startsWith("[")) {
-                                System.out.println("Test 3");
                                 JSONArray obja = new JSONArray(result.ResponseStr);
                                 JSONObject ob = null;
                                 int ii = obja.length();
@@ -115,18 +106,14 @@ public class CallLP {
                                         ss = ss + fieldnames[i] + ": " + GetJsonAtrrObjectStringValue(((JSONObject)ob), fieldnames[i]) + "; ";
                                     }
                                 }
-                                result.respCode = "SOA_142[015]";
                             } else {
-                                System.out.println("Test 4");
                                 JSONObject obj = new JSONObject(result.ResponseStr);
                                 result.respMsg = "OK"; //obj.getString("Internal-ID-1");
                                 result.ResponseStr = "[\"" + obj.getString("Internal-ID-1") + "\"]";
                                 result.ParcelId = obj.getString("Internal-ID-1");
-                                result.ParcelId = result.ParcelId.replace("\n", "").replace("\r", "").trim();
                                 result.respCode = "1";
                             }
                         } else {
-                            System.out.println("Test 5");
                             if (result.ResponseStr.startsWith("[")) {
                                 JSONArray obja = new JSONArray(result.ResponseStr);
                                 JSONObject ob = null;
@@ -143,27 +130,24 @@ public class CallLP {
                             }
                         }
                     } else {
-                        System.out.println("Test 6");
-                            result.respCode = "1";
-                            result.respMsg = "OK";
-                            JSONArray o = new JSONArray(result.ResponseStr);
-                            result.ParcelId = CDL.rowToString(o);
+                        result.respCode = "1";
+                        result.respMsg = "OK";
+                        JSONArray o = new JSONArray(result.ResponseStr);
+                        result.ParcelId = CDL.rowToString(o);
+
                     }
                 } else {
-                    System.out.println("Test 7");
                     // courierApplicationsApi/create
                     JSONObject obj = new JSONObject(result.ResponseStr);
                     JSONObject o1 = obj.getJSONObject("result");
                     Object o = o1.get("My-ID-3954653");
-                    
+
                     if (o instanceof Boolean) {
-                        System.out.println("Test 8");
                         if (((Boolean)o) == true) {
                             result.respCode = "1";
                             result.respMsg = "OK";
                         }
                     } else {
-                        System.out.println("Test 9");
                         String ss = "";
                         result.respCode = "SOA_142[015]";
                         String[] fieldnames = JSONObject.getNames((JSONObject)o);
@@ -174,12 +158,10 @@ public class CallLP {
                     }
                 }
             } else {
-                System.out.println("Test 10");
                 result.respCode = "SOA_142[015]";
                 result.respMsg = "Kļūda no Latvijas Pasts: " + result.ResponseStr;
             }//{"error":"Invalid ip address: 195.13.183.184"}
         } catch (Exception e) {
-            System.out.println("Test 11");
             result.respCode = "SOA_203[001]";
             result.respMsg = e.getMessage();
         }
@@ -193,10 +175,10 @@ public class CallLP {
         BufferedReader in = null;
         DataOutputStream wr = null;
         Resp result = new Resp();
-        
+
         SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
         sslContext.init(null, null,  new SecureRandom());
-        
+
         String newurl = urlstr.replaceAll(" ", "%20");
         URL url = new URL(newurl);
 
@@ -206,9 +188,9 @@ public class CallLP {
         //httpsCon = (HttpsURLConnection) url.openConnection(proxy);
         httpsCon = (HttpsURLConnection) url.openConnection();
         httpsCon.setSSLSocketFactory(sslContext.getSocketFactory());
-        
+
         httpsCon.setRequestMethod("POST");
-        
+
         //httpsCon.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         //httpsCon.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         byte[] postDataBytes = null;
@@ -218,11 +200,11 @@ public class CallLP {
             httpsCon.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         } else {
             httpsCon.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-        }        
-        
+        }
+
         httpsCon.setConnectTimeout(connTimeout);
         httpsCon.setReadTimeout(readTimeout);
-        
+
         //httpsCon.setRequestProperty("Charset", "UTF-8");
         //httpsCon.setRequestProperty("Accept-Charset", "UTF-8");
         httpsCon.setDoOutput(true);
@@ -239,6 +221,7 @@ public class CallLP {
             httpsCon.setRequestProperty("Accept", "application/pdf");
             httpsCon.getOutputStream().write(postDataBytes);
         }
+
 
         StringBuffer response = new StringBuffer();
         String inputLine = "";
@@ -281,8 +264,7 @@ public class CallLP {
                 baos.close();
                 result.ResponseStr = ss.toString();
                 result.respPdf = new String(Base64.getEncoder().encode(ss));
-                result.pdfBytes = ss;
-            //byte[] ss = response.toString().getBytes(StandardCharsets.UTF_8);            
+                //byte[] ss = response.toString().getBytes(StandardCharsets.UTF_8);
             } else {
                 in = new BufferedReader(new InputStreamReader(httpsCon.getInputStream(), "UTF-8"));
                 while ((inputLine = in.readLine()) != null) {
@@ -307,15 +289,25 @@ public class CallLP {
         return result;
     }
 
-    private JSONObject FormatLPRestStr1(JSONObject lpindata, String pasta_offices) throws Exception {
+    private String FormatLPRestStr1(JSONObject lpindata, String pasta_offices) throws Exception {
         JSONObject data = lpindata.getJSONObject("LPData");
         JSONObject obj = new JSONObject();
         String dat = "";
-        String dat1 = "";
-
-        String InternalWarehouseId = GetJsonAtrrObjectStringValue(data, "internalWarehouseId");
-        String deliveryMode = GetJsonAtrrObjectStringValue(data, "deliveryMode");
-        
+        /* {
+  "secret": "SECRET-KEY",
+  "parcels": {
+    {
+    "type": "Ie",
+    "package_weight":"3",
+    "name_surname": "Rūdis Ābele",
+    "phone": "22222222",
+    "email": "abc@pasts.lv",
+    "country_id": 7,
+    "station_id": 99,
+    "sms_invite":1
+    }
+  }
+}*/
         String phone = GetJsonAtrrObjectStringValue(data, "phone");
         if (!isEmptyOrNull(phone) && (phone.length()!=8)) {
             phone = phone.substring(phone.length()-8, phone.length());
@@ -325,15 +317,10 @@ public class CallLP {
         JSONObject d = new JSONObject();
 
         d.put("type", GetJsonAtrrObjectStringValue(data, "type"));
-
-        dat = GetJsonAtrrObjectStringValue(data, "accountName");
+        dat = GetJsonAtrrObjectStringValue(data, "customerName");
+        if (!isEmptyOrNull(dat)) {d.put("company_name", dat);}
+        dat = GetJsonAtrrObjectStringValue(data, "contact_person");
         if (!isEmptyOrNull(dat)) {d.put("name_surname", dat);}
-        
-        if (isEmptyOrNull(InternalWarehouseId)) {
-            dat1 = GetJsonAtrrObjectStringValue(data, "customerName");
-            if (!dat.equalsIgnoreCase(dat1)) {d.put("company_name", dat);}
-        }
-        
         d.put("phone", phone);
         dat = GetJsonAtrrObjectStringValue(data, "email");
         if (!isEmptyOrNull(dat)) {d.put("email", dat);}
@@ -345,23 +332,23 @@ public class CallLP {
         parcels.put("Internal-ID-1", d);
 
         obj.put("secret", GetJsonAtrrObjectStringValue(data, "secret_cfg"));
-        obj.put("parcels", parcels);       
-        
-        return obj;
+        obj.put("parcels", parcels);
+
+        return jsonToURLEncoding(obj);
     }
-    
-    private JSONObject FormatLPRestStr2(JSONObject lpindata, String pasta_offices) throws Exception {
+
+    private String FormatLPRestStr2(JSONObject lpindata, String pasta_offices) throws Exception {
         JSONObject obj = new JSONObject();
         JSONArray parcels = new JSONArray();
         JSONObject dati = null;
         String dat = "";
         String dat1 = "";
-        String foundPickupPoint = "not used";
+
         JSONObject data = lpindata.getJSONObject("LPData");
-        
+
         String InternalWarehouseId = GetJsonAtrrObjectStringValue(data, "internalWarehouseId");
         String deliveryMode = GetJsonAtrrObjectStringValue(data, "deliveryMode");
-        
+
         JSONArray pasta_nod = null;
         JSONObject pasta_nodala = null;
         if ("LVPasts Pickup Point".equalsIgnoreCase(deliveryMode)) {
@@ -369,11 +356,10 @@ public class CallLP {
             pasta_nod = new JSONArray(pasta_offices);
             String zip = GetJsonAtrrObjectStringValue(data, "pickUpId");
             pasta_nodala = getPastssOfficeData(pasta_nod, zip);
-            foundPickupPoint = "Atrasta nodaļa: " + zip;
             // ja neatrod pasta nodalju
             if (null == pasta_nodala) {throw new Exception("Nav atrasta pasta nodaļa");}
         }
-        if (!isEmptyOrNull(InternalWarehouseId)) { 
+        if (!isEmptyOrNull(InternalWarehouseId)) {
             obj.put("secret", GetJsonAtrrObjectStringValue(data, "secret_cfg1"));
         } else {
             obj.put("secret", GetJsonAtrrObjectStringValue(data, "secret_cfg"));
@@ -383,26 +369,26 @@ public class CallLP {
         if (!isEmptyOrNull(dat)) {
             i = Integer.parseInt(dat);
         }
-        
+
         for (int j = 0; j<i; j++) {
             dati = new JSONObject();
             dat = GetJsonAtrrObjectStringValue(data, "type");
             if (!isEmptyOrNull(dat)) {dati.put("type", dat);}
-            
+
             dat = GetJsonAtrrObjectStringValue(data, "numOfParcel");
             if (!isEmptyOrNull(dat)) {
                 i = Integer.parseInt(dat);
             }
-            
+
             if (i > 1) {
                 dati.put("multiparcel", 1);
                 dat = GetJsonAtrrObjectStringValue(data, "order_number");
                 if (!isEmptyOrNull(dat)) {dati.put("group_uid", dat);}
             }
-            
+
             dat = GetJsonAtrrObjectStringValue(data, "weight");
             if (!isEmptyOrNull(dat)) {dati.put("package_weight", dat);}
-            
+
             if (isEmptyOrNull(InternalWarehouseId)) {
                 dat = GetJsonAtrrObjectStringValue(data, "accountName");
                 if (!isEmptyOrNull(dat)) {dati.put("name_surname", dat);}
@@ -410,45 +396,44 @@ public class CallLP {
                 dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "contact_person");
                 if (!isEmptyOrNull(dat)) {dati.put("name_surname", dat);}
             }
-            
+
             if (isEmptyOrNull(InternalWarehouseId)) {
                 dat1 = GetJsonAtrrObjectStringValue(data, "customerName");
                 if (!dat.equalsIgnoreCase(dat1)) {dati.put("company_name", dat);}
             }
-            
+
             //dat = GetJsonAtrrObjectStringValue(data, "country_id");
             //dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "country_id");
             //if (!isEmptyOrNull(dat)) {dati.put("country_id", dat);}
             dati.put("country_id", 7);
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "city");
             if (!isEmptyOrNull(dat)) {dati.put("city", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "area");
             if (!isEmptyOrNull(dat)) {dati.put("area", dat);}
 
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "district");
             if (!isEmptyOrNull(dat)) {dati.put("district", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "village");
             if (!isEmptyOrNull(dat)) {dati.put("village", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "district");
             if (!isEmptyOrNull(dat)) {dati.put("district", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "street");
             if (!isEmptyOrNull(dat)) {dati.put("street", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "house");
             if (!isEmptyOrNull(dat)) {dati.put("house", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "apartment_nr");
             if (!isEmptyOrNull(dat)) {dati.put("apartment_nr", dat);}
-            
+
             dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "zipcode");
-            if (dat.length()==4) {dat = "LV-" + dat;}
             if (!isEmptyOrNull(dat)) {dati.put("zipcode", dat);}
-            
+
             if (!isEmptyOrNull(InternalWarehouseId)) {
                 dat = getAddressFieldValue(InternalWarehouseId, deliveryMode, pasta_nodala, data, "contact_phone");
             } else {
@@ -465,7 +450,7 @@ public class CallLP {
                 dat = GetJsonAtrrObjectStringValue(data, "email");
             }
             if (!isEmptyOrNull(dat)) {dati.put("email", dat);}
-            
+
             dat = GetJsonAtrrObjectStringValue(data, "comments");
             String floor = "";
             floor = GetJsonAtrrObjectStringValue(data, "floor");
@@ -483,11 +468,11 @@ public class CallLP {
                     //res=res+"&parcels[" + j + "][comments]=" + "Stāvs: " + floor;
                 }
             }
-            
+
             dat = GetJsonAtrrObjectStringValue(data, "deliveryType");
-            if ("Courier".equalsIgnoreCase(dat) || "Internal".equalsIgnoreCase(dat)) {
+            if ("Courier".equalsIgnoreCase(dat)) {
                 dati.put("delivery_priority", "X1");
-                
+
                 dat1 = GetJsonAtrrObjectStringValue(data, "doorDelivery");
                 if ("true".equalsIgnoreCase(dat1)) {
                     dati.put("carry_assist", "1");
@@ -495,35 +480,28 @@ public class CallLP {
                     dati.put("carry_assist", "0");
                 }
             }
-            if ("Courier".equalsIgnoreCase(dat)) {
-                dat1 = GetJsonAtrrObjectStringValue(data, "doorDelivery");
-                if ("true".equalsIgnoreCase(dat1)) {
-                    dati.put("carry_assist", "1");
-                } else {
-                    dati.put("carry_assist", "0");
-                }
-            }            
+
             dat = GetJsonAtrrObjectStringValue(data, "deliveryMode");
             if ("LVPasts Parcel machines".equalsIgnoreCase(dat)) {
                 dat1 = GetJsonAtrrObjectStringValue(data, "pickUpId");
                 dati.put("station_id", dat1);
             }
-            
+
             if ("LVPasts Pickup Point".equalsIgnoreCase(dat)) {
                 dati.put("pickup", 1);
                 dat1 = GetJsonAtrrObjectStringValue(data, "pickUpId");
-                dati.put("pickup_zipcode", (!dat1.startsWith("LV") ? "LV-"+dat1 : dat1));
+                dati.put("pickup_zipcode", (!dat.startsWith("LV-") ? "LV-"+dat1 : dat1));
             }
-            
+
             dati.put("sms_invite", 1);
-            
+
             parcels.put(dati);
         }
         obj.put("parcels", parcels);
-        
-        return obj; 
+        System.out.println(obj.toString());
+        return jsonToURLEncoding(obj);
     }
-    
+
     private String getAddressFieldValue(String InternalWarehouseId, String deliveryMode, JSONObject pasta_nodala, JSONObject data, String field) {
         String dat = "";
         if (!isEmptyOrNull(InternalWarehouseId)) {
@@ -540,14 +518,14 @@ public class CallLP {
                 }
             }
         }
-        
-        return dat;    
+
+        return dat;
     }
-    
+
     private String getPastssOfficeData(JSONObject data, String field) {
-        return GetJsonAtrrObjectStringValue(data, field);  
+        return GetJsonAtrrObjectStringValue(data, field);
     }
-    
+
     private JSONObject getPastssOfficeData(JSONArray data, String zipid) {
         JSONObject res = null;
         if (!isEmptyOrNull(zipid) && !(zipid.length() == 4)) {
@@ -561,36 +539,36 @@ public class CallLP {
             dat = d.getString("zipcode");
             if (dat.equals(zipid)) {return d;}
         }
-        return res;    
+        return res;
     }
-    
+
     private String FormatLPRestStr(JSONObject lpindata, String pasta_offices) throws Exception {
         JSONObject data = lpindata.getJSONObject("LPData");
-        
+
         String dat = "";
         String dat1 = "";
         String InternalWarehouseId = GetJsonAtrrObjectStringValue(data, "internalWarehouseId");
         String deliveryMode = GetJsonAtrrObjectStringValue(data, "deliveryMode");
-        
+
         JSONObject obj = new JSONObject();
         JSONArray parcels = new JSONArray();
         JSONObject dati = null;
-        
+
         /*
          * ja aizpildīts parametrs <InternalWarehouseId>, tad no konfiguracijas tabulas (noliktavas dati)
                 ja DeliveryMode = 'LVPasts Pickup Point', tad <city> no postOfficeApi
                 ja DeliveryMode = 'LVPasts Courier', tad  no AK_ADMIN (pēc AddressKey)
                 parējos gadījumos nav jāpadod
-         * 
+         *
          * */
         if (!isEmptyOrNull(InternalWarehouseId)) {
-            return ((JSONObject)FormatLPRestStr2(lpindata, pasta_offices)).toString();
+            return FormatLPRestStr2(lpindata, pasta_offices);
         } else {
             if ("LVPasts Parcel Machine".equalsIgnoreCase(deliveryMode)) {
                 // pakomātam
-                return ((JSONObject)FormatLPRestStr1(lpindata, pasta_offices)).toString();
+                return FormatLPRestStr1(lpindata, pasta_offices);
             } else {
-                return ((JSONObject)FormatLPRestStr2(lpindata, pasta_offices)).toString();
+                return FormatLPRestStr2(lpindata, pasta_offices);
             }
         }
 
@@ -606,24 +584,24 @@ public class CallLP {
     // "courierApplicationsApi/create"
     private String FormatLPRestStr_courier_create(JSONObject lpindata) throws Exception {
         JSONObject data = lpindata.getJSONObject("CourierData");
-        
+
         JSONObject obj = new JSONObject();
         JSONObject dati = new JSONObject();
         obj.put("secret", GetJsonAtrrObjectStringValue(data, "secret"));
         JSONObject parcels = new JSONObject();
 
         //parcels.put("Internal-ID-1",
-                    
+
         String result = "secret=" + GetJsonAtrrObjectStringValue(data, "secret");
         //obj.put("secret", GetJsonAtrrObjectStringValue(data, "secret"));
-        
+
         String dat = "";
         // [required]
         dat = GetJsonAtrrObjectStringValue(data, "when");
         result = result + "&applications[My-ID-3954653][when]=" + dat;
-        
-        
-        
+
+
+
         // [required]
         dat = GetJsonAtrrObjectStringValue(data, "time_from");
         result = result + "&applications[My-ID-3954653][time_from]=" + dat;
@@ -642,7 +620,7 @@ public class CallLP {
         dat = GetJsonAtrrObjectStringValue(data, "cbm");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][cbm]=" + dat;
-        }        
+        }
         // [optional]
         dat = GetJsonAtrrObjectStringValue(data, "ldm");
         if (!isEmptyOrNull(dat)) {
@@ -655,19 +633,18 @@ public class CallLP {
         }
         // [required] company name or name and surname
         dat = GetJsonAtrrObjectStringValue(data, "company_name");
-        result = result + "&applications[My-ID-3954653][company_name]=" + dat; 
-        
+        result = result + "&applications[My-ID-3954653][company_name]=" + dat;
         // [required] phone no.
         dat = GetJsonAtrrObjectStringValue(data, "phone");
-        result = result + "&applications[My-ID-3954653][phone]=" + dat;        
+        result = result + "&applications[My-ID-3954653][phone]=" + dat;
         // [optional] e-mail
         dat = GetJsonAtrrObjectStringValue(data, "email");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][email]=" + dat;
-        }        
+        }
         // [optional] comments
         dat = GetJsonAtrrObjectStringValue(data, "contact_person") + " " + GetJsonAtrrObjectStringValue(data, "add_address");
-        result = result + "&applications[My-ID-3954653][comments]=" + dat;        
+        result = result + "&applications[My-ID-3954653][comments]=" + dat;
         // [required] city.
         dat = GetJsonAtrrObjectStringValue(data, "city");
         result = result + "&applications[My-ID-3954653][city]=" + dat;
@@ -683,22 +660,22 @@ public class CallLP {
         dat = GetJsonAtrrObjectStringValue(data, "village");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][village]=" + dat;
-        }        
+        }
         // [optional] street
         dat = GetJsonAtrrObjectStringValue(data, "street");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][street]=" + dat;
-        }         
+        }
         // [optional] house
         dat = GetJsonAtrrObjectStringValue(data, "house");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][house]=" + dat;
-        }        
+        }
         // [optional] apartment_nr
         dat = GetJsonAtrrObjectStringValue(data, "apartment_nr");
         if (!isEmptyOrNull(dat)) {
             result = result + "&applications[My-ID-3954653][apartment_nr]=" + dat;
-        } 
+        }
         // [required] zipcode.
         dat = GetJsonAtrrObjectStringValue(data, "zipcode");
         result = result + "&applications[My-ID-3954653][zipcode]=" + dat;
@@ -727,30 +704,32 @@ public class CallLP {
         */
         return result;
     }
-    
+
     /**
      *{
-  "secret": "SECRET-KEY",
-  "size": "150x100",
-  "parcels":
-    [
+     "secret": "SECRET-KEY",
+     "size": "150x100",
+     "parcels":
+     [
      "CE100005322LV",
      "CE100005323LV",
      "CE100005324LV"
-    ]
-}
+     ]
+     }
+     * @param lpindata
+     * @return
+     * @throws Exception
      */
-    private JSONObject FormatLPRestStr_stickers(String secret, String data) throws Exception {
+    private String FormatLPRestStr_stickers(String secret, String data) throws Exception {
         JSONObject d = new JSONObject();
         JSONArray o = new JSONArray(data);
         d.put("secret", secret).put("size", "150x100").put("parcels", o);
-        
-        return d;
+
+        return jsonToURLEncoding(d);
     }
 
-    public String jsonToURLEncoding(String jsonStr) {
+    public String jsonToURLEncoding(JSONObject json) {
         String output = "";
-        JSONObject  json = new JSONObject(jsonStr);
         String[] keys = JSONObject.getNames(json);
         for (String currKey : keys)
             output += jsonToURLEncodingAux(json.get(currKey), currKey);
@@ -782,7 +761,7 @@ public class CallLP {
 
         return output;
     }
-    
+
     public String formatDate(String dateVal) throws Exception {
         if (!isEmptyOrNull(dateVal)) {
             try {

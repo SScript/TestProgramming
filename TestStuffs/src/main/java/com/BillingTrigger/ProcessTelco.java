@@ -1,7 +1,7 @@
 package com.BillingTrigger;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
-import jdk.nashorn.internal.parser.JSONParser;
-import org.apache.kafka.clients.admin.AlterConsumerGroupOffsetsOptions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,7 +36,7 @@ public class ProcessTelco extends JSonDataFunctions {
     public String serviceNumber = "";
     protected JSONObject responseVlocJson;
     public JSONObject order;
-    public static JSONArray orderItems;
+    public JSONArray orderItems;
 
     public JSONArray itemdata_primary = new JSONArray();
     public JSONArray itemdata_secondary = new JSONArray();
@@ -49,6 +49,8 @@ public class ProcessTelco extends JSonDataFunctions {
     public Resp ProcessForTelco() throws Exception {
 
         result = new Resp();
+        result.callCount = 0;
+
         responseVlocJson = new JSONObject();
         order = new JSONObject();
         orderItems = new JSONArray();
@@ -63,13 +65,8 @@ public class ProcessTelco extends JSonDataFunctions {
         String secondaryserviceNumber = "";
         String tertiaryserviceNumber = "";
         String quarternaryserviceNumber = "";
-        
-//        String serviceNumber = "";
+        int callcount = 0;
         try {
-            //itemdata_primary = GeOrderItemsByServiceLevel("Primary");
-            //itemdata_secondary = GeOrderItemsByServiceLevel("Secondary");
-            //itemdata_tertiary = GeOrderItemsByServiceLevel("Tertiary");
-            //itemdata_quarternary = GeOrderItemsByServiceLevel("Quarternary");
 
             PrintLog("Sâkam orderItemu gupçðanu pa ServiceId vçrtîbâm:");
             servidslist = GeOrderServiceNumbers();
@@ -85,7 +82,8 @@ public class ProcessTelco extends JSonDataFunctions {
             if (itemdata_primary.length() > 0) {
                 serviceNumber = getTelcoServiceNo(itemdata_primary);
                 result.SendJsonStr1 = ProcessTelcoServiceBundleLine(itemdata_primary, "Primary");
-                result.callCount = 1;
+                callcount = callcount + 1;
+                result.callCount = callcount;
                 System.out.println("Primary: " + serviceNumber);
                 primaryserviceNumber = serviceNumber;
             }
@@ -93,7 +91,8 @@ public class ProcessTelco extends JSonDataFunctions {
             if (itemdata_secondary.length() > 0) {
                 serviceNumber = getTelcoServiceNo(itemdata_secondary);
                 result.SendJsonStr2 = ProcessTelcoServiceBundleLine(itemdata_secondary, "Secondary");
-                result.callCount = 2;
+                callcount = callcount + 1;
+                result.callCount = callcount;
                 System.out.println("Secondary: " + serviceNumber);
                 secondaryserviceNumber = serviceNumber;
             }
@@ -101,7 +100,8 @@ public class ProcessTelco extends JSonDataFunctions {
             if (itemdata_tertiary.length() > 0) {
                 serviceNumber = getTelcoServiceNo(itemdata_tertiary);
                 result.SendJsonStr3 = ProcessTelcoServiceBundleLine(itemdata_tertiary, "Tertiary");
-                result.callCount = 3;
+                callcount = callcount + 1;
+                result.callCount = callcount;
                 System.out.println("Tertiary: " + serviceNumber);
                 tertiaryserviceNumber = serviceNumber;
             }
@@ -109,31 +109,45 @@ public class ProcessTelco extends JSonDataFunctions {
             if (itemdata_quarternary.length() > 0) {
                 serviceNumber = getTelcoServiceNo(itemdata_quarternary);
                 result.SendJsonStr4 = ProcessTelcoServiceBundleLine(itemdata_quarternary, "Quaternary");
-                result.callCount = 4;
+                callcount = callcount + 1;
+                result.callCount = callcount;
                 System.out.println("Quarternary: " + serviceNumber);
                 quarternaryserviceNumber = serviceNumber;
             }
 
-            result.RetCode = "1";
-            result.RetMsg = "OK";
+            if (!result.isItemLEvelError && !result.isOrderLEvelError)
+            {
+                result.RetCode = "1";
+                result.RetMsg = "OK";
+            } else {
+                result.RetMsg = "NOK";
+            }
         } catch (Exception e) {
 
             if (e.getMessage().contains("mandatory")) {
                 result.RetCode = "SOA_164[095]";
-                result.RetMsg = e.getMessage();
-                order.put("ErrorCode", "SOA_164[004]");
-                order.put("Description", e.getMessage());
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                result.RetMsg = "Parser error: " + e.getMessage() + sw.toString();
+                order.put("ErrorCode", "SOA_164[005]");
+                order.put("Description", e.getMessage() + " Ir nepiecieðama manuâla norçíinu aktivizâcija.");
                 result.responseVlocJson = responseVlocJson.toString();
             } else {
                 result.RetCode = "SOA_164[099]";
-                result.RetMsg = "Global error: " + e.getMessage();
-                order.put("ErrorCode", "SOA_164[004]");
-                order.put("Description", e.getMessage());
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                result.RetMsg = "Global error: " + e.getMessage() + sw.toString();
+                order.put("ErrorCode", "SOA_164[099]");
+                order.put("Description", "Kïûda datu apstrâdes laikâ: " + e.getMessage() + "  Ir nepiecieðama manuâla norçíinu aktivizâcija.");
                 result.responseVlocJson = responseVlocJson.toString();
             }
 //            e.printStackTrace();
-        }
+        } finally {
+            // finalizç msg
 
+        }
 
         result.responseVlocJson = responseVlocJson.toString();
         return result;
@@ -211,7 +225,7 @@ public class ProcessTelco extends JSonDataFunctions {
                     break;
                 }
             }
-            if (isTertiaryProcessed) {
+            if (isSecondaryProcessed) {
                 // skatamis vai vçl ir kâds cits ar ðo numuru
                 for (int ii = 0; ii < itemcount; ii++) {
                     itemdata = orderdataitems.getJSONObject(ii);
@@ -285,7 +299,7 @@ public class ProcessTelco extends JSonDataFunctions {
         PrintLog("Skatamies Quaternary: ");
         arkoapvieno = "";
         serviceIdOrigin = "";
-        if (isQuaternaryProcessed) {
+        if (!isQuaternaryProcessed) {
             for (int i = 0; i < itemcount; i++) {
                 itemdata = orderdataitems.getJSONObject(i);
                 serviceIdOrigin = GetJsonObjectStringValue(itemdata, "ServiceId", false);
@@ -344,49 +358,35 @@ public class ProcessTelco extends JSonDataFunctions {
     }
 
     private String ProcessTelcoServiceBundleLine(JSONArray bundleItems, String serviceBundle) throws Exception {
-
-
-
-// Vecâ daïa
-//        responseVlocJson.put("OrderId", GetBaseData().getOrderId());
-//        responseVlocJson.put("OrderNumber", GetBaseData().getOrderNumber());
-//        responseVlocJson.put("Status", "Billing Activation Failed");
-//        responseVlocJson.put("BillActivationDate", GetBaseData().getOrderDate());
-//        responseVlocJson.put("ServiceActivationDate", "");
-//        responseVlocJson.put("GroupId", "");
-
-// pârnesu responseVlocJson daïu uz ðejieni, jaunâ struktûra SOAIP-2664
-
         JSONObject rowdata = null;
         String groupIdStr = "";
         String prdSubType = "";
         String billActivationDate = getBillActivationDate(GetBaseData().getOrderDate());
-
-
-
+        List<String> addItem = new ArrayList<>();
         JSONArray orderdataitems  = getOrderDataItems();
 
-        for (int i = 0; i < orderdataitems.length(); i++) {
-
-            rowdata = orderdataitems.getJSONObject(i);
+        for (int i = 0; i < bundleItems.length(); i++) {
+        //for (int i = 0; i < orderdataitems.length(); i++) {
+            rowdata = bundleItems.getJSONObject(i);
             prdSubType = GetJsonObjectStringValue(rowdata, "ProductSubType", false);
-
-            if (!prdSubType.equalsIgnoreCase("Offer")) {
+            if (!prdSubType.equalsIgnoreCase("ServiceBundle")) {
                 continue;
             }
-
-            orderItems.put(new JSONObject()
-            .put("OrderItemID", GetJsonObjectStringValue(rowdata, "OrderItemId", false))
-            .put("ServiceNumber", serviceNumber)
-            .put("BillActivationDate", billActivationDate)
-            .put("ServiceActivationDate", "")
-            .put("Status", "")
-            .put("Description", "")
-            .put("ErrorCode", "")
-            .put("GroupId", ""));
-
+            String ordItemID = GetJsonObjectStringValue(rowdata, "OrderItemId", false);
+            if (!addItem.contains(serviceNumber)) {
+                orderItems.put(new JSONObject()
+                        .put("OrderItemID", ordItemID)
+                        //.put("OrderItemID", "")
+                        .put("ServiceNumber", serviceNumber)
+                        .put("BillActivationDate", billActivationDate)
+                        .put("ServiceActivationDate", "")
+                        .put("Status", "")
+                        .put("Description", "")
+                        .put("ErrorCode", "")
+                        .put("GroupId", "1")); // default jau liekam 1
+                addItem.add(serviceNumber);
+            }
         }
-
 
         order.put("OrderId", GetBaseData().getOrderId());
         order.put("OrderNumber", GetBaseData().getOrderNumber());
@@ -394,7 +394,7 @@ public class ProcessTelco extends JSonDataFunctions {
         order.put("BillActivationDate", billActivationDate);
         order.put("Description", "");
         order.put("ErrorCode", "");
-        order.put("GroupId", groupIdStr);
+        order.put("GroupId", "1");
         order.put("OrderItem", orderItems);
 
         responseVlocJson.put("Order", new JSONArray().put(order));
@@ -634,35 +634,38 @@ public class ProcessTelco extends JSonDataFunctions {
 
         // pârbaudam adresi
 
-            AccountAddressId = GetItemServiceAddressKey();
+        AccountAddressId = GetItemServiceAddressKey(bundleItems);
         System.out.println("accountaddressid: " + AccountAddressId);
 
         result.addressinfo = "AccountAddressId " + AccountAddressId + " orderedService: Telco";
         try {
             if (!isEmptyOrNull(AccountAddressId)) {
                 GetBaseData().setAddressFound(false);
-                GetOrderAddressData(AccountAddressId);
+                GetOrderAddressData(AccountAddressId, orderAtrrItems);
                 result.addressinfo = "Adrese : " + AccountAddressId + "  atrasta = " + String.valueOf(GetBaseData().isAddressFound()) + "  : Telco";
                 if (!GetBaseData().isAddressFound()) {
                     result.RetCode = "SOA_164[003]";
                     result.RetMsg = "Adrese : " + AccountAddressId + " nav atrasta.";
-                    orderItems.getJSONObject(result.callCount).put("ErrorCode", "SOA_164[004]");
+                    orderItems.getJSONObject(result.callCount).put("ErrorCode", "SOA_164[005]");
                     orderItems.getJSONObject(result.callCount).put("Description", "Adrese : " + AccountAddressId + " nav atrasta.");
+                    order.put("ErrorCode", "SOA_164[005]");
+                    order.put("Description", "Adrese : " + AccountAddressId + " nav atrasta. Ir nepiecieðama manuâla norçíinu aktivizâcija.");
+                    result.isItemLEvelError = true;
                 }
             }
         } catch (Exception e) {
             // ja addresskey padod kâ sviestainu stringu, tad ir kïûda ðeit
             result.RetCode = "SOA_164[003]";
             result.RetMsg = "Adrese : " + AccountAddressId + " nav atrasta.";
-            orderItems.getJSONObject(result.callCount).put("ErrorCode", "SOA_164[004]");
+            orderItems.getJSONObject(result.callCount).put("ErrorCode", "SOA_164[005]");
             orderItems.getJSONObject(result.callCount).put("Description", "Adrese : " + AccountAddressId + " nav atrasta.");
+            order.put("ErrorCode", "SOA_164[005]");
+            order.put("Description", "Adrese : " + AccountAddressId + " nav atrasta. Ir nepiecieðama manuâla norçíinu aktivizâcija.");
+            result.isItemLEvelError = true;
             e.printStackTrace();
         }
 
-
-
         newData.put("orderdetails", orderAtrrItems);
-
         newData.put("orderOffers", ProcessOrderPricing(bundleItems, serviceBundle, getTelcoServiceNo(bundleItems)));
 
         return newData.toString();
@@ -670,15 +673,15 @@ public class ProcessTelco extends JSonDataFunctions {
 
 
 
-    private String GetItemServiceAddressKey() throws Exception {
+    private String GetItemServiceAddressKey(JSONArray bundleItems) throws Exception {
         //ItemServiceAddressKey
         String res = "";
-        JSONArray orderdataitems  = getOrderDataItems();
+        //JSONArray orderdataitems  = getOrderDataItems();
         JSONObject itemdata = null;
 
-        int itemcount = orderdataitems.length();
+        int itemcount = bundleItems.length();
         for (int i = 0; i < itemcount; i++) {
-            itemdata = orderdataitems.getJSONObject(i);
+            itemdata = bundleItems.getJSONObject(i);
             res = GetJsonObjectStringValue(itemdata, "ItemServiceAddressKey", false);
             if (!isEmptyOrNull(res)) {
                 return res;
@@ -1013,6 +1016,8 @@ public class ProcessTelco extends JSonDataFunctions {
         String serviceId = "";
         String unicornServiceLevel = "";
         String orderItemId = "";
+        String rootOrderItemId = "";
+        String productSubType = "";
 
         JSONArray orderdataitems  = getOrderDataItems();
         JSONObject itemdata = null;
@@ -1049,6 +1054,7 @@ public class ProcessTelco extends JSonDataFunctions {
             // skatmies pârçjos ar ðo serviceId
             for (int ii = 0; ii < itemcount; ii++) {
                 itemdata = orderdataitems.getJSONObject(ii);
+                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
                 serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
                 unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                 if (!"Primary".equalsIgnoreCase(unicornServiceLevel)
@@ -1078,7 +1084,31 @@ public class ProcessTelco extends JSonDataFunctions {
                     }
                 }
             }
-            PrintLog("Full primary items ids: " + addedItemsId.toString());
+            // skatamies vai ir kâdi citi pirmâ lîmeòa dati, kas nav offer
+            for (int i = 0; i < itemcount; i++) {
+                itemdata = orderdataitems.getJSONObject(i);
+                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                rootOrderItemId = GetJsonObjectStringValue(itemdata, "RootOrderItemId", false);
+                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                productSubType = GetJsonObjectStringValue(itemdata, "ProductSubType", false);
+
+                if (!"Offer".equalsIgnoreCase(productSubType) && isEmptyOrNull(unicornServiceLevel)
+                        && rootOrderItemId.equalsIgnoreCase(orderItemId)) {
+                    if (!addedItemsId.contains(orderItemId)) {
+                        addedItemsId.add(orderItemId);
+                        itemdata_primary.put(itemdata);
+                    }
+                    // un viòa childus
+                    dataToAdd  = addParrentsAndChilds(itemdata, "");
+                    for (int c = 0; c < dataToAdd.length(); c++) {
+                        itemdata1 = (JSONObject) dataToAdd.get(c);
+                        orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
+                        itemdata_primary.put(itemdata1);
+                    }
+                }
+            }
+            PrintLog("Full primary items ids: " + addedItemsId.toString() + " (" + itemdata_primary.length() + ")");
         } // end of if (!isPrimaryProcessed) ...
 
         PrintLog("Apstrâdâjam Secondary: ");
@@ -1111,6 +1141,7 @@ public class ProcessTelco extends JSonDataFunctions {
             if (isSecondaryProcessed) {
                 for (int ii = 0; ii < itemcount; ii++) {
                     itemdata = orderdataitems.getJSONObject(ii);
+                    orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
                     serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
                     unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                     if (!"Secondary".equalsIgnoreCase(unicornServiceLevel)
@@ -1174,6 +1205,7 @@ public class ProcessTelco extends JSonDataFunctions {
             if (isTertiaryProcessed) {
                 for (int ii = 0; ii < itemcount; ii++) {
                     itemdata = orderdataitems.getJSONObject(ii);
+                    orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
                     serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
                     unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                     if (!"Tertiary".equalsIgnoreCase(unicornServiceLevel)
@@ -1204,6 +1236,7 @@ public class ProcessTelco extends JSonDataFunctions {
                     }
                 }
             }
+            PrintLog("Full tertiary items ids: " + addedItemsId.toString());
         } // end of if (!isTertiaryProcessed) ...
 
         PrintLog("Apstrâdâjam Quaternary: ");
@@ -1236,6 +1269,7 @@ public class ProcessTelco extends JSonDataFunctions {
             if (isQuaternaryProcessed) {
                 for (int ii = 0; ii < itemcount; ii++) {
                     itemdata = orderdataitems.getJSONObject(ii);
+                    orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
                     serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
                     unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                     if (!"Quaternary".equalsIgnoreCase(unicornServiceLevel)
@@ -1255,17 +1289,18 @@ public class ProcessTelco extends JSonDataFunctions {
                         }
                         if (!addedItemsId.contains(orderItemId)) {
                             addedItemsId.add(orderItemId);
-                            itemdata_tertiary.put(itemdata);
+                            itemdata_quarternary.put(itemdata);
                         }
                         dataToAdd = addParrentsAndChilds(itemdata, unicornServiceLevel);
                         for (int c = 0; c < dataToAdd.length(); c++) {
                             itemdata1 = (JSONObject) dataToAdd.get(c);
                             orderItemId = GetJsonObjectStringValue(itemdata1, "OrderItemId", false);
-                            itemdata_tertiary.put(itemdata1);
+                            itemdata_quarternary.put(itemdata1);
                         }
                     }
                 }
             }
+            PrintLog("Full quaternary items ids: " + addedItemsId.toString());
         } // end of if (!isQuaternaryProcessed) ...
 
     }
@@ -1288,8 +1323,9 @@ public class ProcessTelco extends JSonDataFunctions {
             for (int j = 0; j < itemcount; j++) {
                 itemdata = data.getJSONObject(j);
                 parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
+                rootOrderId = GetJsonObjectStringValue(itemdata, "RootOrderItemId", false);
                 orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                //unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
                 // ja sakrît items
                 if (orderItemId.equalsIgnoreCase(parentOrderItemIdCurr)) {
                     // vai tas ir pçdçjais
@@ -1306,8 +1342,10 @@ public class ProcessTelco extends JSonDataFunctions {
                         break;
                     }
                 }
+                // pârbaude vai ir bijis atrasts parent, ja iziets viss cikls un nav, tad jâbeidz viss
+                // todo : ielikt kâdu citu mainîgo beigðanas pazîmei, lai smukâk
+                if (!isParent && j == (itemcount-1)) {isParent = true;}
             }
-
         } while (!isParent);
 
         // add childs
@@ -1334,70 +1372,72 @@ public class ProcessTelco extends JSonDataFunctions {
         //} while (!isFullFor);
 
         // skatamies vai nav citi levelji
-        for (int j = 0; j < itemcount; j++) {
-            itemdata = data.getJSONObject(j);
-            unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-            serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-            orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-            if (level.equalsIgnoreCase(unicornServiceLevel) && isEmptyOrNull(serviceId)) {
-                // ja ir paòemam viòu
-                if (!addedItemsId.contains(orderItemId)) {
-                    addedItemsId.add(orderItemId);
-                    res.put(itemdata);
-                }
-                orderItemIdCurr = orderItemId;
-                // add parrents
-                parentOrderItemIdCurr = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                do {
-                    for (int j1 = 0; j1 < itemcount; j1++) {
-                        itemdata = data.getJSONObject(j1);
-                        parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                        orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                        unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                        // ja sakrît items
-                        if (orderItemId.equalsIgnoreCase(parentOrderItemIdCurr)) {
-                            // vai tas ir pçdçjais
-                            if (isEmptyOrNull(parentOrderItemId)) {
-                                isParent = true;
-                                rootOrderId = orderItemId;
+        if (!isEmptyOrNull(level)) {
+            for (int j = 0; j < itemcount; j++) {
+                itemdata = data.getJSONObject(j);
+                unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                if (level.equalsIgnoreCase(unicornServiceLevel) && isEmptyOrNull(serviceId)) {
+                    // ja ir paòemam viòu
+                    if (!addedItemsId.contains(orderItemId)) {
+                        addedItemsId.add(orderItemId);
+                        res.put(itemdata);
+                    }
+                    orderItemIdCurr = orderItemId;
+                    // add parrents
+                    parentOrderItemIdCurr = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
+                    do {
+                        for (int j1 = 0; j1 < itemcount; j1++) {
+                            itemdata = data.getJSONObject(j1);
+                            parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
+                            orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                            unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                            // ja sakrît items
+                            if (orderItemId.equalsIgnoreCase(parentOrderItemIdCurr)) {
+                                // vai tas ir pçdçjais
+                                if (isEmptyOrNull(parentOrderItemId)) {
+                                    isParent = true;
+                                    rootOrderId = orderItemId;
+                                }
+                                if (!addedItemsId.contains(orderItemId)) {
+                                    addedItemsId.add(orderItemId);
+                                    res.put(itemdata);
+                                }
+                                if (!isEmptyOrNull(parentOrderItemId)) {
+                                    parentOrderItemIdCurr = parentOrderItemId;
+                                    break;
+                                }
                             }
-                            if (!addedItemsId.contains(orderItemId)) {
-                                addedItemsId.add(orderItemId);
-                                res.put(itemdata);
-                            }
-                            if (!isEmptyOrNull(parentOrderItemId)) {
-                                parentOrderItemIdCurr = parentOrderItemId;
+                        }
+
+                    } while (!isParent);
+
+                    // un viòa childus
+                    do {
+                        isFullFor = true;
+                        for (int jj = 0; jj < itemcount; jj++) {
+                            itemdata = data.getJSONObject(jj);
+                            parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
+                            orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
+                            unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
+                            serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
+                            //if (isEmptyOrNull(parentOrderItemId)) {isParent = true;}
+                            if ((isEmptyOrNull(unicornServiceLevel) || isEmptyOrNull(serviceId))
+                                    && parentOrderItemId.equalsIgnoreCase(orderItemIdCurr)) {
+                                if (!addedItemsId.contains(orderItemId)) {
+                                    addedItemsId.add(orderItemId);
+                                    res.put(itemdata);
+                                }
+                                orderItemIdCurr = orderItemId;
+                                isFullFor = false;
                                 break;
                             }
                         }
-                    }
+                    } while (!isFullFor);
+                }
 
-                } while (!isParent);
-
-                // un viòa childus
-                do {
-                    isFullFor = true;
-                    for (int jj = 0; jj < itemcount; jj++) {
-                        itemdata = data.getJSONObject(jj);
-                        parentOrderItemId = GetJsonObjectStringValue(itemdata, "ParentOrderItemId", false);
-                        orderItemId = GetJsonObjectStringValue(itemdata, "OrderItemId", false);
-                        unicornServiceLevel = GetJsonObjectStringValue(itemdata, "UnicornServiceLevel", false);
-                        serviceId = GetJsonObjectStringValue(itemdata, "ServiceId", false);
-                        //if (isEmptyOrNull(parentOrderItemId)) {isParent = true;}
-                        if ((isEmptyOrNull(unicornServiceLevel) || isEmptyOrNull(serviceId))
-                                && parentOrderItemId.equalsIgnoreCase(orderItemIdCurr)) {
-                            if (!addedItemsId.contains(orderItemId)) {
-                                addedItemsId.add(orderItemId);
-                                res.put(itemdata);
-                            }
-                            orderItemIdCurr = orderItemId;
-                            isFullFor = false;
-                            break;
-                        }
-                    }
-                } while (!isFullFor);
             }
-
         }
 
         return res;

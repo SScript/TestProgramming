@@ -26,11 +26,14 @@ public class Resp {
     public String OrderedServiceOrigin = "";
     public String OrderedService = "";
 
-    public static int callCount = 0;
+    public int callCount = 0;
     public String SendJsonStr0 = "";
     public String SendJsonStr1 = "";
     public String SendJsonStr2 = "";
     public String SendJsonStr3 = "";
     public String SendJsonStr4 = "";
+
+    public boolean isOrderLEvelError = false;
+    public boolean isItemLEvelError = false;
    
 }

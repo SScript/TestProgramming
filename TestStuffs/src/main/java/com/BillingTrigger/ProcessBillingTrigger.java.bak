@@ -49,10 +49,10 @@ public class ProcessBillingTrigger  {
             result.OrderedServiceOrigin = "";
         }
 
-        ProcessJson prj = new ProcessJson();
-
         //orderedService = "telco";
+        ProcessJson b4 = new ProcessJson();
         String env = "LOCAL";
+        System.out.println("orderedService: " + orderedService);
         switch (orderedService.toUpperCase()) {
             case "TELCO":
                 try {
@@ -68,7 +68,6 @@ public class ProcessBillingTrigger  {
                     result.responseVlocJson = formatDefaultResponseToSF(jsonDataStr, e);
                     result.RetMsg = e.getMessage();
                     result.RetCode = "SOA_164[005]";
-                    System.out.println("--> responseVlocJson: " + result.responseVlocJson);
                 }
                 break;
             case "ELECTRICITY":
@@ -80,7 +79,7 @@ public class ProcessBillingTrigger  {
 
                 // pa vecam
                 System.out.println("Pa vecam:");
-                resultOld = prj.doTransform(jsonDataStr, excludeStrs, containsOrEquals, caller);
+                resultOld = b4.ProcessJsonData(jsonDataStr);
                 System.out.println("--> SendJsonStr: " + resultOld.SendJsonStr);
                 break;
             default:// Split payment
@@ -90,7 +89,7 @@ public class ProcessBillingTrigger  {
                 //System.out.println("--> SendJsonStr: " + result.SendJsonStr);
 
                 // pa vecam
-                resultOld = prj.doTransform(jsonDataStr, excludeStrs, containsOrEquals, caller);
+                resultOld = b4.ProcessJsonData(jsonDataStr);
                 System.out.println("--> SendJsonStr: " + resultOld.SendJsonStr);
                 break;
         }
@@ -108,11 +107,11 @@ public class ProcessBillingTrigger  {
             orderdata = orderdatafull.getJSONObject("Order");
             orderItems = orderdata.getJSONArray("OrderItems");
 
-            for (int i = 0; i < orderItems.length(); i++) {
+            for (int i = 0; orderItems.length() < 4; i++) {
                 //for (int i = 0; i < orderdataitems.length(); i++) {
                 rowdata = orderItems.getJSONObject(i);
                 String prdSubType = GetJsonObjectStringValue(rowdata, "ProductSubType", false);
-                if (!prdSubType.equalsIgnoreCase("ServiceBundle")) {
+                if (!prdSubType.equalsIgnoreCase("Offer")) {
                     continue;
                 }
                 orderItems.put(new JSONObject()
@@ -125,7 +124,6 @@ public class ProcessBillingTrigger  {
                         .put("Description", "Datu validâcijas kïûda. Ir nepiecieðama manuâla norçíinu aktivizâcija.")
                         .put("ErrorCode", "SOA_164[005]")
                         .put("GroupId", "1"));
-                break;
             }
 
             order.put("OrderId", GetJsonObjectStringValue(orderdata, "OrderId", false));
@@ -159,10 +157,8 @@ public class ProcessBillingTrigger  {
         }
 
         String res = (new JSONArray().put(order)).toString();
-        JSONObject responseVlocJson = new JSONObject();
-        responseVlocJson.put("Order", new JSONArray().put(order));
 
-        return responseVlocJson.toString();
+        return res;
     }
 
     private String GetJsonObjectStringValue(JSONObject data, String jsonfieldName, boolean mandatory) throws Exception {

@@ -16,8 +16,8 @@ public class BillingTriggerRunnerOld {
         String longJsonString = IOUtils.toString(fis, "UTF-8");
 
 
-        BillingTrigger4 b4 = new BillingTrigger4();
-        Resp res2 = b4.ProcessJsonData(longJsonString);
+        ProcessJson b4 = new ProcessJson();
+        Resp res2 = b4.doTransform(longJsonString, "", "", "");
 
         System.out.println(res2.RetCode);
         System.out.println(res2.RetMsg);

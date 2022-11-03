@@ -28,7 +28,7 @@ public class JSonDataFunctions {
      *   DeliveryMethod = 'Courier', tad CourierAddressString
      *   DeliveryMethod = 'PickUpPoint', tad ParcelMachineAddress
      *   DeliveryMethod  = 'StoreFront', tad "Tet veikals"
-     *   DeliveryMethod = 'AlreadyDelivered', tad nepadot ≈°o parametru
+     *   DeliveryMethod = 'AlreadyDelivered', tad nepadot o parametru
      *     else
      *       OrderItem.serviceAccountAddress
      * @param orderdataitems
@@ -101,7 +101,7 @@ public class JSonDataFunctions {
         Mapping:
             StoreFront - TET veikals
             Courier - Kurjers
-            PickUpPoint - Omniva pakomƒÅts
+            PickUpPoint - Omniva pakom‚ts
             KAI - Meistars
         For root order line item parentOrderItem will be null.
     * */
@@ -129,7 +129,7 @@ public class JSonDataFunctions {
                         result = "Kurjers";
                         break;
                     case "PICKUPPOINT":
-                        result = "Omniva pakomƒÅts";
+                        result = "Omniva pakom‚ts";
                         break;
                     case "KAI":
                         result = "Meistars";
@@ -374,7 +374,7 @@ public class JSonDataFunctions {
         return result;
     }
 
-    // FulfilmentStatus <> 'InComplete' un ≈°ƒ´m OrderItem ir child OrderItem ar OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' (SOAIP-2257)
+    // FulfilmentStatus <> 'InComplete' un Óm OrderItem ir child OrderItem ar OrderItem ar ProductCode = 'PD_TELCO_INSTALL_PACKAGE' (SOAIP-2257)
     public boolean findChildOrderItemVlOfferNameSelfInstall(JSONArray orderdataitems, String orderItemId) throws Exception {
 
         if (orderItemId.isEmpty()) {
@@ -401,7 +401,7 @@ public class JSonDataFunctions {
     }
 
 
-    // FulfilmentStatus <> 'InComplete' un ≈°ƒ´m OrderItem ir child OrderItem ar ProductSubType = 'Installation' and ServiceType = 'Fitter'
+    // FulfilmentStatus <> 'InComplete' un Óm OrderItem ir child OrderItem ar ProductSubType = 'Installation' and ServiceType = 'Fitter'
     public boolean findChildOrderItemVlOfferNameFitter(JSONArray orderdataitems, String orderItemId) throws Exception {
 
         if (orderItemId.isEmpty()) {
@@ -431,7 +431,7 @@ public class JSonDataFunctions {
 
 
 
-        public String GetVlOfferNameValueRemove(JSONArray orderdataitems) throws Exception {
+    public String GetVlOfferNameValueRemove(JSONArray orderdataitems) throws Exception {
         String result = "";
         int itemc = orderdataitems.length();
         JSONObject d = null;
@@ -528,7 +528,7 @@ public class JSonDataFunctions {
         return result;
     }
 
-    public String VLOrderMonthlyTotal(JSONObject orderdata) throws Exception {
+    public String GetVLOrderMonthlyTotalWithoutDiscountValue(JSONObject orderdata) throws Exception {
         String result = "";
         Object data = null;
         JSONArray apr = new JSONArray();
@@ -582,6 +582,7 @@ public class JSonDataFunctions {
     public String GetResumeDateValueFromSuspendEndDate(JSONArray orderdataitems) throws Exception {
         String result = "";
         String productSubType = "";
+        String resumeDate = "";
         String suspendEndDate = "";
         JSONObject itemdata = null;
         int itemcount = orderdataitems.length();
@@ -589,9 +590,12 @@ public class JSonDataFunctions {
             itemdata = orderdataitems.getJSONObject(i);
             productSubType = GetJsonAtrrObjectStringValue(itemdata, "ProductSubType", false);
             if ("Offer".equalsIgnoreCase(productSubType)) {
+                resumeDate = GetJsonAtrrObjectStringValue(itemdata, "ResumeDate", false);
                 suspendEndDate = GetJsonAtrrObjectStringValue(itemdata, "SuspendEndDate", false);
                 if (!isEmptyOrNull(suspendEndDate)) {
                     return suspendEndDate;
+                } else if (!isEmptyOrNull(resumeDate)) {
+                    return resumeDate;
                 }
             }
         }
@@ -652,6 +656,23 @@ public class JSonDataFunctions {
         return res;
     }
 
+    public String isOrderItemFieldWithDifferentValue(JSONArray orderdataitems,
+                                                     String field, String fieldValue) throws Exception {
+        int itemc = orderdataitems.length();
+        JSONObject d = null;
+        String fieldval = "";
+        String res = "false";
+        for (int i = 0; i < itemc; i++) {
+            d = orderdataitems.getJSONObject(i);
+            fieldval = GetJsonAtrrObjectStringValue(d, field, false);
+            if (!isEmptyOrNull(fieldval) && !fieldValue.equals(fieldval)) {
+                return "true";
+            }
+        }
+
+        return res;
+    }
+
     public String GetServiceStartDate(JSONArray orderdataitems) throws Exception {
         String result = "";
         String productType = "";
@@ -661,7 +682,7 @@ public class JSonDataFunctions {
         JSONObject d = null;
         int itemcount = orderdataitems.length();
 
-        // ServiceStartDate ir katrƒÅ orderitemƒÅ
+        // ServiceStartDate ir katr‚ orderitem‚
         for (int i = 0; i < itemcount; i++) {
             d = orderdataitems.getJSONObject(i);
             productType = GetJsonAtrrObjectStringValue(d, "ProductType", false);
@@ -812,7 +833,7 @@ public class JSonDataFunctions {
     }
 
     public String FormatDate(String d) {
-        // var ienƒÅkt:
+        // var ien‚kt:
         // ir   -> 2020-07-15 10:00:00
         // vai -> 15/07/2020 10:00:00
         // vai -> 2022-07-28
@@ -851,7 +872,6 @@ public class JSonDataFunctions {
         } else {
             return "";
         }
-
     }
 
     public String CompareDates(String currentDate, String newDate) throws Exception {

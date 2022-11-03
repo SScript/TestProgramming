@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/JSonDataFunctionsBase.java" charset="windows-1257" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessBillingTrigger.java" charset="windows-1257" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessElectricity.java" charset="windows-1257" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessJson.java" charset="windows-1257" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessSplitPayment.java" charset="windows-1257" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/BillingTrigger/ProcessTelco.java" charset="windows-1257" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/reach/JSonDataFunctions.java" charset="windows-1257" />

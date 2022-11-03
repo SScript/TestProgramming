@@ -175,18 +175,36 @@ public class JSonDataFunctions {
         String productCodeValue = "";
         String deliveryMethodValue = "";
         String dcp = "";
-
         for (int i = 0; i < itemc; i++) {
             d = orderdataitems.getJSONObject(i);
             productCodeValue = GetJsonAtrrObjectStringValue(d, "ProductCode", false);
-            deliveryMethodValue = GetJsonAtrrObjectStringValue(d, "DeliveryMethod", false);
+            deliveryMethodValue = GetJsonAtrrObjectStringValue(d, "ReturnDeliveryMethod", false);
+
             if ("PD_TELCO_INSTALL_PACKAGE".equalsIgnoreCase(productCodeValue) && "Courier".equalsIgnoreCase(deliveryMethodValue)) {
-                dcp = GetJsonAtrrObjectStringValue(d, "DeliveryContactName", false);
-                result = dcp;
-                dcp = GetJsonAtrrObjectStringValue(d, "DeliveryContactEmail", false);
-                if (isEmptyOrNull(result)) {result = dcp;} else {result = ", " + dcp;}
-                dcp = GetJsonAtrrObjectStringValue(d, "DeliveryContactPhone", false);
-                if (isEmptyOrNull(result)) {result = dcp;} else {result = ", " + dcp;}
+
+                    dcp = GetJsonAtrrObjectStringValue(d, "ReturnContactName", false);
+                if (!isEmptyOrNull(dcp)) {
+                    result = dcp;
+                }
+
+                    dcp = GetJsonAtrrObjectStringValue(d, "ReturnContactEmail", false);
+                if (!isEmptyOrNull(dcp)) {
+                    if (!isEmptyOrNull(result)) {
+                        result = result + ", " + dcp;
+                    } else {
+                        result = dcp;
+                    }
+                }
+
+                    dcp = GetJsonAtrrObjectStringValue(d, "ReturnContactPhone", false);
+                if (!isEmptyOrNull(dcp)) {
+                    if (!isEmptyOrNull(result)) {
+                        result = result + ", " + dcp;
+                    } else {
+                        result = dcp;
+                    }
+                }
+
                 return  result;
             }
         }
@@ -205,9 +223,13 @@ public class JSonDataFunctions {
             servType = GetJsonAtrrObjectStringValue(d, "ServiceType", false);
             tetReservationStartTime = GetJsonAtrrObjectStringValue(d, "TetReservationStartTime", false);
             if (isReservDate) {
-                return String.valueOf((prdSubType.equals(prodSybType) && serviceType.equals(servType) && !isEmptyOrNull(tetReservationStartTime)));
+                if (prdSubType.equals(prodSybType) && serviceType.equals(servType) && !isEmptyOrNull(tetReservationStartTime)) {
+                    return "True";
+                }
             } else {
-                return String.valueOf((prdSubType.equals(prodSybType) && serviceType.equals(servType)));
+                if (prdSubType.equals(prodSybType) && serviceType.equals(servType)) {
+                    return "True";
+                }
             }
         }
         return "false";
@@ -431,7 +453,7 @@ public class JSonDataFunctions {
 
 
 
-        public String GetVlOfferNameValueRemove(JSONArray orderdataitems) throws Exception {
+    public String GetVlOfferNameValueRemove(JSONArray orderdataitems) throws Exception {
         String result = "";
         int itemc = orderdataitems.length();
         JSONObject d = null;
@@ -539,6 +561,7 @@ public class JSonDataFunctions {
         String papsFulfillmentStatus = "";
         String discountAmount = "";
 
+        String VLOrderTotalTotal = GetJsonAtrrObjectStringValue(orderdata, "VLOrderMonthlyTotal", false);
         try {
             data = orderdata.get("AppliedPromotion");
             if (data instanceof JSONArray) {
@@ -549,10 +572,9 @@ public class JSonDataFunctions {
                 apr.put(data);
             }
         } catch (Exception e) {
-            return "";
+            return VLOrderTotalTotal;
         }
 
-        String VLOrderTotalTotal = GetJsonAtrrObjectStringValue(orderdata, "VLOrderMonthlyTotal", false);
         if (!isEmptyOrNull(VLOrderTotalTotal)) {
             finalResSum = finalResSum + Double.valueOf(VLOrderTotalTotal);
         }
@@ -651,6 +673,23 @@ public class JSonDataFunctions {
             d = orderdataitems.getJSONObject(i);
             fieldval = GetJsonAtrrObjectStringValue(d, field, false);
             if (fieldValue.equals(fieldval)) {return "true";}
+        }
+
+        return res;
+    }
+
+    public String isOrderItemFieldWithDifferentValue(JSONArray orderdataitems,
+                                                     String field, String fieldValue) throws Exception {
+        int itemc = orderdataitems.length();
+        JSONObject d = null;
+        String fieldval = "";
+        String res = "false";
+        for (int i = 0; i < itemc; i++) {
+            d = orderdataitems.getJSONObject(i);
+            fieldval = GetJsonAtrrObjectStringValue(d, field, false);
+            if (!isEmptyOrNull(fieldval) && !fieldValue.equals(fieldval)) {
+                return "true";
+            }
         }
 
         return res;
@@ -855,7 +894,6 @@ public class JSonDataFunctions {
         } else {
             return "";
         }
-
     }
 
     public String CompareDates(String currentDate, String newDate) throws Exception {
